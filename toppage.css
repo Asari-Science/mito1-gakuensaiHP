@@ -1,0 +1,132 @@
+body {
+    background-color: #dab584;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Loading Screen */
+
+/* 基本 */
+.container_main {
+    width: 100%;
+    padding: 10px;
+    position: relative;
+}
+
+/* Top */
+.top {
+    position: relative;
+    display: flex;
+    background-color: #dab584;
+    width: 100vw;
+    height: 100vh;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+    box-shadow: 0 0 20px 10px #dab584;
+}
+
+.ellipse{
+    width: 750px;
+    height: 250px;
+    background-color: #f6dc9f;
+    border-radius: 50%;
+    transform: rotate(135deg);
+    filter: blur(40px);
+    margin-bottom: 10vh;
+    flex-shrink: 0;
+}
+
+.kujira_il {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: right bottom;
+}
+
+.top_text {
+    position: absolute;
+    width: 100%;
+    max-width: 150px;
+    aspect-ratio: 1 / 3;
+    left: 10%;
+    top: 60px;
+}
+
+.text_78th {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 25%;
+    height: auto;
+}
+
+.text_gakuensai {
+    position: absolute;
+    top: 3.5%;
+    right: 3%;
+    width: 18%;
+    height: auto;
+}
+
+.text_amagakeru {
+    position: absolute;
+    top: 0;
+    left: 23%;
+    width: 50%;
+    height: auto;
+}
+
+.text_catchcopy {
+    position: absolute;
+    top: 17%;
+    left: 0;
+    width: 15%;
+    height: auto;
+}
+
+.sf_schedule {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+/* PC向け表示（画面幅769px以上） */
+@media screen and (min-width: 1024px){
+    .top {
+        width: 70vw;
+    }
+
+    .top_text {
+        max-width: 300px;
+    }
+
+    .ellipse {
+        width: 1500px;
+        height: 650px;
+        filter: blur(80px)
+    }
+
+    .sf_schedule {
+        width: 70vw;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .container_main {
+        width: 70vw;
+    }
+
+    .top_text {
+        max-width: 200px;
+        left: 10%;
+    }
+
+    .ellipse {
+        width: 1000px;
+        height: 420px;
+    }
+}
