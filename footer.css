@@ -1,0 +1,118 @@
+/* Footer */
+
+.footer_container {
+    width: 100vw;
+    height: auto;
+    background-color: #dab584;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-blend-mode: lighten;
+}
+
+.footer_frame {
+    width: 100vw;
+    height: auto;
+    padding: 50px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.footer_title {
+    color: black;
+    font-family: "BIZ UDPMincho";
+    font-size: 30px;
+}
+
+.x_logo {
+    width: 50px;
+    margin-top: 30px;
+}
+
+.insta_logo {
+    width: 50px;
+    margin-top: 30px;
+    margin-left: 30px;
+}
+
+.footer_link {
+    display: inline-block;
+    color: black;
+    text-decoration: none;
+    font-family: sans-serif;
+    font-size: 30px;
+}
+
+.footer_link.question {
+    margin-top: 50px;
+    font-family: "BIZ UDPMincho";
+}
+
+.footer_link.access {
+    margin-top: 30px;
+    margin-bottom: 40px;
+    font-family: "BIZ UDPMincho";
+}
+
+.footer_line {
+    height: 2px;
+    background-color: black;
+}
+
+.footer_enjitsu{
+    display: flex;
+}
+
+.enjitsu_logo {
+    margin: 10px;
+    width: 100px;
+    border-radius: 15px;
+    height: 100px;
+}
+
+.aboutus {
+    position: relative;
+    font-family: "BIZ UDPMincho";
+    font-size: 15px;
+    color: black;
+    left: 10px;
+    margin-top: 10px;
+}
+
+.aboutus span {
+    display: inline-block;
+}
+
+.hashtug {
+    margin: 10px;
+    text-align: center;
+    color: black;
+    font-family: "BIZ UDPMincho";
+    text-decoration: none;
+    
+}
+
+.hashtug:hover{
+    text-decoration: underline;
+}
+
+@media screen and (min-width: 768px) {
+    .footer_frame {
+        width: 70vw;
+    }
+
+    .footer_title {
+        font-size: 40px;;
+    }
+
+    .aboutus {
+        font-size: 20px;
+    }
+
+    .x_logo {
+        width: 50px;
+    }
+
+    .insta_logo {
+        width: 50px;
+    }
+}

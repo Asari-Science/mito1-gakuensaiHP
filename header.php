@@ -1,7 +1,7 @@
 <div class="header_frame">
     <div class="header_bg" id="header_bg"></div>
     <a href="https://gakuensai.cloudfree.jp">
-        <img src="https://gakuensai.cloudfree.jp/materials/logo/magic.png" class="header_icon" alt="Magic" />
+        <img src="./materials/header_title.webp" class="header_icon" alt="第78回学苑祭" />
     </a>
     <div class="menu_btn" id="menu_btn">
         <span></span>
@@ -20,3 +20,16 @@
         <a href="https://gakuensai.cloudfree.jp/comingsoon.html">アクセス</a>
     </div>
 </div>
+
+<script>
+    window.addEventListener('scroll', function() {
+        const headerBg = document.getElementById('header_bg');
+    
+        // スクロール量が 50px を超えたら active クラスを追加
+        if (window.scrollY > 50) {
+            headerBg.classList.add('active');
+        } else {
+            headerBg.classList.remove('active');
+        }
+    });
+</script>

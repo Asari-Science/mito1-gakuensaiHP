@@ -8,25 +8,30 @@
 .header_frame {
     position: fixed;
     z-index: 9990;
-    align-items: center;
     width: 100vw;
     height: 100px;
+    top: 0;
+    left: 0;
 }
 
 .header_bg {
     width: 100%;
     height: 100%;
     position: absolute;
+    background-color: white;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
 }
 
 .header_bg.active {
-    opacity: 1;
+    opacity: 0.5;
 }
 
 .header_icon {
     position: absolute;
-    width: 200px;
-    height: auto;
+    width: auto;
+    height: 80px;
     z-index: 9999;
     margin: 10px;
 }
@@ -83,7 +88,7 @@
     text-decoration: none;
     padding: 10px 0;
     text-align: center;
-    font-family: sans-serif;
+    font-family: "BIZ UDPMincho";
 }
 
 .menu a:first-child {
