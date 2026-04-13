@@ -50,23 +50,20 @@ document.querySelectorAll("section").forEach(function(section) {
 });
 
 // お知らせ・ブログ欄の自動更新
-//（両方とも今年度の更新がまだない（のと正常に動作しているかがローカル県境で確認できなかった）ため無効化しています。ブログの更新が始まるまで動かさないでください） 
-
-/*
 
 // 読み込み完了後に実行
 document.addEventListener('DOMContentLoaded', () => {
-    // お知らせの取得
+    // お知らせの取得 (categoryId: 6)
     fetchPosts('news_list', 6); 
     
-    // ブログの取得
+    // ブログの取得 (categoryId: 5)
     fetchPosts('blog_list', 5); 
 });
 
 // targetId: HTMLの挿入先のID, categoryId: WordPressのカテゴリーID
 async function fetchPosts(targetId, categoryId) {
     // カテゴリ取得
-    const apiUrl = `https://gakuensai.net/blog/wp-json/wp/v2/posts?categories=${categoryId}`;
+    const apiUrl = `https://gakuensai.net/blog/wp-json/wp/v2/posts?categories=${categoryId}&per_page=3`;
     
     const listElement = document.getElementById(targetId);
     if (!listElement) return;
@@ -78,32 +75,46 @@ async function fetchPosts(targetId, categoryId) {
         const posts = await response.json();
         listElement.innerHTML = ''; // 読み込み中の文字を消す
 
-        // 5回ループしてリストを作成
-        for (let i = 0; i < 5; i++) {
+        if (posts.length === 0) {
+            const li = document.createElement('li');
+            li.innerHTML = `<span class="news_title">まだ投稿はありません。</span>`;
+            listElement.appendChild(li);
+            return;
+        }
+
+        // 取得した件数分（最大3件）ループしてリストを作成
+        posts.forEach(post => {
             const li = document.createElement('li');
 
-            if (posts[i]) {
-                const date = new Date(posts[i].date).toLocaleDateString('ja-JP');
-                const title = posts[i].title.rendered;
-                const link = posts[i].link;
+            const postDate = new Date(post.date);
+            const dateStr = postDate.toLocaleDateString('ja-JP', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit'
+            }).replace(/\//g, '.');
 
-                li.innerHTML = `
-                    <span class="news_date">${date}</span>
-                    <a href="${link}" target="_blank" class="news_title">${title}</a>
-                `;
-            } else {
-                li.innerHTML = `
-                    <span class="news_date">&nbsp;</span>
-                    <span class="news_title">&nbsp;</span>
-                `;
-            }
+            const title = post.title.rendered;
+            const link = post.link;
+
+            // 2日以内（48時間以内）ならNew!バッジを表示
+            const now = new Date();
+            const diffMs = now - postDate;
+            const diffDays = diffMs / (1000 * 60 * 60 * 24);
+            const isNew = diffDays <= 2;
+            const newBadge = isNew ? '<span class="new_badge">New!</span>' : '';
+
+            li.innerHTML = `
+                <a href="${link}" target="_blank" class="news_item_link">
+                    <span class="news_date">${dateStr}</span>
+                    <span class="news_title">${title}${newBadge}</span>
+                    <span class="news_arrow"></span>
+                </a>
+            `;
             listElement.appendChild(li);
-        }
+        });
 
     } catch (error) {
         console.error('記事の取得に失敗しました:', error);
-        listElement.innerHTML = '<p>記事の取得に失敗しました。</p>';
+        listElement.innerHTML = '<li><span class="news_title">記事の取得に失敗しました。</span></li>';
     }
 }
-
-*/
