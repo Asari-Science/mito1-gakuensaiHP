@@ -198,6 +198,7 @@ body {
     height: auto;
     align-items: center;
     margin-right: 20vw;
+    margin-bottom: 5vh;
     bottom: calc(24px + 32px + 6px + 16px);
     flex-direction: column;
     gap: 16px;
