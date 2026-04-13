@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>第78回水戸一高・附属中学校学苑祭「天翔る」 | 水戸一高・附属中学校学苑祭</title>
-        <meta name="description" content="第78回水戸一高・附属中学校学苑祭「天翔る」公式サイト。2025年6月20日(土)・21日(日)開催。">
+        <meta name="description" content="第78回水戸一高・附属中学校学苑祭「天翔る」公式サイト。2026年6月20日(土)・21日(日)開催。">
 
         <!-- Google Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -68,7 +68,7 @@
         <!-- Loading Screen -->
          <div id="loading_screen">
             <div class="loading_inner">
-                <img src="./materials/NowLoading.gif" alt="Now Loading..." class="loading_gif" id="loading_gif">
+                <video src="./materials/favicon/NowLoading.webm" class="loading_video" id="loading_video" autoplay muted playsinline></video>
             </div>
          </div>
         <!-- Header -->
