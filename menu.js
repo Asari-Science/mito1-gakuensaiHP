@@ -11,8 +11,10 @@ menu_btn.addEventListener("click", () => {
 
     if (menu.classList.contains("active")) {
         document.body.style.overflow = "hidden";
+        document.documentElement.style.overflow = "hidden";
     } else {
         document.body.style.overflow = "";
+        document.documentElement.style.overflow = "";
     }
 });
 
@@ -24,6 +26,7 @@ menuLinks.forEach(function(link) {
         menu.classList.remove("active");
         header_bg.classList.remove("active");
         document.body.style.overflow = "";
+        document.documentElement.style.overflow = "";
     });
 });
 
