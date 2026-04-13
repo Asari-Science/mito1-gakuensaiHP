@@ -85,6 +85,7 @@
                             <ul class="sitemap_list">
                                 <li><a href="https://x.com/Enjitsu78th" target="_blank" rel="noopener noreferrer">X (Twitter)</a></li>
                                 <li><a href="https://www.instagram.com/enjitsu78th" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+                                <li><a href="#" target="_blank" rel="noopener noreferrer">LINE</a></li>
                             </ul>
                         </div>
                     </div>
