@@ -13,6 +13,7 @@ body {
     left: 0;
     width: 100vw;
     height: 100vh;
+    height: 100dvh;
     background-color: #1a1207;
     z-index: 99999;
     display: flex;
@@ -21,6 +22,7 @@ body {
     opacity: 1;
     transition: opacity 0.8s ease;
     pointer-events: all;
+    overflow: hidden;
 }
 
 #loading_screen.fade-out {
@@ -35,15 +37,20 @@ body {
 .loading_inner {
     width: 100%;
     height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: relative;
+    overflow: hidden;
 }
 
-.loading_gif {
-    max-width: 90vw;
-    max-height: 80vh;
-    object-fit: contain;
+.loading_video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: cover;
 }
 
 /* ===== Scroll Indicator ===== */
@@ -191,7 +198,7 @@ body {
     height: auto;
     align-items: center;
     margin-right: 20vw;
-    bottom: 32px;
+    bottom: calc(24px + 32px + 6px + 16px);
     flex-direction: column;
     gap: 16px;
 }
@@ -246,7 +253,7 @@ body {
     border: 1.5px solid rgba(0, 0, 0, 0.15);
     position: relative;
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: default;
 }
 
 .schedule_card::before {
@@ -259,9 +266,10 @@ body {
     z-index: 0;
 }
 
+/* hover disabled to avoid looking like a link */
 .schedule_card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    transform: none;
+    box-shadow: none;
 }
 
 .schedule_card > * {
@@ -338,12 +346,40 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 16px;
-    padding: 10px 0;
+    gap: 20px;
+    padding: 24px 16px;
+    margin: 0 auto;
+    width: 90vw;
+    max-width: 520px;
+    background: linear-gradient(160deg, rgba(26, 18, 7, 0.88) 0%, rgba(42, 32, 14, 0.92) 100%);
+    border-radius: 18px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+}
+
+.sf_schedule_mobile::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 18px;
+    border: 1px solid rgba(246, 220, 159, 0.15);
+    pointer-events: none;
+}
+
+.mobile_badge {
+    border-color: rgba(246, 220, 159, 0.5);
+}
+
+.mobile_badge::before {
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
 }
 
 .mobile_badge .badge_text {
-    font-size: 22px;
+    font-size: 20px;
+    color: #f6dc9f;
 }
 
 .days_row {
@@ -355,27 +391,40 @@ body {
 }
 
 .days_row .schedule_card {
-    padding: 12px 16px;
+    padding: 14px 18px;
+    background: rgba(246, 220, 159, 0.1);
+    border-color: rgba(246, 220, 159, 0.2);
 }
 
-.days_row .card_date {
-    font-size: 26px;
-}
-
-.days_row .card_date small {
-    font-size: 13px;
-}
-
-.days_row .card_time {
-    font-size: 14px;
-}
-
-.days_row .card_last {
-    font-size: 10px;
+.days_row .schedule_card::before {
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
 }
 
 .days_row .card_day {
     font-size: 10px;
+    color: #f6dc9f;
+}
+
+.days_row .card_date {
+    font-size: 26px;
+    color: #f6dc9f;
+}
+
+.days_row .card_date small {
+    font-size: 13px;
+    color: rgba(246, 220, 159, 0.7);
+}
+
+.days_row .card_time {
+    font-size: 14px;
+    color: rgba(246, 220, 159, 0.85);
+}
+
+.days_row .card_last {
+    font-size: 10px;
+    color: rgba(246, 220, 159, 0.5);
 }
 
 /* ===== News / Blog Section ===== */

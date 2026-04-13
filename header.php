@@ -9,7 +9,9 @@
 </script>
 
 <div class="header_frame">
-    <div class="header_bg" id="header_bg"></div>
+    <div class="header_bg" id="header_bg">
+        <div class="header_countdown" id="header_countdown"></div>
+    </div>
     <a href="https://gakuensai.net">
         <img src="./materials/header_title.webp" class="header_icon" alt="第78回学苑祭" />
     </a>
@@ -30,6 +32,7 @@
             <a href="./comingsoon.php">グッズページ</a>
             <a href="./comingsoon.php">お問い合わせ</a>
             <a href="./comingsoon.php">アクセス</a>
+            <a href="./comingsoon.php">落とし物・忘れ物</a>
             <div class="menu_footer_sns">
                 <a href="https://x.com/Enjitsu78th" class="menu_sns_link" aria-label="X (Twitter)">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
@@ -53,4 +56,31 @@
             headerBg.classList.remove('active');
         }
     });
+
+    // カウントダウンタイマー（header_bg active時のみ表示）
+    (function() {
+        var targetDate = new Date('2026-06-20T11:00:00+09:00').getTime();
+        var countdownEl = document.getElementById('header_countdown');
+        if (!countdownEl) return;
+
+        function updateCountdown() {
+            var now = new Date().getTime();
+            var diff = targetDate - now;
+
+            if (diff <= 0) {
+                // 開催日以降の対応は後で実装
+                countdownEl.textContent = '';
+                return;
+            }
+
+            var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+            countdownEl.textContent = '第78回学苑祭まで ' + days + '日 ' + hours + '時間 ' + minutes + '分';
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 60000); // 1分ごとに更新
+    })();
 </script>

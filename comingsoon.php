@@ -42,7 +42,7 @@
                     <div class="comingsoon_divider"></div>
                     <p class="comingsoon_date">
                         第78回学苑祭<br>
-                        <span>2025.6.20 - 6.21</span>
+                        <span>2026.6.20 - 6.21</span>
                     </p>
                     <a href="https://gakuensai.net" class="comingsoon_back">
                         <span class="back_arrow">&larr;</span>
