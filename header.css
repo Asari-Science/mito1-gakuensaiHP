@@ -9,7 +9,7 @@
     position: fixed;
     z-index: 9990;
     width: 100vw;
-    height: 100px;
+    height: 80px;
     top: 0;
     left: 0;
 }
@@ -18,90 +18,76 @@
     width: 100%;
     height: 100%;
     position: absolute;
-    background-color: white;
+    background: linear-gradient(180deg, rgba(218,181,132,0.6) 0%, rgba(246,220,159,0.3) 100%);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     opacity: 0;
-    transition: opacity 0.3s;
+    transition: opacity 0.4s ease;
     pointer-events: none;
 }
 
 .header_bg.active {
-    opacity: 0.5;
+    opacity: 1;
 }
 
 .header_icon {
     position: absolute;
     width: auto;
-    height: 80px;
+    height: 60px;
     z-index: 9999;
     margin: 10px;
+    transition: opacity 0.3s ease;
 }
+
+.header_icon:hover {
+    opacity: 0.7;
+}
+
+/* ===== Hamburger Button ===== */
 
 .menu_btn {
     display: flex;
     flex-direction: column;
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     cursor: pointer;
     z-index: 9999;
-    top: 30px;
-    padding: 10px;
+    top: 22px;
+    padding: 8px;
     justify-content: space-between;
-    background-color: white;
-    border-radius: 5px;
+    background: rgba(246, 220, 159, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1.5px solid rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
     position: absolute;
-    margin-right: 30px;
+    margin-right: 20px;
     right: 0;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.menu_btn:hover {
+    background: rgba(246, 220, 159, 0.95);
+    transform: scale(1.05);
 }
 
 .menu_btn span {
-    height: 3px;
-    background: black;
+    height: 2px;
+    background: #1a1207;
     border-radius: 2px;
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
-.menu {
-    display: flex;
-    flex-direction: column;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-color: rgba(255, 255, 255, 0.7);
-    background-blend-mode: lighten;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 100vh;
-    padding: 100px 20px;
-    overflow-y: auto;
-    transform: translateY(-100vh);
-    transition:
-        transform 1s ease,
-        opacity 1s ease;
-    opacity: 0;
-    font-size: 20px;
+.menu_btn.active {
+    background: rgba(26, 18, 7, 0.85);
 }
 
-.menu a {
-    color: #2b7397;
-    text-decoration: none;
-    padding: 10px 0;
-    text-align: center;
-    font-family: "BIZ UDPMincho";
-}
-
-.menu a:first-child {
-    border-top: none;
-}
-
-.menu.active {
-    transform: translateY(0);
-    opacity: 1;
+.menu_btn.active span {
+    background: #f6dc9f;
 }
 
 .menu_btn.active span:nth-child(1) {
-    transform: rotate(45deg) translate(6px, 6px);
+    transform: rotate(45deg) translate(5px, 5px);
 }
 
 .menu_btn.active span:nth-child(2) {
@@ -109,5 +95,149 @@
 }
 
 .menu_btn.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(6px, -6px);
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* ===== Full-Screen Menu Overlay ===== */
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(160deg, rgba(218,181,132,0.97) 0%, rgba(246,220,159,0.97) 50%, rgba(218,181,132,0.97) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 0;
+    overflow-y: auto;
+    transform: translateY(-100vh);
+    transition:
+        transform 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.5s ease;
+    opacity: 0;
+    z-index: 9995;
+}
+
+.menu.active {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.menu_inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 100px 20px 60px;
+    gap: 4px;
+}
+
+.menu_header_label {
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 300;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(26, 18, 7, 0.4);
+    margin-bottom: 20px;
+}
+
+.menu a {
+    color: #1a1207;
+    text-decoration: none;
+    padding: 12px 0;
+    text-align: center;
+    font-family: "Zen Old Mincho", serif;
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: 0.05em;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.menu a::after {
+    content: "";
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: 40px;
+    height: 1.5px;
+    background: #8b6914;
+    transition: transform 0.3s ease;
+}
+
+.menu a:hover {
+    color: #8b6914;
+}
+
+.menu a:hover::after {
+    transform: translateX(-50%) scaleX(1);
+}
+
+.menu a:first-child {
+    border-top: none;
+}
+
+/* Menu Footer SNS Icons */
+
+.menu_footer_sns {
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.menu_sns_link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.06);
+    color: #1a1207;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.menu_sns_link:hover {
+    background: rgba(0, 0, 0, 0.12);
+    transform: scale(1.1);
+}
+
+/* ===== Responsive adjustments ===== */
+
+@media screen and (max-width: 400px) {
+    .header_icon {
+        height: 50px;
+        margin: 15px 8px;
+    }
+
+    .menu_btn {
+        top: 20px;
+        margin-right: 12px;
+    }
+
+    .menu a {
+        font-size: 18px;
+        padding: 10px 0;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .menu a {
+        font-size: 26px;
+        padding: 14px 0;
+    }
+
+    .menu_header_label {
+        font-size: 12px;
+    }
 }

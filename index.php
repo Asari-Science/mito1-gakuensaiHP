@@ -1,11 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>第78回水戸一高・附属中学校学苑祭「天翔る」 | 水戸一高・附属中学校学苑祭</title>
-        <meta name="description" content="">
+        <meta name="description" content="第78回水戸一高・附属中学校学苑祭「天翔る」公式サイト。2025年6月20日(土)・21日(日)開催。">
+
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;700;900&family=Shippori+Mincho:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
 
         <link rel="stylesheet" type="text/css" href="./reset.css">
         <link rel="stylesheet" type="text/css" href="./toppage.css">
@@ -62,6 +67,9 @@
     <body>
         <!-- Loading Screen -->
          <div id="loading_screen">
+            <div class="loading_inner">
+                <img src="./materials/NowLoading.gif" alt="Now Loading..." class="loading_gif" id="loading_gif">
+            </div>
          </div>
         <!-- Header -->
          <?php include(__DIR__ . "/header.php"); ?>
@@ -71,27 +79,58 @@
                 <section id="top">
                     <div class="top">
                         <div class="ellipse"></div>
-                        <img src="./materials/kujira.webp" class="kujira_il">
+                        <img src="./materials/kujira.webp" class="kujira_il" alt="鯨イラスト">
                         <div class="top_text">
-                            <img src="./materials/text_78th.webp" class="text_78th">
-                            <img src="./materials/text_kanji_gakuensai.webp" class="text_gakuensai">
-                            <img src="./materials/text_kanji_amagakeru.webp" class="text_amagakeru">
-                            <img src="./materials/text_catchcopy.webp" class="text_catchcopy">
+                            <img src="./materials/text_78th.webp" class="text_78th" alt="78th">
+                            <img src="./materials/text_kanji_gakuensai.webp" class="text_gakuensai" alt="学苑祭">
+                            <img src="./materials/text_kanji_amagakeru.webp" class="text_amagakeru" alt="天翔る">
+                            <img src="./materials/text_catchcopy.webp" class="text_catchcopy" alt="キャッチコピー">
                         </div>
                         <div class="schedule_top">
-                            <p class="schedule_text_big">両日開催</p>
-                            <p class="schedule_text_plain">6/20(土)<br>11:00 〜 16:30<br>最終入場 16:00</p>
-                            <p class="schedule_text_plain">6/21(日)<br>9:00 〜13:00 <br>最終入場 12:30</p>
+                            <div class="schedule_badge">
+                                <span class="badge_text">両日開催</span>
+                            </div>
+                            <div class="schedule_cards_row">
+                                <div class="schedule_card">
+                                    <span class="card_day">Day 1</span>
+                                    <span class="card_date">6/20<small>(土)</small></span>
+                                    <span class="card_time">11:00 - 16:30</span>
+                                    <span class="card_last">最終入場 16:00</span>
+                                </div>
+                                <div class="schedule_card">
+                                    <span class="card_day">Day 2</span>
+                                    <span class="card_date">6/21<small>(日)</small></span>
+                                    <span class="card_time">9:00 - 13:00</span>
+                                    <span class="card_last">最終入場 12:30</span>
+                                </div>
+                            </div>
                         </div>
+                    </div>
+                    <!-- Scroll indicator -->
+                    <div class="scroll_indicator">
+                        <span class="scroll_text">Scroll</span>
+                        <span class="scroll_line"></span>
                     </div>
                 </section>
                 <span class="divide_line_common"></span>
                 <section id="Schedule_mobile">
                     <div class="sf_schedule_mobile">
-                        <p class="schedule_text_big sc_mobile_0">両日開催</p>
+                        <div class="schedule_badge mobile_badge">
+                            <span class="badge_text">両日開催</span>
+                        </div>
                         <div class="days_row">
-                            <p class="schedule_text_plain sc_mobile_1">6/20(土)<br>11:00 〜 16:30<br>最終入場 16:00</p>
-                            <p class="schedule_text_plain sc_mobile_2">6/21(日)<br>9:00 〜13:00 <br>最終入場 12:30</p>
+                            <div class="schedule_card">
+                                <span class="card_day">Day 1</span>
+                                <span class="card_date">6/20<small>(土)</small></span>
+                                <span class="card_time">11:00 - 16:30</span>
+                                <span class="card_last">最終入場 16:00</span>
+                            </div>
+                            <div class="schedule_card">
+                                <span class="card_day">Day 2</span>
+                                <span class="card_date">6/21<small>(日)</small></span>
+                                <span class="card_time">9:00 - 13:00</span>
+                                <span class="card_last">最終入場 12:30</span>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -115,7 +154,7 @@
                             <ul class="news" id="news_list">
                                 <li>
                                     <span class="news_date"></span>
-                                    <span class="news_title">お知らせがまだ存在しません。</span>
+                                    <span class="news_title">お知らせはまだありません。</span>
                                 </li>
                                 <li></li>
                                 <li></li>
@@ -141,7 +180,7 @@
                             <ul class="news" id="blog_list">
                                 <li>
                                     <span class="news_date"></span>
-                                    <span class="news_title">今年度のブログはまだ存在しません。</span>
+                                    <span class="news_title">今年度のブログはまだありません。</span>
                                 </li>
                                 <li></li>
                                 <li></li>
@@ -155,5 +194,6 @@
          <?php include(__DIR__ . "/footer.php"); ?>
         <!-- Script -->
          <script src="./menu.js"></script>
+         <script src="./loading.js"></script>
     </body>
 </html>
