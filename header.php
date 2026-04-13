@@ -13,6 +13,11 @@
     <a href="https://gakuensai.net">
         <img src="./materials/header_title.webp" class="header_icon" alt="第78回学苑祭" />
     </a>
+    <div class="header_countdown" id="header_countdown">
+        <span class="countdown_label">あと</span>
+        <span class="countdown_days" id="countdown_days">--</span>
+        <span class="countdown_unit">日</span>
+    </div>
     <div class="menu_btn" id="menu_btn">
         <span></span>
         <span></span>
@@ -53,4 +58,24 @@
             headerBg.classList.remove('active');
         }
     });
+
+    // Countdown logic
+    function updateCountdown() {
+        const targetDate = new Date('2025-06-20T00:00:00+09:00');
+        const now = new Date();
+        const diff = targetDate - now;
+
+        const countdownElement = document.getElementById('countdown_days');
+        if (!countdownElement) return;
+
+        if (diff <= 0) {
+            document.getElementById('header_countdown').innerHTML = '<span class="countdown_label">開催中！</span>';
+            return;
+        }
+
+        const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+        countdownElement.textContent = days;
+    }
+
+    document.addEventListener('DOMContentLoaded', updateCountdown);
 </script>

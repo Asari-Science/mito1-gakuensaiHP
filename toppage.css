@@ -192,6 +192,7 @@ body {
     align-items: center;
     margin-right: 20vw;
     bottom: 32px;
+    margin-bottom: 5vh;
     flex-direction: column;
     gap: 16px;
 }
