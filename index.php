@@ -5,18 +5,34 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>第78回水戸一高・附属中学校学苑祭「天翔る」 | 水戸一高・附属中学校学苑祭</title>
+
+        <!-- SEO関係 サイト説明 -->
         <meta name="description" content="第78回水戸一高・附属中学校学苑祭「天翔る」公式サイト。2026年6月20日(土)・21日(日)開催。">
+        <!-- キーワード -->
+        <meta name="keywords" content="学苑祭,水戸一高,文化祭,学園祭,茨城県立水戸第一高等学校,高校,茨城">
+
+        <!-- SNS OGPタグ -->
+        <meta property="og:title" content="第78回水戸一高・附属中学校学苑祭「天翔る」 | 水戸一高・附属中学校学苑祭" />
+        <meta property="og:type" content="website" />
+        <meta property="og:description" content="第78回水戸一高・附属中学校学苑祭「天翔る」公式サイト。2026年6月20日(土)・21日(日)開催。" />
+        <meta property="og:url" content="https://gakuensai.net" />
+        <!-- OGP サムネ画像 -->
+        <meta property="og:image" content="https://gakuensai.net/materials/enjitsu78th.webp" />
+        <meta property="og:site_name" content="第78回学苑祭HP" />
+        <meta property="og:locale" content="ja_JP">
 
         <!-- Google Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;700;900&family=Shippori+Mincho:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
 
+        <!-- CSS -->
         <link rel="stylesheet" type="text/css" href="./reset.css">
         <link rel="stylesheet" type="text/css" href="./toppage.css">
         <link rel="stylesheet" type="text/css" href="./header.css">
         <link rel="stylesheet" type="text/css" href="./footer.css">
 
+        <!-- favicon -->
         <meta name="msapplication-square70x70logo" content="./materials/favicon/site-tile-70x70.png">
         <meta name="msapplication-square150x150logo" content="./materials/favicon/site-tile-150x150.png">
         <meta name="msapplication-wide310x150logo" content="./materials/favicon/site-tile-310x150.png">

@@ -57,16 +57,16 @@ document.querySelectorAll("section").forEach(function(section) {
 // 読み込み完了後に実行
 document.addEventListener('DOMContentLoaded', () => {
     // お知らせの取得
-    fetchPosts('news_list', 3); 
+    fetchPosts('news_list', 6); 
     
     // ブログの取得
-    fetchPosts('blog_list', 4); 
+    fetchPosts('blog_list', 5); 
 });
 
 // targetId: HTMLの挿入先のID, categoryId: WordPressのカテゴリーID
 async function fetchPosts(targetId, categoryId) {
     // カテゴリ取得
-    const apiUrl = `https://gakuensai.cloudfree.jp/wp/wp-json/wp/v2/posts?categories=${categoryId}`;
+    const apiUrl = `https://gakuensai.net/blog/wp-json/wp/v2/posts?categories=${categoryId}`;
     
     const listElement = document.getElementById(targetId);
     if (!listElement) return;
