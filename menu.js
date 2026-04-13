@@ -8,6 +8,45 @@ menu_btn.addEventListener("click", () => {
     menu_btn.classList.toggle("active");
     menu.classList.toggle("active");
     header_bg.classList.toggle("active");
+
+    if (menu.classList.contains("active")) {
+        document.body.style.overflow = "hidden";
+    } else {
+        document.body.style.overflow = "";
+    }
+});
+
+// メニュー内のリンクをクリックしたらメニューを閉じる
+const menuLinks = menu.querySelectorAll("a");
+menuLinks.forEach(function(link) {
+    link.addEventListener("click", function() {
+        menu_btn.classList.remove("active");
+        menu.classList.remove("active");
+        header_bg.classList.remove("active");
+        document.body.style.overflow = "";
+    });
+});
+
+// セクションのフェードイン表示
+const observerOptions = {
+    root: null,
+    rootMargin: "0px 0px -60px 0px",
+    threshold: 0.1
+};
+
+const sectionObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            sectionObserver.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+document.querySelectorAll("section").forEach(function(section) {
+    if (section.id !== "top") {
+        sectionObserver.observe(section);
+    }
 });
 
 // お知らせ・ブログ欄の自動更新
