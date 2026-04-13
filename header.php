@@ -1,3 +1,13 @@
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-588E3Z6HDM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-588E3Z6HDM');
+</script>
+
 <div class="header_frame">
     <div class="header_bg" id="header_bg"></div>
     <a href="https://gakuensai.net">
