@@ -161,7 +161,7 @@
                                 <h1 class="news_base_title">お知らせ</h1>
                                 <p class="news_base_subtitle">最新の3件を表示しています。</p>
                             </div>
-                            <a href="https://gakuensai.cloudfree.jp/wp/category/%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b/" class="link_all">
+                            <a href="https://gakuensai.net/blog/category/news/" class="link_all">
                                 <b>全て表示</b>
                             </a>
                          </div>
@@ -187,7 +187,7 @@
                                 <h1 class="news_base_title">ブログ</h1>
                                 <p class="news_base_subtitle">最新の3件を表示しています。</p>
                             </div>
-                            <a href="https://gakuensai.cloudfree.jp/wp/category/blog/" class="link_all">
+                            <a href="https://gakuensai.net/blog/category/gakuensai-blog/" class="link_all">
                                 <b>全て表示</b>
                             </a>
                          </div>

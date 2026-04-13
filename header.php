@@ -24,7 +24,7 @@
         <div class="menu_inner">
             <div class="menu_header_label">MENU</div>
             <a href="https://gakuensai.net">Top</a>
-            <a href="./comingsoon.php">Blog</a>
+            <a href="https://gakuensai.net/blog/">Blog</a>
             <a href="./comingsoon.php">企画紹介</a>
             <a href="./comingsoon.php">リーフレット</a>
             <a href="./comingsoon.php">ステージタイムテーブル</a>
