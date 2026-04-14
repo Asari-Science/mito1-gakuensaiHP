@@ -27,10 +27,10 @@
         <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;700;900&family=Shippori+Mincho:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
 
         <!-- CSS -->
-        <link rel="stylesheet" type="text/css" href="./reset.css">
-        <link rel="stylesheet" type="text/css" href="./toppage.css">
-        <link rel="stylesheet" type="text/css" href="./header.css">
-        <link rel="stylesheet" type="text/css" href="./footer.css">
+        <link rel="stylesheet" type="text/css" href="./assets/css/reset.css">
+        <link rel="stylesheet" type="text/css" href="./assets/css/toppage.css">
+        <link rel="stylesheet" type="text/css" href="./assets/css/header.css">
+        <link rel="stylesheet" type="text/css" href="./assets/css/footer.css">
 
         <!-- favicon -->
         <meta name="msapplication-square70x70logo" content="./materials/favicon/site-tile-70x70.png">
@@ -81,6 +81,7 @@
 
     </head>
     <body>
+        <?php $base_path = '.'; ?>
         <!-- Loading Screen -->
          <div id="loading_screen">
             <div class="loading_inner">
@@ -88,7 +89,7 @@
             </div>
          </div>
         <!-- Header -->
-         <?php include(__DIR__ . "/header.php"); ?>
+         <?php include(__DIR__ . "/includes/header.php"); ?>
         <!-- Main -->
          <main>
             <div class="container_main">
@@ -204,12 +205,92 @@
                          </div>
                     </div>
                  </section>
+
+                <span class="divide_line_common"></span>
+
+                <!-- Information Section -->
+                <section id="Information">
+                    <div class="info_frame">
+                        <div class="info_header">
+                            <p class="info_label">Information</p>
+                            <h2 class="info_title">ご案内</h2>
+                        </div>
+                        <p class="info_greeting">
+                            ご来場の皆様へ<br>
+                            <span class="info_greeting_sub">第78回学苑祭へのご来場、誠にありがとうございます。<br>
+                            ご来場の皆様が学苑祭をお楽しみいただくため、下記の禁止事項と注意事項へのご理解とご協力をお願いいたします。</span>
+                        </p>
+
+                        <div class="info_divider"></div>
+
+                        <!-- 禁止事項 -->
+                        <div class="info_category">
+                            <h3 class="info_category_title">
+                                <span class="info_category_icon prohibited_icon">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+                                </span>
+                                禁止事項
+                            </h3>
+
+                            <div class="info_item">
+                                <h4 class="info_item_title">アルコール類の持ち込み・飲酒の禁止・喫煙の禁止</h4>
+                                <p class="info_item_text">会場内でのアルコール類の持ち込み、飲酒は固くお断りいたします。<br>また会場内は全ての場所で禁煙です。喫煙は固くお断りいたします。</p>
+                            </div>
+
+                            <div class="info_item">
+                                <h4 class="info_item_title">ペットを同伴してのご来場</h4>
+                                <p class="info_item_text">衛生上・安全上の観点から、ペットの同伴はご遠慮いただいております。<br>なお、補助犬の同伴は可能となります。</p>
+                            </div>
+                        </div>
+
+                        <div class="info_divider"></div>
+
+                        <!-- 注意事項 -->
+                        <div class="info_category">
+                            <h3 class="info_category_title">
+                                <span class="info_category_icon caution_icon">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                                </span>
+                                注意事項
+                            </h3>
+
+                            <div class="info_item">
+                                <h4 class="info_item_title">貴重品について</h4>
+                                <p class="info_item_text">貴重品の管理は各自で行っていただきますようお願いいたします。<br>紛失や盗難の責任は負いかねますのでご了承ください。</p>
+                            </div>
+
+                            <div class="info_item">
+                                <h4 class="info_item_title">ごみについて</h4>
+                                <p class="info_item_text">環境保護と会場の清潔を保つため、ごみが出た際は各自でお持ち帰りいただくか、会場内のゴミ箱に捨てていただきますようお願いいたします。<br>ゴミ箱に捨てていただく際は、ごみの分別にご協力をお願いいたします。</p>
+                            </div>
+
+                            <div class="info_item">
+                                <h4 class="info_item_title">緊急時について</h4>
+                                <p class="info_item_text">緊急事態が発生した場合は、速やかにスタッフの指示に従い、冷静に避難してください。<br>構内放送や会場内4ヶ所のデジタルサイネージを活用し、なるべく早く情報をお伝えできるように努力いたします。</p>
+                            </div>
+                        </div>
+
+                        <div class="info_divider"></div>
+
+                        <!-- Links -->
+                        <div class="info_links">
+                            <a href="./pages/access.php" class="info_link_btn">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                アクセス
+                            </a>
+                            <a href="./pages/comingsoon.php" class="info_link_btn">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                代表者挨拶
+                            </a>
+                        </div>
+                    </div>
+                </section>
             </div>
          </main>
         <!-- Footer -->
-         <?php include(__DIR__ . "/footer.php"); ?>
+         <?php include(__DIR__ . "/includes/footer.php"); ?>
         <!-- Script -->
-         <script src="./menu.js"></script>
-         <script src="./loading.js"></script>
+         <script src="./assets/js/menu.js"></script>
+         <script src="./assets/js/loading.js"></script>
     </body>
 </html>

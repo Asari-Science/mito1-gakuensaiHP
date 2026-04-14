@@ -5,11 +5,19 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://gakuensai.net/sitemap.php</loc>
+    <loc>https://gakuensai.net/pages/access.php</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gakuensai.net/pages/privacy.php</loc>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://gakuensai.net/pages/sitemap.php</loc>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://gakuensai.net/comingsoon.php</loc>
+    <loc>https://gakuensai.net/pages/comingsoon.php</loc>
     <priority>0.5</priority>
   </url>
 </urlset>
