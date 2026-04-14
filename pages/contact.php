@@ -38,64 +38,135 @@
                     <p class="contact_label">Contact</p>
                     <h1 class="contact_title">お問い合わせ</h1>
                     <div class="contact_divider_center"></div>
-                    <form id="google-form" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdgZahMeoPP4Oik63LPFNpGrHjXDIUCex1hgeh9YeO3hp-NYg/formResponse" method="POST" target="hidden_iframe">
-                        <section id="disclaimer" class="disclaimer">
-                            <div class="disclaimer_container">
-                                <h2 class="box_title">免責事項</h2>
-                                <p>
-                                    当サイトからのリンクやバナーなどで移動したサイトで提供される情報、サービス等について一切の責任を負いません。また当ブログのコンテンツ・情報について、できる限り正確な情報を提供するように努めておりますが、正確性や安全性を保証するものではありません。情報が古くなっていることもございます。当サイトに掲載された内容によって生じた損害等の一切の責任を負いかねますのでご了承ください。本サイトのお問い合わせフォームで送信された内容は、担当教員に共有いたします。回答は必ずしも保証されたものではありません。
-                                </p>
+
+                    <p class="contact_intro">
+                        当学苑祭に対するご意見・ご感想等がございましたら、<br class="pc_br">以下のフォームよりお気軽にお問い合わせください。
+                    </p>
+
+                    <!-- Form -->
+                    <form id="google-form" class="contact_form" novalidate>
+
+                        <!-- 免責事項（プルダウンで収納） -->
+                        <section class="contact_section">
+                            <div class="contact_section_header">
+                                <div class="section_step">1</div>
+                                <h2 class="contact_section_title">免責事項の確認</h2>
                             </div>
-                            <div class="agreeButton">
-                                <input type="checkbox" name="entry.1199177229" value="同意する" id="agree1" required>
-                                <label for="agree1">同意する</label>
-                            </div>
-                        </section>
-                        <section id="privacy_policy" class="privacy_policy">
-                            <div class="privacy_policy_container">
-                                <h2 class="box_title">プライバシーポリシー</h2>
-                                <div id="policy_box" class="policy_box">
-                                    <p>
-                                        学苑祭ホームページ（以下「学苑祭ＨＰ」という）では，個人情報の取得，利用，提供，管理等について，「茨城県個人情報の保護に関する条例」を参考にし、次の通り適切に取り扱うとともに，皆様に安心して利用いただけるホームページづくりに努めてまいります。<br><br>
-                                        個人情報とは<br>
-                                        学苑祭HPを通じて提供を受けた、住所、氏名、電話番号、E-mailアドレス等、個人が特定され得る情報をいいます。<br><br>
-                                        個人情報の収集について<br>
-                                        学苑祭HPを通じて個人情報を収集する際は、利用者ご本人の意思による情報提供を原則とします。個人情報の収集は、その収集目的を明確にし、その目的を達成するために必要な範囲内で行います。また学苑祭HP上で公開する個人情報は、公開することを明示した上で取得します。<br><br>
-                                        個人情報の利用制限<br>
-                                        取得した個人情報は、あらかじめ明示した収集目的の範囲内で利用いたします。個人情報を利用者ご本人の同意なく明示した収集目的以外で利用・提供することはありません。ただし、例外として、各法令で定める場合を除きます。<br><br>
-                                        個人情報の管理<br>
-                                        取得した個人情報は、厳重に管理し、漏洩、不正流用、改ざん等の防止に適切な対策を講じ、正確性の確保に努めてまいります。
+                            <div class="disclaimer_wrapper">
+                                <button type="button" class="disclaimer_toggle" id="disclaimer_toggle" aria-expanded="false" aria-controls="disclaimer_body">
+                                    <span class="disclaimer_toggle_text">免責事項を表示する</span>
+                                    <svg class="disclaimer_toggle_icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </button>
+                                <div class="disclaimer_body" id="disclaimer_body">
+                                    <p class="disclaimer_text">
+                                        当サイトからのリンクやバナーなどで移動したサイトで提供される情報、サービス等について一切の責任を負いません。また当ブログのコンテンツ・情報について、できる限り正確な情報を提供するように努めておりますが、正確性や安全性を保証するものではありません。情報が古くなっていることもございます。当サイトに掲載された内容によって生じた損害等の一切の責任を負いかねますのでご了承ください。本サイトのお問い合わせフォームで送信された内容は、担当教員に共有いたします。回答は必ずしも保証されたものではありません。
                                     </p>
                                 </div>
-                                <div class="agreeButton">
-                                    <input type="checkbox" name="entry.1984305978" value="同意する" id="agree2" disabled required>
-                                    <label for="agree2">同意する</label>
+                                <label class="agree_row" for="agree1">
+                                    <input type="checkbox" id="agree1" class="contact_checkbox" required>
+                                    <span class="checkbox_custom"></span>
+                                    <span class="checkbox_text">免責事項に同意する</span>
+                                </label>
+                            </div>
+                        </section>
+
+                        <!-- プライバシーポリシー（リンク形式） -->
+                        <section class="contact_section">
+                            <div class="contact_section_header">
+                                <div class="section_step">2</div>
+                                <h2 class="contact_section_title">プライバシーポリシーの確認</h2>
+                            </div>
+                            <div class="privacy_link_wrapper">
+                                <p class="privacy_link_desc">
+                                    お問い合わせの前に、当サイトの<a href="<?php echo $base_path; ?>/pages/privacy.php" target="_blank" rel="noopener noreferrer" class="privacy_inline_link">プライバシーポリシー<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="external_icon"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>をご確認ください。
+                                </p>
+                                <label class="agree_row" for="agree2">
+                                    <input type="checkbox" id="agree2" class="contact_checkbox" required>
+                                    <span class="checkbox_custom"></span>
+                                    <span class="checkbox_text">プライバシーポリシーに同意する</span>
+                                </label>
+                            </div>
+                        </section>
+
+                        <!-- お問い合わせ内容 -->
+                        <section class="contact_section">
+                            <div class="contact_section_header">
+                                <div class="section_step">3</div>
+                                <h2 class="contact_section_title">お問い合わせ内容</h2>
+                            </div>
+                            <div class="form_fields">
+                                <div class="form_group">
+                                    <label for="contact_name" class="form_label">
+                                        お名前
+                                        <span class="form_required">必須</span>
+                                    </label>
+                                    <input type="text" id="contact_name" class="form_input" placeholder="苑実太朗" required>
+                                </div>
+                                <div class="form_group">
+                                    <label for="contact_email" class="form_label">
+                                        メールアドレス
+                                        <span class="form_required">必須</span>
+                                    </label>
+                                    <input type="email" id="contact_email" class="form_input" placeholder="info@example.com" required>
+                                </div>
+                                <div class="form_group">
+                                    <label for="contact_tel" class="form_label">
+                                        電話番号
+                                        <span class="form_optional">任意</span>
+                                    </label>
+                                    <input type="tel" id="contact_tel" class="form_input" placeholder="090XXXXYYYY">
+                                </div>
+                                <div class="form_group">
+                                    <label for="contact_detail" class="form_label">
+                                        内容
+                                        <span class="form_required">必須</span>
+                                    </label>
+                                    <textarea id="contact_detail" class="form_textarea" placeholder="ここに内容を入力してください..." rows="6" required></textarea>
                                 </div>
                             </div>
                         </section>
-                        <section id="contact_contents">
-                            <div class="contact_name_box">
-                                <h3 class="">お名前</h3>
-                                <input type="text" name="entry.715739101" id="name" class="name" placeholder="苑実太朗" required>
-                            </div>
-                            <div class="contact_mail_box">
-                                 <h3 class="">メールアドレス</h3>
-                                <input type="email" name="entry.1581029366" id="email" class="email" placeholder="info@example.com" required>
-                            </div>
-                            <div class="contact_tel_box">
-                                <h3 class="">電話番号（任意）</h3>
-                                <input type="tel" name="entry.1166544972" id="phonenumber" class="phonenumber" placeholder="XXXYYYYZZZZ">
-                            </div>
-                            <div class="contact_detail">
-                                <h3 class="">内容</h3>
-                                <textarea name="entry.1072328491" id="detail" class="detail" placeholder="ここに内容を入力してください..." required></textarea>
-                            </div>
-                            <div class="send_button">
-                                <input id="submit_btn" type="submit" value="送信" disabled>
-                            </div>
-                        </section>
+
+                        <!-- Submit -->
+                        <div class="submit_wrapper">
+                            <button id="submit_btn" type="submit" class="submit_button" disabled>
+                                <span class="submit_text">送信する</span>
+                                <svg class="submit_icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                </svg>
+                            </button>
+                            <p class="submit_note">※ 回答は必ずしも保証されるものではありません</p>
+                        </div>
                     </form>
-                    
+
+                    <!-- 送信完了メッセージ（初期非表示） -->
+                    <div id="success_message" class="success_message" style="display:none;">
+                        <div class="success_icon_wrapper">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#4a8c3f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                        </div>
+                        <h2 class="success_title">送信が完了しました</h2>
+                        <p class="success_desc">お問い合わせいただきありがとうございます。<br>内容を確認の上、必要に応じてご連絡いたします。</p>
+                    </div>
+
+                    <!-- 送信エラーメッセージ（初期非表示） -->
+                    <div id="error_message" class="error_message" style="display:none;">
+                        <div class="error_icon_wrapper">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#c24b31" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="15" y1="9" x2="9" y2="15"></line>
+                                <line x1="9" y1="9" x2="15" y2="15"></line>
+                            </svg>
+                        </div>
+                        <h2 class="error_title">送信に失敗しました</h2>
+                        <p class="error_desc">申し訳ございません。時間をおいて再度お試しください。</p>
+                        <button id="retry_btn" type="button" class="retry_button">もう一度試す</button>
+                    </div>
+
                     <div class="contact_divider_center"></div>
                     <a href="https://gakuensai.net" class="contact_back">
                         <span class="back_arrow">&larr;</span>
@@ -109,35 +180,103 @@
          <?php include(__DIR__ . "/../includes/footer.php"); ?>
         <!-- Script -->
          <script src="<?php echo $base_path; ?>/assets/js/menu.js"></script>
-        <!-- プライバシーポリシー用js -->
+        <!-- お問い合わせフォーム送信用JS -->
          <script>
-            const policyBox = document.getElementById('policy_box');
-            const checkbox = document.getElementById('agree2');
+            (function() {
+                // Google Forms エンドポイント
+                var GOOGLE_FORM_ACTION = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSdgZahMeoPP4Oik63LPFNpGrHjXDIUCex1hgeh9YeO3hp-NYg/formResponse';
 
-            const checkDisclaimer = document.getElementById('agree1');
-            const checkPolicy = document.getElementById('agree2');
-            const submitBtn = document.getElementById('submit_btn');
+                // Google Forms entry IDs（実際のフォームから取得済み）
+                var ENTRY_DISCLAIMER = 'entry.1199177229';
+                var ENTRY_PRIVACY    = 'entry.1984305978';
+                var ENTRY_NAME       = 'entry.715739101';
+                var ENTRY_EMAIL      = 'entry.1581029366';
+                var ENTRY_TEL        = 'entry.1166544972';
+                var ENTRY_DETAIL     = 'entry.1072328491';
 
-            policyBox.addEventListener('scroll', function() {
-                // スクロール量が一番下に達したかを判定
-                if (policyBox.scrollHeight - policyBox.scrollTop <= policyBox.clientHeight + 2) {
-                checkbox.disabled = false; // 一番下まで読んだらロック解除
+                // DOM要素
+                var form = document.getElementById('google-form');
+                var checkDisclaimer = document.getElementById('agree1');
+                var checkPrivacy = document.getElementById('agree2');
+                var submitBtn = document.getElementById('submit_btn');
+                var successMessage = document.getElementById('success_message');
+                var errorMessage = document.getElementById('error_message');
+                var retryBtn = document.getElementById('retry_btn');
+
+                // 免責事項のトグル
+                var disclaimerToggle = document.getElementById('disclaimer_toggle');
+                var disclaimerBody = document.getElementById('disclaimer_body');
+
+                disclaimerToggle.addEventListener('click', function() {
+                    var isExpanded = this.getAttribute('aria-expanded') === 'true';
+                    this.setAttribute('aria-expanded', !isExpanded);
+                    disclaimerBody.classList.toggle('open');
+                    var toggleText = this.querySelector('.disclaimer_toggle_text');
+                    toggleText.textContent = isExpanded ? '免責事項を表示する' : '免責事項を閉じる';
+                });
+
+                // 送信ボタンの有効・無効を切り替え
+                function toggleSubmitButton() {
+                    submitBtn.disabled = !(checkDisclaimer.checked && checkPrivacy.checked);
                 }
-            });
+                checkDisclaimer.addEventListener('change', toggleSubmitButton);
+                checkPrivacy.addEventListener('change', toggleSubmitButton);
 
-            // ボタンの有効・無効を切り替える関数
-            function toggleSubmitButton() {
-                // 免責事項とプライバシーポリシーの「両方」がチェックされているか判定
-                if (checkDisclaimer.checked && checkPolicy.checked) {
-                    submitBtn.disabled = false; // ロック解除（ボタンを押せるようにする）
-                } else {
-                    submitBtn.disabled = true;  // ロック（ボタンを押せないようにする）
-                }
-            }
-            
-            // チェックボックスの状態が変わった時（クリックされた時）に関数を実行
-            checkDisclaimer.addEventListener('change', toggleSubmitButton);
-            checkPolicy.addEventListener('change', toggleSubmitButton);
+                // リトライボタン
+                retryBtn.addEventListener('click', function() {
+                    errorMessage.style.display = 'none';
+                    form.style.display = '';
+                });
+
+                // フォーム送信処理
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+
+                    // バリデーション
+                    var nameVal = document.getElementById('contact_name').value.trim();
+                    var emailVal = document.getElementById('contact_email').value.trim();
+                    var detailVal = document.getElementById('contact_detail').value.trim();
+                    var telVal = document.getElementById('contact_tel').value.trim();
+
+                    if (!nameVal || !emailVal || !detailVal) {
+                        form.reportValidity();
+                        return;
+                    }
+
+                    // 送信中状態
+                    submitBtn.disabled = true;
+                    submitBtn.classList.add('loading');
+
+                    // FormData を構築して fetch で送信
+                    // Google Forms は CORS を許可しないため no-cors モードで送信
+                    var formData = new FormData();
+                    formData.append(ENTRY_DISCLAIMER, '同意する');
+                    formData.append(ENTRY_PRIVACY, '同意する');
+                    formData.append(ENTRY_NAME, nameVal);
+                    formData.append(ENTRY_EMAIL, emailVal);
+                    formData.append(ENTRY_TEL, telVal);
+                    formData.append(ENTRY_DETAIL, detailVal);
+
+                    fetch(GOOGLE_FORM_ACTION, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        body: formData
+                    }).then(function() {
+                        // no-cors ではレスポンスを読めないが、ネットワークエラーでなければ成功とみなす
+                        form.style.display = 'none';
+                        successMessage.style.display = '';
+                        successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }).catch(function(err) {
+                        console.error('送信エラー:', err);
+                        form.style.display = 'none';
+                        errorMessage.style.display = '';
+                        errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }).finally(function() {
+                        submitBtn.disabled = false;
+                        submitBtn.classList.remove('loading');
+                    });
+                });
+            })();
         </script>
     </body>
 </html>

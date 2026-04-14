@@ -47,7 +47,7 @@ body {
     text-align: center;
     padding: 120px 24px 80px;
     width: 100%;
-    max-width: 800px;
+    max-width: 640px;
     animation: contactFadeInUp 1s ease both;
 }
 
@@ -56,12 +56,13 @@ body {
         opacity: 0;
         transform: translateY(30px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
+
+/* ===== Title Area ===== */
 
 .contact_label {
     font-family: "Noto Sans JP", sans-serif;
@@ -89,22 +90,457 @@ body {
     margin: 24px 0;
 }
 
-.contact_divider {
-    width: 100%;
-    height: 1px;
-    background: rgba(0, 0, 0, 0.1);
-    margin: 8px 0;
+.contact_intro {
+    font-family: "Shippori Mincho", serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.9;
+    margin-bottom: 36px;
 }
 
-/* ===== 免責事項 ===== */
+.pc_br {
+    display: none;
+}
 
-/* ===== プライバシーポリシー ===== */
+/* ===== Form ===== */
 
-.policy_box {
-    height: 150px;
-    overflow-y: scroll;
-    border: 1px solid #000000;
-    padding: 10px;
+.contact_form {
+    width: 100%;
+    text-align: left;
+}
+
+/* ===== Section ===== */
+
+.contact_section {
+    width: 100%;
+    margin-bottom: 32px;
+}
+
+.contact_section_header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.section_step {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #1a1207;
+    color: #f6dc9f;
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    flex-shrink: 0;
+}
+
+.contact_section_title {
+    font-family: "Zen Old Mincho", serif;
+    font-weight: 700;
+    font-size: 17px;
+    color: #1a1207;
+    letter-spacing: 0.03em;
+}
+
+/* ===== Disclaimer (collapsible) ===== */
+
+.disclaimer_wrapper {
+    background: rgba(246, 220, 159, 0.35);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 14px;
+    padding: 0;
+    overflow: hidden;
+}
+
+.disclaimer_toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 16px 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: "Shippori Mincho", serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: #1a1207;
+    transition: background 0.2s ease;
+}
+
+.disclaimer_toggle:hover {
+    background: rgba(246, 220, 159, 0.3);
+}
+
+.disclaimer_toggle_icon {
+    transition: transform 0.3s ease;
+    color: rgba(26, 18, 7, 0.4);
+    flex-shrink: 0;
+}
+
+.disclaimer_toggle[aria-expanded="true"] .disclaimer_toggle_icon {
+    transform: rotate(180deg);
+}
+
+.disclaimer_body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    padding: 0 20px;
+}
+
+.disclaimer_body.open {
+    max-height: 500px;
+    padding: 0 20px 16px;
+}
+
+.disclaimer_text {
+    font-family: "Shippori Mincho", serif;
+    font-weight: 500;
+    font-size: 13px;
+    color: #555;
+    line-height: 1.9;
+    text-align: justify;
+}
+
+.agree_row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s ease;
+}
+
+.agree_row:hover {
+    background: rgba(246, 220, 159, 0.2);
+}
+
+/* ===== Custom Checkbox ===== */
+
+.contact_checkbox {
+    display: none;
+}
+
+.checkbox_custom {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(26, 18, 7, 0.3);
+    border-radius: 5px;
+    flex-shrink: 0;
+    position: relative;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.contact_checkbox:checked + .checkbox_custom {
+    background: #8b6914;
+    border-color: #8b6914;
+}
+
+.contact_checkbox:checked + .checkbox_custom::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 1px;
+    width: 6px;
+    height: 11px;
+    border: solid #fff;
+    border-width: 0 2.5px 2.5px 0;
+    transform: rotate(45deg);
+}
+
+.checkbox_text {
+    font-family: "Shippori Mincho", serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: #1a1207;
+    line-height: 1.5;
+}
+
+/* ===== Privacy Policy Link ===== */
+
+.privacy_link_wrapper {
+    background: rgba(246, 220, 159, 0.35);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.privacy_link_desc {
+    padding: 18px 20px;
+    font-family: "Shippori Mincho", serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.8;
+}
+
+.privacy_inline_link {
+    color: #8b6914;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    font-weight: 700;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+}
+
+.privacy_inline_link:hover {
+    color: #6b5110;
+}
+
+.external_icon {
+    display: inline;
+    vertical-align: middle;
+    margin-left: 2px;
+}
+
+/* ===== Form Fields ===== */
+
+.form_fields {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.form_group {
+    margin-bottom: 24px;
+}
+
+.form_label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: "Zen Old Mincho", serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: #1a1207;
+    letter-spacing: 0.03em;
+    margin-bottom: 8px;
+}
+
+.form_required {
+    display: inline-block;
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 500;
+    font-size: 10px;
+    color: #fff;
+    background: #c24b31;
+    padding: 1px 7px;
+    border-radius: 3px;
+    letter-spacing: 0.05em;
+}
+
+.form_optional {
+    display: inline-block;
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 500;
+    font-size: 10px;
+    color: #888;
+    background: rgba(0, 0, 0, 0.08);
+    padding: 1px 7px;
+    border-radius: 3px;
+    letter-spacing: 0.05em;
+}
+
+.form_input,
+.form_textarea {
+    width: 100%;
+    padding: 14px 16px;
+    font-family: "Shippori Mincho", serif;
+    font-weight: 500;
+    font-size: 15px;
+    color: #1a1207;
+    background: rgba(246, 220, 159, 0.3);
+    border: 1.5px solid rgba(0, 0, 0, 0.12);
+    border-radius: 10px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    box-sizing: border-box;
+}
+
+.form_input::placeholder,
+.form_textarea::placeholder {
+    color: rgba(26, 18, 7, 0.3);
+}
+
+.form_input:focus,
+.form_textarea:focus {
+    border-color: #8b6914;
+    box-shadow: 0 0 0 3px rgba(139, 105, 20, 0.1);
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.form_textarea {
+    resize: vertical;
+    min-height: 140px;
+}
+
+/* ===== Submit ===== */
+
+.submit_wrapper {
+    text-align: center;
+    margin-top: 8px;
+}
+
+.submit_button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 360px;
+    padding: 16px 32px;
+    font-family: "Zen Old Mincho", serif;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.1em;
+    color: #fff;
+    background: #1a1207;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+}
+
+.submit_button:hover:not(:disabled) {
+    background: #333;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.submit_button:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.submit_button:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+.submit_button.loading .submit_text {
+    display: none;
+}
+
+.submit_button.loading .submit_icon {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.submit_icon {
+    flex-shrink: 0;
+}
+
+.submit_note {
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    color: rgba(26, 18, 7, 0.4);
+    margin-top: 12px;
+}
+
+/* ===== Success Message ===== */
+
+.success_message {
+    width: 100%;
+    text-align: center;
+    padding: 48px 20px;
+    animation: contactFadeInUp 0.6s ease both;
+}
+
+.success_icon_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(74, 140, 63, 0.1);
+    margin: 0 auto 24px;
+}
+
+.success_title {
+    font-family: "Zen Old Mincho", serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: #1a1207;
+    margin-bottom: 12px;
+}
+
+.success_desc {
+    font-family: "Shippori Mincho", serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.9;
+}
+
+/* ===== Error Message ===== */
+
+.error_message {
+    width: 100%;
+    text-align: center;
+    padding: 48px 20px;
+    animation: contactFadeInUp 0.6s ease both;
+}
+
+.error_icon_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(194, 75, 49, 0.1);
+    margin: 0 auto 24px;
+}
+
+.error_title {
+    font-family: "Zen Old Mincho", serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: #c24b31;
+    margin-bottom: 12px;
+}
+
+.error_desc {
+    font-family: "Shippori Mincho", serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.9;
+    margin-bottom: 24px;
+}
+
+.retry_button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    font-family: "Shippori Mincho", serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: #1a1207;
+    background: none;
+    border: 1.5px solid rgba(0, 0, 0, 0.25);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.retry_button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
 }
 
 /* ===== Back button ===== */
@@ -131,7 +567,7 @@ body {
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 
-.contact_arrow {
+.back_arrow {
     font-size: 18px;
     transition: transform 0.3s ease;
 }
@@ -168,6 +604,14 @@ body {
         width: 35%;
         opacity: 0.05;
     }
+
+    .pc_br {
+        display: inline;
+    }
+
+    .contact_content {
+        max-width: 620px;
+    }
 }
 
 /* ===== Responsive: Tablet ===== */
@@ -186,6 +630,10 @@ body {
         width: 40%;
         opacity: 0.06;
     }
+
+    .pc_br {
+        display: inline;
+    }
 }
 
 /* ===== Responsive: Small mobile ===== */
@@ -199,12 +647,64 @@ body {
         padding: 100px 16px 60px;
     }
 
+    .contact_intro {
+        font-size: 13px;
+    }
+
     .contact_section_title {
-        font-size: 17px;
+        font-size: 15px;
+    }
+
+    .section_step {
+        width: 24px;
+        height: 24px;
+        font-size: 11px;
+    }
+
+    .form_label {
+        font-size: 14px;
+    }
+
+    .form_input,
+    .form_textarea {
+        padding: 12px 14px;
+        font-size: 14px;
+    }
+
+    .disclaimer_toggle {
+        padding: 14px 16px;
+        font-size: 13px;
+    }
+
+    .agree_row {
+        padding: 12px 16px;
+    }
+
+    .disclaimer_text {
+        font-size: 12px;
+    }
+
+    .checkbox_text {
+        font-size: 13px;
+    }
+
+    .privacy_link_desc {
+        padding: 14px 16px;
+        font-size: 13px;
+    }
+
+    .submit_button {
+        font-size: 15px;
+        padding: 14px 28px;
     }
 
     .contact_back {
         font-size: 13px;
         padding: 10px 22px;
+    }
+
+    .success_title,
+    .error_title {
+        font-size: 19px;
     }
 }
