@@ -79,7 +79,7 @@
                             電車でお越しの場合
                         </h2>
                         <div class="transport_card">
-                            <p class="transport_route">JR・鹿島臨海鉄。道 <strong>水戸駅</strong> 下車</p>
+                            <p class="transport_route">JR・鹿島臨海鉄道 <strong>水戸駅</strong> 下車</p>
                             <p class="transport_detail">北口から徒歩 <strong>10分〜15分</strong></p>
                             <p class="transport_desc">三の丸庁舎や水戸城跡（大手門）方面へ進む歴史的な雰囲気のあるルートです。</p>
                             <a href="https://maps.app.goo.gl/JPcEo79QC9CyyMFy5" target="_blank" rel="noopener noreferrer" class="route_link">
