@@ -85,7 +85,9 @@
         <!-- Loading Screen -->
          <div id="loading_screen">
             <div class="loading_inner">
-                <video src="./materials/favicon/NowLoading.webm" class="loading_video" id="loading_video" autoplay muted playsinline></video>
+                <video class="loading_video" id="loading_video" autoplay muted playsinline preload="auto">
+                    <source src="./materials/favicon/NowLoading.webm" type="video/webm">
+                </video>
             </div>
          </div>
         <!-- Header -->

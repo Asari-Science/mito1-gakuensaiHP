@@ -22,6 +22,18 @@
     }
 
     var video = document.getElementById("loading_video");
+
+    // モバイルブラウザでの自動再生を確実にするため、明示的にplay()を呼び出す
+    if (video) {
+        var playPromise = video.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(function(error) {
+                console.log("Autoplay was prevented:", error);
+                // 自動再生がブロックされた場合でも、フォールバックで非表示処理は走る
+            });
+        }
+    }
+
     var startTime = Date.now();
     var minDuration = 1500;
 
