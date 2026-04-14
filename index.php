@@ -237,10 +237,6 @@
                                 <p class="info_item_text">会場内でのアルコール類の持ち込み、飲酒は固くお断りいたします。<br>また会場内は全ての場所で禁煙です。喫煙は固くお断りいたします。</p>
                             </div>
 
-                            <div class="info_item">
-                                <h4 class="info_item_title">ペットを同伴してのご来場</h4>
-                                <p class="info_item_text">衛生上・安全上の観点から、ペットの同伴はご遠慮いただいております。<br>なお、補助犬の同伴は可能となります。</p>
-                            </div>
                         </div>
 
                         <div class="info_divider"></div>
@@ -266,7 +262,7 @@
 
                             <div class="info_item">
                                 <h4 class="info_item_title">緊急時について</h4>
-                                <p class="info_item_text">緊急事態が発生した場合は、速やかにスタッフの指示に従い、冷静に避難してください。<br>構内放送や会場内4ヶ所のデジタルサイネージを活用し、なるべく早く情報をお伝えできるように努力いたします。</p>
+                                <p class="info_item_text">緊急事態が発生した場合は、速やかにスタッフの指示に従い、冷静に避難してください。</p>
                             </div>
                         </div>
 
