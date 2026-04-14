@@ -66,12 +66,17 @@ body {
     gap: 6px;
     z-index: 100;
     animation: scrollFadeIn 1.5s ease 2s both;
-    background: rgba(246, 220, 159, 0.75);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    padding: 8px 14px 10px;
-    border-radius: 20px;
-    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+@media screen and (max-width: 1023px) {
+    .scroll_indicator {
+        background: rgba(246, 220, 159, 0.75);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        padding: 8px 14px 10px;
+        border-radius: 20px;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+    }
 }
 
 .scroll_text {
@@ -95,18 +100,18 @@ body {
 .scroll_line::after {
     content: "";
     position: absolute;
-    top: -100%;
+    bottom: -100%;
     left: 0;
     width: 100%;
     height: 100%;
     background: rgba(26, 18, 7, 0.8);
-    animation: scrollDown 1.8s ease infinite;
+    animation: scrollUp 1.8s ease infinite;
 }
 
-@keyframes scrollDown {
-    0% { top: -100%; }
-    50% { top: 0; }
-    100% { top: 100%; }
+@keyframes scrollUp {
+    0% { bottom: -100%; }
+    50% { bottom: 0; }
+    100% { bottom: 100%; }
 }
 
 @keyframes scrollFadeIn {
