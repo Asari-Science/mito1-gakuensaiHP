@@ -17,6 +17,10 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://gakuensai.net/pages/contact.php</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://gakuensai.net/pages/comingsoon.php</loc>
     <priority>0.5</priority>
   </url>
