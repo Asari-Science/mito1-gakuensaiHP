@@ -187,12 +187,12 @@
                 var GOOGLE_FORM_ACTION = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSdgZahMeoPP4Oik63LPFNpGrHjXDIUCex1hgeh9YeO3hp-NYg/formResponse';
 
                 // Google Forms entry IDs（実際のフォームから取得済み）
-                var ENTRY_DISCLAIMER = 'entry.1199177229';
-                var ENTRY_PRIVACY    = 'entry.1984305978';
-                var ENTRY_NAME       = 'entry.715739101';
-                var ENTRY_EMAIL      = 'entry.1581029366';
-                var ENTRY_TEL        = 'entry.1166544972';
-                var ENTRY_DETAIL     = 'entry.1072328491';
+                var ENTRY_DISCLAIMER = 'entry.1344695929';
+                var ENTRY_PRIVACY    = 'entry.139436178';
+                var ENTRY_NAME       = 'entry.440310066';
+                var ENTRY_EMAIL      = 'entry.1162366081';
+                var ENTRY_TEL        = 'entry.1689851239';
+                var ENTRY_DETAIL     = 'entry.254231395';
 
                 // DOM要素
                 var form = document.getElementById('google-form');
