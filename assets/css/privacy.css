@@ -1,0 +1,243 @@
+/* ===== Privacy Policy Page ===== */
+
+body {
+    background-color: #f6dc9f;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+.privacy_main {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.privacy_container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #dab584;
+    overflow: hidden;
+}
+
+.privacy_ellipse {
+    position: absolute;
+    width: 700px;
+    height: 250px;
+    background-color: #f6dc9f;
+    border-radius: 50%;
+    transform: rotate(135deg);
+    filter: blur(60px);
+    opacity: 0.7;
+}
+
+.privacy_content {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 120px 24px 80px;
+    width: 100%;
+    max-width: 800px;
+    animation: privacyFadeInUp 1s ease both;
+}
+
+@keyframes privacyFadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.privacy_label {
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 300;
+    font-size: 13px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(26, 18, 7, 0.45);
+    margin-bottom: 12px;
+}
+
+.privacy_title {
+    font-family: "Zen Old Mincho", serif;
+    font-weight: 900;
+    font-size: 40px;
+    color: #1a1207;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+}
+
+.privacy_divider {
+    width: 40px;
+    height: 2px;
+    background: rgba(0, 0, 0, 0.2);
+    margin: 24px 0;
+}
+
+/* ===== Privacy Body ===== */
+
+.privacy_body {
+    width: 100%;
+    text-align: left;
+    padding: 8px 0;
+}
+
+.privacy_notice {
+    font-family: "Shippori Mincho", serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: #333;
+    line-height: 2;
+    text-align: center;
+    padding: 40px 0;
+}
+
+.privacy_section {
+    margin-bottom: 32px;
+}
+
+.privacy_section h2 {
+    font-family: "Zen Old Mincho", serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: #1a1207;
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1.5px solid rgba(0, 0, 0, 0.15);
+}
+
+.privacy_section p {
+    font-family: "Shippori Mincho", serif;
+    font-weight: 500;
+    font-size: 15px;
+    color: #333;
+    line-height: 2;
+}
+
+/* ===== Back button ===== */
+
+.privacy_back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    padding: 12px 28px;
+    font-family: "Shippori Mincho", serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: #1a1207;
+    text-decoration: none;
+    border: 1.5px solid rgba(0, 0, 0, 0.25);
+    border-radius: 50px;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.privacy_back:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.back_arrow {
+    font-size: 18px;
+    transition: transform 0.3s ease;
+}
+
+.privacy_back:hover .back_arrow {
+    transform: translateX(-3px);
+}
+
+.privacy_kujira {
+    position: absolute;
+    right: -5%;
+    bottom: 0;
+    width: 45%;
+    max-width: 500px;
+    object-fit: contain;
+    opacity: 0.08;
+    pointer-events: none;
+}
+
+/* ===== Responsive: PC ===== */
+
+@media screen and (min-width: 1024px) {
+    .privacy_ellipse {
+        width: 1200px;
+        height: 500px;
+        filter: blur(80px);
+    }
+
+    .privacy_title {
+        font-size: 52px;
+    }
+
+    .privacy_notice {
+        font-size: 18px;
+    }
+
+    .privacy_kujira {
+        width: 35%;
+        opacity: 0.06;
+    }
+}
+
+/* ===== Responsive: Tablet ===== */
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .privacy_ellipse {
+        width: 900px;
+        height: 400px;
+    }
+
+    .privacy_title {
+        font-size: 46px;
+    }
+
+    .privacy_kujira {
+        width: 40%;
+        opacity: 0.08;
+    }
+}
+
+/* ===== Responsive: Small mobile ===== */
+
+@media screen and (max-width: 400px) {
+    .privacy_title {
+        font-size: 30px;
+    }
+
+    .privacy_notice {
+        font-size: 14px;
+    }
+
+    .privacy_section h2 {
+        font-size: 17px;
+    }
+
+    .privacy_section p {
+        font-size: 14px;
+    }
+
+    .privacy_back {
+        font-size: 13px;
+        padding: 10px 22px;
+    }
+
+    .privacy_content {
+        padding: 100px 20px 60px;
+    }
+}

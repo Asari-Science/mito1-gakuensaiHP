@@ -1,9 +1,10 @@
+<?php if (!isset($base_path)) $base_path = '.'; ?>
 <footer>
     <div class="footer_container">
         <div class="footer_frame">
             <!-- School & Event Info -->
             <div class="footer_enjitsu">
-                <img src="./materials/enjitsu78th.webp" class="enjitsu_logo" alt="学苑祭ロゴ" />
+                <img src="<?php echo $base_path; ?>/materials/enjitsu78th.webp" class="enjitsu_logo" alt="学苑祭ロゴ" />
                 <p class="aboutus">
                     第78回 水戸一高・<wbr>附属中学校　学苑祭<br>Mito 1st Junior & Senior&nbsp;<wbr>High School
                 </p>
@@ -15,15 +16,15 @@
             <div class="footer_links_grid">
                 <div class="footer_links_col">
                     <h4 class="footer_col_title">ページ</h4>
-                    <a href="./comingsoon.php" class="footer_nav_link">お問い合わせ</a>
-                    <a href="./comingsoon.php" class="footer_nav_link">アクセス</a>
-                    <a href="./comingsoon.php" class="footer_nav_link">落とし物・忘れ物</a>
+                    <a href="<?php echo $base_path; ?>/pages/comingsoon.php" class="footer_nav_link">お問い合わせ</a>
+                    <a href="<?php echo $base_path; ?>/pages/access.php" class="footer_nav_link">アクセス</a>
+                    <a href="<?php echo $base_path; ?>/pages/comingsoon.php" class="footer_nav_link">落とし物・忘れ物</a>
                 </div>
                 <div class="footer_links_col">
                     <h4 class="footer_col_title">情報</h4>
-                    <a href="./comingsoon.php" class="footer_nav_link">キャッシュレス決済について</a>
-                    <a href="./comingsoon.php" class="footer_nav_link">プライバシーポリシー</a>
-                    <a href="./sitemap.php" class="footer_nav_link">サイトマップ</a>
+                    <a href="<?php echo $base_path; ?>/pages/comingsoon.php" class="footer_nav_link">キャッシュレス決済について</a>
+                    <a href="<?php echo $base_path; ?>/pages/privacy.php" class="footer_nav_link">プライバシーポリシー</a>
+                    <a href="<?php echo $base_path; ?>/pages/sitemap.php" class="footer_nav_link">サイトマップ</a>
                 </div>
             </div>
 

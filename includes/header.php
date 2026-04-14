@@ -1,3 +1,4 @@
+<?php if (!isset($base_path)) $base_path = '.'; ?>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-588E3Z6HDM"></script>
 <script>
@@ -13,7 +14,7 @@
         <div class="header_countdown" id="header_countdown"></div>
     </div>
     <a href="https://gakuensai.net">
-        <img src="./materials/header_title.webp" class="header_icon" alt="第78回学苑祭" />
+        <img src="<?php echo $base_path; ?>/materials/header_title.webp" class="header_icon" alt="第78回学苑祭" />
     </a>
     <div class="menu_btn" id="menu_btn">
         <span></span>
@@ -25,14 +26,14 @@
             <div class="menu_header_label">MENU</div>
             <a href="https://gakuensai.net">Top</a>
             <a href="https://gakuensai.net/blog/">Blog</a>
-            <a href="./comingsoon.php">企画紹介</a>
-            <a href="./comingsoon.php">リーフレット</a>
-            <a href="./comingsoon.php">ステージタイムテーブル</a>
-            <a href="./comingsoon.php">喫茶メニュー</a>
-            <a href="./comingsoon.php">グッズページ</a>
-            <a href="./comingsoon.php">お問い合わせ</a>
-            <a href="./comingsoon.php">アクセス</a>
-            <a href="./comingsoon.php">落とし物・忘れ物</a>
+            <a href="<?php echo $base_path; ?>/pages/comingsoon.php">企画紹介</a>
+            <a href="<?php echo $base_path; ?>/pages/comingsoon.php">リーフレット</a>
+            <a href="<?php echo $base_path; ?>/pages/comingsoon.php">ステージタイムテーブル</a>
+            <a href="<?php echo $base_path; ?>/pages/comingsoon.php">喫茶メニュー</a>
+            <a href="<?php echo $base_path; ?>/pages/comingsoon.php">グッズページ</a>
+            <a href="<?php echo $base_path; ?>/pages/comingsoon.php">お問い合わせ</a>
+            <a href="<?php echo $base_path; ?>/pages/access.php">アクセス</a>
+            <a href="<?php echo $base_path; ?>/pages/comingsoon.php">落とし物・忘れ物</a>
             <div class="menu_footer_sns">
                 <a href="https://x.com/Enjitsu78th" class="menu_sns_link" aria-label="X (Twitter)">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
