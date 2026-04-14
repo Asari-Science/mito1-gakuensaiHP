@@ -31,7 +31,7 @@
             <a href="<?php echo $base_path; ?>/pages/comingsoon.php">ステージタイムテーブル</a>
             <a href="<?php echo $base_path; ?>/pages/comingsoon.php">喫茶メニュー</a>
             <a href="<?php echo $base_path; ?>/pages/comingsoon.php">グッズページ</a>
-            <a href="<?php echo $base_path; ?>/pages/comingsoon.php">お問い合わせ</a>
+            <a href="<?php echo $base_path; ?>/pages/contact.php">お問い合わせ</a>
             <a href="<?php echo $base_path; ?>/pages/access.php">アクセス</a>
             <a href="<?php echo $base_path; ?>/pages/comingsoon.php">落とし物・忘れ物</a>
             <div class="menu_footer_sns">

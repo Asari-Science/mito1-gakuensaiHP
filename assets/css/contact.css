@@ -48,7 +48,7 @@ body {
     padding: 120px 24px 80px;
     width: 100%;
     max-width: 800px;
-    animation: contactFadeInUp 1a ease both;
+    animation: contactFadeInUp 1s ease both;
 }
 
 @keyframes contactFadeInUp {

@@ -1,3 +1,4 @@
+<?php $base_path = '..'; ?>
 <!DOCTYPE html>
 <html lang="ja">
     <head>
@@ -12,21 +13,20 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;700;900&family=Shippori+Mincho:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
 
-        <link rel="stylesheet" type="text/css" href="../assets/css/reset.css">
-        <link rel="stylesheet" type="text/css" href="../assets/css/contact.css">
-        <link rel="stylesheet" type="text/css" href="../assets/css/header.css">
-        <link rel="stylesheet" type="text/css" href="../assets/css/footer.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo $base_path; ?>/assets/css/reset.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo $base_path; ?>/assets/css/contact.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo $base_path; ?>/assets/css/header.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo $base_path; ?>/assets/css/footer.css">
 
-        <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="../materials/favicon/favicon.ico">
-        <link rel="icon" type="image/vnd.microsoft.icon" href="../materials/favicon/favicon.ico">
-        <link rel="apple-touch-icon" sizes="180x180" href="../materials/favicon/apple-touch-icon-180x180.png">
-        <link rel="icon" type="image/png" sizes="192x192" href="../materials/favicon/android-chrome-192x192.png">
+        <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="<?php echo $base_path; ?>/materials/favicon/favicon.ico">
+        <link rel="icon" type="image/vnd.microsoft.icon" href="<?php echo $base_path; ?>/materials/favicon/favicon.ico">
+        <link rel="apple-touch-icon" sizes="180x180" href="<?php echo $base_path; ?>/materials/favicon/apple-touch-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="<?php echo $base_path; ?>/materials/favicon/android-chrome-192x192.png">
 
-        <link rel="manifest" href="../materials/favicon/manifest.json">
+        <link rel="manifest" href="<?php echo $base_path; ?>/materials/favicon/manifest.json">
 
     </head>
     <body>
-        <?php $base_path = '..'; ?>
         <!-- Header -->
          <?php include(__DIR__ . "/../includes/header.php"); ?>
         <!-- Main -->
@@ -102,13 +102,13 @@
                         トップページに戻る
                     </a>
                 </div>
-                <img src="../materials/kujira.webp" class="contact_kujira" alt="鯨イラスト">
+                <img src="<?php echo $base_path; ?>/materials/kujira.webp" class="contact_kujira" alt="鯨イラスト">
             </div>
          </main>
         <!-- Footer -->
          <?php include(__DIR__ . "/../includes/footer.php"); ?>
         <!-- Script -->
-         <script src="../assets/js/menu.js"></script>
+         <script src="<?php echo $base_path; ?>/assets/js/menu.js"></script>
         <!-- プライバシーポリシー用js -->
          <script>
             const policyBox = document.getElementById('policy_box');

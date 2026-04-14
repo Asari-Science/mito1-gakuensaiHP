@@ -69,7 +69,7 @@
                             <h2 class="sitemap_group_title">ご案内</h2>
                             <ul class="sitemap_list">
                                 <li><a href="./access.php">アクセス</a></li>
-                                <li><a href="./comingsoon.php">お問い合わせ</a></li>
+                                <li><a href="./contact.php">お問い合わせ</a></li>
                                 <li><a href="./comingsoon.php">落とし物・忘れ物</a></li>
                             </ul>
                         </div>
