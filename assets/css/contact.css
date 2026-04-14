@@ -1,0 +1,210 @@
+/* ===== Contact Page ===== */
+
+body {
+    background-color: #f6dc9f;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+.contact_main {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.contact_container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    background-color: #dab584;
+    overflow: hidden;
+}
+
+.contact_ellipse {
+    position: absolute;
+    width: 700px;
+    height: 250px;
+    background-color: #f6dc9f;
+    border-radius: 50%;
+    transform: rotate(135deg);
+    filter: blur(60px);
+    opacity: 0.7;
+    top: 20%;
+}
+
+.contact_content {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 120px 24px 80px;
+    width: 100%;
+    max-width: 800px;
+    animation: contactFadeInUp 1a ease both;
+}
+
+@keyframes contactFadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.contact_label {
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 300;
+    font-size: 13px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(26, 18, 7, 0.45);
+    margin-bottom: 12px;
+}
+
+.contact_title {
+    font-family: "Zen Old Mincho", serif;
+    font-weight: 900;
+    font-size: 40px;
+    color: #1a1207;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+}
+
+.contact_divider_center {
+    width: 40px;
+    height: 2px;
+    background: rgba(0, 0, 0, 0.2);
+    margin: 24px 0;
+}
+
+.contact_divider {
+    width: 100%;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.1);
+    margin: 8px 0;
+}
+
+/* ===== 免責事項 ===== */
+
+/* ===== プライバシーポリシー ===== */
+
+.policy_box {
+    height: 150px;
+    overflow-y: scroll;
+    border: 1px solid #000000;
+    padding: 10px;
+}
+
+/* ===== Back button ===== */
+
+.contact_back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    padding: 12px 28px;
+    font-family: "Shippori Mincho", serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: #1a1207;
+    text-decoration: none;
+    border: 1.5px solid rgba(0, 0, 0, 0.25);
+    border-radius: 50px;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact_back:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.contact_arrow {
+    font-size: 18px;
+    transition: transform 0.3s ease;
+}
+
+.contact_back:hover .back_arrow {
+    transform: translateX(-3px);
+}
+
+.contact_kujira {
+    position: absolute;
+    right: -5%;
+    bottom: 0;
+    width: 45%;
+    max-width: 500px;
+    object-fit: contain;
+    opacity: 0.06;
+    pointer-events: none;
+}
+
+/* ===== Responsive: PC ===== */
+
+@media screen and (min-width: 1024px) {
+    .contact_ellipse {
+        width: 1200px;
+        height: 500px;
+        filter: blur(80px);
+    }
+
+    .contact_title {
+        font-size: 52px;
+    }
+
+    .contact_kujira {
+        width: 35%;
+        opacity: 0.05;
+    }
+}
+
+/* ===== Responsive: Tablet ===== */
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .contact_ellipse {
+        width: 900px;
+        height: 400px;
+    }
+
+    .contact_title {
+        font-size: 46px;
+    }
+
+    .contact_kujira {
+        width: 40%;
+        opacity: 0.06;
+    }
+}
+
+/* ===== Responsive: Small mobile ===== */
+
+@media screen and (max-width: 400px) {
+    .contact_title {
+        font-size: 32px;
+    }
+
+    .contact_content {
+        padding: 100px 16px 60px;
+    }
+
+    .contact_section_title {
+        font-size: 17px;
+    }
+
+    .contact_back {
+        font-size: 13px;
+        padding: 10px 22px;
+    }
+}
