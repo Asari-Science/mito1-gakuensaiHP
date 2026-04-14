@@ -122,7 +122,7 @@
                         <div class="notice_card">
                             <p class="notice_text"><strong>自家用車やタクシーでの乗り入れはできません。</strong></p>
                             <p class="notice_text">原則公共交通機関をご利用になり、やむを得ない場合は付近のコインパーキングをご利用ください。</p>
-                            <p class="notice_text notice_accessible">障害のある方には駐車スペースをご用意しております。<br>事前に<a href="./comingsoon.php" class="inline_link">お問い合わせ</a>よりご連絡ください。</p>
+                            <p class="notice_text notice_accessible">ご不明な点がある場合は、事前に<a href="./comingsoon.php" class="inline_link">お問い合わせ</a>よりご連絡ください。</p>
                         </div>
                     </section>
 
