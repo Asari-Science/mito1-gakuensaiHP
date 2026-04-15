@@ -154,7 +154,7 @@
                     </div>
                 </section>
                 <span class="divide_line_mobile"></span>
-                <!-- お知らせ欄とブログ欄の取得はJS上で無効化しているため機能しません -->
+
                 <!-- News -->
                  <section id="News">
                     <div class="news_frame">
