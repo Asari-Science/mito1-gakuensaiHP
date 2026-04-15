@@ -95,6 +95,26 @@ body {
     padding: 8px 0;
 }
 
+.privacy_intro {
+    font-family: "Shippori Mincho", serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: #333;
+    line-height: 2;
+    margin-bottom: 32px;
+}
+
+.privacy_body a {
+    color: #8b6914;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.3s ease;
+}
+
+.privacy_body a:hover {
+    color: #6b5110;
+}
+
 .privacy_notice {
     font-family: "Shippori Mincho", serif;
     font-weight: 500;
