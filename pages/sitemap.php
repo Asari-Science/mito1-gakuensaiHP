@@ -60,7 +60,7 @@
                             <h2 class="sitemap_group_title">販売・サービス</h2>
                             <ul class="sitemap_list">
                                 <li><a href="./comingsoon.php">喫茶メニュー</a></li>
-                                <li><a href="./comingsoon.php">グッズページ</a></li>
+                                <li><a href="./comingsoon.php">グッズ・お土産</a></li>
                                 <li><a href="./comingsoon.php">キャッシュレス決済について</a></li>
                             </ul>
                         </div>
