@@ -339,6 +339,7 @@ body {
     background: black;
     border-radius: 2px;
     z-index: 9999;
+    max-width: 900px;
 }
 
 .divide_line_mobile {
@@ -349,6 +350,7 @@ body {
     background: black;
     border-radius: 2px;
     z-index: 9999;
+    max-width: 900px;
 }
 
 /* ===== Mobile Schedule ===== */
