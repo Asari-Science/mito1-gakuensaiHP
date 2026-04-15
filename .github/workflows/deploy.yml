@@ -1,0 +1,30 @@
+name: FTP Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  web-deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v4
+
+      - name: 🚀 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: 21
+          protocol: ftps
+          # 転送先のディレクトリパス
+          server-dir: /gakunesai.net/public_html/
+          # ローカルのどのディレクトリを送るか（リポジトリルートなら ./ ）
+          local-dir: ./
+          # サーバー側にのみ存在するファイルを削除し、完全に同期させる場合は true
+          # 削除も含めて同期したいという要望に合わせ設定しています
+          dangerous-clean-slate: false
