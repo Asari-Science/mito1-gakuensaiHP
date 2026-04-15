@@ -18,7 +18,7 @@
                     <h4 class="footer_col_title">ページ</h4>
                     <a href="<?php echo $base_path; ?>/pages/contact.php" class="footer_nav_link">お問い合わせ</a>
                     <a href="<?php echo $base_path; ?>/pages/access.php" class="footer_nav_link">アクセス</a>
-                    <a href="<?php echo $base_path; ?>/pages/comingsoon.php" class="footer_nav_link">落とし物・忘れ物</a>
+                    <a href="<?php echo $base_path; ?>/lostitem" class="footer_nav_link">落とし物・忘れ物</a>
                 </div>
                 <div class="footer_links_col">
                     <h4 class="footer_col_title">情報</h4>
