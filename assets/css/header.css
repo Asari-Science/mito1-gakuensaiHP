@@ -129,26 +129,36 @@
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
+    max-height: 0;
     width: 100vw;
-    height: 100vh;
-    height: 100dvh;
+    padding: 0;
+    overflow: hidden;
+    transition: max-height 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: 9995;
+    background: transparent;
+}
+
+.menu::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background: linear-gradient(160deg, rgba(218,181,132,0.97) 0%, rgba(246,220,159,0.97) 50%, rgba(218,181,132,0.97) 100%);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    padding: 0;
-    overflow: hidden;
-    transform: translateY(-100vh);
-    transform: translateY(-100dvh);
-    transition:
-        transform 0.6s cubic-bezier(0.4, 0, 0.2, 1),
-        opacity 0.5s ease;
     opacity: 0;
-    z-index: 9995;
+    transition: opacity 0.6s ease;
+    z-index: -1;
 }
 
 .menu.active {
-    transform: translateY(0);
+    max-height: 100vh;
+    max-height: 100dvh;
+}
+
+.menu.active::before {
     opacity: 1;
 }
 
@@ -174,6 +184,14 @@
     margin-bottom: 20px;
 }
 
+.menu_header_label,
+.menu a,
+.menu_footer_sns {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: color 0.3s ease, opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
 .menu a {
     color: #1a1207;
     text-decoration: none;
@@ -184,7 +202,6 @@
     font-size: clamp(16px, 2.5vh, 22px);
     letter-spacing: 0.05em;
     position: relative;
-    transition: color 0.3s ease;
 }
 
 .menu a::after {
@@ -211,8 +228,32 @@
     border-top: none;
 }
 
-/* Menu Footer SNS Icons */
+.menu.active .menu_header_label,
+.menu.active a,
+.menu.active .menu_footer_sns {
+    opacity: 1;
+    transform: translateY(0);
+}
 
+#menu .menu_inner > * {
+    transition-delay: 0s !important;
+}
+
+#menu.active .menu_inner > *:nth-child(1)  { transition-delay: 0.10s !important; } /* MENU */
+#menu.active .menu_inner > *:nth-child(2)  { transition-delay: 0.15s !important; } /* Top */
+#menu.active .menu_inner > *:nth-child(3)  { transition-delay: 0.20s !important; } /* Blog */
+#menu.active .menu_inner > *:nth-child(4)  { transition-delay: 0.25s !important; } /* 企画紹介 */
+#menu.active .menu_inner > *:nth-child(5)  { transition-delay: 0.30s !important; } /* リーフレット */
+#menu.active .menu_inner > *:nth-child(6)  { transition-delay: 0.35s !important; } /* ステージタイムテーブル */
+#menu.active .menu_inner > *:nth-child(7)  { transition-delay: 0.40s !important; } /* 喫茶メニュー */
+#menu.active .menu_inner > *:nth-child(8)  { transition-delay: 0.45s !important; } /* グッズ・お土産 */
+#menu.active .menu_inner > *:nth-child(9)  { transition-delay: 0.50s !important; } /* お問い合わせ */
+#menu.active .menu_inner > *:nth-child(10) { transition-delay: 0.55s !important; } /* アクセス */
+#menu.active .menu_inner > *:nth-child(11) { transition-delay: 0.60s !important; } /* 落とし物・忘れ物 */
+#menu.active .menu_inner > *:nth-child(12) { transition-delay: 0.65s !important; } /* SNS */
+
+
+/* Menu Footer SNS Icons */
 .menu_footer_sns {
     display: flex;
     gap: 20px;
@@ -237,7 +278,6 @@
     background: rgba(0, 0, 0, 0.12);
     transform: scale(1.1);
 }
-
 /* ===== Responsive adjustments ===== */
 
 @media screen and (max-width: 400px) {
