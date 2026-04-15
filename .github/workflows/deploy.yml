@@ -22,7 +22,7 @@ jobs:
           port: 21
           protocol: ftps
           # 転送先のディレクトリパス
-          server-dir: /gakunesai.net/public_html/
+          server-dir: /gakuensai.net/public_html/
           # ローカルのどのディレクトリを送るか（リポジトリルートなら ./ ）
           local-dir: ./
           # サーバー側にのみ存在するファイルを削除し、完全に同期させる場合は true
