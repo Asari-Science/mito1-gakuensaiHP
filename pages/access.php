@@ -49,7 +49,7 @@
                         </h2>
                         <div class="venue_info">
                             <p class="venue_name">茨城県立水戸第一高等学校・附属中学校</p>
-                            <p class="venue_address">&lang;310-0011 茨城県水戸市三の丸3丁目10-1</p>
+                            <p class="venue_address">〒310-0011 茨城県水戸市三の丸3丁目10-1</p>
                             <div class="venue_links">
                                 <a href="https://maps.app.goo.gl/SGejjGQYipDAg4w87" target="_blank" rel="noopener noreferrer" class="map_link">
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C7.802 0 4 3.403 4 7.602 4 11.8 7.469 16.812 12 24c4.531-7.188 8-12.2 8-16.398C20 3.403 16.199 0 12 0zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>
