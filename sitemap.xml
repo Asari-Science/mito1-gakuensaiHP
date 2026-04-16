@@ -5,8 +5,20 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://gakuensai.net/pages/concept.php</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://gakuensai.net/pages/access.php</loc>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gakuensai.net/pages/cashless.php</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://gakuensai.net/pages/contact.php</loc>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://gakuensai.net/pages/privacy.php</loc>
@@ -14,10 +26,6 @@
   </url>
   <url>
     <loc>https://gakuensai.net/pages/sitemap.php</loc>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://gakuensai.net/pages/contact.php</loc>
     <priority>0.5</priority>
   </url>
   <url>

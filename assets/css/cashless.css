@@ -1,0 +1,358 @@
+/* ===== Cashless Payment Page ===== */
+
+body {
+    background-color: #f6dc9f;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+.cashless_main {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.cashless_container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    background-color: #dab584;
+    overflow: hidden;
+}
+
+.cashless_ellipse {
+    position: absolute;
+    width: 700px;
+    height: 250px;
+    background-color: #f6dc9f;
+    border-radius: 50%;
+    transform: rotate(135deg);
+    filter: blur(60px);
+    opacity: 0.7;
+    top: 200px;
+}
+
+.cashless_content {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 120px 24px 80px;
+    max-width: 800px;
+    width: 100%;
+}
+
+.cashless_label {
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 300;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(26, 18, 7, 0.4);
+    margin-bottom: 8px;
+}
+
+.cashless_title {
+    font-family: "Zen Old Mincho", serif;
+    font-weight: 900;
+    font-size: 36px;
+    color: #1a1207;
+    letter-spacing: 0.1em;
+    margin-bottom: 28px;
+}
+
+.cashless_intro {
+    font-family: "Shippori Mincho", serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: #1a1207;
+    line-height: 1.8;
+    margin-bottom: 8px;
+}
+
+.cashless_intro_sub {
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    color: rgba(26, 18, 7, 0.55);
+    line-height: 1.6;
+    margin-bottom: 32px;
+}
+
+/* ===== Brand Logo Image ===== */
+
+.cashless_brand_image {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto 8px;
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.cashless_brand_image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* ===== Dividers ===== */
+
+.cashless_divider {
+    width: 40px;
+    height: 2px;
+    background: rgba(0, 0, 0, 0.15);
+    margin: 32px 0;
+}
+
+.cashless_divider_thin {
+    width: 100%;
+    max-width: 500px;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.08);
+    margin: 24px 0;
+}
+
+/* ===== Category ===== */
+
+.cashless_category {
+    width: 100%;
+    max-width: 600px;
+    text-align: left;
+}
+
+.cashless_cat_title {
+    font-family: "Zen Old Mincho", serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: #1a1207;
+    letter-spacing: 0.05em;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.cashless_cat_icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: rgba(139, 105, 20, 0.1);
+    color: #8b6914;
+    flex-shrink: 0;
+}
+
+/* ===== Brand Tags ===== */
+
+.cashless_brands {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.cashless_brand {
+    display: inline-block;
+    padding: 6px 14px;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    color: #1a1207;
+    line-height: 1.4;
+}
+
+/* ===== Notes ===== */
+
+.cashless_note_warn {
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    color: #c24b31;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.cashless_note_warn::before {
+    content: "※";
+}
+
+.cashless_note_sub {
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    color: rgba(26, 18, 7, 0.5);
+    margin-top: 8px;
+}
+
+/* ===== Notice Box ===== */
+
+.cashless_notice {
+    width: 100%;
+    max-width: 600px;
+    padding: 16px 20px;
+    background: rgba(194, 75, 49, 0.06);
+    border: 1px solid rgba(194, 75, 49, 0.15);
+    border-radius: 12px;
+    margin-bottom: 32px;
+}
+
+.cashless_notice_text {
+    font-family: "Shippori Mincho", serif;
+    font-weight: 500;
+    font-size: 13px;
+    color: #555;
+    line-height: 1.9;
+    text-align: center;
+}
+
+/* ===== Back Button ===== */
+
+.cashless_back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    font-family: "Shippori Mincho", serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: #1a1207;
+    text-decoration: none;
+    border: 1.5px solid rgba(0, 0, 0, 0.25);
+    border-radius: 50px;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cashless_back:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.back_arrow {
+    font-size: 18px;
+    transition: transform 0.3s ease;
+}
+
+.cashless_back:hover .back_arrow {
+    transform: translateX(-3px);
+}
+
+/* ===== Kujira ===== */
+
+.cashless_kujira {
+    position: absolute;
+    right: -5%;
+    bottom: 0;
+    width: 45%;
+    max-width: 500px;
+    object-fit: contain;
+    opacity: 0.1;
+    pointer-events: none;
+}
+
+/* ===== Responsive: PC ===== */
+
+@media screen and (min-width: 1024px) {
+    .cashless_ellipse {
+        width: 1200px;
+        height: 500px;
+        filter: blur(80px);
+    }
+
+    .cashless_title {
+        font-size: 44px;
+    }
+
+    .cashless_intro {
+        font-size: 17px;
+    }
+
+    .cashless_kujira {
+        width: 35%;
+        opacity: 0.08;
+    }
+
+    .cashless_content {
+        padding: 140px 40px 100px;
+    }
+}
+
+/* ===== Responsive: Tablet ===== */
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .cashless_ellipse {
+        width: 900px;
+        height: 400px;
+    }
+
+    .cashless_title {
+        font-size: 40px;
+    }
+
+    .cashless_kujira {
+        width: 40%;
+        opacity: 0.08;
+    }
+}
+
+/* ===== Responsive: Small mobile ===== */
+
+@media screen and (max-width: 400px) {
+    .cashless_title {
+        font-size: 28px;
+    }
+
+    .cashless_intro {
+        font-size: 14px;
+    }
+
+    .cashless_intro_sub {
+        font-size: 12px;
+    }
+
+    .cashless_cat_title {
+        font-size: 16px;
+    }
+
+    .cashless_brand {
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+
+    .cashless_back {
+        font-size: 13px;
+        padding: 10px 22px;
+    }
+
+    .cashless_content {
+        padding: 100px 16px 60px;
+    }
+
+    .cashless_brand_image {
+        padding: 12px;
+    }
+
+    .cashless_notice_text {
+        font-size: 12px;
+    }
+}

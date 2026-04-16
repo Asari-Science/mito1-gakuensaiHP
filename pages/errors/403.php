@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>403 - 未踏の空域 | 第78回水戸一高・附属中学校学苑祭「天翔る」</title>
+        <meta name="description" content="このページにはアクセスできません。第78回学苑祭の公式サイト。">
+
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;700;900&family=Shippori+Mincho:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="../../assets/css/reset.css">
+        <link rel="stylesheet" type="text/css" href="../../assets/css/errors/error-common.css">
+        <link rel="stylesheet" type="text/css" href="../../assets/css/header.css">
+        <link rel="stylesheet" type="text/css" href="../../assets/css/footer.css">
+
+        <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="../../materials/favicon/favicon.ico">
+        <link rel="icon" type="image/vnd.microsoft.icon" href="../../materials/favicon/favicon.ico">
+        <link rel="apple-touch-icon" sizes="180x180" href="../../materials/favicon/apple-touch-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="../../materials/favicon/android-chrome-192x192.png">
+
+        <link rel="manifest" href="../../materials/favicon/manifest.json">
+
+    </head>
+    <body>
+        <?php $base_path = '../..'; ?>
+        <!-- Header -->
+         <?php include(__DIR__ . "/../../includes/header.php"); ?>
+        <!-- Main -->
+         <main class="error_main">
+            <div class="error_container error_403">
+                <!-- Sky Background -->
+                <div class="error_sky"></div>
+
+                <!-- Stars -->
+                <div class="error_stars" id="error_stars"></div>
+
+                <!-- Clouds -->
+                <div class="error_clouds">
+                    <div class="error_cloud"></div>
+                    <div class="error_cloud"></div>
+                    <div class="error_cloud"></div>
+                </div>
+
+                <!-- Floating Particles -->
+                <div class="error_particles">
+                    <div class="error_particle"></div>
+                    <div class="error_particle"></div>
+                    <div class="error_particle"></div>
+                    <div class="error_particle"></div>
+                    <div class="error_particle"></div>
+                    <div class="error_particle"></div>
+                    <div class="error_particle"></div>
+                    <div class="error_particle"></div>
+                </div>
+
+                <!-- Content -->
+                <div class="error_content">
+                    <p class="error_code">Restricted Airspace</p>
+                    <div class="error_lock_icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(128,203,196,0.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                        </svg>
+                    </div>
+                    <p class="error_altitude">403</p>
+                    <p class="error_altitude_unit">- RESTRICTED -</p>
+
+                    <h1 class="error_title">この先は<br>未踏の空域です</h1>
+
+                    <p class="error_message">
+                        創造の翼を広げる準備が整うまで、<br>
+                        この雲の先へ進むことはできません。<br>
+                        飛行許可が下りるまで、お待ちください。
+                    </p>
+
+                    <div class="error_divider"></div>
+
+                    <p class="error_date">
+                        第78回学苑祭<br>
+                        <span>2026.6.20 - 6.21</span>
+                    </p>
+
+                    <a href="https://gakuensai.net" class="error_back">
+                        <span class="back_arrow">&larr;</span>
+                        <span>地上に帰還する</span>
+                    </a>
+                </div>
+
+                <!-- Horizon Line -->
+                <div class="error_horizon"></div>
+            </div>
+         </main>
+        <!-- Footer -->
+         <?php include(__DIR__ . "/../../includes/footer.php"); ?>
+        <!-- Script -->
+         <script src="../../assets/js/menu.js"></script>
+         <script src="../../assets/js/error-stars.js"></script>
+    </body>
+</html>
