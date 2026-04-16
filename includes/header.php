@@ -10,7 +10,7 @@
 </script>
 
 <div class="header_frame">
-    <div class="header_bg" id="header_bg">
+    <div class="header_bg" id="header_bg" style="background: <?php echo $header_bg_style ?? "linear-gradient(180deg, rgba(218,181,132,0.6) 0%, rgba(246,220,159,0.3) 100%)" ?>;">
         <div class="header_countdown" id="header_countdown"></div>
     </div>
     <a href="https://gakuensai.net">

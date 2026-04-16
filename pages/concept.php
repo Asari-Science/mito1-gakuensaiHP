@@ -35,7 +35,12 @@
     <body>
         <?php $base_path = '..'; ?>
         <!-- Header -->
-         <?php include(__DIR__ . "/../includes/header.php"); ?>
+         <?php
+            // 背景色を変更する場合は変数 $header_bg_style に linear-gradient() 等、background: で指定するスタイルを記入してください。
+            // セミコロンは不要です。
+            // 変更しない場合は何も記入しないでください。
+            include(__DIR__ . "/../includes/header.php");
+         ?>
         <!-- Main -->
          <main class="concept_main">
 
@@ -173,7 +178,12 @@
             </section>
          </main>
         <!-- Footer -->
-         <?php include(__DIR__ . "/../includes/footer.php"); ?>
+         <?php
+            // 背景色を変更する場合は変数 $footer_bg_color に #dab584 等、background-color: で指定する色を記入してください。
+            // セミコロンは不要です。
+            // 変更しない場合は何も記入しないでください。
+            include(__DIR__ . "/../includes/footer.php");
+         ?>
         <!-- Script -->
          <script src="../assets/js/menu.js"></script>
          <script src="../assets/js/concept.js"></script>

@@ -1,6 +1,6 @@
 <?php if (!isset($base_path)) $base_path = '.'; ?>
 <footer>
-    <div class="footer_container">
+    <div class="footer_container" style="background-color: <?php echo $footer_bg_color ?? "#dab584"?>;">
         <div class="footer_frame">
             <!-- School & Event Info -->
             <div class="footer_enjitsu">
