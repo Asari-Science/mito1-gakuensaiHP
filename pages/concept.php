@@ -46,15 +46,23 @@
                     <div class="concept_s1_glow"></div>
                 </div>
                 <div class="concept_s1_content">
-                    <div class="concept_reveal concept_hero_text">
-                        <p class="concept_s1_lead">重力を、置き去りにしろ。</p>
-                    </div>
-                    <div class="concept_s1_divider concept_reveal"></div>
-                    <div class="concept_s1_block">
+                    <div class="concept_hero_full">
+                        <div class="concept_reveal concept_hero_text">
+                            <p class="concept_s1_lead">重力を、置き去りにしろ。</p>
+                        </div>
+                        <div class="concept_s1_divider concept_reveal"></div>
                         <p class="concept_s1_ruby concept_reveal">
                             <span class="concept_kanji">「天翔る」</span>
                             <span class="concept_reading">（あまがける）</span>
                         </p>
+                        <!-- Scroll indicator -->
+                        <div class="concept_scroll_hint concept_reveal">
+                            <span class="concept_scroll_text">Scroll</span>
+                            <span class="concept_scroll_line"></span>
+                        </div>
+                    </div>
+
+                    <div class="concept_s1_block">
                         <p class="concept_s1_body concept_reveal">
                             それは、地を這う歩みを止め、<br>
                             未知なる高みへと身を投じること。
@@ -64,11 +72,6 @@
                             まだ誰も到達したことのない座標を目指す、<br>
                             私たちの意志の表明です。
                         </p>
-                    </div>
-                    <!-- Scroll indicator -->
-                    <div class="concept_scroll_hint concept_reveal">
-                        <span class="concept_scroll_text">Scroll</span>
-                        <span class="concept_scroll_line"></span>
                     </div>
                 </div>
             </section>
@@ -160,7 +163,7 @@
 
                     <!-- Logo / CTA -->
                     <div class="concept_cta concept_reveal">
-                        <img src="../materials/text_kanji_amagakeru_yoko.webp" class="concept_cta_logo" alt="天翔る">
+                        <img src="../materials/text_kanji_amagakeru_yoko.webp" class="concept_cta_logo" alt="天翔る" width="300" height="80" loading="lazy" decoding="async">
                         <p class="concept_cta_date">2026.6.20 <small>SAT</small> - 6.21 <small>SUN</small></p>
                         <a href="https://gakuensai.net" class="concept_cta_btn">
                             <span>&larr;</span> トップページへ
