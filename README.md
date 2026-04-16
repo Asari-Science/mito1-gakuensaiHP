@@ -6,42 +6,66 @@
 
 ```
 .
-├── index.php                      # トップページ
-├── pages/                         # 各ページ
-│   ├── comingsoon.php             # Coming Soonページ（準備中ページ）
-│   ├── sitemap.php                # サイトマップページ
-│   ├── access.php                 # アクセスページ（会場・交通案内）
-│   ├── contact.php                # お問い合わせページ
-│   ├── privacy.php                # プライバシーポリシーページ（雛形）
-│   └── 404.php                    # 404 Not Foundページ
-├── includes/                      # 共通パーツ（PHPインクルード）
-│   ├── header.php                 # 共通ヘッダー（ナビゲーション・カウントダウン）
-│   └── footer.php                 # 共通フッター
-├── assets/                        # 静的アセット
+├── index.php                          # トップページ
+├── sw.js                              # Service Worker（PWA対応）
+├── pages/                             # 各ページ
+│   ├── concept.php                    # コンセプトビューページ「AMAGAKERU」
+│   ├── cashless.php                   # キャッシュレス決済ページ
+│   ├── comingsoon.php                 # Coming Soonページ（準備中ページ）
+│   ├── sitemap.php                    # サイトマップページ
+│   ├── access.php                     # アクセスページ（会場・交通案内）
+│   ├── contact.php                    # お問い合わせページ
+│   ├── privacy.php                    # プライバシーポリシーページ（雛形）
+│   ├── 404.php                        # 旧404ページ（新ディレクトリへリダイレクト）
+│   └── errors/                        # エラーページ群（航空テーマ）
+│       ├── 404.php                    # 404 Not Found - 「高度404m」
+│       ├── 403.php                    # 403 Forbidden - 「未踏の空域」
+│       ├── 500.php                    # 500 Internal Server Error - 「計器異常」
+│       └── 503.php                    # 503 Service Unavailable - 「気流乱れ」
+├── includes/                          # 共通パーツ（PHPインクルード）
+│   ├── header.php                     # 共通ヘッダー（ナビゲーション・カウントダウン）
+│   └── footer.php                     # 共通フッター
+├── assets/                            # 静的アセット
 │   ├── css/
-│   │   ├── reset.css              # CSSリセット
-│   │   ├── toppage.css            # トップページ用スタイル
-│   │   ├── header.css             # ヘッダー用スタイル
-│   │   ├── footer.css             # フッター用スタイル
-│   │   ├── comingsoon.css         # Coming Soonページ用スタイル
-│   │   ├── sitemap.css            # サイトマップページ用スタイル
-│   │   ├── access.css             # アクセスページ用スタイル
-│   │   ├── contact.css            # お問い合わせページ用スタイル
-│   │   ├── privacy.css            # プライバシーポリシーページ用スタイル
-│   │   └── 404.css                # 404ページ用スタイル
+│   │   ├── reset.css                  # CSSリセット
+│   │   ├── toppage.css                # トップページ用スタイル
+│   │   ├── header.css                 # ヘッダー用スタイル
+│   │   ├── footer.css                 # フッター用スタイル
+│   │   ├── concept.css                # コンセプトビューページ用スタイル
+│   │   ├── cashless.css               # キャッシュレス決済ページ用スタイル
+│   │   ├── comingsoon.css             # Coming Soonページ用スタイル
+│   │   ├── sitemap.css                # サイトマップページ用スタイル
+│   │   ├── access.css                 # アクセスページ用スタイル
+│   │   ├── contact.css                # お問い合わせページ用スタイル
+│   │   ├── privacy.css                # プライバシーポリシーページ用スタイル
+│   │   ├── 404.css                    # 旧404ページ用スタイル（非推奨）
+│   │   └── errors/
+│   │       └── error-common.css       # エラーページ共通スタイル（航空テーマ）
 │   └── js/
-│       ├── menu.js                # ナビゲーションメニュー制御 + スクロールアニメーション + WP連携
-│       └── loading.js             # ローディング画面制御（sessionStorage対応）
-├── materials/                     # 画像・素材ディレクトリ
-│   ├── kujira.webp                # メインビジュアル（鯨）
-│   ├── header_title.webp          # ヘッダーロゴ
-│   ├── enjitsu78th.webp           # 学苑祭ロゴ
-│   ├── favicon/                   # ファビコン群
-│   │   ├── NowLoading.webm        # ローディングアニメーション（WebM動画）
-│   │   └── ...
-│   └── ...                        # その他画像素材
-├── sitemap.xml                    # XMLサイトマップ
-├── robots.txt                     # robots.txt
+│       ├── menu.js                    # ナビゲーションメニュー制御 + スクロールアニメーション + WP連携
+│       ├── loading.js                 # ローディング画面制御（sessionStorage対応・低電力モード対応）
+│       ├── calendar.js                # Googleカレンダー追加ダイアログ制御
+│       ├── concept.js                 # コンセプトビューページ（スクロール演出・パーティクル）
+│       ├── concept-link-stars.js      # トップページ コンセプトリンクカード 星空演出
+│       └── error-stars.js             # エラーページ 星空生成
+├── materials/                         # 画像・素材ディレクトリ
+│   ├── kujira.webp                    # メインビジュアル（鯨）
+│   ├── header_title.webp              # ヘッダーロゴ
+│   ├── enjitsu78th.webp               # 学苑祭ロゴ
+│   ├── NowLoading.webm                # ローディングアニメーション（WebM動画）
+│   ├── NowLoading.webp                # ローディング画像（低電力モード用フォールバック）
+│   ├── NowLoading.mp4                 # ローディング動画 MP4版（未使用・予備）
+│   ├── cashless-brandlogo.webp        # キャッシュレス決済ブランドロゴ一覧画像
+│   ├── text_kanji_amagakeru.webp      # 「天翔る」縦書き
+│   ├── text_kanji_amagakeru_yoko.webp # 「天翔る」横書き
+│   ├── text_kanji_gakuensai.webp      # 「学苑祭」
+│   ├── text_78th.webp                 # 「78th」
+│   ├── text_catchcopy.webp            # キャッチコピー
+│   └── favicon/                       # ファビコン群
+│       ├── manifest.json              # PWA マニフェスト
+│       └── ...                        # 各種アイコン
+├── sitemap.xml                        # XMLサイトマップ
+├── robots.txt                         # robots.txt
 └── README.md
 ```
 
@@ -51,6 +75,7 @@
 
 - **ルート階層**（`index.php`）: `$base_path = '.'`
 - **pages/ 階層**: `$base_path = '..'`
+- **pages/errors/ 階層**: `$base_path = '../..'`
 
 新しいページを追加する場合は、`<?php $base_path = '..'; ?>` を `<body>` 直後に記述してからヘッダー・フッターをインクルードしてください。
 
@@ -68,9 +93,11 @@ php -S localhost:8000
 
 - **PHP**: 共通パーツ（ヘッダー・フッター）のインクルード、`$base_path` による相対パス制御
 - **CSS3**: カスタムプロパティ、backdrop-filter、CSS Grid/Flexbox、アニメーション、dvh対応
-- **JavaScript (Vanilla)**: メニュー制御、スクロールアニメーション、ローディング画面、カウントダウンタイマー
+- **JavaScript (Vanilla)**: メニュー制御、スクロールアニメーション、ローディング画面、カウントダウンタイマー、Intersection Observer
+- **PWA (Service Worker)**: オフラインアクセス対応、アセットキャッシュ
 - **WordPress REST API**: お知らせ・ブログ記事の動的取得
 - **Google Forms API**: お問い合わせフォームの送信
+- **Google Calendar API**: スケジュールカードからのカレンダー自動追加
 - **Google Analytics 4**: サイト全体のアクセス解析
 - **Google Fonts**: Zen Old Mincho / Shippori Mincho / Noto Sans JP
 - **Google Maps Embed API**: アクセスページの地図埋め込み
@@ -85,7 +112,7 @@ php -S localhost:8000
 
 ## 主な機能
 
-- **ローディング画面**: `NowLoading.webm`（WebM動画）を使用。画面サイズ100%で表示し、モバイルでは16:9動画の中央を切り出して全画面対応。sessionStorageにより同一セッションでのリロード時は一切表示しない
+- **ローディング画面**: `NowLoading.webm`（WebM動画）を使用。画面サイズ100%で表示し、モバイルでは16:9動画の中央を切り出して全画面対応。sessionStorageにより同一セッションでのリロード時は一切表示しない。低電力モードではVideoのautoplayが制限されるため、`NowLoading.webp`画像にフォールバック
 - **カウントダウンタイマー**: ヘッダーが固定背景表示（スクロール50px以上）の際に、画面右側のハンバーガーメニュー左側に「第78回学苑祭まで〇〇日〇〇時間〇〇分」を縦中央揃えで表示
 - **動的コンテンツ取得**: WordPress REST APIを利用し、トップページに最新のお知らせとブログを各3件表示。48時間以内の投稿には「New!」バッジを付与
 - **お問い合わせフォーム**: Google Formsをバックエンドに利用した非同期送信フォーム。免責事項・プライバシーポリシーへの同意チェック、入力バリデーションを搭載
@@ -97,9 +124,14 @@ php -S localhost:8000
 - **ご案内セクション**: トップページのフッター上部に禁止事項・注意事項を表示
 - **アクセスページ**: Google Maps埋め込み、電車・バスの交通手段案内、注意事項
 - **Coming Soonページ**: 準備中のページ用テンプレート
-- **404ページ**: Coming Soonと同じデザインの404エラーページ
 - **プライバシーポリシー**: 雛形ページ（本文は別途記載）
 - **サイトマップページ**: サイト全体のページ構成を一覧表示
+- **コンセプトビューページ**: 「天翔る」のコンセプトを3セクション構成でスクロール演出付きで表示。深い藍色の夜空から青空への背景グラデーション遷移、星空・パーティクル・パララックス効果
+- **コンセプトリンクカード**: トップページの開催日時とお知らせの間に、コンセプトビューへの導線カード（星空背景のダークテーマ）を配置
+- **Googleカレンダー追加**: 日程カードの「予定に追加」ボタンからGoogleカレンダーに予定を追加。確認ダイアログで誤操作を防止
+- **キャッシュレス決済ページ**: 利用可能な決済ブランド一覧（クレジット・交通系IC・QR・電子マネー等）をブランドロゴ画像とタグ形式で表示
+- **エラーページ群**: 航空・飛行テーマで統一された404/403/500/503エラーページ。深い夜空の背景、星空、浮遊パーティクル、ステータスコード別の色テーマとユーモアあるメッセージを搭載。`pages/errors/`ディレクトリに分離
+- **PWA対応**: Service Workerによるオフラインキャッシュ。ステージタイムスケジュール・企画内容・パンフレットを当日オフラインで閲覧可能にするための下準備
 
 ## 今後の開発指針
 
@@ -112,7 +144,6 @@ php -S localhost:8000
    - グッズ・お土産: 販売グッズの画像・価格・説明を表示。Square APIを使用して在庫状況を取得
    - リーフレットページ: デジタルリーフレット（PDF埋め込みまたは画像スライダー）
    - 落とし物・忘れ物ページ: 落とし物・忘れ物の受付案内（/lostitem）
-   - キャッシュレス決済ページ: 対応する決済方法の案内
    - プライバシーポリシーページ: 本文の記載
    - 代表者挨拶ページ: 代表者からの挨拶文を掲載
 
@@ -147,3 +178,4 @@ php -S localhost:8000
 - **カラーパレット**: `#f6dc9f`（背景）、`#dab584`（セクション背景）、`#1a1207`（テキスト）、`#8b6914`（アクセント）を基本とする
 - **レスポンシブ対応必須**: 新しいセクション・ページは必ず3段階のブレークポイントに対応すること
 - **$base_path必須**: 新しいページ追加時は必ず `$base_path` を設定してからヘッダー・フッターをインクルードすること
+- **エラーページは `pages/errors/` に配置**: エラーページの追加・編集は `pages/errors/` ディレクトリ内で行うこと

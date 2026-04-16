@@ -79,6 +79,12 @@
 
         <link rel="manifest" href="./materials/favicon/manifest.json">
 
+        <!-- PWA Meta -->
+        <meta name="theme-color" content="#dab584">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="default">
+        <meta name="apple-mobile-web-app-title" content="学苑祭">
+
     </head>
     <body>
         <?php $base_path = '.'; ?>
@@ -86,8 +92,9 @@
          <div id="loading_screen">
             <div class="loading_inner">
                 <video class="loading_video" id="loading_video" autoplay muted playsinline preload="auto">
-                    <source src="./materials/favicon/NowLoading.webm" type="video/webm">
+                    <source src="./materials/NowLoading.webm" type="video/webm">
                 </video>
+                <img src="./materials/NowLoading.webp" class="loading_image" id="loading_image" alt="Now Loading">
             </div>
          </div>
         <!-- Header -->
@@ -115,12 +122,20 @@
                                     <span class="card_date">6/20<small>(土)</small></span>
                                     <span class="card_time">11:00 - 16:30</span>
                                     <span class="card_last">最終入場 16:00</span>
+                                    <button class="card_calendar_btn" data-day="1" aria-label="Googleカレンダーに追加">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                                        <span>予定に追加</span>
+                                    </button>
                                 </div>
                                 <div class="schedule_card">
                                     <span class="card_day">Day 2</span>
                                     <span class="card_date">6/21<small>(日)</small></span>
                                     <span class="card_time">9:00 - 13:00</span>
                                     <span class="card_last">最終入場 12:30</span>
+                                    <button class="card_calendar_btn" data-day="2" aria-label="Googleカレンダーに追加">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                                        <span>予定に追加</span>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -143,17 +158,46 @@
                                 <span class="card_date">6/20<small>(土)</small></span>
                                 <span class="card_time">11:00 - 16:30</span>
                                 <span class="card_last">最終入場 16:00</span>
+                                <button class="card_calendar_btn" data-day="1" aria-label="Googleカレンダーに追加">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                                    <span>予定に追加</span>
+                                </button>
                             </div>
                             <div class="schedule_card">
                                 <span class="card_day">Day 2</span>
                                 <span class="card_date">6/21<small>(日)</small></span>
                                 <span class="card_time">9:00 - 13:00</span>
                                 <span class="card_last">最終入場 12:30</span>
+                                <button class="card_calendar_btn" data-day="2" aria-label="Googleカレンダーに追加">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                                    <span>予定に追加</span>
+                                </button>
                             </div>
                         </div>
                     </div>
                 </section>
                 <span class="divide_line_mobile"></span>
+
+                <!-- Concept View Link Card -->
+                <section id="Concept_link">
+                    <div class="concept_link_card">
+                        <div class="concept_link_bg">
+                            <div class="concept_link_stars" id="concept_link_stars"></div>
+                        </div>
+                        <div class="concept_link_content">
+                            <p class="concept_link_label">Concept</p>
+                            <h2 class="concept_link_title">「天翔る」にかけた思い</h2>
+                            <p class="concept_link_sub">重力を、置き去りにしろ。</p>
+                            <a href="./pages/concept.php" class="concept_link_btn">
+                                コンセプトを読む
+                                <span class="concept_link_arrow">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+                <span class="divide_line_common"></span>
 
                 <!-- News -->
                  <section id="News">
@@ -287,8 +331,37 @@
          </main>
         <!-- Footer -->
          <?php include(__DIR__ . "/includes/footer.php"); ?>
+        <!-- Google Calendar Confirmation Dialog -->
+        <div class="gcal_overlay" id="gcal_overlay">
+            <div class="gcal_dialog">
+                <div class="gcal_dialog_icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                </div>
+                <p class="gcal_dialog_title" id="gcal_dialog_title">予定を追加しますか？</p>
+                <p class="gcal_dialog_desc" id="gcal_dialog_desc">Googleカレンダーに学苑祭の予定を追加します。</p>
+                <div class="gcal_dialog_btns">
+                    <button class="gcal_btn_cancel" id="gcal_cancel">キャンセル</button>
+                    <a class="gcal_btn_confirm" id="gcal_confirm" href="#" target="_blank" rel="noopener noreferrer">追加する</a>
+                </div>
+            </div>
+        </div>
+
         <!-- Script -->
          <script src="./assets/js/menu.js"></script>
          <script src="./assets/js/loading.js"></script>
+         <script src="./assets/js/calendar.js"></script>
+         <script src="./assets/js/concept-link-stars.js"></script>
+         <!-- PWA Service Worker Registration -->
+         <script>
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                    navigator.serviceWorker.register('/sw.js').then(function(reg) {
+                        console.log('Service Worker registered:', reg.scope);
+                    }).catch(function(err) {
+                        console.log('Service Worker registration failed:', err);
+                    });
+                });
+            }
+         </script>
     </body>
 </html>

@@ -53,6 +53,19 @@ body {
     object-fit: cover;
 }
 
+.loading_image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: cover;
+    display: none;
+}
+
 /* ===== Scroll Indicator ===== */
 
 .scroll_indicator {
@@ -763,6 +776,277 @@ body {
 }
 
 
+/* ===== Calendar Button on Schedule Cards ===== */
+
+.card_calendar_btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 8px;
+    padding: 5px 12px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.15);
+    cursor: pointer;
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 500;
+    font-size: 10px;
+    color: rgba(26, 18, 7, 0.6);
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.card_calendar_btn:hover {
+    background: rgba(139, 105, 20, 0.15);
+    border-color: rgba(139, 105, 20, 0.3);
+    color: #8b6914;
+    transform: translateY(-1px);
+}
+
+.card_calendar_btn svg {
+    flex-shrink: 0;
+}
+
+/* Mobile dark theme calendar button */
+.days_row .card_calendar_btn {
+    border-color: rgba(246, 220, 159, 0.2);
+    background: rgba(246, 220, 159, 0.08);
+    color: rgba(246, 220, 159, 0.5);
+}
+
+.days_row .card_calendar_btn:hover {
+    border-color: rgba(246, 220, 159, 0.4);
+    background: rgba(246, 220, 159, 0.15);
+    color: #f6dc9f;
+}
+
+/* ===== Google Calendar Dialog ===== */
+
+.gcal_overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99998;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.gcal_overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.gcal_dialog {
+    background: linear-gradient(160deg, #f6dc9f 0%, #e8cb88 100%);
+    border-radius: 18px;
+    padding: 32px 28px 24px;
+    max-width: 340px;
+    width: 90vw;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+    transform: translateY(20px) scale(0.95);
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.gcal_overlay.active .gcal_dialog {
+    transform: translateY(0) scale(1);
+}
+
+.gcal_dialog_icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(139, 105, 20, 0.12);
+    color: #8b6914;
+    margin-bottom: 16px;
+}
+
+.gcal_dialog_title {
+    font-family: "Zen Old Mincho", serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: #1a1207;
+    margin-bottom: 8px;
+}
+
+.gcal_dialog_desc {
+    font-family: "Shippori Mincho", serif;
+    font-weight: 500;
+    font-size: 13px;
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 24px;
+}
+
+.gcal_dialog_btns {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.gcal_btn_cancel {
+    padding: 10px 24px;
+    border-radius: 50px;
+    border: 1.5px solid rgba(0, 0, 0, 0.15);
+    background: transparent;
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    color: #1a1207;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.gcal_btn_cancel:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.gcal_btn_confirm {
+    padding: 10px 24px;
+    border-radius: 50px;
+    border: none;
+    background: #1a1207;
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    color: #f6dc9f;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+}
+
+.gcal_btn_confirm:hover {
+    background: #2a2010;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* ===== Concept Link Card ===== */
+
+.concept_link_card {
+    position: relative;
+    width: 90vw;
+    max-width: 900px;
+    margin: 40px auto;
+    border-radius: 18px;
+    overflow: hidden;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: default;
+    border: 1px solid rgba(246, 220, 159, 0.15);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+}
+
+.concept_link_card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+}
+
+.concept_link_bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, #0a1128 0%, #132350 40%, #1a2a60 100%);
+    z-index: 0;
+}
+
+.concept_link_stars {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+@keyframes conceptLinkStar {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 0.9; }
+}
+
+.concept_link_content {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 40px 24px;
+}
+
+.concept_link_label {
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 300;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(246, 220, 159, 0.45);
+    margin-bottom: 12px;
+}
+
+.concept_link_title {
+    font-family: "Zen Old Mincho", serif;
+    font-weight: 900;
+    font-size: 24px;
+    color: #f6dc9f;
+    letter-spacing: 0.1em;
+    line-height: 1.4;
+    margin-bottom: 8px;
+    text-shadow: 0 0 30px rgba(246, 220, 159, 0.15);
+}
+
+.concept_link_sub {
+    font-family: "Shippori Mincho", serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: rgba(232, 224, 212, 0.5);
+    margin-bottom: 24px;
+}
+
+.concept_link_btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 24px;
+    font-family: "Shippori Mincho", serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: #f6dc9f;
+    text-decoration: none;
+    border: 1px solid rgba(246, 220, 159, 0.35);
+    border-radius: 50px;
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.concept_link_btn:hover {
+    background: rgba(246, 220, 159, 0.1);
+    border-color: rgba(246, 220, 159, 0.6);
+    transform: translateY(-1px);
+}
+
+.concept_link_arrow {
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.concept_link_btn:hover .concept_link_arrow {
+    transform: translateX(3px);
+}
+
 /* ===== Fade-in animation for sections ===== */
 
 section {
@@ -866,6 +1150,14 @@ section.visible {
         padding: 0 40px 32px;
     }
 
+    .concept_link_card {
+        width: 70vw;
+    }
+
+    .concept_link_title {
+        font-size: 28px;
+    }
+
     @media screen and (min-width: 1025px) {
         .schedule_top {
             display: flex;
@@ -908,6 +1200,14 @@ section.visible {
 
     .news_frame {
         width: 70vw;
+    }
+
+    .concept_link_card {
+        width: 70vw;
+    }
+
+    .concept_link_title {
+        font-size: 26px;
     }
 
     .info_frame {
@@ -1036,5 +1336,35 @@ section.visible {
     .info_link_btn {
         font-size: 13px;
         padding: 8px 20px;
+    }
+
+    .concept_link_title {
+        font-size: 20px;
+    }
+
+    .concept_link_sub {
+        font-size: 13px;
+    }
+
+    .concept_link_btn {
+        font-size: 13px;
+        padding: 8px 20px;
+    }
+
+    .concept_link_content {
+        padding: 30px 20px;
+    }
+
+    .card_calendar_btn {
+        font-size: 9px;
+        padding: 4px 8px;
+    }
+
+    .gcal_dialog {
+        padding: 24px 20px 20px;
+    }
+
+    .gcal_dialog_title {
+        font-size: 16px;
     }
 }

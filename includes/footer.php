@@ -22,7 +22,7 @@
                 </div>
                 <div class="footer_links_col">
                     <h4 class="footer_col_title">情報</h4>
-                    <a href="<?php echo $base_path; ?>/pages/comingsoon.php" class="footer_nav_link">キャッシュレス決済について</a>
+                    <a href="<?php echo $base_path; ?>/pages/cashless.php" class="footer_nav_link">キャッシュレス決済について</a>
                     <a href="<?php echo $base_path; ?>/pages/privacy.php" class="footer_nav_link">プライバシーポリシー</a>
                     <a href="<?php echo $base_path; ?>/pages/sitemap.php" class="footer_nav_link">サイトマップ</a>
                 </div>

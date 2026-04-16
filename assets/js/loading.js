@@ -1,18 +1,19 @@
-// Loading Screen (トップページ専用)
-// sessionStorageを使用: 初回アクセスのみ表示、リロード時は一切表示しない
+// Loading Screen (top page)
+// sessionStorage: show only on first access, skip on reload
+// Low-power mode fallback: if video autoplay fails, display static image instead
 
 (function() {
     var loadingScreen = document.getElementById("loading_screen");
     if (!loadingScreen) return;
 
     var alreadyLoaded = sessionStorage.getItem("gakuensai_loaded");
+    var video = document.getElementById("loading_video");
+    var fallbackImage = document.getElementById("loading_image");
 
-    // リロードまたは同一セッション内での再アクセス時は即座に非表示（表示すら開始しない）
+    // Reload or same-session re-access: hide immediately
     if (alreadyLoaded === "true") {
         loadingScreen.style.display = "none";
         loadingScreen.classList.add("hidden");
-        // 動画の読み込みも止める
-        var video = document.getElementById("loading_video");
         if (video) {
             video.pause();
             video.removeAttribute("src");
@@ -21,15 +22,27 @@
         return;
     }
 
-    var video = document.getElementById("loading_video");
+    // Initially hide fallback image
+    if (fallbackImage) {
+        fallbackImage.style.display = "none";
+    }
 
-    // モバイルブラウザでの自動再生を確実にするため、明示的にplay()を呼び出す
+    // Try to play video; on failure (low-power mode), switch to static image
     if (video) {
         var playPromise = video.play();
         if (playPromise !== undefined) {
-            playPromise.catch(function(error) {
-                console.log("Autoplay was prevented:", error);
-                // 自動再生がブロックされた場合でも、フォールバックで非表示処理は走る
+            playPromise.then(function() {
+                // Video playing successfully - hide fallback image
+                if (fallbackImage) {
+                    fallbackImage.style.display = "none";
+                }
+            }).catch(function(error) {
+                // Autoplay blocked (low-power mode, etc.) - show fallback image
+                console.log("Autoplay was prevented, switching to fallback image:", error);
+                video.style.display = "none";
+                if (fallbackImage) {
+                    fallbackImage.style.display = "block";
+                }
             });
         }
     }
@@ -48,7 +61,7 @@
             setTimeout(function() {
                 loadingScreen.classList.add("hidden");
                 loadingScreen.style.display = "none";
-                // 動画を停止してリソース解放
+                // Stop video and release resources
                 if (video) {
                     video.pause();
                 }
@@ -56,12 +69,12 @@
         }, remaining);
     }
 
-    // 動画の終了またはページ読み込み完了で非表示にする
+    // Hide on video end or page load complete
     if (video) {
         video.addEventListener("ended", hideLoading);
     }
 
-    // フォールバック: ページ読み込み完了後にも非表示にする（動画が短い場合やエラー時）
+    // Fallback: hide on page load complete
     if (document.readyState === "complete") {
         hideLoading();
     } else {

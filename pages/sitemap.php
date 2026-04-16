@@ -43,7 +43,8 @@
                             <h2 class="sitemap_group_title">メイン</h2>
                             <ul class="sitemap_list">
                                 <li><a href="https://gakuensai.net">トップページ</a></li>
-                                <li><a href="./comingsoon.php">ブログ</a></li>
+                                <li><a href="./concept.php">コンセプト</a></li>
+                                <li><a href="https://gakuensai.net/blog/">ブログ</a></li>
                             </ul>
                         </div>
 
@@ -61,7 +62,7 @@
                             <ul class="sitemap_list">
                                 <li><a href="./comingsoon.php">喫茶メニュー</a></li>
                                 <li><a href="./comingsoon.php">グッズ・お土産</a></li>
-                                <li><a href="./comingsoon.php">キャッシュレス決済について</a></li>
+                                <li><a href="./cashless.php">キャッシュレス決済について</a></li>
                             </ul>
                         </div>
 

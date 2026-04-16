@@ -1,0 +1,652 @@
+/* ===== Concept View Page - AMAGAKERU ===== */
+
+body {
+    background-color: #050a18;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ===== Common Section Styles ===== */
+
+.concept_main {
+    width: 100%;
+    position: relative;
+}
+
+.concept_section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    /* Override the global section fade-in since we use our own */
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+}
+
+/* ===== Reveal Animation ===== */
+
+.concept_reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.concept_reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.concept_hero_text {
+    transform: translateY(50px);
+    transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* =======================================
+   Section 1: The Definition
+   ======================================= */
+
+.concept_s1 {
+    min-height: 100vh;
+    padding: 0;
+}
+
+.concept_s1_bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+        #050a18 0%,
+        #0a1128 20%,
+        #0f1a3a 50%,
+        #132350 80%,
+        #0a1128 100%
+    );
+    z-index: 0;
+}
+
+.concept_s1_glow {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: radial-gradient(ellipse, rgba(100, 140, 220, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+/* Stars */
+.concept_stars {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+.concept_star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    animation: conceptStarTwinkle 3s ease-in-out infinite;
+}
+
+@keyframes conceptStarTwinkle {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 1; }
+}
+
+/* Content */
+.concept_s1_content {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 140px 24px 80px;
+    min-height: 100vh;
+    justify-content: center;
+}
+
+.concept_s1_lead {
+    font-family: "Zen Old Mincho", serif;
+    font-weight: 900;
+    font-size: clamp(28px, 5vw, 52px);
+    color: #e8e0d4;
+    letter-spacing: 0.15em;
+    line-height: 1.4;
+    text-shadow: 0 0 60px rgba(246, 220, 159, 0.15);
+}
+
+.concept_s1_divider {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(180deg, transparent, rgba(246, 220, 159, 0.4), transparent);
+    margin: 48px 0;
+}
+
+.concept_s1_block {
+    max-width: 620px;
+}
+
+.concept_s1_ruby {
+    margin-bottom: 28px;
+}
+
+.concept_kanji {
+    font-family: "Zen Old Mincho", serif;
+    font-weight: 900;
+    font-size: clamp(24px, 4vw, 40px);
+    color: #f6dc9f;
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 30px rgba(246, 220, 159, 0.2);
+}
+
+.concept_reading {
+    display: block;
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 300;
+    font-size: 13px;
+    letter-spacing: 0.3em;
+    color: rgba(232, 224, 212, 0.4);
+    margin-top: 8px;
+}
+
+.concept_s1_body {
+    font-family: "Shippori Mincho", serif;
+    font-weight: 500;
+    font-size: clamp(14px, 2.5vw, 17px);
+    color: rgba(232, 224, 212, 0.75);
+    line-height: 2.2;
+    margin-bottom: 20px;
+}
+
+/* Scroll Hint */
+.concept_scroll_hint {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.concept_scroll_text {
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: rgba(232, 224, 212, 0.35);
+    text-transform: uppercase;
+}
+
+.concept_scroll_line {
+    display: block;
+    width: 1px;
+    height: 32px;
+    background: rgba(232, 224, 212, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+.concept_scroll_line::after {
+    content: "";
+    position: absolute;
+    bottom: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(246, 220, 159, 0.6);
+    animation: conceptScrollDown 1.8s ease infinite;
+}
+
+@keyframes conceptScrollDown {
+    0% { bottom: -100%; }
+    50% { bottom: 0; }
+    100% { bottom: 100%; }
+}
+
+/* =======================================
+   Section 2: The Spirit
+   ======================================= */
+
+.concept_s2 {
+    min-height: 100vh;
+}
+
+.concept_s2_bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+        #0a1128 0%,
+        #0d0d0d 20%,
+        #111111 50%,
+        #0d0d0d 80%,
+        #050a18 100%
+    );
+    z-index: 0;
+}
+
+.concept_s2_gradient {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 30% 50%, rgba(246, 220, 159, 0.03) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 50%, rgba(218, 181, 132, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+/* Particles */
+.concept_s2_particles {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.concept_s2_particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: rgba(246, 220, 159, 0.4);
+    border-radius: 50%;
+    animation: conceptParticleRise 10s linear infinite;
+}
+
+@keyframes conceptParticleRise {
+    from {
+        transform: translateY(100%) scale(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+        transform: translateY(90%) scale(1);
+    }
+    90% {
+        opacity: 0.4;
+    }
+    to {
+        transform: translateY(-20%) scale(0.3);
+        opacity: 0;
+    }
+}
+
+/* Content */
+.concept_s2_content {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 120px 24px 100px;
+    max-width: 680px;
+    margin: 0 auto;
+}
+
+.concept_s2_lead {
+    font-family: "Zen Old Mincho", serif;
+    font-weight: 900;
+    font-size: clamp(26px, 5vw, 48px);
+    color: #f6dc9f;
+    letter-spacing: 0.12em;
+    line-height: 1.4;
+    text-shadow: 0 0 40px rgba(246, 220, 159, 0.15);
+}
+
+.concept_s2_divider {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(180deg, transparent, rgba(246, 220, 159, 0.3), transparent);
+    margin: 44px 0;
+}
+
+.concept_s2_divider_thin {
+    width: 40px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(246, 220, 159, 0.25), transparent);
+    margin: 36px auto;
+}
+
+.concept_s2_block {
+    max-width: 620px;
+}
+
+.concept_s2_body {
+    font-family: "Shippori Mincho", serif;
+    font-weight: 500;
+    font-size: clamp(14px, 2.5vw, 17px);
+    color: rgba(232, 224, 212, 0.7);
+    line-height: 2.2;
+    margin-bottom: 16px;
+}
+
+.concept_s2_emphasis {
+    font-family: "Zen Old Mincho", serif;
+    font-weight: 700;
+    font-size: clamp(16px, 3vw, 20px);
+    color: #e8e0d4;
+    line-height: 2;
+    margin: 20px 0;
+    letter-spacing: 0.05em;
+}
+
+/* =======================================
+   Section 3: The Statement
+   ======================================= */
+
+.concept_s3 {
+    min-height: auto;
+    padding-bottom: 0;
+}
+
+.concept_s3_bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+        #050a18 0%,
+        #0a1530 15%,
+        #152a55 35%,
+        #1e3c72 50%,
+        #2a5298 65%,
+        #3a7bd5 80%,
+        #4a90e2 90%,
+        #5fa0ef 100%
+    );
+    z-index: 0;
+}
+
+.concept_s3_rays {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 50% 100%, rgba(255,255,255,0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 30% 80%, rgba(246,220,159,0.05) 0%, transparent 40%),
+        radial-gradient(ellipse at 70% 80%, rgba(246,220,159,0.05) 0%, transparent 40%);
+    pointer-events: none;
+}
+
+.concept_s3_overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+        rgba(5, 10, 24, 0.6) 0%,
+        rgba(5, 10, 24, 0.2) 30%,
+        transparent 60%,
+        rgba(255, 255, 255, 0.03) 100%
+    );
+    pointer-events: none;
+}
+
+/* Content */
+.concept_s3_content {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 120px 24px 80px;
+    max-width: 680px;
+    margin: 0 auto;
+}
+
+.concept_s3_lead {
+    font-family: "Zen Old Mincho", serif;
+    font-weight: 900;
+    font-size: clamp(26px, 5vw, 48px);
+    color: #ffffff;
+    letter-spacing: 0.12em;
+    line-height: 1.4;
+    text-shadow: 0 0 40px rgba(255, 255, 255, 0.15);
+}
+
+.concept_s3_divider {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    margin: 44px 0;
+}
+
+.concept_s3_divider_thin {
+    width: 40px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    margin: 36px auto;
+}
+
+.concept_s3_block {
+    max-width: 620px;
+}
+
+.concept_s3_body {
+    font-family: "Shippori Mincho", serif;
+    font-weight: 500;
+    font-size: clamp(14px, 2.5vw, 17px);
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 2.2;
+    margin-bottom: 16px;
+}
+
+.concept_s3_accent {
+    font-family: "Zen Old Mincho", serif;
+    font-weight: 700;
+    font-size: clamp(16px, 3vw, 20px);
+    color: #fff;
+    line-height: 2;
+    margin: 20px 0;
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.concept_s3_finale {
+    margin-top: 16px;
+}
+
+/* ===== Finale ===== */
+
+.concept_finale {
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.concept_finale_line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(180deg, transparent, rgba(246, 220, 159, 0.5), transparent);
+}
+
+.concept_finale_title {
+    font-family: "Zen Old Mincho", serif;
+    font-weight: 900;
+    font-size: clamp(24px, 5vw, 42px);
+    color: #f6dc9f;
+    letter-spacing: 0.15em;
+    line-height: 1.3;
+    text-shadow: 0 0 50px rgba(246, 220, 159, 0.25);
+}
+
+.concept_finale_sub {
+    font-family: "Shippori Mincho", serif;
+    font-weight: 600;
+    font-size: clamp(15px, 3vw, 20px);
+    color: rgba(255, 255, 255, 0.85);
+    letter-spacing: 0.1em;
+    line-height: 1.6;
+}
+
+/* ===== CTA ===== */
+
+.concept_cta {
+    margin-top: 80px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.concept_cta_logo {
+    width: clamp(180px, 40vw, 300px);
+    height: auto;
+    opacity: 0.9;
+    filter: brightness(1.3) contrast(0.9);
+}
+
+.concept_cta_date {
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 400;
+    font-size: clamp(13px, 2.5vw, 16px);
+    letter-spacing: 0.2em;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.concept_cta_date small {
+    font-size: 0.8em;
+    opacity: 0.7;
+}
+
+.concept_cta_btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    padding: 14px 32px;
+    font-family: "Shippori Mincho", serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: #f6dc9f;
+    text-decoration: none;
+    border: 1px solid rgba(246, 220, 159, 0.4);
+    border-radius: 50px;
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.concept_cta_btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(246, 220, 159, 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.concept_cta_btn:hover {
+    border-color: #f6dc9f;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(246, 220, 159, 0.15);
+}
+
+.concept_cta_btn:hover::before {
+    opacity: 1;
+}
+
+.concept_cta_btn span {
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease;
+}
+
+.concept_cta_btn:hover span:first-child {
+    transform: translateX(-3px);
+}
+
+/* ===== Responsive: PC ===== */
+
+@media screen and (min-width: 1024px) {
+    .concept_s1_content {
+        padding: 160px 40px 100px;
+    }
+
+    .concept_s1_glow {
+        width: 800px;
+        height: 800px;
+        bottom: -200px;
+    }
+
+    .concept_s2_content,
+    .concept_s3_content {
+        padding: 140px 40px 120px;
+    }
+
+    .concept_s1_body,
+    .concept_s2_body,
+    .concept_s3_body {
+        line-height: 2.4;
+    }
+}
+
+/* ===== Responsive: Tablet ===== */
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .concept_s1_content {
+        padding: 140px 32px 100px;
+    }
+
+    .concept_s2_content,
+    .concept_s3_content {
+        padding: 120px 32px 100px;
+    }
+}
+
+/* ===== Responsive: Small mobile ===== */
+
+@media screen and (max-width: 400px) {
+    .concept_s1_content {
+        padding: 120px 20px 60px;
+    }
+
+    .concept_s2_content,
+    .concept_s3_content {
+        padding: 100px 20px 80px;
+    }
+
+    .concept_s1_divider,
+    .concept_s2_divider,
+    .concept_s3_divider {
+        height: 40px;
+        margin: 32px 0;
+    }
+
+    .concept_s2_divider_thin,
+    .concept_s3_divider_thin {
+        margin: 24px auto;
+    }
+
+    .concept_s1_body,
+    .concept_s2_body,
+    .concept_s3_body {
+        line-height: 2;
+    }
+
+    .concept_finale {
+        margin-top: 40px;
+    }
+
+    .concept_finale_line {
+        height: 28px;
+    }
+
+    .concept_cta {
+        margin-top: 60px;
+    }
+
+    .concept_cta_btn {
+        font-size: 13px;
+        padding: 12px 26px;
+    }
+}
