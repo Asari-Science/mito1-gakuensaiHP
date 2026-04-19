@@ -1,30 +1,41 @@
 // メニュー用
-
 const menu_btn = document.getElementById("menu_btn");
 const menu = document.getElementById("menu");
 const header_bg = document.getElementById("header_bg");
+const header_frame = document.querySelector(".header_frame");
 
 menu_btn.addEventListener("click", () => {
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+
     menu_btn.classList.toggle("active");
     menu.classList.toggle("active");
     header_bg.classList.toggle("active");
 
     if (menu.classList.contains("active")) {
+        document.body.style.paddingRight = `${scrollbarWidth}px`;
+        if (header_frame) header_frame.style.paddingRight = `${scrollbarWidth}px`;
+
         document.body.style.overflow = "hidden";
         document.documentElement.style.overflow = "hidden";
     } else {
+        document.body.style.paddingRight = "";
+        if (header_frame) header_frame.style.paddingRight = "";
+
         document.body.style.overflow = "";
         document.documentElement.style.overflow = "";
     }
 });
 
-// メニュー内のリンクをクリックしたらメニューを閉じる
 const menuLinks = menu.querySelectorAll("a");
 menuLinks.forEach(function(link) {
     link.addEventListener("click", function() {
         menu_btn.classList.remove("active");
         menu.classList.remove("active");
         header_bg.classList.remove("active");
+        
+        document.body.style.paddingRight = "";
+        if (header_frame) header_frame.style.paddingRight = "";
+        
         document.body.style.overflow = "";
         document.documentElement.style.overflow = "";
     });
