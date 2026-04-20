@@ -53,13 +53,10 @@
             blendTime: 0.1,
             constrainDuringPan: true,
             maxZoomPixelRatio: 3,
-            minZoomImageRatio: 1.0, // 画像より小さく表示しない（全体が必ず収まる）
-            visibilityRatio: 1.0, // 画像が常にビューポート内に収まる
+            minZoomImageRatio: 0.1, // 画像サイズ以上に縮小できるように
+            visibilityRatio: 0.5, // 画像の端が画面の真ん中にくるくらいまでスクロール可能に
             defaultZoomLevel: 0,
-            // 画面アスペクト比が画像より縦長の場合に homeFillsViewer を有効化
-            // (リーフレット: 2000x1414 = アスペクト比 1.414 横)。
-            // 画面の aspect (w/h) がこれより小さい (=縦長) 場合は fill にして余白を削減
-            homeFillsViewer: (typeof window !== 'undefined' && (window.innerWidth / window.innerHeight) < 1.414),
+            homeFillsViewer: false,
             gestureSettingsMouse: { clickToZoom: false, dblClickToZoom: true, scrollToZoom: true },
             gestureSettingsTouch: { pinchToZoom: true, flickEnabled: true, clickToZoom: false, dblClickToZoom: true },
             showNavigator: true,
@@ -382,7 +379,10 @@
 
     function runSearch(query) {
         const q = (query || '').trim().toLowerCase();
-        if (!q) return [];
+        if (!q) {
+            // クエリが空の場合はランダムにいくつかサジェスト (最大5件)
+            return [...searchIndex].sort(() => 0.5 - Math.random()).slice(0, 5);
+        }
         return searchIndex.filter((entry) => entry.haystack.includes(q)).slice(0, 20);
     }
 
@@ -391,25 +391,29 @@
         if (!box) return;
         suggestFocusIdx = -1;
 
-        if (!query) {
-            box.classList.remove('is-open');
-            box.innerHTML = '';
-            return;
-        }
-
         if (results.length === 0) {
+            if (!query) {
+                box.classList.remove('is-open');
+                return;
+            }
             box.innerHTML = `<div class="leaflet_search_suggest_empty">「${escapeHtml(query)}」に一致するピンはありません</div>`;
             box.classList.add('is-open');
             return;
         }
 
-        box.innerHTML = results.map((r, i) => `
+        let html = '';
+        if (!query) {
+            html += '<div style="padding:10px 12px 6px; font-size:11px; color:rgba(246,220,159,0.5); font-weight:bold; letter-spacing:0.05em;">おすすめの場所</div>';
+        }
+
+        html += results.map((r, i) => `
             <div class="leaflet_search_suggest_item" data-idx="${i}" role="option">
                 <span class="leaflet_search_suggest_side">${r.side === 'omote' ? '表' : '裏'}</span>
                 <span class="leaflet_search_suggest_title">${highlightMatch(r.poi.title, query)}${r.poi.category ? ` <small style="opacity:.6;">/ ${escapeHtml(r.poi.category)}</small>` : ''}</span>
             </div>
         `).join('');
 
+        box.innerHTML = html;
         box.classList.add('is-open');
 
         // クリック
@@ -551,9 +555,7 @@
             });
 
             input.addEventListener('focus', () => {
-                if (input.value) {
-                    renderSuggestions(runSearch(input.value), input.value);
-                }
+                renderSuggestions(runSearch(input.value), input.value);
             });
         }
 
