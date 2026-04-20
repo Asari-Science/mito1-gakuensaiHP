@@ -53,7 +53,7 @@
 
 .header_frame:has(.menu.active) .header_countdown {
     opacity: 0 !important;
-    transition: opacity 0.2s ease; /* 開いた瞬間にサッと消す */
+    transition: opacity 0.2s ease;
     pointer-events: none;
 }
 
