@@ -116,26 +116,6 @@
                 <div id="minimap_omote_inner" style="position:absolute;inset:0;"></div>
             </div>
 
-            <!-- ズームコントロール -->
-            <div class="leaflet_zoom_controls" aria-hidden="false">
-                <button class="leaflet_zoom_btn" type="button" data-role="zoom-in" aria-label="ズームイン" title="ズームイン">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <line x1="12" y1="5" x2="12" y2="19"/>
-                        <line x1="5" y1="12" x2="19" y2="12"/>
-                    </svg>
-                </button>
-                <button class="leaflet_zoom_btn" type="button" data-role="zoom-out" aria-label="ズームアウト" title="ズームアウト">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <line x1="5" y1="12" x2="19" y2="12"/>
-                    </svg>
-                </button>
-                <button class="leaflet_zoom_btn" type="button" data-role="home" aria-label="全体表示にリセット" title="全体表示">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M3 12L12 3l9 9"/>
-                        <path d="M5 10v10h14V10"/>
-                    </svg>
-                </button>
-            </div>
         </div>
 
         <div class="leaflet_viewer_wrap" data-side="ura" hidden>
@@ -150,8 +130,27 @@
             <div id="minimap_ura" class="leaflet_minimap" aria-hidden="true">
                 <div id="minimap_ura_inner" style="position:absolute;inset:0;"></div>
             </div>
+        </div>
 
-            <!-- 裏面にもズームコントロールを複製 (表示中のビューアに対応) -->
+        <!-- ズームコントロール -->
+        <div class="leaflet_zoom_controls" aria-hidden="false">
+            <button class="leaflet_zoom_btn" type="button" data-role="zoom-in" aria-label="ズームイン" title="ズームイン">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"/>
+                    <line x1="5" y1="12" x2="19" y2="12"/>
+                </svg>
+            </button>
+            <button class="leaflet_zoom_btn" type="button" data-role="zoom-out" aria-label="ズームアウト" title="ズームアウト">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="5" y1="12" x2="19" y2="12"/>
+                </svg>
+            </button>
+            <button class="leaflet_zoom_btn" type="button" data-role="home" aria-label="全体表示にリセット" title="全体表示">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M3 12L12 3l9 9"/>
+                    <path d="M5 10v10h14V10"/>
+                </svg>
+            </button>
         </div>
 
         <!-- ヒント -->
