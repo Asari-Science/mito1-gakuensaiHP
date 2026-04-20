@@ -9,7 +9,7 @@ menu_btn.addEventListener("click", () => {
 
     menu_btn.classList.toggle("active");
     menu.classList.toggle("active");
-    header_bg.classList.toggle("active");
+    //header_bg.classList.toggle("active");
 
     if (menu.classList.contains("active")) {
         document.body.style.paddingRight = `${scrollbarWidth}px`;
@@ -31,7 +31,7 @@ menuLinks.forEach(function(link) {
     link.addEventListener("click", function() {
         menu_btn.classList.remove("active");
         menu.classList.remove("active");
-        header_bg.classList.remove("active");
+        //header_bg.classList.remove("active");
         
         document.body.style.paddingRight = "";
         if (header_frame) header_frame.style.paddingRight = "";
