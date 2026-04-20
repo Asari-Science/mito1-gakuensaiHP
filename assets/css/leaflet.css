@@ -1,0 +1,779 @@
+/* ===== Digital Leaflet Page ===== */
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #1a1207;
+    overflow: hidden;
+    height: 100%;
+    font-family: "Noto Sans JP", sans-serif;
+}
+
+/* メインコンテナ: ヘッダー/フッターを除く全画面 */
+.leaflet_main {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(180deg, #2a1f10 0%, #1a1207 100%);
+    z-index: 1;
+}
+
+/* ===== 上部ツールバー ===== */
+
+.leaflet_toolbar {
+    position: relative;
+    z-index: 100;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 72px 14px 20px; /* 右側のハンバーガーメニュー(top:14px,right:20px)を避ける */
+    background: rgba(26, 18, 7, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(218, 181, 132, 0.25);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.leaflet_toolbar_left,
+.leaflet_toolbar_center,
+.leaflet_toolbar_right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.leaflet_toolbar_center {
+    flex: 1;
+    justify-content: center;
+}
+
+/* トップに戻るリンク */
+.leaflet_back_link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: rgba(246, 220, 159, 0.08);
+    border: 1px solid rgba(246, 220, 159, 0.25);
+    color: #f6dc9f;
+    text-decoration: none;
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.leaflet_back_link:hover {
+    background: rgba(246, 220, 159, 0.18);
+    border-color: rgba(246, 220, 159, 0.5);
+}
+
+.leaflet_back_link svg {
+    flex-shrink: 0;
+}
+
+/* ===== タブ (裏/表) ===== */
+.leaflet_tabs {
+    display: inline-flex;
+    padding: 4px;
+    background: rgba(246, 220, 159, 0.08);
+    border: 1px solid rgba(246, 220, 159, 0.2);
+    border-radius: 999px;
+}
+
+.leaflet_tab {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: rgba(246, 220, 159, 0.7);
+    font-family: "Shippori Mincho", serif;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    padding: 8px 22px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+    white-space: nowrap;
+}
+
+.leaflet_tab:hover {
+    color: #f6dc9f;
+}
+
+.leaflet_tab.is-active {
+    background: linear-gradient(135deg, #dab584 0%, #f6dc9f 100%);
+    color: #1a1207;
+    box-shadow: 0 2px 10px rgba(218, 181, 132, 0.35);
+}
+
+/* ===== ツールボタン ===== */
+.leaflet_tool_btn {
+    appearance: none;
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid rgba(246, 220, 159, 0.25);
+    background: rgba(246, 220, 159, 0.06);
+    color: #f6dc9f;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.leaflet_tool_btn:hover {
+    background: rgba(246, 220, 159, 0.18);
+    border-color: rgba(246, 220, 159, 0.5);
+}
+
+.leaflet_tool_btn:active {
+    transform: scale(0.94);
+}
+
+.leaflet_tool_btn.is-active {
+    background: rgba(246, 220, 159, 0.3);
+    border-color: rgba(246, 220, 159, 0.6);
+    color: #1a1207;
+    background: linear-gradient(135deg, #dab584 0%, #f6dc9f 100%);
+}
+
+/* ===== 検索ボックス ===== */
+.leaflet_search {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.leaflet_search_input {
+    appearance: none;
+    width: 240px;
+    max-width: 50vw;
+    padding: 8px 14px 8px 36px;
+    border-radius: 999px;
+    border: 1px solid rgba(246, 220, 159, 0.25);
+    background: rgba(246, 220, 159, 0.06);
+    color: #f6dc9f;
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.leaflet_search_input::placeholder {
+    color: rgba(246, 220, 159, 0.45);
+}
+
+.leaflet_search_input:focus {
+    border-color: rgba(246, 220, 159, 0.6);
+    background: rgba(246, 220, 159, 0.1);
+}
+
+.leaflet_search_icon {
+    position: absolute;
+    left: 12px;
+    color: rgba(246, 220, 159, 0.55);
+    pointer-events: none;
+}
+
+.leaflet_search_clear {
+    position: absolute;
+    right: 6px;
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: rgba(246, 220, 159, 0.55);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.leaflet_search_clear:hover {
+    background: rgba(246, 220, 159, 0.15);
+    color: #f6dc9f;
+}
+
+.leaflet_search.has-text .leaflet_search_clear {
+    display: inline-flex;
+}
+
+/* 検索候補 */
+.leaflet_search_suggest {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 260px;
+    max-width: 90vw;
+    max-height: 260px;
+    overflow-y: auto;
+    background: rgba(26, 18, 7, 0.96);
+    border: 1px solid rgba(246, 220, 159, 0.25);
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+    padding: 6px;
+    display: none;
+    z-index: 110;
+}
+
+.leaflet_search_suggest.is-open {
+    display: block;
+}
+
+.leaflet_search_suggest_item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #f6dc9f;
+    font-size: 13px;
+    transition: background 0.15s ease;
+}
+
+.leaflet_search_suggest_item:hover,
+.leaflet_search_suggest_item.is-focused {
+    background: rgba(246, 220, 159, 0.12);
+}
+
+.leaflet_search_suggest_side {
+    flex-shrink: 0;
+    display: inline-flex;
+    padding: 2px 8px;
+    border-radius: 999px;
+    border: 1px solid rgba(246, 220, 159, 0.3);
+    font-size: 11px;
+    color: rgba(246, 220, 159, 0.85);
+    font-family: "Shippori Mincho", serif;
+}
+
+.leaflet_search_suggest_title {
+    flex: 1;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.leaflet_search_suggest_empty {
+    padding: 14px;
+    color: rgba(246, 220, 159, 0.55);
+    font-size: 13px;
+    text-align: center;
+}
+
+/* ===== ビューアエリア ===== */
+.leaflet_viewer_wrap {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.leaflet_viewer {
+    position: absolute !important;
+    inset: 0;
+    width: 100% !important;
+    height: 100% !important;
+    background: #120b04;
+}
+
+/* OpenSeadragon内部キャンバスの背景 */
+.leaflet_viewer .openseadragon-canvas {
+    outline: none;
+}
+.leaflet_viewer .openseadragon-canvas:focus {
+    outline: none;
+}
+
+/* 同時に2つのビューアを配置（片方は非表示） */
+.leaflet_viewer[hidden] {
+    display: none !important;
+}
+
+/* ===== ローディング ===== */
+.leaflet_loader {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    background: rgba(18, 11, 4, 0.85);
+    color: #f6dc9f;
+    font-family: "Shippori Mincho", serif;
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 0.4s ease;
+    z-index: 5;
+}
+
+.leaflet_loader.is-hidden {
+    opacity: 0;
+}
+
+.leaflet_loader_spinner {
+    width: 36px;
+    height: 36px;
+    border: 2px solid rgba(246, 220, 159, 0.2);
+    border-top-color: #f6dc9f;
+    border-radius: 50%;
+    animation: leaflet-spin 0.9s linear infinite;
+}
+
+@keyframes leaflet-spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ===== OpenSeadragon Zoom Controls (カスタム) ===== */
+.leaflet_zoom_controls {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 20;
+}
+
+.leaflet_zoom_btn {
+    appearance: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    border: 1px solid rgba(246, 220, 159, 0.25);
+    background: rgba(26, 18, 7, 0.75);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: #f6dc9f;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.leaflet_zoom_btn:hover {
+    background: rgba(218, 181, 132, 0.35);
+    border-color: rgba(246, 220, 159, 0.5);
+}
+
+.leaflet_zoom_btn:active {
+    transform: scale(0.94);
+}
+
+/* ===== ミニマップ（Navigator） ===== */
+.leaflet_minimap {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    width: 200px;
+    height: 140px;
+    background: rgba(26, 18, 7, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(246, 220, 159, 0.3);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
+    z-index: 20;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.leaflet_minimap.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-6px);
+}
+
+/* OpenSeadragon Navigator の内部スタイル上書き */
+.leaflet_minimap .displayregion {
+    border: 2px solid #f6dc9f !important;
+    background: rgba(246, 220, 159, 0.12) !important;
+    box-shadow: 0 0 0 1px rgba(26, 18, 7, 0.4) inset !important;
+    box-sizing: border-box !important;
+}
+
+/* ===== ピン ===== */
+.leaflet_pin {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    transform: translate(-50%, -100%);
+    cursor: pointer;
+    pointer-events: auto;
+    /* .pin_marker を中央基準に */
+}
+
+.leaflet_pin .pin_marker {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    width: 28px;
+    height: 36px;
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.5));
+    transition: transform 0.2s ease;
+}
+
+.leaflet_pin:hover .pin_marker,
+.leaflet_pin.is-active .pin_marker {
+    transform: translateX(-50%) translateY(-2px) scale(1.08);
+}
+
+.leaflet_pin .pin_pulse {
+    position: absolute;
+    left: 50%;
+    top: 28px;
+    width: 14px;
+    height: 6px;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background: rgba(246, 220, 159, 0.5);
+    filter: blur(2px);
+    animation: pin-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes pin-pulse {
+    0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.55; }
+    50% { transform: translateX(-50%) scale(1.4); opacity: 0.2; }
+}
+
+.leaflet_pin .pin_label {
+    position: absolute;
+    left: 50%;
+    top: -6px;
+    transform: translate(-50%, -100%);
+    background: rgba(26, 18, 7, 0.9);
+    color: #f6dc9f;
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    white-space: nowrap;
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(246, 220, 159, 0.3);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.leaflet_pin:hover .pin_label,
+.leaflet_pin.is-active .pin_label {
+    opacity: 1;
+    transform: translate(-50%, calc(-100% - 2px));
+}
+
+/* ===== ピン詳細ポップアップ ===== */
+.leaflet_popup {
+    position: absolute;
+    left: 50%;
+    bottom: 24px;
+    transform: translate(-50%, 20px);
+    width: min(92vw, 440px);
+    max-height: 50vh;
+    overflow-y: auto;
+    padding: 18px 20px;
+    background: rgba(26, 18, 7, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(246, 220, 159, 0.3);
+    border-radius: 16px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55);
+    color: #f6dc9f;
+    z-index: 30;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.leaflet_popup.is-open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, 0);
+}
+
+.leaflet_popup_close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: rgba(246, 220, 159, 0.6);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.leaflet_popup_close:hover {
+    background: rgba(246, 220, 159, 0.12);
+    color: #f6dc9f;
+}
+
+.leaflet_popup_category {
+    display: inline-block;
+    padding: 3px 10px;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    border-radius: 999px;
+    border: 1px solid rgba(246, 220, 159, 0.3);
+    color: rgba(246, 220, 159, 0.85);
+    margin-bottom: 8px;
+    font-family: "Shippori Mincho", serif;
+}
+
+.leaflet_popup_title {
+    font-family: "Zen Old Mincho", serif;
+    font-weight: 700;
+    font-size: 20px;
+    margin: 0 0 8px;
+    line-height: 1.3;
+    color: #f6dc9f;
+}
+
+.leaflet_popup_desc {
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 13px;
+    line-height: 1.75;
+    color: rgba(246, 220, 159, 0.85);
+    margin: 0;
+}
+
+/* ===== ヘルプ / ヒント ===== */
+.leaflet_hint {
+    position: absolute;
+    left: 50%;
+    bottom: 18px;
+    transform: translateX(-50%);
+    padding: 6px 14px;
+    background: rgba(26, 18, 7, 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(246, 220, 159, 0.2);
+    border-radius: 999px;
+    color: rgba(246, 220, 159, 0.8);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+    z-index: 15;
+    pointer-events: none;
+    opacity: 0.85;
+    transition: opacity 0.4s ease;
+}
+
+.leaflet_hint.is-hidden {
+    opacity: 0;
+}
+
+/* ===== モバイル対応 ===== */
+@media (max-width: 768px) {
+    .leaflet_toolbar {
+        padding: 10px 52px 10px 10px;
+        gap: 6px;
+        flex-wrap: nowrap;
+    }
+
+    .leaflet_toolbar_left,
+    .leaflet_toolbar_center,
+    .leaflet_toolbar_right {
+        gap: 6px;
+    }
+
+    .leaflet_back_link {
+        padding: 6px 10px;
+        font-size: 11px;
+    }
+
+    .leaflet_back_link .back_text {
+        display: none;
+    }
+
+    .leaflet_tab {
+        padding: 6px 16px;
+        font-size: 12px;
+    }
+
+    .leaflet_tool_btn {
+        width: 34px;
+        height: 34px;
+    }
+
+    .leaflet_search_input {
+        width: 140px;
+        font-size: 12px;
+    }
+
+    .leaflet_toolbar_center {
+        flex: 0 1 auto;
+    }
+
+    .leaflet_toolbar_left {
+        flex-shrink: 0;
+    }
+
+    .leaflet_toolbar_right {
+        flex-shrink: 0;
+    }
+
+    .leaflet_minimap {
+        width: 130px;
+        height: 90px;
+        right: 10px;
+        top: 10px;
+        border-radius: 10px;
+    }
+
+    .leaflet_zoom_controls {
+        right: 10px;
+        bottom: 10px;
+    }
+
+    .leaflet_zoom_btn {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+    }
+
+    .leaflet_popup {
+        width: calc(100vw - 20px);
+        bottom: 12px;
+        max-height: 55vh;
+        padding: 14px 16px;
+    }
+
+    .leaflet_popup_title {
+        font-size: 17px;
+    }
+
+    .leaflet_hint {
+        font-size: 10px;
+        padding: 5px 10px;
+    }
+}
+
+/* 極狭画面 */
+@media (max-width: 480px) {
+    .leaflet_toolbar {
+        padding: 8px 50px 8px 8px;
+        gap: 4px;
+    }
+
+    /* 検索は小さくしたまま、その他ツールを縮小 */
+    .leaflet_search_input {
+        width: 100px;
+        padding: 7px 10px 7px 30px;
+    }
+
+    .leaflet_search_icon {
+        left: 9px;
+    }
+
+    .leaflet_tab {
+        padding: 5px 12px;
+        font-size: 11px;
+        letter-spacing: 0.05em;
+    }
+
+    /* フルスクリーンボタンは省略（モバイルでは効果が限定的） */
+    .leaflet_tool_btn[data-role="fullscreen"] {
+        display: none;
+    }
+
+    .leaflet_tool_btn {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+/* 超縦長（非常に狭いスマホ） */
+@media (max-width: 360px) {
+    .leaflet_search_input {
+        width: 78px;
+    }
+
+    .leaflet_tool_btn[data-role="minimap"] {
+        display: none; /* ミニマップボタンも非表示。ミニマップ自体は表示される */
+    }
+}
+
+/* 検索候補の幅: モバイルでは広く */
+@media (max-width: 768px) {
+    .leaflet_search_suggest {
+        min-width: 240px;
+    }
+}
+@media (max-width: 480px) {
+    .leaflet_search_suggest {
+        min-width: 200px;
+        /* 画面端からはみ出ないよう右寄せ */
+        right: 0;
+    }
+    .leaflet_search_suggest_title {
+        font-size: 12px;
+    }
+}
+
+/* ===== ヘッダー: リーフレットページでは最小化 =====
+   ツールバーにトップへリンクと同機能を置いているため、
+   左上の学苑祭ロゴは非表示にする。ハンバーガーメニューは残す。 */
+.leaflet_body .header_frame {
+    height: 0;
+    pointer-events: none;
+}
+.leaflet_body .header_icon {
+    display: none;
+}
+.leaflet_body .menu_btn,
+.leaflet_body .menu {
+    pointer-events: auto;
+}
+
+/* ハンバーガーボタンをツールバーの高さに合わせる */
+.leaflet_body .menu_btn {
+    top: 14px;
+}
+
+/* ツールバー上にヘッダー背景が来ないよう、ヘッダー背景は非表示に */
+.leaflet_body .header_bg {
+    display: none;
+}
+
+/* フッターは不要なので非表示（必要な場合は後で表示切替） */
+.leaflet_body footer {
+    display: none;
+}
+
+/* メニュー (ハンバーガー) はビューアより上に */
+.leaflet_body .menu {
+    z-index: 9999;
+}
+
+/* ハンバーガー位置はツールバー右端にあるツール類と干渉しないよう、上方に残す */
+@media (max-width: 768px) {
+    .leaflet_body .menu_btn {
+        top: 10px;
+    }
+}
