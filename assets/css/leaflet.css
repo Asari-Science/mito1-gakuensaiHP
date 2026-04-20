@@ -420,6 +420,10 @@ html, body {
     transform: translate(-50%, -100%);
     cursor: pointer;
     pointer-events: auto;
+    background: none;
+    border: none;
+    padding: 0;
+    outline: none;
     /* .pin_marker を中央基準に */
 }
 
@@ -768,7 +772,7 @@ html, body {
 
 /* メニュー (ハンバーガー) はビューアより上に */
 .leaflet_body .menu {
-    z-index: 9999;
+    z-index: 9998;
 }
 
 /* ハンバーガー位置はツールバー右端にあるツール類と干渉しないよう、上方に残す */
