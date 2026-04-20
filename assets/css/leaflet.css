@@ -1,5 +1,21 @@
 /* ===== Digital Leaflet Page ===== */
 
+:root {
+    --leaflet-toolbar-height: 75px;
+}
+
+@media (max-width: 768px) {
+    :root {
+        --leaflet-toolbar-height: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --leaflet-toolbar-height: 53px;
+    }
+}
+
 html, body {
     margin: 0;
     padding: 0;
@@ -34,6 +50,8 @@ html, body {
     justify-content: space-between;
     gap: 12px;
     padding: 14px 72px 14px 20px; /* 右側のハンバーガーメニュー(top:14px,right:20px)を避ける */
+    min-height: var(--leaflet-toolbar-height);
+    box-sizing: border-box;
     background: rgba(26, 18, 7, 0.85);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -744,7 +762,7 @@ html, body {
    ツールバーにトップへリンクと同機能を置いているため、
    左上の学苑祭ロゴは非表示にする。ハンバーガーメニューは残す。 */
 .leaflet_body .header_frame {
-    height: 0;
+    height: var(--leaflet-toolbar-height);
     pointer-events: none;
 }
 .leaflet_body .header_icon {
