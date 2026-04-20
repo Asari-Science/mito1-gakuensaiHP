@@ -27,7 +27,7 @@
             <a href="https://gakuensai.net">Top</a>
             <a href="https://gakuensai.net/blog/">Blog</a>
             <a href="<?php echo $base_path; ?>/pages/comingsoon.php">企画紹介</a>
-            <a href="<?php echo $base_path; ?>/pages/comingsoon.php">リーフレット</a>
+            <a href="<?php echo $base_path; ?>/pages/leaflet.php">リーフレット</a>
             <a href="<?php echo $base_path; ?>/pages/comingsoon.php">ステージタイムテーブル</a>
             <a href="<?php echo $base_path; ?>/pages/comingsoon.php">喫茶メニュー</a>
             <a href="<?php echo $base_path; ?>/pages/comingsoon.php">グッズ・お土産</a>
