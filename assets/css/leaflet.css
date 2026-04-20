@@ -757,7 +757,14 @@ html, body {
 
 /* ハンバーガーボタンをツールバーの高さに合わせる */
 .leaflet_body .menu_btn {
-    top: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(246, 220, 159, 0.95);
+}
+
+.leaflet_body .menu_btn:hover {
+    background: #f6dc9f;
+    transform: translateY(-50%) scale(1.05);
 }
 
 /* ツールバー上にヘッダー背景が来ないよう、ヘッダー背景は非表示に */
@@ -775,9 +782,3 @@ html, body {
     z-index: 9998;
 }
 
-/* ハンバーガー位置はツールバー右端にあるツール類と干渉しないよう、上方に残す */
-@media (max-width: 768px) {
-    .leaflet_body .menu_btn {
-        top: 10px;
-    }
-}
