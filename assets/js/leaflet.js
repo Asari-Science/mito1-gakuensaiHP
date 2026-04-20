@@ -7,28 +7,29 @@
  *   - 検索 → ピン表示 (POI ズーム)
  *   - ズームイン/アウト/ホーム/フルスクリーン ボタン
  *   - レスポンシブ対応 (ウィンドウリサイズで自動更新)
+ *   - POI データは外部 JSON (assets/data/leaflet_pois.json) から読み込み
  *
- * ピン (POI) データの定義方法:
+ * ピン (POI) データ形式 (JSON):
  * ------------------------------------------------
- *   window.LEAFLET_POIS = {
- *     omote: [
+ *   {
+ *     "omote": [
  *       {
- *         id: "stage",           // 一意なID
- *         title: "メインステージ",  // 表示名 (検索対象)
- *         category: "ステージ",    // 任意カテゴリ (検索対象・表示)
- *         description: "...",     // 詳細説明
- *         keywords: ["...", ...], // 追加の検索キーワード
- *         x: 0.50,               // 画像内 X 座標 (0.0 - 1.0 の相対値)
- *         y: 0.35                // 画像内 Y 座標 (0.0 - 1.0 の相対値)
+ *         "id": "stage",             // 一意な ID (URLハッシュ #omote:stage で遷移可)
+ *         "title": "メインステージ",  // 表示名 (検索対象)
+ *         "category": "ステージ",      // 任意カテゴリ (検索対象・表示)
+ *         "description": "...",       // 詳細説明。一部の HTML 可 (a/br/strong/em 等)
+ *         "keywords": ["...", ...],   // 追加の検索キーワード
+ *         "x": 0.50,                  // 画像内 X 座標 (0.0 - 1.0 の相対値)
+ *         "y": 0.35                   // 画像内 Y 座標 (0.0 - 1.0 の相対値)
  *       },
  *       ...
  *     ],
- *     ura: [ ... ]
- *   };
+ *     "ura": [ ... ]
+ *   }
  *
  *   座標は「画像の左上を(0,0)、右下を(1,1)」とする正規化座標系です。
  *   実装上は OpenSeadragon の viewport 座標 (画像のアスペクト比を考慮) に
- *   自動で変換します。
+ *   自動で変換し、OSD オーバーレイとしてピンを配置します。
  * ========================================================================== */
 
 (function () {
@@ -46,6 +47,10 @@
                 url: window.LEAFLET_CONFIG?.uraUrl || '../materials/leaflet/78th_leaflet_ura.webp'
             }
         },
+        poisUrl: window.LEAFLET_CONFIG?.poisUrl || '../assets/data/leaflet_pois.json',
+        // ズーム下限倍率: 初期表示 (home) の 0.75 倍 = 25% 小さい状態までしか縮小不可
+        // (= 表示面積は home の 56% 程度が下限)
+        minZoomHomeRatio: 0.75,
         osdOptions: {
             prefixUrl: 'https://cdnjs.cloudflare.com/ajax/libs/openseadragon/4.1.0/images/',
             showNavigationControl: false, // 独自コントロールを使用
@@ -53,8 +58,9 @@
             blendTime: 0.1,
             constrainDuringPan: true,
             maxZoomPixelRatio: 3,
-            minZoomImageRatio: 0.1, // 画像サイズ以上に縮小できるように
-            visibilityRatio: 0.5, // 画像の端が画面の真ん中にくるくらいまでスクロール可能に
+            // minZoomImageRatio は後段で動的に設定 (home ズームの 0.75 倍を下限にするため)
+            minZoomImageRatio: 0.5,
+            visibilityRatio: 0.7,
             defaultZoomLevel: 0,
             homeFillsViewer: false,
             gestureSettingsMouse: { clickToZoom: false, dblClickToZoom: true, scrollToZoom: true },
@@ -83,17 +89,14 @@
         omote: $('#loader_omote'),
         ura: $('#loader_ura')
     };
-    const pinLayerEls = {
-        omote: $('#pin_layer_omote'),
-        ura: $('#pin_layer_ura')
-    };
 
     // ===== 状態 =====
     const state = {
         currentSide: 'omote',
         viewers: { omote: null, ura: null },
         pinOverlays: { omote: [], ura: [] },
-        activePoi: null
+        activePoi: null,
+        pois: { omote: [], ura: [] }
     };
 
     // ===== ユーティリティ =====
@@ -116,6 +119,25 @@
         return tiledImage.imageToViewportCoordinates(imagePoint);
     }
 
+    /**
+     * home ズームを基準に minZoom を動的に設定する
+     * home は「画像全体がビューに収まる」ズームレベル。
+     * その 0.75 倍 = これ以上縮小不可 (= 25% 以上縮小させない)
+     */
+    function applyMinZoomConstraint(viewer) {
+        try {
+            const homeZoom = viewer.viewport.getHomeZoom();
+            if (homeZoom && isFinite(homeZoom)) {
+                const minZoom = homeZoom * CONFIG.minZoomHomeRatio;
+                viewer.viewport.minZoomLevel = minZoom;
+                // もし現在のズームが下限を下回っていれば補正
+                if (viewer.viewport.getZoom() < minZoom) {
+                    viewer.viewport.zoomTo(minZoom, null, true);
+                }
+            }
+        } catch (e) { /* noop */ }
+    }
+
     // ===== ビューア初期化 =====
     function createViewer(side) {
         const el = viewerEls[side];
@@ -130,11 +152,9 @@
             navigatorLeft: '0px',
             navigatorWidth: '100%',
             navigatorHeight: '100%',
-            // 外部DOMへナビゲーターを描画
             navigatorId: navEl.id + '_inner'
         });
 
-        // ナビゲーター要素を自前の minimap コンテナへ移動
         viewer.addHandler('open', () => {
             if (viewer.navigator && viewer.navigator.element && viewer.navigator.element.parentNode !== navEl) {
                 try {
@@ -161,13 +181,13 @@
 
             hideLoader(side);
             renderPins(side);
+            applyMinZoomConstraint(viewer);
 
-            // ビューアのサイズが初期化時に 0 だった場合に備えて
-            // レイアウト確定後に goHome を再実行 (特にモバイル/遅延レンダリング対策)
             const refit = () => {
                 try {
                     viewer.forceRedraw();
                     viewer.viewport.goHome(true);
+                    applyMinZoomConstraint(viewer);
                     viewer.viewport.applyConstraints(true);
                     if (viewer.navigator && viewer.navigator.updateSize) {
                         viewer.navigator.updateSize();
@@ -176,7 +196,6 @@
                 } catch (e) { /* noop */ }
             };
             requestAnimationFrame(() => requestAnimationFrame(refit));
-            // さらに安全策として少し遅延してもう一度
             setTimeout(refit, 300);
             setTimeout(refit, 800);
         });
@@ -193,13 +212,21 @@
             }
         });
 
-        // ビューア領域更新時にピン座標も更新
-        viewer.addHandler('update-viewport', () => updatePinPositions(side));
-        viewer.addHandler('animation', () => updatePinPositions(side));
         viewer.addHandler('resize', () => {
-            updatePinPositions(side);
             if (viewer.navigator && viewer.navigator.updateSize) {
                 viewer.navigator.updateSize();
+            }
+            // リサイズ後も下限ズームを再計算 (home zoom がビュー幅で変化するため)
+            applyMinZoomConstraint(viewer);
+        });
+
+        // ズームが下限より小さくなろうとしていたら制限
+        viewer.addHandler('zoom', (ev) => {
+            const vp = viewer.viewport;
+            if (!vp.minZoomLevel) return;
+            if (ev.zoom < vp.minZoomLevel * 0.999) {
+                // applyConstraints が動作するのを待つ
+                // (constrainDuringPan 等の経路で補正される)
             }
         });
 
@@ -209,14 +236,15 @@
     // ===== ピン描画 =====
     function renderPins(side) {
         const viewer = state.viewers[side];
-        const layer = pinLayerEls[side];
-        if (!viewer || !layer) return;
+        if (!viewer) return;
 
-        // クリア
-        layer.innerHTML = '';
+        // 既存のオーバーレイを除去
+        state.pinOverlays[side].forEach(({ el }) => {
+            try { viewer.removeOverlay(el); } catch (e) { /* noop */ }
+        });
         state.pinOverlays[side] = [];
 
-        const pois = (window.LEAFLET_POIS && window.LEAFLET_POIS[side]) || [];
+        const pois = state.pois[side] || [];
         pois.forEach((poi) => {
             const pinEl = document.createElement('button');
             pinEl.type = 'button';
@@ -224,6 +252,7 @@
             pinEl.dataset.poiId = poi.id;
             pinEl.setAttribute('aria-label', poi.title);
             pinEl.innerHTML = `
+                <span class="pin_dot" aria-hidden="true"></span>
                 <span class="pin_pulse" aria-hidden="true"></span>
                 <svg class="pin_marker" viewBox="0 0 28 36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <defs>
@@ -239,29 +268,46 @@
                 <span class="pin_label">${escapeHtml(poi.title)}</span>
             `;
 
-            pinEl.addEventListener('click', (e) => {
+            // pointerdown ベースでクリック扱い (OSD の canvas-click と競合回避)
+            // click を使うと、一部の PC 環境で viewer のジェスチャ層に吸われて発火しない
+            // ことがあるため、pointerup / touchend / click の複数経路で拾う。
+            const handleActivate = (e) => {
                 e.stopPropagation();
+                e.preventDefault();
                 focusPoi(side, poi);
+            };
+            pinEl.addEventListener('click', handleActivate);
+            pinEl.addEventListener('pointerup', (e) => {
+                // 主ボタンのみ
+                if (e.pointerType === 'mouse' && e.button !== 0) return;
+                handleActivate(e);
+            });
+            // OSD にドラッグとして吸われないよう、pointerdown で伝播を止める
+            pinEl.addEventListener('pointerdown', (e) => {
+                e.stopPropagation();
+            });
+            // キーボード対応 (Enter/Space)
+            pinEl.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    handleActivate(e);
+                }
             });
 
             // OpenSeadragon オーバーレイは正規化画像座標 → viewport 座標へ
             const vpPoint = normalizedToViewport(viewer, poi.x, poi.y);
             if (!vpPoint) return;
 
+            // placement: CENTER でオーバーレイ要素の中心を正規化座標へアンカーする
+            // 要素側は CSS で中心が正しい位置 (ピン先端/ドット中心) に来るよう設計する
             viewer.addOverlay({
                 element: pinEl,
                 location: vpPoint,
-                placement: OpenSeadragon.Placement.BOTTOM,
+                placement: OpenSeadragon.Placement.CENTER,
                 checkResize: false
             });
 
             state.pinOverlays[side].push({ el: pinEl, poi });
         });
-    }
-
-    function updatePinPositions(side) {
-        // OpenSeadragon が自動追従するので個別処理は不要
-        // (必要ならここでオーバーレイの再計算を行う)
     }
 
     // ===== ピン → 詳細ポップアップ =====
@@ -273,11 +319,11 @@
         if (state.currentSide !== side) {
             switchTab(side);
             // 切替後にフォーカス
-            setTimeout(() => focusPoi(side, poi), 520);
+            setTimeout(() => focusPoi(side, poi), 560);
             return;
         }
 
-        // ピンにactive付与
+        // ピンに active 付与 (他は解除)
         state.pinOverlays[side].forEach(({ el, poi: p }) => {
             if (p.id === poi.id) el.classList.add('is-active');
             else el.classList.remove('is-active');
@@ -296,13 +342,83 @@
     }
 
     // ===== ポップアップ =====
+    // description 内で許可するタグ・属性のホワイトリスト
+    const ALLOWED_TAGS = {
+        'A': ['href', 'target', 'rel', 'title'],
+        'BR': [],
+        'STRONG': [], 'B': [],
+        'EM': [], 'I': [],
+        'U': [],
+        'SPAN': ['class'],
+        'SMALL': [],
+        'MARK': []
+    };
+
+    /**
+     * description の安全な HTML サニタイズ (ホワイトリスト方式)。
+     * DOMParser で解析し、許可タグ以外はテキストとして除去。
+     */
+    function sanitizeDescription(html) {
+        if (html == null) return '';
+        const doc = new DOMParser().parseFromString('<body>' + String(html) + '</body>', 'text/html');
+        const root = doc.body;
+
+        const walk = (node) => {
+            // 子を配列コピーしてから処理 (走査中に DOM を変えるため)
+            Array.from(node.childNodes).forEach((child) => {
+                if (child.nodeType === 1 /* ELEMENT */) {
+                    const tag = child.tagName;
+                    if (!ALLOWED_TAGS[tag]) {
+                        // タグ不許可: 中身を残してタグ自体を unwrap
+                        while (child.firstChild) node.insertBefore(child.firstChild, child);
+                        node.removeChild(child);
+                        return;
+                    }
+                    // 属性フィルタ
+                    const allowedAttrs = ALLOWED_TAGS[tag];
+                    Array.from(child.attributes).forEach((attr) => {
+                        if (!allowedAttrs.includes(attr.name)) {
+                            child.removeAttribute(attr.name);
+                        }
+                    });
+                    // href のセキュリティチェック
+                    if (tag === 'A') {
+                        const href = child.getAttribute('href') || '';
+                        // javascript: / data: スキームは禁止
+                        if (/^\s*(javascript|data|vbscript):/i.test(href)) {
+                            child.removeAttribute('href');
+                        } else {
+                            // 外部リンクっぽければ安全属性を付与
+                            const isExternal = /^(https?:|\/\/)/i.test(href);
+                            if (isExternal && !child.getAttribute('target')) {
+                                child.setAttribute('target', '_blank');
+                            }
+                            // 常に rel noopener を付ける (target=_blank 付きの場合のセキュリティ対策)
+                            const target = child.getAttribute('target');
+                            if (target === '_blank') {
+                                child.setAttribute('rel', 'noopener noreferrer');
+                            }
+                        }
+                    }
+                    walk(child);
+                } else if (child.nodeType === 8 /* COMMENT */) {
+                    node.removeChild(child);
+                }
+            });
+        };
+        walk(root);
+        return root.innerHTML;
+    }
+
     function showPopup(poi) {
         const popup = $('#leaflet_popup');
         if (!popup) return;
-        $('#popup_category').textContent = poi.category || '';
-        $('#popup_category').style.display = poi.category ? 'inline-block' : 'none';
+        const catEl = $('#popup_category');
+        catEl.textContent = poi.category || '';
+        catEl.style.display = poi.category ? 'inline-block' : 'none';
         $('#popup_title').textContent = poi.title || '';
-        $('#popup_desc').textContent = poi.description || '';
+        // description はサニタイズ済み HTML として挿入
+        $('#popup_desc').innerHTML = sanitizeDescription(poi.description || '');
         popup.classList.add('is-open');
     }
 
@@ -310,7 +426,6 @@
         const popup = $('#leaflet_popup');
         if (!popup) return;
         popup.classList.remove('is-open');
-        // アクティブピンも解除
         Object.values(state.pinOverlays).forEach((arr) => {
             arr.forEach(({ el }) => el.classList.remove('is-active'));
         });
@@ -321,6 +436,7 @@
     function switchTab(side) {
         if (side === state.currentSide) return;
 
+        const prevSide = state.currentSide;
         state.currentSide = side;
 
         $$('.leaflet_tab').forEach((tab) => {
@@ -328,44 +444,61 @@
             tab.setAttribute('aria-selected', tab.dataset.side === side ? 'true' : 'false');
         });
 
-        // ビューア表示切替
-        ['omote', 'ura'].forEach((s) => {
-            const wrap = document.querySelector(`.leaflet_viewer_wrap[data-side="${s}"]`);
-            if (wrap) {
-                wrap.hidden = (s !== side);
-            }
-        });
+        // モダンなフリップアニメーション
+        //   旧面: is-exiting を付けてフェード + 後方へ回転
+        //   新面: is-entering で前方から現れる
+        const wraps = {
+            prev: document.querySelector(`.leaflet_viewer_wrap[data-side="${prevSide}"]`),
+            next: document.querySelector(`.leaflet_viewer_wrap[data-side="${side}"]`)
+        };
+
+        if (wraps.next) {
+            wraps.next.hidden = false;
+            wraps.next.classList.remove('is-exiting');
+            wraps.next.classList.add('is-entering');
+        }
+        if (wraps.prev) {
+            wraps.prev.classList.remove('is-entering');
+            wraps.prev.classList.add('is-exiting');
+        }
 
         hidePopup();
 
-        // ビューアサイズ更新 (非表示から表示に切り替えた直後は再計算が必要)
-        const v = state.viewers[side];
-        if (v) {
-            requestAnimationFrame(() => {
+        const ANIM_MS = 520;
+        setTimeout(() => {
+            if (wraps.prev) {
+                wraps.prev.hidden = true;
+                wraps.prev.classList.remove('is-exiting');
+            }
+            if (wraps.next) {
+                wraps.next.classList.remove('is-entering');
+            }
+            // ビューアサイズ更新 (非表示 → 表示に切替直後は再計算が必要)
+            const v = state.viewers[side];
+            if (v) {
                 try {
-                    if (v.viewport) {
-                        // resize イベントを手動発火
-                        v.forceRedraw();
-                        v.viewport.goHome(true);
-                    }
+                    v.forceRedraw();
+                    v.viewport.goHome(true);
+                    applyMinZoomConstraint(v);
                     if (v.navigator && v.navigator.updateSize) {
                         v.navigator.updateSize();
                     }
                 } catch (e) { /* noop */ }
-            });
-        }
+            }
+        }, ANIM_MS);
     }
 
     // ===== 検索 =====
     function buildSearchIndex() {
         const index = [];
         ['omote', 'ura'].forEach((side) => {
-            const pois = (window.LEAFLET_POIS && window.LEAFLET_POIS[side]) || [];
+            const pois = state.pois[side] || [];
             pois.forEach((poi) => {
                 const haystack = [
                     poi.title || '',
                     poi.category || '',
-                    poi.description || '',
+                    // 検索用にはタグ除去した description を使う
+                    stripTags(poi.description || ''),
                     ...(poi.keywords || [])
                 ].join(' ').toLowerCase();
                 index.push({ side, poi, haystack });
@@ -374,13 +507,16 @@
         return index;
     }
 
+    function stripTags(html) {
+        return String(html).replace(/<[^>]*>/g, ' ');
+    }
+
     let searchIndex = [];
     let suggestFocusIdx = -1;
 
     function runSearch(query) {
         const q = (query || '').trim().toLowerCase();
         if (!q) {
-            // クエリが空の場合はランダムにいくつかサジェスト (最大5件)
             return [...searchIndex].sort(() => 0.5 - Math.random()).slice(0, 5);
         }
         return searchIndex.filter((entry) => entry.haystack.includes(q)).slice(0, 20);
@@ -416,7 +552,6 @@
         box.innerHTML = html;
         box.classList.add('is-open');
 
-        // クリック
         box.querySelectorAll('.leaflet_search_suggest_item').forEach((item) => {
             item.addEventListener('click', () => {
                 const idx = parseInt(item.dataset.idx, 10);
@@ -508,17 +643,6 @@
         const popupClose = $('#popup_close');
         if (popupClose) popupClose.addEventListener('click', hidePopup);
 
-        // ビューア背景クリックでポップアップ閉じる
-        document.addEventListener('click', (e) => {
-            const popup = $('#leaflet_popup');
-            if (!popup || !popup.classList.contains('is-open')) return;
-            if (e.target.closest('.leaflet_popup') || e.target.closest('.leaflet_pin') || e.target.closest('.leaflet_search_suggest')) return;
-            // ビューア内クリック時も閉じる（ピン以外）
-            if (e.target.closest('.leaflet_viewer_wrap')) {
-                // OSDのドラッグ終了イベントと競合しないようにする
-            }
-        });
-
         // 検索
         const input = $('#leaflet_search_input');
         const clearBtn = $('#leaflet_search_clear');
@@ -599,6 +723,7 @@
                     if (v && v.viewport) {
                         try {
                             v.forceRedraw();
+                            applyMinZoomConstraint(v);
                             if (v.navigator && v.navigator.updateSize) v.navigator.updateSize();
                         } catch (e) { /* noop */ }
                     }
@@ -621,21 +746,45 @@
         if (!['omote', 'ura'].includes(side)) return;
         if (!poiId) { switchTab(side); return; }
 
-        const pois = (window.LEAFLET_POIS && window.LEAFLET_POIS[side]) || [];
+        const pois = state.pois[side] || [];
         const poi = pois.find((p) => p.id === poiId);
         if (poi) focusPoi(side, poi);
     }
 
+    // ===== POI データの読み込み =====
+    async function loadPois() {
+        // 互換性: window.LEAFLET_POIS が直接定義されていればそれを優先
+        if (window.LEAFLET_POIS && (window.LEAFLET_POIS.omote || window.LEAFLET_POIS.ura)) {
+            state.pois.omote = window.LEAFLET_POIS.omote || [];
+            state.pois.ura = window.LEAFLET_POIS.ura || [];
+            return;
+        }
+        try {
+            const res = await fetch(CONFIG.poisUrl, { cache: 'no-cache' });
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+            const data = await res.json();
+            state.pois.omote = Array.isArray(data.omote) ? data.omote : [];
+            state.pois.ura = Array.isArray(data.ura) ? data.ura : [];
+            // 互換用にグローバルにもコピー
+            window.LEAFLET_POIS = { omote: state.pois.omote, ura: state.pois.ura };
+        } catch (e) {
+            console.error('[Leaflet] POI JSON 読み込み失敗:', e);
+            state.pois.omote = [];
+            state.pois.ura = [];
+        }
+    }
+
     // ===== 初期化 =====
-    function init() {
+    async function init() {
         if (typeof OpenSeadragon === 'undefined') {
             console.error('[Leaflet] OpenSeadragon が読み込まれていません');
             return;
         }
 
-        // POI 定義がなければ空に
-        window.LEAFLET_POIS = window.LEAFLET_POIS || { omote: [], ura: [] };
+        // 1) POI データ読込 (外部 JSON)
+        await loadPois();
 
+        // 2) ビューア生成
         try {
             state.viewers.omote = createViewer('omote');
             state.viewers.ura = createViewer('ura');
@@ -644,19 +793,36 @@
             return;
         }
 
+        // 3) 検索インデックス構築 & イベント配線
         searchIndex = buildSearchIndex();
-
         bindEvents();
 
-        // URLハッシュ処理
-        setTimeout(handleHash, 800);
+        // URL ハッシュ処理 (ビューア初期化を待つ)
+        setTimeout(handleHash, 900);
         window.addEventListener('hashchange', handleHash);
     }
 
+    // OpenSeadragon は defer 読み込みのため、DOMContentLoaded を待つ必要がある
+    function start() {
+        // OSD が未ロードなら少し待つ
+        if (typeof OpenSeadragon === 'undefined') {
+            const check = () => {
+                if (typeof OpenSeadragon !== 'undefined') {
+                    init();
+                } else {
+                    setTimeout(check, 50);
+                }
+            };
+            check();
+        } else {
+            init();
+        }
+    }
+
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', init);
+        document.addEventListener('DOMContentLoaded', start);
     } else {
-        init();
+        start();
     }
 
     // 公開API (動的にPOIを追加できるように)
@@ -664,6 +830,12 @@
         refreshPins: (side) => {
             if (side) renderPins(side);
             else { renderPins('omote'); renderPins('ura'); }
+            searchIndex = buildSearchIndex();
+        },
+        reloadPois: async () => {
+            await loadPois();
+            renderPins('omote');
+            renderPins('ura');
             searchIndex = buildSearchIndex();
         },
         focusPoi,

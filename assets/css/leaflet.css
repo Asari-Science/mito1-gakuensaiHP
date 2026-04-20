@@ -301,6 +301,9 @@ html, body {
     flex: 1;
     min-height: 0;
     overflow: hidden;
+    /* フリップアニメーション用の 3D 空間 */
+    perspective: 1400px;
+    transform-style: preserve-3d;
 }
 
 .leaflet_viewer {
@@ -320,8 +323,61 @@ html, body {
 }
 
 /* 同時に2つのビューアを配置（片方は非表示） */
-.leaflet_viewer[hidden] {
+.leaflet_viewer_wrap[hidden] {
     display: none !important;
+}
+
+/* ===== 表/裏タブ切替のモダンなフリップアニメーション ===== */
+/* 2枚のビューアを同じ位置にスタックできるよう、
+   アニメーション中は2枚とも表示する (hidden を外す) */
+.leaflet_viewer_wrap.is-entering,
+.leaflet_viewer_wrap.is-exiting {
+    display: block !important;
+    position: absolute !important;
+    inset: 0;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    will-change: transform, opacity, filter;
+    pointer-events: none;
+}
+
+.leaflet_viewer_wrap.is-entering {
+    z-index: 2;
+    animation: leaflet-flip-in 520ms cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+}
+
+.leaflet_viewer_wrap.is-exiting {
+    z-index: 1;
+    animation: leaflet-flip-out 520ms cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+}
+
+@keyframes leaflet-flip-out {
+    0%   { transform: perspective(1400px) rotateY(0deg) scale(1); opacity: 1; filter: brightness(1); }
+    60%  { transform: perspective(1400px) rotateY(-70deg) scale(0.94); opacity: 0.4; filter: brightness(0.6); }
+    100% { transform: perspective(1400px) rotateY(-90deg) scale(0.9); opacity: 0; filter: brightness(0.4); }
+}
+
+@keyframes leaflet-flip-in {
+    0%   { transform: perspective(1400px) rotateY(90deg) scale(0.9);  opacity: 0; filter: brightness(0.4); }
+    40%  { transform: perspective(1400px) rotateY(40deg) scale(0.94); opacity: 0.5; filter: brightness(0.7); }
+    100% { transform: perspective(1400px) rotateY(0deg) scale(1);    opacity: 1; filter: brightness(1); }
+}
+
+/* 小さい画面 / モーション低減設定ではアニメーションを簡素化 */
+@media (prefers-reduced-motion: reduce) {
+    .leaflet_viewer_wrap.is-entering,
+    .leaflet_viewer_wrap.is-exiting {
+        animation-duration: 200ms !important;
+    }
+    @keyframes leaflet-flip-out {
+        0%   { opacity: 1; }
+        100% { opacity: 0; transform: none; }
+    }
+    @keyframes leaflet-flip-in {
+        0%   { opacity: 0; }
+        100% { opacity: 1; transform: none; }
+    }
 }
 
 /* ===== ローディング ===== */
@@ -430,61 +486,110 @@ html, body {
     box-sizing: border-box !important;
 }
 
-/* ===== ピン ===== */
+/* ===== ピン =====
+ * OSD オーバーレイは placement: CENTER でピン要素の中央を正規化座標に配置する。
+ * 通常時は小さなドット (.pin_dot) のみを表示し、要素自体のサイズも小さくする。
+ * ピンが選択 (.is-active) / ホバーされたときのみ、大きな .pin_marker と
+ * ラベルがドットの位置に「生える」ように表示される。
+ * ピンの中心 (= アンカー座標) はドット中央 & マーカー先端に常に一致するため
+ * サイズ変化してもアンカーはずれない。
+ */
 .leaflet_pin {
     position: relative;
-    width: 32px;
-    height: 32px;
-    transform: translate(-50%, -100%);
+    width: 12px;
+    height: 12px;
     cursor: pointer;
     pointer-events: auto;
     background: none;
     border: none;
     padding: 0;
     outline: none;
-    /* .pin_marker を中央基準に */
+    box-sizing: border-box;
+    display: block;
+    transition: width 0.25s ease, height 0.25s ease;
 }
 
+/* ====== 通常時: 点 (ドット) のみ表示 ====== */
+.leaflet_pin .pin_dot {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 10px;
+    height: 10px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #f6dc9f 0%, #dab584 70%, #a7864f 100%);
+    border: 1.5px solid rgba(26, 18, 7, 0.85);
+    box-shadow:
+        0 0 0 2px rgba(26, 18, 7, 0.25),
+        0 2px 4px rgba(0, 0, 0, 0.5);
+    transition: opacity 0.2s ease, transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+}
+
+.leaflet_pin:hover .pin_dot {
+    transform: translate(-50%, -50%) scale(1.25);
+    box-shadow:
+        0 0 0 3px rgba(246, 220, 159, 0.25),
+        0 2px 6px rgba(0, 0, 0, 0.55);
+}
+
+/* ====== 強調表示 (.is-active): 大きなピンマーカーが生えてくる ====== */
 .leaflet_pin .pin_marker {
     position: absolute;
     left: 50%;
-    top: 0;
-    transform: translateX(-50%);
+    bottom: 50%;   /* 要素中心からピン下端が生える (= ピン先端が要素中心) */
+    transform: translate(-50%, 0) scale(0.5);
+    transform-origin: 50% 100%;
     width: 28px;
     height: 36px;
-    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.5));
-    transition: transform 0.2s ease;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.55));
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.2s ease;
 }
 
-.leaflet_pin:hover .pin_marker,
 .leaflet_pin.is-active .pin_marker {
-    transform: translateX(-50%) translateY(-2px) scale(1.08);
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
 }
 
+/* active 時のドットは非表示 (マーカーに置き換え) */
+.leaflet_pin.is-active .pin_dot {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.2);
+}
+
+/* パルスリング (active 時のみ) */
 .leaflet_pin .pin_pulse {
     position: absolute;
     left: 50%;
-    top: 28px;
+    top: 50%;
     width: 14px;
-    height: 6px;
-    transform: translateX(-50%);
+    height: 14px;
+    transform: translate(-50%, -50%);
     border-radius: 50%;
-    background: rgba(246, 220, 159, 0.5);
-    filter: blur(2px);
-    animation: pin-pulse 1.6s ease-in-out infinite;
+    border: 2px solid rgba(246, 220, 159, 0.65);
+    opacity: 0;
+    pointer-events: none;
 }
 
-@keyframes pin-pulse {
-    0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.55; }
-    50% { transform: translateX(-50%) scale(1.4); opacity: 0.2; }
+.leaflet_pin.is-active .pin_pulse {
+    opacity: 1;
+    animation: pin-pulse-ring 1.6s ease-out infinite;
 }
 
+@keyframes pin-pulse-ring {
+    0%   { transform: translate(-50%, -50%) scale(0.6); opacity: 0.8; }
+    100% { transform: translate(-50%, -50%) scale(3.2); opacity: 0; }
+}
+
+/* ====== ラベル (ホバー・active 時に表示) ====== */
 .leaflet_pin .pin_label {
     position: absolute;
     left: 50%;
-    top: -6px;
-    transform: translate(-50%, -100%);
-    background: rgba(26, 18, 7, 0.9);
+    bottom: calc(50% + 36px); /* マーカー高さ分上 */
+    transform: translate(-50%, 6px);
+    background: rgba(26, 18, 7, 0.92);
     color: #f6dc9f;
     font-family: "Noto Sans JP", sans-serif;
     font-size: 11px;
@@ -492,16 +597,24 @@ html, body {
     white-space: nowrap;
     padding: 4px 10px;
     border-radius: 999px;
-    border: 1px solid rgba(246, 220, 159, 0.3);
+    border: 1px solid rgba(246, 220, 159, 0.35);
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 
-.leaflet_pin:hover .pin_label,
+.leaflet_pin:hover .pin_label {
+    /* ホバー時: ドットのすぐ上に出す */
+    bottom: calc(50% + 10px);
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
 .leaflet_pin.is-active .pin_label {
     opacity: 1;
-    transform: translate(-50%, calc(-100% - 2px));
+    transform: translate(-50%, 0);
 }
 
 /* ===== ピン詳細ポップアップ ===== */
@@ -582,6 +695,33 @@ html, body {
     line-height: 1.75;
     color: rgba(246, 220, 159, 0.85);
     margin: 0;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+}
+
+/* 解説カード内リンク: 下線 + アクセントカラー、明確にクリック可能に見せる */
+.leaflet_popup_desc a {
+    color: #f6dc9f;
+    text-decoration: underline;
+    text-decoration-color: rgba(246, 220, 159, 0.5);
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    transition: color 0.15s ease, text-decoration-color 0.15s ease, background 0.15s ease;
+    padding: 0 2px;
+    border-radius: 3px;
+}
+
+.leaflet_popup_desc a:hover,
+.leaflet_popup_desc a:focus-visible {
+    color: #fff2c7;
+    text-decoration-color: #f6dc9f;
+    background: rgba(246, 220, 159, 0.12);
+    outline: none;
+}
+
+.leaflet_popup_desc strong,
+.leaflet_popup_desc b {
+    color: #fff2c7;
 }
 
 /* ===== ヘルプ / ヒント ===== */
@@ -783,6 +923,23 @@ html, body {
 .leaflet_body .menu_btn:hover {
     background: #f6dc9f;
     transform: translateY(-50%) scale(1.05);
+}
+
+/* アクティブ (メニュー展開) 時はダーク背景 + ライトスパンで「×」が明確に見えるように。
+   header.css の .menu_btn.active スタイルは .leaflet_body .menu_btn のセレクタ
+   特異度に敗けるため、leaflet 側で再定義する。 */
+.leaflet_body .menu_btn.active {
+    background: rgba(26, 18, 7, 0.9);
+    border-color: rgba(246, 220, 159, 0.6);
+}
+
+.leaflet_body .menu_btn.active:hover {
+    background: rgba(26, 18, 7, 0.95);
+    transform: translateY(-50%) scale(1.05);
+}
+
+.leaflet_body .menu_btn.active span {
+    background: #f6dc9f;
 }
 
 /* ツールバー上にヘッダー背景が来ないよう、ヘッダー背景は非表示に */
