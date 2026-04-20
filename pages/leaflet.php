@@ -168,7 +168,7 @@
             </button>
             <span id="popup_category" class="leaflet_popup_category"></span>
             <h2 id="popup_title" class="leaflet_popup_title"></h2>
-            <p id="popup_desc" class="leaflet_popup_desc"></p>
+            <div id="popup_desc" class="leaflet_popup_desc"></div>
         </div>
     </main>
 
@@ -176,116 +176,17 @@
     <?php include(__DIR__ . "/../includes/footer.php"); ?>
 
     <!-- ====================================================================
-         POI (ピン) デモデータ
-         ---------------------------------------------------------------------
-         実際の運用時は、このデータを本番リーフレットの内容に合わせて
-         書き換えてください。フォーマットは以下の通りです:
-
-           window.LEAFLET_POIS = {
-             omote: [  // 表面のピン
-               {
-                 id: "一意なID (英数字ハイフン)",
-                 title: "表示名 (検索にもヒット)",
-                 category: "カテゴリタグ (例: ステージ / 喫茶 / 展示 / グッズ)",
-                 description: "詳細説明。複数行・長文可。",
-                 keywords: ["追加検索キーワード1", "キーワード2"],
-                 x: 0.50,   // 画像内のX座標 (0.0 = 左端, 1.0 = 右端)
-                 y: 0.35    // 画像内のY座標 (0.0 = 上端, 1.0 = 下端)
-               },
-               ...
-             ],
-             ura: [  // 裏面のピン (同じフォーマット)
-               ...
-             ]
-           };
-
-         座標の調べ方:
-           1. ブラウザでリーフレットページを開き、該当の面を表示
-           2. 開発者ツールのコンソールで以下を実行してクリック位置を取得:
-                LeafletViewer.getState().viewers.omote.addHandler('canvas-click', (e) => {
-                  const p = LeafletViewer.getState().viewers.omote.viewport.pointFromPixel(e.position);
-                  const img = LeafletViewer.getState().viewers.omote.world.getItemAt(0).viewportToImageCoordinates(p);
-                  const size = LeafletViewer.getState().viewers.omote.world.getItemAt(0).getContentSize();
-                  console.log('x:', (img.x/size.x).toFixed(3), 'y:', (img.y/size.y).toFixed(3));
-                });
-           3. 設置したい場所をクリックするとコンソールに正規化座標が出力される
+         POI (ピン) データは外部 JSON から読み込みます:
+           /assets/data/leaflet_pois.json
+         編集・追加する際はこのJSONを直接書き換えてください。
+         フォーマット・座標の調べ方はJSON内の $schema フィールドを参照。
 
          ディープリンク:
            URLに #omote:stage のように記述すると、該当ピンに直接ジャンプ可能。
     ==================================================================== -->
     <script>
-        window.LEAFLET_POIS = {
-            // ========== 表面 (OMOTE) ==========
-            omote: [
-                {
-                    id: "main-stage",
-                    title: "メインステージ",
-                    category: "ステージ",
-                    description: "中庭に設置されるメインステージ。両日ともオープニング・クロージングセレモニー、有志団体のパフォーマンスが行われます。両日程は「ステージタイムテーブル」ページをご確認ください。",
-                    keywords: ["ステージ", "stage", "有志", "パフォーマンス", "オープニング", "クロージング"],
-                    x: 0.50,
-                    y: 0.38
-                },
-                {
-                    id: "entrance",
-                    title: "正門 (来場者受付)",
-                    category: "受付",
-                    description: "来場者の受付を行う正門。入場時にはこちらで受付をお済ませください。混雑時はお待ちいただく場合があります。",
-                    keywords: ["入口", "受付", "エントランス", "entrance", "入場"],
-                    x: 0.22,
-                    y: 0.72
-                },
-                {
-                    id: "info-center",
-                    title: "インフォメーション",
-                    category: "案内所",
-                    description: "落とし物・忘れ物・会場案内・迷子対応などを行う総合案内所。お困りの際はお立ち寄りください。",
-                    keywords: ["案内", "インフォメーション", "information", "忘れ物", "落とし物"],
-                    x: 0.78,
-                    y: 0.42
-                },
-                {
-                    id: "cafe-area",
-                    title: "喫茶エリア",
-                    category: "喫茶",
-                    description: "各HR団体による喫茶企画が集まるエリア。多彩なメニューをお楽しみいただけます。詳細は「喫茶メニュー」ページをご覧ください。",
-                    keywords: ["喫茶", "カフェ", "cafe", "HR", "ドリンク", "スイーツ"],
-                    x: 0.38,
-                    y: 0.60
-                }
-            ],
-
-            // ========== 裏面 (URA) ==========
-            ura: [
-                {
-                    id: "goods-shop",
-                    title: "公式グッズ販売所",
-                    category: "グッズ",
-                    description: "第78回学苑祭「天翔る」の公式グッズを販売。数量限定商品もあるのでお早めに。",
-                    keywords: ["グッズ", "goods", "お土産", "販売", "公式"],
-                    x: 0.30,
-                    y: 0.30
-                },
-                {
-                    id: "gym-exhibition",
-                    title: "体育館 (展示企画)",
-                    category: "展示",
-                    description: "体育館内では部活動・クラスによる展示企画を開催。見応えのある作品・研究発表が並びます。",
-                    keywords: ["展示", "exhibition", "体育館", "部活", "研究"],
-                    x: 0.62,
-                    y: 0.55
-                },
-                {
-                    id: "rest-area",
-                    title: "休憩スペース",
-                    category: "休憩",
-                    description: "ベンチ・テーブルを設置した休憩スペース。水分補給・ご休憩にご利用ください。",
-                    keywords: ["休憩", "rest", "ベンチ", "飲食"],
-                    x: 0.48,
-                    y: 0.74
-                }
-            ]
-        };
+        window.LEAFLET_CONFIG = window.LEAFLET_CONFIG || {};
+        window.LEAFLET_CONFIG.poisUrl = '../assets/data/leaflet_pois.json';
     </script>
 
     <!-- Script -->
