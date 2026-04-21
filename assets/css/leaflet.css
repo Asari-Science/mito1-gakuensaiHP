@@ -301,9 +301,6 @@ html, body {
     flex: 1;
     min-height: 0;
     overflow: hidden;
-    /* フリップアニメーション用の 3D 空間 */
-    perspective: 1400px;
-    transform-style: preserve-3d;
 }
 
 .leaflet_viewer {
@@ -327,7 +324,7 @@ html, body {
     display: none !important;
 }
 
-/* ===== 表/裏タブ切替のモダンなフリップアニメーション ===== */
+/* ===== 表/裏タブ切替のモダンなフェードアニメーション ===== */
 /* 2枚のビューアを同じ位置にスタックできるよう、
    アニメーション中は2枚とも表示する (hidden を外す) */
 .leaflet_viewer_wrap.is-entering,
@@ -335,33 +332,28 @@ html, body {
     display: block !important;
     position: absolute !important;
     inset: 0;
-    transform-style: preserve-3d;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    will-change: transform, opacity, filter;
+    will-change: transform, opacity;
     pointer-events: none;
 }
 
 .leaflet_viewer_wrap.is-entering {
     z-index: 2;
-    animation: leaflet-flip-in 520ms cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+    animation: leaflet-fade-in 400ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .leaflet_viewer_wrap.is-exiting {
     z-index: 1;
-    animation: leaflet-flip-out 520ms cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+    animation: leaflet-fade-out 400ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-@keyframes leaflet-flip-out {
-    0%   { transform: perspective(1400px) rotateY(0deg) scale(1); opacity: 1; filter: brightness(1); }
-    60%  { transform: perspective(1400px) rotateY(-70deg) scale(0.94); opacity: 0.4; filter: brightness(0.6); }
-    100% { transform: perspective(1400px) rotateY(-90deg) scale(0.9); opacity: 0; filter: brightness(0.4); }
+@keyframes leaflet-fade-out {
+    0%   { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(1.02); }
 }
 
-@keyframes leaflet-flip-in {
-    0%   { transform: perspective(1400px) rotateY(90deg) scale(0.9);  opacity: 0; filter: brightness(0.4); }
-    40%  { transform: perspective(1400px) rotateY(40deg) scale(0.94); opacity: 0.5; filter: brightness(0.7); }
-    100% { transform: perspective(1400px) rotateY(0deg) scale(1);    opacity: 1; filter: brightness(1); }
+@keyframes leaflet-fade-in {
+    0%   { opacity: 0; transform: scale(0.98); }
+    100% { opacity: 1; transform: scale(1); }
 }
 
 /* 小さい画面 / モーション低減設定ではアニメーションを簡素化 */
@@ -370,13 +362,13 @@ html, body {
     .leaflet_viewer_wrap.is-exiting {
         animation-duration: 200ms !important;
     }
-    @keyframes leaflet-flip-out {
+    @keyframes leaflet-fade-out {
         0%   { opacity: 1; }
-        100% { opacity: 0; transform: none; }
+        100% { opacity: 0; }
     }
-    @keyframes leaflet-flip-in {
+    @keyframes leaflet-fade-in {
         0%   { opacity: 0; }
-        100% { opacity: 1; transform: none; }
+        100% { opacity: 1; }
     }
 }
 

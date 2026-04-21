@@ -318,8 +318,8 @@
         // タブ切替
         if (state.currentSide !== side) {
             switchTab(side);
-            // 切替後にフォーカス
-            setTimeout(() => focusPoi(side, poi), 560);
+            // 切替後にフォーカス (アニメーション 400ms + 余裕)
+            setTimeout(() => focusPoi(side, poi), 440);
             return;
         }
 
@@ -464,7 +464,7 @@
 
         hidePopup();
 
-        const ANIM_MS = 520;
+        const ANIM_MS = 400;
         setTimeout(() => {
             if (wraps.prev) {
                 wraps.prev.hidden = true;
