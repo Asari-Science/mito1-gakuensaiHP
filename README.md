@@ -55,9 +55,10 @@
 │   ├── kujira.webp                    # メインビジュアル（鯨）
 │   ├── header_title.webp              # ヘッダーロゴ
 │   ├── enjitsu78th.webp               # 学苑祭ロゴ
-│   ├── NowLoading.webm                # ローディングアニメーション（WebM動画）
-│   ├── NowLoading.webp                # ローディング画像（低電力モード用フォールバック）
-│   ├── NowLoading.mp4                 # ローディング動画 MP4版（未使用・予備）
+│   ├── NowLoading/                    # ローディング素材
+│   │   ├── NowLoading.webm            # ローディングアニメーション（WebM動画）
+│   │   ├── NowLoading.webp            # ローディング画像（低電力モード用フォールバック）
+│   │   └── NowLoading.mp4             # ローディング動画 MP4版（未使用・予備）
 │   ├── cashless-brandlogo.webp        # キャッシュレス決済ブランドロゴ一覧画像
 │   ├── text_kanji_amagakeru.webp      # 「天翔る」縦書き
 │   ├── text_kanji_amagakeru_yoko.webp # 「天翔る」横書き
@@ -115,7 +116,7 @@ php -S localhost:8000
 
 ## 主な機能
 
-- **ローディング画面**: `NowLoading.webm`（WebM動画）を使用。画面サイズ100%で表示し、モバイルでは16:9動画の中央を切り出して全画面対応。sessionStorageにより同一セッションでのリロード時は一切表示しない。低電力モードではVideoのautoplayが制限されるため、`NowLoading.webp`画像にフォールバック
+- **ローディング画面**: `NowLoading/NowLoading.webm`（WebM動画）を使用。画面サイズ100%で表示し、モバイルでは16:9動画の中央を切り出して全画面対応。sessionStorageにより同一セッションでのリロード時は一切表示しない。低電力モードではVideoのautoplayが制限されるため、`NowLoading/NowLoading.webp`画像にフォールバック
 - **カウントダウンタイマー**: ヘッダーが固定背景表示（スクロール50px以上）の際に、画面右側のハンバーガーメニュー左側に「第78回学苑祭まで〇〇日〇〇時間〇〇分」を縦中央揃えで表示
 - **動的コンテンツ取得**: WordPress REST APIを利用し、トップページに最新のお知らせとブログを各3件表示。48時間以内の投稿には「New!」バッジを付与
 - **お問い合わせフォーム**: Google Formsをバックエンドに利用した非同期送信フォーム。免責事項・プライバシーポリシーへの同意チェック、入力バリデーションを搭載

@@ -21,7 +21,7 @@ var ASSETS_TO_CACHE = [
     '/materials/text_kanji_amagakeru.webp',
     '/materials/text_kanji_amagakeru_yoko.webp',
     '/materials/text_catchcopy.webp',
-    '/materials/NowLoading.webp',
+    '/materials/NowLoading/NowLoading.webp',
     '/materials/cashless-brandlogo.webp',
     '/pages/concept.php',
     '/pages/cashless.php',
