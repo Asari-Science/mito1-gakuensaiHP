@@ -41,6 +41,10 @@
             // 変更しない場合は何も記入しないでください。
             include(__DIR__ . "/../includes/header.php");
          ?>
+
+        <!-- Shooting Star Container -->
+        <div class="concept_shooting_star" id="concept_shooting_star"></div>
+
         <!-- Main -->
          <main class="concept_main">
 
@@ -48,10 +52,12 @@
             <section class="concept_section concept_s1" id="definition">
                 <div class="concept_s1_bg">
                     <div class="concept_stars" id="concept_stars"></div>
+                    <div class="concept_s1_nebula"></div>
                     <div class="concept_s1_glow"></div>
                 </div>
                 <div class="concept_s1_content">
                     <div class="concept_hero_full">
+                        <p class="concept_section_label concept_reveal"><span class="concept_section_label_num">1.</span>The Definition</p>
                         <div class="concept_reveal concept_hero_text">
                             <p class="concept_s1_lead">重力を、置き去りにしろ。</p>
                         </div>
@@ -88,6 +94,7 @@
                     <div class="concept_s2_gradient"></div>
                 </div>
                 <div class="concept_s2_content">
+                    <p class="concept_section_label concept_reveal"><span class="concept_section_label_num">2.</span>The Spirit</p>
                     <div class="concept_reveal concept_hero_text">
                         <p class="concept_s2_lead">伝統は大地。創造は翼。</p>
                     </div>
@@ -120,10 +127,12 @@
             <!-- ===== Section 3: The Statement ===== -->
             <section class="concept_section concept_s3" id="statement">
                 <div class="concept_s3_bg">
+                    <div class="concept_s3_stars" id="concept_s3_stars"></div>
                     <div class="concept_s3_rays"></div>
                     <div class="concept_s3_overlay"></div>
                 </div>
                 <div class="concept_s3_content">
+                    <p class="concept_section_label concept_reveal"><span class="concept_section_label_num">3.</span>The Statement</p>
                     <div class="concept_reveal concept_hero_text">
                         <p class="concept_s3_lead">創造は、どこまでも高く。</p>
                     </div>

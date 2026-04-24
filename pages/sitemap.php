@@ -51,7 +51,7 @@
                         <div class="sitemap_group">
                             <h2 class="sitemap_group_title">イベント情報</h2>
                             <ul class="sitemap_list">
-                                <li><a href="./comingsoon.php">企画紹介</a></li>
+                                <li><a href="./kikaku.php">企画紹介</a></li>
                                 <li><a href="./comingsoon.php">ステージタイムテーブル</a></li>
                                 <li><a href="./comingsoon.php">リーフレット</a></li>
                             </ul>

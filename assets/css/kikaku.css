@@ -1,0 +1,821 @@
+/* ===== Kikaku (Events) Page ===== */
+
+body {
+    background-color: #f6dc9f;
+}
+
+/* ===== Hero ===== */
+
+.kikaku_main {
+    width: 100%;
+    min-height: 100vh;
+}
+
+.kikaku_hero {
+    position: relative;
+    width: 100%;
+    padding: 120px 24px 60px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.kikaku_hero_bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, #dab584 0%, #f6dc9f 100%);
+    z-index: 0;
+}
+
+.kikaku_hero_content {
+    position: relative;
+    z-index: 1;
+}
+
+.kikaku_hero_label {
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 300;
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(26, 18, 7, 0.4);
+    margin-bottom: 12px;
+}
+
+.kikaku_hero_title {
+    font-family: "Zen Old Mincho", serif;
+    font-weight: 900;
+    font-size: clamp(28px, 6vw, 48px);
+    color: #1a1207;
+    letter-spacing: 0.1em;
+}
+
+.kikaku_hero_sub {
+    font-family: "Shippori Mincho", serif;
+    font-weight: 500;
+    font-size: clamp(13px, 2.5vw, 16px);
+    color: rgba(26, 18, 7, 0.6);
+    margin-top: 12px;
+    line-height: 1.8;
+}
+
+/* ===== Controls Section ===== */
+
+.kikaku_controls {
+    position: sticky;
+    top: 80px;
+    z-index: 100;
+    background: rgba(246, 220, 159, 0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(26, 18, 7, 0.08);
+    padding: 16px 0;
+}
+
+.kikaku_controls_inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Search */
+.kikaku_search_wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.kikaku_search_icon {
+    position: absolute;
+    left: 14px;
+    color: rgba(26, 18, 7, 0.35);
+    pointer-events: none;
+    flex-shrink: 0;
+}
+
+.kikaku_search {
+    width: 100%;
+    padding: 12px 42px 12px 44px;
+    border: 1.5px solid rgba(26, 18, 7, 0.12);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.6);
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #1a1207;
+    outline: none;
+    transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.kikaku_search::placeholder {
+    color: rgba(26, 18, 7, 0.35);
+}
+
+.kikaku_search:focus {
+    border-color: rgba(139, 105, 20, 0.4);
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 0 0 3px rgba(139, 105, 20, 0.08);
+}
+
+.kikaku_search_clear {
+    position: absolute;
+    right: 10px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(26, 18, 7, 0.08);
+    color: rgba(26, 18, 7, 0.5);
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.kikaku_search_clear.visible {
+    display: flex;
+}
+
+.kikaku_search_clear:hover {
+    background: rgba(26, 18, 7, 0.15);
+}
+
+/* Genre Filter */
+.kikaku_filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.kikaku_filter_btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 7px 14px;
+    border: 1.5px solid rgba(26, 18, 7, 0.12);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.4);
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: rgba(26, 18, 7, 0.7);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+}
+
+.kikaku_filter_btn:hover {
+    background: rgba(255, 255, 255, 0.7);
+    border-color: rgba(26, 18, 7, 0.2);
+}
+
+.kikaku_filter_btn.active {
+    background: #1a1207;
+    color: #f6dc9f;
+    border-color: #1a1207;
+}
+
+.kikaku_filter_btn.active svg {
+    stroke: #f6dc9f;
+}
+
+/* Day Filter */
+.kikaku_day_filters {
+    display: flex;
+    gap: 6px;
+}
+
+.kikaku_day_btn {
+    padding: 6px 14px;
+    border: 1.5px solid rgba(26, 18, 7, 0.1);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.3);
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(26, 18, 7, 0.6);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+}
+
+.kikaku_day_btn:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.kikaku_day_btn.active {
+    background: rgba(139, 105, 20, 0.15);
+    border-color: rgba(139, 105, 20, 0.3);
+    color: #8b6914;
+    font-weight: 500;
+}
+
+/* Result count */
+.kikaku_result_count {
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(26, 18, 7, 0.4);
+}
+
+/* ===== Cards Grid ===== */
+
+.kikaku_grid_section {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 24px 20px 60px;
+}
+
+.kikaku_grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+/* ===== Card ===== */
+
+.kikaku_card {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(26, 18, 7, 0.06);
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: kikakuCardIn 0.5s ease forwards;
+}
+
+.kikaku_card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(26, 18, 7, 0.1);
+}
+
+@keyframes kikakuCardIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Card image */
+.kikaku_card_img_wrap {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 */
+    background: linear-gradient(135deg, #dab584, #c9a46c);
+    overflow: hidden;
+}
+
+.kikaku_card_img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.kikaku_card:hover .kikaku_card_img {
+    transform: scale(1.05);
+}
+
+.kikaku_card_img_placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.5);
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 13px;
+}
+
+.kikaku_card_img_placeholder svg {
+    width: 36px;
+    height: 36px;
+    stroke: rgba(255, 255, 255, 0.4);
+}
+
+/* Genre badge on card */
+.kikaku_card_genre {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    z-index: 2;
+}
+
+.kikaku_card_genre[data-genre="アトラクション"] {
+    background: rgba(220, 50, 50, 0.85);
+    color: #fff;
+}
+
+.kikaku_card_genre[data-genre="喫茶"] {
+    background: rgba(50, 140, 80, 0.85);
+    color: #fff;
+}
+
+.kikaku_card_genre[data-genre="創作展示"] {
+    background: rgba(50, 100, 200, 0.85);
+    color: #fff;
+}
+
+.kikaku_card_genre[data-genre="ステージ"] {
+    background: rgba(180, 80, 200, 0.85);
+    color: #fff;
+}
+
+/* Card body */
+.kikaku_card_body {
+    padding: 16px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.kikaku_card_title {
+    font-family: "Zen Old Mincho", serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: #1a1207;
+    line-height: 1.5;
+    margin-bottom: 6px;
+}
+
+.kikaku_card_group {
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(26, 18, 7, 0.5);
+    margin-bottom: 10px;
+}
+
+.kikaku_card_pr {
+    font-family: "Shippori Mincho", serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: rgba(26, 18, 7, 0.65);
+    line-height: 1.7;
+    flex: 1;
+}
+
+.kikaku_card_footer {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(26, 18, 7, 0.06);
+}
+
+.kikaku_card_location {
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    color: rgba(26, 18, 7, 0.4);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.kikaku_card_location svg {
+    flex-shrink: 0;
+}
+
+/* ===== Empty State ===== */
+
+.kikaku_empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: rgba(26, 18, 7, 0.4);
+}
+
+.kikaku_empty svg {
+    margin-bottom: 16px;
+}
+
+.kikaku_empty_text {
+    font-family: "Shippori Mincho", serif;
+    font-size: 15px;
+    color: rgba(26, 18, 7, 0.5);
+    margin-bottom: 20px;
+}
+
+.kikaku_empty_reset {
+    padding: 10px 24px;
+    border: 1.5px solid rgba(26, 18, 7, 0.15);
+    border-radius: 8px;
+    background: transparent;
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 13px;
+    color: rgba(26, 18, 7, 0.6);
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.kikaku_empty_reset:hover {
+    background: rgba(26, 18, 7, 0.05);
+    border-color: rgba(26, 18, 7, 0.25);
+}
+
+/* ===== Modal ===== */
+
+.kikaku_modal_overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.kikaku_modal_overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.kikaku_modal {
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    max-height: 90dvh;
+    background: #fff;
+    border-radius: 20px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    transform: translateY(20px) scale(0.97);
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    -webkit-overflow-scrolling: touch;
+}
+
+.kikaku_modal_overlay.active .kikaku_modal {
+    transform: translateY(0) scale(1);
+}
+
+.kikaku_modal_close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 10;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    color: #1a1207;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.kikaku_modal_close:hover {
+    background: #fff;
+    transform: scale(1.1);
+}
+
+/* Carousel */
+.kikaku_modal_carousel {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    background: linear-gradient(135deg, #dab584, #c9a46c);
+    overflow: hidden;
+}
+
+.kikaku_carousel_track {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.kikaku_carousel_slide {
+    width: 100%;
+    height: 100%;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.kikaku_carousel_slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.kikaku_carousel_slide_placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.kikaku_carousel_prev,
+.kikaku_carousel_next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.8);
+    color: #1a1207;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    z-index: 5;
+}
+
+.kikaku_carousel_prev { left: 10px; }
+.kikaku_carousel_next { right: 10px; }
+
+.kikaku_carousel_prev:hover,
+.kikaku_carousel_next:hover {
+    background: #fff;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.kikaku_carousel_dots {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+    z-index: 5;
+}
+
+.kikaku_carousel_dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transition: background 0.25s ease, transform 0.25s ease;
+    cursor: pointer;
+}
+
+.kikaku_carousel_dot.active {
+    background: #fff;
+    transform: scale(1.2);
+}
+
+/* Modal body */
+.kikaku_modal_body {
+    padding: 24px;
+}
+
+.kikaku_modal_meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.kikaku_modal_genre {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+}
+
+.kikaku_modal_id {
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    color: rgba(26, 18, 7, 0.3);
+}
+
+.kikaku_modal_title {
+    font-family: "Zen Old Mincho", serif;
+    font-weight: 900;
+    font-size: clamp(20px, 4vw, 26px);
+    color: #1a1207;
+    line-height: 1.5;
+    margin-bottom: 6px;
+}
+
+.kikaku_modal_group {
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: rgba(26, 18, 7, 0.5);
+}
+
+.kikaku_modal_divider {
+    width: 100%;
+    height: 1px;
+    background: rgba(26, 18, 7, 0.08);
+    margin: 16px 0;
+}
+
+.kikaku_modal_desc {
+    font-family: "Shippori Mincho", serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(26, 18, 7, 0.75);
+    line-height: 2;
+}
+
+.kikaku_modal_info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.kikaku_modal_info_row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 13px;
+    color: rgba(26, 18, 7, 0.6);
+}
+
+.kikaku_modal_info_row svg {
+    flex-shrink: 0;
+    color: rgba(26, 18, 7, 0.35);
+}
+
+.kikaku_modal_map_link {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    margin-left: 6px;
+    padding: 3px 8px;
+    border: 1px solid rgba(139, 105, 20, 0.3);
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 500;
+    color: #8b6914;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.kikaku_modal_map_link:hover {
+    background: rgba(139, 105, 20, 0.08);
+    border-color: rgba(139, 105, 20, 0.5);
+}
+
+/* Genre color helper */
+.genre_color_attraction { background: rgba(220, 50, 50, 0.85); color: #fff; }
+.genre_color_cafe { background: rgba(50, 140, 80, 0.85); color: #fff; }
+.genre_color_exhibition { background: rgba(50, 100, 200, 0.85); color: #fff; }
+.genre_color_stage { background: rgba(180, 80, 200, 0.85); color: #fff; }
+
+/* ===== Responsive: PC ===== */
+
+@media screen and (min-width: 1024px) {
+    .kikaku_hero {
+        padding: 140px 40px 70px;
+    }
+
+    .kikaku_controls_inner {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .kikaku_search_wrap {
+        flex: 1;
+        min-width: 280px;
+        max-width: 400px;
+    }
+
+    .kikaku_filters {
+        flex: none;
+    }
+
+    .kikaku_day_filters {
+        flex: none;
+    }
+
+    .kikaku_result_count {
+        margin-left: auto;
+    }
+
+    .kikaku_grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ===== Responsive: Tablet ===== */
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .kikaku_hero {
+        padding: 130px 32px 60px;
+    }
+
+    .kikaku_grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ===== Responsive: Small mobile ===== */
+
+@media screen and (max-width: 400px) {
+    .kikaku_hero {
+        padding: 100px 20px 40px;
+    }
+
+    .kikaku_controls {
+        top: 70px;
+        padding: 12px 0;
+    }
+
+    .kikaku_controls_inner {
+        padding: 0 16px;
+        gap: 10px;
+    }
+
+    .kikaku_search {
+        padding: 10px 38px 10px 40px;
+        font-size: 13px;
+    }
+
+    .kikaku_filter_btn {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+
+    .kikaku_day_btn {
+        padding: 5px 10px;
+        font-size: 11px;
+    }
+
+    .kikaku_grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .kikaku_grid_section {
+        padding: 16px 16px 40px;
+    }
+
+    .kikaku_card_title {
+        font-size: 15px;
+    }
+
+    .kikaku_modal {
+        border-radius: 16px;
+        max-height: 85vh;
+        max-height: 85dvh;
+    }
+
+    .kikaku_modal_body {
+        padding: 20px 16px;
+    }
+
+    .kikaku_modal_title {
+        font-size: 18px;
+    }
+}
+
+/* Transition for card staggering */
+.kikaku_card:nth-child(1) { animation-delay: 0s; }
+.kikaku_card:nth-child(2) { animation-delay: 0.05s; }
+.kikaku_card:nth-child(3) { animation-delay: 0.10s; }
+.kikaku_card:nth-child(4) { animation-delay: 0.15s; }
+.kikaku_card:nth-child(5) { animation-delay: 0.20s; }
+.kikaku_card:nth-child(6) { animation-delay: 0.25s; }
+.kikaku_card:nth-child(7) { animation-delay: 0.30s; }
+.kikaku_card:nth-child(8) { animation-delay: 0.35s; }
+.kikaku_card:nth-child(9) { animation-delay: 0.40s; }
+.kikaku_card:nth-child(10) { animation-delay: 0.45s; }
+.kikaku_card:nth-child(11) { animation-delay: 0.50s; }
+.kikaku_card:nth-child(12) { animation-delay: 0.55s; }
+
+/* Body scroll lock when modal is open */
+body.kikaku_modal_open {
+    overflow: hidden;
+}
