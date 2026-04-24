@@ -92,9 +92,9 @@
          <div id="loading_screen">
             <div class="loading_inner">
                 <video class="loading_video" id="loading_video" autoplay muted playsinline preload="auto">
-                    <source src="./materials/NowLoading.webm" type="video/webm">
+                    <source src="./materials/NowLoading/NowLoading.webm" type="video/webm">
                 </video>
-                <img src="./materials/NowLoading.webp" class="loading_image" id="loading_image" alt="Now Loading">
+                <img src="./materials/NowLoading/NowLoading.webp" class="loading_image" id="loading_image" alt="Now Loading">
             </div>
          </div>
         <!-- Header -->
