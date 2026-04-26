@@ -24,16 +24,47 @@
     <nav class="menu" id="menu">
         <div class="menu_inner">
             <div class="menu_header_label">MENU</div>
-            <a href="https://gakuensai.net">Top</a>
-            <a href="https://gakuensai.net/blog/">Blog</a>
-            <a href="<?php echo $base_path; ?>/pages/kikaku.php">企画紹介</a>
-            <a href="<?php echo $base_path; ?>/pages/leaflet.php">リーフレット</a>
-            <a href="<?php echo $base_path; ?>/pages/comingsoon.php">ステージタイムテーブル</a>
-            <a href="<?php echo $base_path; ?>/pages/comingsoon.php">喫茶メニュー</a>
-            <a href="<?php echo $base_path; ?>/pages/comingsoon.php">グッズ・お土産</a>
-            <a href="<?php echo $base_path; ?>/pages/contact.php">お問い合わせ</a>
-            <a href="<?php echo $base_path; ?>/pages/access.php">アクセス</a>
-            <a href="<?php echo $base_path; ?>/lostitem">落とし物・忘れ物</a>
+            <div class="menu_quick_links" aria-label="主要リンク">
+                <a href="https://gakuensai.net">Top</a>
+                <a href="https://gakuensai.net/blog/">Blog</a>
+                <a href="<?php echo $base_path; ?>/pages/preview.php">Preview</a>
+            </div>
+            <div class="menu_category_grid" aria-label="サイトメニュー">
+                <section class="menu_category active">
+                    <button class="menu_category_title" type="button" aria-expanded="true">イベント</button>
+                    <div class="menu_category_items">
+                        <a href="<?php echo $base_path; ?>/pages/kikaku.php">企画紹介</a>
+                        <a href="<?php echo $base_path; ?>/pages/timetable.php">ステージタイムテーブル</a>
+                        <a href="<?php echo $base_path; ?>/pages/setlist.php">Mプロ・Aステセットリスト</a>
+                        <a href="<?php echo $base_path; ?>/pages/leaflet.php">リーフレット</a>
+                    </div>
+                </section>
+                <section class="menu_category">
+                    <button class="menu_category_title" type="button" aria-expanded="false">販売</button>
+                    <div class="menu_category_items">
+                        <a href="<?php echo $base_path; ?>/pages/cafe.php">喫茶メニュー</a>
+                        <a href="<?php echo $base_path; ?>/pages/goods.php">グッズ・お土産</a>
+                        <a href="<?php echo $base_path; ?>/pages/cashless.php">キャッシュレス決済</a>
+                    </div>
+                </section>
+                <section class="menu_category">
+                    <button class="menu_category_title" type="button" aria-expanded="false">ご案内</button>
+                    <div class="menu_category_items">
+                        <a href="<?php echo $base_path; ?>/pages/access.php">アクセス</a>
+                        <a href="<?php echo $base_path; ?>/pages/contact.php">お問い合わせ</a>
+                        <a href="<?php echo $base_path; ?>/lostitem">落とし物・忘れ物</a>
+                    </div>
+                </section>
+                <section class="menu_category">
+                    <button class="menu_category_title" type="button" aria-expanded="false">公式情報</button>
+                    <div class="menu_category_items">
+                        <a href="<?php echo $base_path; ?>/pages/concept.php">コンセプト</a>
+                        <a href="<?php echo $base_path; ?>/pages/greetings.php">代表者挨拶</a>
+                        <a href="<?php echo $base_path; ?>/pages/sitemap.php">サイトマップ</a>
+                        <a href="<?php echo $base_path; ?>/pages/privacy.php">プライバシーポリシー</a>
+                    </div>
+                </section>
+            </div>
             <div class="menu_footer_sns">
                 <a href="https://x.com/Enjitsu78th" class="menu_sns_link" aria-label="X (Twitter)">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>

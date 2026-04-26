@@ -91,10 +91,10 @@
         <!-- Loading Screen -->
          <div id="loading_screen">
             <div class="loading_inner">
-                <video class="loading_video" id="loading_video" autoplay muted playsinline preload="auto">
+                <video class="loading_video" id="loading_video" autoplay muted playsinline preload="auto" data-pc-webm="./materials/NowLoading/NowLoading.webm" data-mobile-webm="./materials/NowLoading/mobile_NowLoading.webm" data-mobile-mp4="./materials/NowLoading/mobile_NowLoading.mp4">
                     <source src="./materials/NowLoading/NowLoading.webm" type="video/webm">
                 </video>
-                <img src="./materials/NowLoading/NowLoading.webp" class="loading_image" id="loading_image" alt="Now Loading">
+                <img src="./materials/NowLoading/NowLoading.webp" data-pc-webp="./materials/NowLoading/NowLoading.webp" data-mobile-webp="./materials/NowLoading/mobile_NowLoading.webp" class="loading_image" id="loading_image" alt="Now Loading">
             </div>
          </div>
         <!-- Header -->

@@ -390,3 +390,199 @@
         padding: 90px 20px 50px;
     }
 }
+
+/* ===== Structured category menu (no-scroll overlay) ===== */
+.menu_inner {
+    justify-content: center;
+    gap: clamp(10px, 1.6vh, 18px);
+    overflow: hidden;
+}
+
+.menu_quick_links,
+.menu_category_grid {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+.menu.active .menu_quick_links,
+.menu.active .menu_category_grid {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.menu_quick_links {
+    display: flex;
+    justify-content: center;
+    gap: clamp(8px, 1.6vw, 18px);
+    flex-wrap: nowrap;
+}
+
+.menu_quick_links a,
+.menu_category_items a {
+    font-family: "Noto Sans JP", sans-serif;
+    letter-spacing: 0.04em;
+}
+
+.menu_quick_links a {
+    padding: 7px 14px;
+    border-radius: 999px;
+    font-size: clamp(12px, 1.8vh, 15px);
+    background: rgba(255, 255, 255, 0.28);
+    border: 1px solid rgba(26, 18, 7, 0.1);
+}
+
+.menu_quick_links a::after,
+.menu_category_items a::after {
+    display: none;
+}
+
+.menu_category_grid {
+    width: min(920px, calc(100vw - 32px));
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(8px, 1.4vw, 14px);
+}
+
+.menu_category {
+    min-width: 0;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.24);
+    border: 1px solid rgba(26, 18, 7, 0.1);
+    box-shadow: 0 10px 30px rgba(26, 18, 7, 0.06);
+    overflow: hidden;
+}
+
+.menu_category_title {
+    width: 100%;
+    border: 0;
+    padding: clamp(10px, 1.8vh, 15px) 12px;
+    background: rgba(26, 18, 7, 0.08);
+    color: #1a1207;
+    font-family: "Zen Old Mincho", serif;
+    font-weight: 900;
+    font-size: clamp(14px, 2.3vh, 19px);
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    text-align: center;
+}
+
+.menu_category_title:focus-visible,
+.menu_quick_links a:focus-visible,
+.menu_category_items a:focus-visible {
+    outline: 2px solid #8b6914;
+    outline-offset: 2px;
+}
+
+.menu_category_items {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: clamp(8px, 1.2vh, 12px);
+}
+
+.menu_category_items a {
+    padding: clamp(6px, 1.1vh, 9px) 8px;
+    border-radius: 10px;
+    font-size: clamp(11px, 1.65vh, 14px);
+    font-weight: 600;
+    line-height: 1.35;
+    background: rgba(255, 255, 255, 0.16);
+}
+
+.menu_category_items a:hover {
+    background: rgba(255, 255, 255, 0.36);
+}
+
+.menu_footer_sns {
+    margin-top: clamp(8px, 1.8vh, 20px);
+    padding-top: clamp(8px, 1.4vh, 14px);
+}
+
+#menu.active .menu_inner > *:nth-child(2) { transition-delay: 0.15s !important; }
+#menu.active .menu_inner > *:nth-child(3) { transition-delay: 0.20s !important; }
+#menu.active .menu_inner > *:nth-child(4) { transition-delay: 0.25s !important; }
+
+@media screen and (max-width: 767px) {
+    .menu_inner {
+        padding: 78px 14px 18px;
+        gap: 8px;
+    }
+
+    .menu_header_label {
+        margin-bottom: 2px;
+        font-size: 10px;
+    }
+
+    .menu_category_grid {
+        width: min(430px, calc(100vw - 24px));
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+
+    .menu_category_title {
+        padding: 9px 8px;
+        font-size: clamp(13px, 2.1vh, 16px);
+    }
+
+    .menu_category_items {
+        max-height: 0;
+        padding: 0 8px;
+        opacity: 0;
+        overflow: hidden;
+        transition: max-height 0.24s ease, opacity 0.2s ease, padding 0.24s ease;
+    }
+
+    .menu_category.active .menu_category_items {
+        max-height: 190px;
+        padding: 7px 8px 8px;
+        opacity: 1;
+    }
+
+    .menu_category_items a {
+        padding: clamp(5px, 0.9vh, 7px) 6px;
+        font-size: clamp(10px, 1.65vh, 12px);
+    }
+
+    .menu_quick_links a {
+        padding: 6px 11px;
+        font-size: 11px;
+    }
+
+    .menu_footer_sns {
+        gap: 14px;
+    }
+
+    .menu_sns_link {
+        width: 34px;
+        height: 34px;
+    }
+}
+
+@media screen and (max-height: 620px) {
+    .menu_inner {
+        padding-top: 58px;
+        padding-bottom: 10px;
+        gap: 6px;
+    }
+
+    .menu_quick_links a {
+        padding: 4px 10px;
+        font-size: 10px;
+    }
+
+    .menu_category_title {
+        padding: 6px 8px;
+        font-size: 12px;
+    }
+
+    .menu_category_items a {
+        padding: 3px 5px;
+        font-size: 10px;
+    }
+
+    .menu_footer_sns {
+        margin-top: 4px;
+        padding-top: 4px;
+    }
+}

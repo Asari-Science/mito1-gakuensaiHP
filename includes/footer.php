@@ -18,10 +18,13 @@
                     <h4 class="footer_col_title">ページ</h4>
                     <a href="<?php echo $base_path; ?>/pages/contact.php" class="footer_nav_link">お問い合わせ</a>
                     <a href="<?php echo $base_path; ?>/pages/access.php" class="footer_nav_link">アクセス</a>
+                    <a href="<?php echo $base_path; ?>/pages/timetable.php" class="footer_nav_link">ステージタイムテーブル</a>
                     <a href="<?php echo $base_path; ?>/lostitem" class="footer_nav_link">落とし物・忘れ物</a>
                 </div>
                 <div class="footer_links_col">
                     <h4 class="footer_col_title">情報</h4>
+                    <a href="<?php echo $base_path; ?>/pages/cafe.php" class="footer_nav_link">喫茶メニュー</a>
+                    <a href="<?php echo $base_path; ?>/pages/goods.php" class="footer_nav_link">グッズ・お土産</a>
                     <a href="<?php echo $base_path; ?>/pages/cashless.php" class="footer_nav_link">キャッシュレス決済について</a>
                     <a href="<?php echo $base_path; ?>/pages/privacy.php" class="footer_nav_link">プライバシーポリシー</a>
                     <a href="<?php echo $base_path; ?>/pages/sitemap.php" class="footer_nav_link">サイトマップ</a>

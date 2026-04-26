@@ -1,0 +1,68 @@
+[
+  {
+    "id": "C001",
+    "photo": "../materials/enjitsu78th.webp",
+    "title": "天翔るソーダ",
+    "description": "青空をイメージした爽やかなソーダ。暑い日の休憩にぴったりです。",
+    "price": 300,
+    "seller": "3年1組 喫茶班",
+    "cashless": true,
+    "category": "飲み物",
+    "stock": 120
+  },
+  {
+    "id": "C002",
+    "photo": "../materials/enjitsu78th.webp",
+    "title": "星くずレモネード",
+    "description": "レモンの酸味とはちみつの甘さを合わせた定番ドリンク。",
+    "price": 350,
+    "seller": "2年4組",
+    "cashless": true,
+    "category": "飲み物",
+    "stock": 96
+  },
+  {
+    "id": "C003",
+    "photo": "../materials/enjitsu78th.webp",
+    "title": "焼きたてワッフル",
+    "description": "外はさくっと、中はふんわり。チョコソース付き。",
+    "price": 450,
+    "seller": "1年2組",
+    "cashless": false,
+    "category": "食べ物",
+    "stock": 58
+  },
+  {
+    "id": "C004",
+    "photo": "../materials/enjitsu78th.webp",
+    "title": "青春カレー",
+    "description": "スパイス控えめで食べやすい学苑祭限定カレー。",
+    "price": 600,
+    "seller": "家庭科部",
+    "cashless": true,
+    "category": "食べ物",
+    "stock": 42
+  },
+  {
+    "id": "C005",
+    "photo": "../materials/enjitsu78th.webp",
+    "title": "ひんやりアイスカップ",
+    "description": "食べ歩きしやすいカップアイス。味は当日のお楽しみ。",
+    "price": 250,
+    "seller": "附属中3年",
+    "cashless": false,
+    "category": "デザート",
+    "stock": 80
+  },
+  {
+    "id": "C006",
+    "photo": "../materials/enjitsu78th.webp",
+    "title": "水戸一ブレンド珈琲",
+    "description": "香り高い深煎りコーヒー。ホット・アイス対応予定。",
+    "price": 300,
+    "seller": "PTA喫茶",
+    "cashless": true,
+    "category": "飲み物",
+    "stock": 70
+  }
+]

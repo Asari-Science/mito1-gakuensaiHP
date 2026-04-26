@@ -4,41 +4,50 @@ const menu = document.getElementById("menu");
 const header_bg = document.getElementById("header_bg");
 const header_frame = document.querySelector(".header_frame");
 
+function closeGlobalMenu() {
+    menu_btn.classList.remove("active");
+    menu.classList.remove("active");
+    document.body.style.paddingRight = "";
+    if (header_frame) header_frame.style.paddingRight = "";
+    document.body.style.overflow = "";
+    document.documentElement.style.overflow = "";
+}
+
 menu_btn.addEventListener("click", () => {
     const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    const opening = !menu.classList.contains("active");
+    menu_btn.classList.toggle("active", opening);
+    menu.classList.toggle("active", opening);
 
-    menu_btn.classList.toggle("active");
-    menu.classList.toggle("active");
-    //header_bg.classList.toggle("active");
-
-    if (menu.classList.contains("active")) {
+    if (opening) {
         document.body.style.paddingRight = `${scrollbarWidth}px`;
         if (header_frame) header_frame.style.paddingRight = `${scrollbarWidth}px`;
-
         document.body.style.overflow = "hidden";
         document.documentElement.style.overflow = "hidden";
     } else {
-        document.body.style.paddingRight = "";
-        if (header_frame) header_frame.style.paddingRight = "";
-
-        document.body.style.overflow = "";
-        document.documentElement.style.overflow = "";
+        closeGlobalMenu();
     }
+});
+
+const menuCategories = menu.querySelectorAll(".menu_category");
+menuCategories.forEach(function(category) {
+    const button = category.querySelector(".menu_category_title");
+    if (!button) return;
+    button.addEventListener("click", function() {
+        const isActive = category.classList.contains("active");
+        menuCategories.forEach(function(other) {
+            other.classList.remove("active");
+            const otherButton = other.querySelector(".menu_category_title");
+            if (otherButton) otherButton.setAttribute("aria-expanded", "false");
+        });
+        category.classList.toggle("active", !isActive);
+        button.setAttribute("aria-expanded", !isActive ? "true" : "false");
+    });
 });
 
 const menuLinks = menu.querySelectorAll("a");
 menuLinks.forEach(function(link) {
-    link.addEventListener("click", function() {
-        menu_btn.classList.remove("active");
-        menu.classList.remove("active");
-        //header_bg.classList.remove("active");
-        
-        document.body.style.paddingRight = "";
-        if (header_frame) header_frame.style.paddingRight = "";
-        
-        document.body.style.overflow = "";
-        document.documentElement.style.overflow = "";
-    });
+    link.addEventListener("click", closeGlobalMenu);
 });
 
 // セクションのフェードイン表示
