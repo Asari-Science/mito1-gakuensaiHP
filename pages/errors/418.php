@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>418 - まろやかな緑茶 | 第78回水戸一高・附属中学校学苑祭「天翔る」</title>
-        <meta name="description" content="現在アクセスが集中しています。第78回学苑祭の公式サイト。">
+        <meta name="description" content="お茶を淹れるページです。第78回学苑祭の公式サイト。">
 
         <!-- Google Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
