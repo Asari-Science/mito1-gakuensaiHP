@@ -4,8 +4,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>418 I'm a teapot | 第78回水戸一高・附属中学校学苑祭「天翔る」</title>
-        <meta name="description" content="コーヒーを淹れようとしましたが、サーバーはティーポットでした。">
+        <title>418 - まろやかな緑茶 | 第78回水戸一高・附属中学校学苑祭「天翔る」</title>
+        <meta name="description" content="お茶を淹れるページです。第78回学苑祭の公式サイト。">
 
         <!-- Google Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -63,12 +63,13 @@
                     <p class="error_altitude">418</p>
                     <p class="error_altitude_unit">- TEAPOT -</p>
 
-                    <h1 class="error_title">コーヒーを淹れることは<br>できません。</h1>
+                    <h1 class="error_title">あなたの想いを<br>まろやかな緑茶に。</h1>
 
                     <p class="error_message">
-                        申し訳ありません。コーヒーを淹れるリクエストを受け取りましたが、<br>
-                        私はティーポットですので、コーヒーを淹れることは拒否いたします。<br>
-                        その代わり、最高級の茶葉で淹れた「まろやかな緑茶」をご用意しました。
+                        みなさんの私たちの学苑祭への期待が、<br>
+                        まろやかな緑茶を作り上げました。<br>
+                        41.8°Cの、絶妙な温度設定が織りなすハーモニー。<br>
+                        私たちの創造の極致を、是非ご堪能ください。
                     </p>
 
                     <div class="error_divider"></div>
@@ -80,7 +81,7 @@
 
                     <a href="https://gakuensai.net" class="error_back">
                         <span class="back_arrow">&larr;</span>
-                        <span>コーヒーを諦める</span>
+                        <span>お茶を飲みたい気分ではない</span>
                     </a>
                 </div>
 
