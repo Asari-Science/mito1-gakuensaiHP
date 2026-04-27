@@ -66,6 +66,28 @@ body {
     display: none;
 }
 
+/* Mobile-specific assets are produced at portrait aspect; ensure they fully cover the viewport */
+.loading_video.is-mobile,
+.loading_image.is-mobile {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Visually hidden text for screen readers */
+.loading_a11y_text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
 /* ===== Scroll Indicator ===== */
 
 .scroll_indicator {

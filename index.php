@@ -88,13 +88,14 @@
     </head>
     <body>
         <?php $base_path = '.'; ?>
-        <!-- Loading Screen -->
-         <div id="loading_screen">
+        <!-- Loading Screen (responsive: mobile uses mobile_NowLoading.*, PC/tablet uses NowLoading.*) -->
+         <div id="loading_screen" data-base-path="<?php echo $base_path; ?>" aria-busy="true" aria-live="polite" role="status">
             <div class="loading_inner">
-                <video class="loading_video" id="loading_video" autoplay muted playsinline preload="auto" data-pc-webm="./materials/NowLoading/NowLoading.webm" data-mobile-webm="./materials/NowLoading/mobile_NowLoading.webm" data-mobile-mp4="./materials/NowLoading/mobile_NowLoading.mp4">
-                    <source src="./materials/NowLoading/NowLoading.webm" type="video/webm">
+                <video class="loading_video" id="loading_video" autoplay muted playsinline webkit-playsinline preload="auto" aria-hidden="true">
+                    <!-- sources are injected by loading.js based on viewport (mobile vs pc/tablet) -->
                 </video>
-                <img src="./materials/NowLoading/NowLoading.webp" data-pc-webp="./materials/NowLoading/NowLoading.webp" data-mobile-webp="./materials/NowLoading/mobile_NowLoading.webp" class="loading_image" id="loading_image" alt="Now Loading">
+                <img class="loading_image" id="loading_image" alt="Now Loading" />
+                <span class="loading_a11y_text">読み込み中...</span>
             </div>
          </div>
         <!-- Header -->
