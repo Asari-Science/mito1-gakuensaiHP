@@ -1,0 +1,229 @@
+/* ============================================================
+ * Setlist (placeholder page) — Mプロ・Aステ
+ * ============================================================ */
+
+body.placeholder_page { background:#f6dc9f; color:#1a1207; }
+
+.setlist_main {
+  min-height:100vh;
+  padding:0 0 80px;
+  background:
+    radial-gradient(circle at 18% 12%, rgba(255,255,255,.4), transparent 38%),
+    radial-gradient(circle at 82% 80%, rgba(218,181,132,.4), transparent 45%),
+    linear-gradient(180deg, #dab584 0%, #f6dc9f 60%);
+}
+
+/* ---- Hero ---- */
+.setlist_hero {
+  padding:130px 24px 30px;
+  text-align:center;
+}
+.setlist_label {
+  font-family:"Noto Sans JP",sans-serif;
+  font-size:12px; letter-spacing:.32em; text-transform:uppercase;
+  color:rgba(26,18,7,.5);
+  margin-bottom:14px;
+}
+.setlist_hero h1 {
+  font-family:"Zen Old Mincho",serif;
+  font-weight:900;
+  font-size:clamp(28px,6vw,50px);
+  letter-spacing:.08em;
+  line-height:1.2;
+}
+.setlist_lead {
+  max-width:680px;
+  margin:18px auto 0;
+  font-family:"Shippori Mincho",serif;
+  line-height:1.95;
+  color:rgba(26,18,7,.7);
+}
+
+/* ---- Mプロ・Aステ intro cards ---- */
+.setlist_intro {
+  max-width:1000px;
+  margin:30px auto 0;
+  padding:0 20px;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:20px;
+}
+.setlist_intro_card {
+  position:relative;
+  padding:28px 26px;
+  border-radius:24px;
+  background:rgba(255,255,255,.78);
+  border:1px solid rgba(26,18,7,.08);
+  box-shadow:0 18px 40px rgba(26,18,7,.1);
+  overflow:hidden;
+}
+.setlist_intro_card::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:24px;
+  pointer-events:none;
+  background:linear-gradient(135deg, transparent 60%, rgba(255,255,255,.4));
+}
+.setlist_intro_mpro {
+  border-left:6px solid #2f7dd1;
+}
+.setlist_intro_mpro::before {
+  content:"♪";
+  position:absolute;
+  right:16px; top:6px;
+  font-family:"Zen Old Mincho",serif;
+  font-size:90px; line-height:1;
+  color:rgba(47,125,209,.16);
+}
+.setlist_intro_aste {
+  border-left:6px solid #d84f8b;
+}
+.setlist_intro_aste::before {
+  content:"✦";
+  position:absolute;
+  right:16px; top:14px;
+  font-family:"Zen Old Mincho",serif;
+  font-size:80px; line-height:1;
+  color:rgba(216,79,139,.16);
+}
+.setlist_intro_head {
+  display:flex; align-items:center; gap:12px;
+  margin-bottom:14px;
+  position:relative; z-index:1;
+}
+.setlist_intro_mark {
+  font-family:"Zen Old Mincho",serif;
+  font-size:30px; line-height:1;
+  color:#8b6914;
+  filter:drop-shadow(0 2px 4px rgba(139,105,20,.3));
+}
+.setlist_intro_card h2 {
+  font-family:"Zen Old Mincho",serif;
+  font-size:28px; font-weight:900;
+  letter-spacing:.06em;
+}
+.setlist_intro_card p {
+  font-family:"Shippori Mincho",serif;
+  font-size:16px;
+  line-height:2;
+  color:rgba(26,18,7,.78);
+  position:relative; z-index:1;
+}
+
+/* ---- Coming Soon panel ---- */
+.setlist_coming {
+  max-width:780px;
+  margin:36px auto 0;
+  padding:0 20px;
+}
+.setlist_coming_inner {
+  padding:36px 32px;
+  border-radius:26px;
+  background:rgba(255,255,255,.74);
+  border:1px solid rgba(26,18,7,.08);
+  box-shadow:0 20px 48px rgba(26,18,7,.1);
+  text-align:center;
+}
+.setlist_coming_label {
+  font-family:"Noto Sans JP",sans-serif;
+  font-size:11px; letter-spacing:.32em; text-transform:uppercase;
+  color:rgba(26,18,7,.5);
+  margin-bottom:10px;
+}
+.setlist_coming_inner h2 {
+  font-family:"Zen Old Mincho",serif;
+  font-weight:900;
+  font-size:clamp(22px,4vw,30px);
+  letter-spacing:.06em;
+  margin-bottom:14px;
+}
+.setlist_coming_text {
+  font-family:"Shippori Mincho",serif;
+  font-size:15px;
+  line-height:1.95;
+  color:rgba(26,18,7,.72);
+  margin-bottom:24px;
+}
+.setlist_coming_text a {
+  color:#8b6914;
+  text-decoration:underline;
+  text-underline-offset:3px;
+  font-weight:700;
+}
+.setlist_coming_text a:hover { color:#1a1207; }
+
+.setlist_slots {
+  display:flex; flex-wrap:wrap; justify-content:center; gap:8px;
+  margin-bottom:26px;
+}
+.setlist_slot {
+  padding:9px 16px;
+  border-radius:999px;
+  font-family:"Noto Sans JP",sans-serif;
+  font-size:13px; font-weight:700;
+  background:#1a1207; color:#f6dc9f;
+}
+.setlist_slot_mpro { background:linear-gradient(135deg,#2f7dd1,#1d5f9f); color:#fff; }
+.setlist_slot_aste { background:linear-gradient(135deg,#d84f8b,#a83668); color:#fff; }
+
+.setlist_actions {
+  display:flex; flex-wrap:wrap; justify-content:center; gap:10px;
+}
+.setlist_btn {
+  display:inline-flex; align-items:center; gap:8px;
+  padding:12px 22px;
+  border-radius:999px;
+  border:1.5px solid rgba(26,18,7,.18);
+  background:rgba(255,255,255,.6);
+  color:#1a1207;
+  text-decoration:none;
+  font-family:"Noto Sans JP",sans-serif;
+  font-weight:700;
+  font-size:14px;
+  transition:.2s ease;
+}
+.setlist_btn:hover {
+  transform:translateY(-2px);
+  box-shadow:0 10px 22px rgba(26,18,7,.15);
+  background:rgba(255,255,255,.85);
+}
+.setlist_btn_primary {
+  background:#1a1207;
+  color:#f6dc9f;
+  border-color:#1a1207;
+}
+.setlist_btn_primary:hover {
+  background:#000;
+  color:#f6dc9f;
+}
+.setlist_btn_back {
+  background:transparent;
+}
+
+/* ---- Responsive ---- */
+@media (max-width:767px) {
+  .setlist_hero { padding:108px 16px 24px; }
+  .setlist_lead { font-size:14px; }
+  .setlist_intro {
+    grid-template-columns:1fr;
+    padding:0 14px;
+    gap:14px;
+    margin-top:22px;
+  }
+  .setlist_intro_card { padding:22px 20px; }
+  .setlist_intro_card h2 { font-size:24px; }
+  .setlist_intro_card p { font-size:15px; line-height:1.9; }
+  .setlist_coming { padding:0 14px; margin-top:24px; }
+  .setlist_coming_inner { padding:28px 22px; }
+  .setlist_coming_text { font-size:14px; }
+  .setlist_slot { font-size:12px; padding:8px 13px; }
+  .setlist_btn { font-size:13px; padding:10px 16px; }
+}
+@media (max-width:400px) {
+  .setlist_intro { padding:0 8px; }
+  .setlist_coming { padding:0 8px; }
+  .setlist_coming_inner { padding:24px 16px; }
+  .setlist_actions { flex-direction:column; }
+  .setlist_btn { width:100%; justify-content:center; }
+}

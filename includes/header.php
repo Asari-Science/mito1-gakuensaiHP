@@ -100,13 +100,14 @@
 
                     <ul class="menu_items" id="cat-event" role="menu" aria-label="イベント" data-category="イベント" hidden>
                         <li role="none"><a role="menuitem" href="<?php echo $base_path; ?>/pages/kikaku.php">企画紹介</a></li>
-                        <li role="none"><a role="menuitem" href="<?php echo $base_path; ?>/pages/comingsoon.php">ステージタイムテーブル</a></li>
+                        <li role="none"><a role="menuitem" href="<?php echo $base_path; ?>/pages/timetable.php">ステージタイムテーブル</a></li>
+                        <li role="none"><a role="menuitem" href="<?php echo $base_path; ?>/pages/setlist.php">Mプロ・Aステ セットリスト</a></li>
                         <li role="none"><a role="menuitem" href="<?php echo $base_path; ?>/pages/leaflet.php">デジタルリーフレット</a></li>
                     </ul>
 
                     <ul class="menu_items" id="cat-shop" role="menu" aria-label="販売・サービス" data-category="販売・サービス" hidden>
-                        <li role="none"><a role="menuitem" href="<?php echo $base_path; ?>/pages/comingsoon.php">喫茶メニュー</a></li>
-                        <li role="none"><a role="menuitem" href="<?php echo $base_path; ?>/pages/comingsoon.php">グッズ・お土産</a></li>
+                        <li role="none"><a role="menuitem" href="<?php echo $base_path; ?>/pages/cafe.php">喫茶メニュー</a></li>
+                        <li role="none"><a role="menuitem" href="<?php echo $base_path; ?>/pages/goods.php">グッズ・お土産</a></li>
                         <li role="none"><a role="menuitem" href="<?php echo $base_path; ?>/pages/cashless.php">キャッシュレス決済</a></li>
                     </ul>
 
@@ -119,7 +120,7 @@
                     <ul class="menu_items" id="cat-other" role="menu" aria-label="その他" data-category="その他" hidden>
                         <li role="none"><a role="menuitem" href="<?php echo $base_path; ?>/pages/sitemap.php">サイトマップ</a></li>
                         <li role="none"><a role="menuitem" href="<?php echo $base_path; ?>/pages/privacy.php">プライバシーポリシー</a></li>
-                        <li role="none"><a role="menuitem" href="<?php echo $base_path; ?>/pages/comingsoon.php">代表者挨拶</a></li>
+                        <li role="none"><a role="menuitem" href="<?php echo $base_path; ?>/pages/greetings.php">代表者挨拶</a></li>
                     </ul>
 
                     <ul class="menu_items" id="cat-sns" role="menu" aria-label="SNS" data-category="SNS" hidden>

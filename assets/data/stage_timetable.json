@@ -1,19 +1,24 @@
 {
+  "_comment": "ステージタイムテーブルのデータ。表示する天候はサイト訪問者には切り替えさせず、`pages/timetable.php` 内の `window.STAGE_WEATHER_MODE` を 'sunny' / 'rainy' に書き換えることで切替する。",
   "activeWeatherDefault": "sunny",
   "weatherLabels": {
     "sunny": "晴天時",
     "rainy": "雨天時"
   },
+  "weatherNotices": {
+    "sunny": "本日は晴天時スケジュールです。",
+    "rainy": "本日は雨天時スケジュールです。雨天により一部ステージの会場・演目が変更されています。"
+  },
   "stageDescriptions": [
     {
       "name": "Mプロ",
-      "title": "Mプロ",
-      "description": "バンドの演奏やピアノの演奏など音楽系の発表を行います！"
+      "title": "☆Mプロ",
+      "description": "バンドの演奏や\nピアノの演奏など\n音楽系の発表を\n行います！"
     },
     {
       "name": "Aステ",
-      "title": "Aステ",
-      "description": "ダンスやコントで、ステージを盛り上げます！"
+      "title": "☆Aステ",
+      "description": "ダンスやコントで、\nステージを\n盛り上げます！"
     }
   ],
   "schedules": {
@@ -28,165 +33,39 @@
           "start": "11:30",
           "end": "16:00",
           "stages": [
-            {
-              "id": "main",
-              "name": "中央ステージ",
-              "openFrom": "11:30"
-            },
-            {
-              "id": "mpro",
-              "name": "Mプロ",
-              "openFrom": "11:40"
-            },
-            {
-              "id": "aste",
-              "name": "Aステ",
-              "openFrom": "11:35"
-            },
-            {
-              "id": "gym",
-              "name": "体育館ステージ",
-              "openFrom": "12:00"
-            },
-            {
-              "id": "garden",
-              "name": "中庭ステージ",
-              "openFrom": "11:50"
-            }
+            { "id": "gym",     "name": "体育館",     "shortName": "体育館",     "openFrom": "11:30" },
+            { "id": "garden",  "name": "中庭",       "shortName": "中庭",       "openFrom": "11:50" },
+            { "id": "patio",   "name": "パティオ",   "shortName": "パティオ",   "openFrom": "12:00" },
+            { "id": "lecture", "name": "階段教室",   "shortName": "階段教室",   "openFrom": "11:40" },
+            { "id": "music",   "name": "音楽室",     "shortName": "音楽室",     "openFrom": "11:35" }
           ],
           "events": [
-            {
-              "id": "s1",
-              "stageId": "main",
-              "start": "11:30",
-              "end": "11:50",
-              "title": "オープニングセレモニー",
-              "group": "学苑祭実行委員会",
-              "kikakuId": "K001",
-              "link": "./kikaku.php",
-              "color": "#8b6914"
-            },
-            {
-              "id": "s2",
-              "stageId": "mpro",
-              "start": "11:40",
-              "end": "12:10",
-              "title": "Acoustic Flight",
-              "group": "軽音楽部",
-              "kikakuId": "K101",
-              "link": "./kikaku.php",
-              "color": "#2f7dd1"
-            },
-            {
-              "id": "s3",
-              "stageId": "aste",
-              "start": "11:35",
-              "end": "12:00",
-              "title": "Opening Dance",
-              "group": "ダンス有志",
-              "kikakuId": "K102",
-              "link": "./kikaku.php",
-              "color": "#d84f8b"
-            },
-            {
-              "id": "s4",
-              "stageId": "garden",
-              "start": "11:50",
-              "end": "12:20",
-              "title": "青空コント劇場",
-              "group": "演劇同好会",
-              "kikakuId": "K103",
-              "link": "./kikaku.php",
-              "color": "#ef7d31"
-            },
-            {
-              "id": "s5",
-              "stageId": "gym",
-              "start": "12:00",
-              "end": "12:35",
-              "title": "吹奏楽ミニコンサート",
-              "group": "吹奏楽部",
-              "kikakuId": "K104",
-              "link": "./kikaku.php",
-              "color": "#21a67a"
-            },
-            {
-              "id": "s6",
-              "stageId": "main",
-              "start": "12:25",
-              "end": "12:55",
-              "title": "クイズ王決定戦",
-              "group": "クイズ研究会",
-              "kikakuId": "K105",
-              "link": "./kikaku.php",
-              "color": "#6b5bd6"
-            },
-            {
-              "id": "s7",
-              "stageId": "mpro",
-              "start": "12:45",
-              "end": "13:15",
-              "title": "Piano Crossing",
-              "group": "ピアノ有志",
-              "kikakuId": "K106",
-              "link": "./kikaku.php",
-              "color": "#1d9bb8"
-            },
-            {
-              "id": "s8",
-              "stageId": "aste",
-              "start": "13:05",
-              "end": "13:35",
-              "title": "漫才グランプリ",
-              "group": "お笑い有志",
-              "kikakuId": "K107",
-              "link": "./kikaku.php",
-              "color": "#c05a28"
-            },
-            {
-              "id": "s9",
-              "stageId": "gym",
-              "start": "13:30",
-              "end": "14:05",
-              "title": "合唱ステージ",
-              "group": "音楽部",
-              "kikakuId": "K108",
-              "link": "./kikaku.php",
-              "color": "#4f8f37"
-            },
-            {
-              "id": "s10",
-              "stageId": "garden",
-              "start": "13:45",
-              "end": "14:15",
-              "title": "書道パフォーマンス",
-              "group": "書道部",
-              "kikakuId": "K109",
-              "link": "./kikaku.php",
-              "color": "#333333"
-            },
-            {
-              "id": "s11",
-              "stageId": "main",
-              "start": "14:25",
-              "end": "15:00",
-              "title": "Mr. & Ms. 天翔る",
-              "group": "生徒会企画",
-              "kikakuId": "K110",
-              "link": "./kikaku.php",
-              "color": "#b78220"
-            },
-            {
-              "id": "s12",
-              "stageId": "mpro",
-              "start": "15:10",
-              "end": "15:45",
-              "title": "Band Finale",
-              "group": "軽音楽部",
-              "kikakuId": "K111",
-              "link": "./kikaku.php",
-              "color": "#b12f6f"
-            }
+            { "id": "d1-gym-1",     "stageId": "gym",     "start": "11:30", "end": "12:00", "title": "オープニングセレモニー", "group": "学苑祭実行委員会", "stageType": "中央",   "kikakuId": "K001", "link": "./kikaku.php", "color": "#8b6914" },
+            { "id": "d1-gym-2",     "stageId": "gym",     "start": "12:10", "end": "12:50", "title": "吹奏楽コンサート",       "group": "吹奏楽部",         "stageType": "ステージ", "kikakuId": "K006", "link": "./kikaku.php", "color": "#21a67a" },
+            { "id": "d1-gym-3",     "stageId": "gym",     "start": "13:10", "end": "13:55", "title": "Mr. & Ms. 天翔る",       "group": "生徒会企画",       "stageType": "ステージ", "kikakuId": "K110", "link": "./kikaku.php", "color": "#b78220" },
+            { "id": "d1-gym-4",     "stageId": "gym",     "start": "14:10", "end": "14:50", "title": "クイズ王決定戦",         "group": "クイズ研究会",     "stageType": "ステージ", "kikakuId": "K105", "link": "./kikaku.php", "color": "#6b5bd6" },
+            { "id": "d1-gym-5",     "stageId": "gym",     "start": "15:10", "end": "15:55", "title": "クロージングライブ",     "group": "学苑祭実行委員会", "stageType": "中央",   "kikakuId": "K209", "link": "./kikaku.php", "color": "#df1f25" },
+
+            { "id": "d1-garden-1",  "stageId": "garden",  "start": "11:50", "end": "12:25", "title": "青空コント劇場",         "group": "演劇同好会",       "stageType": "Aステ",  "kikakuId": "K103", "link": "./setlist.php", "color": "#ef7d31" },
+            { "id": "d1-garden-2",  "stageId": "garden",  "start": "12:40", "end": "13:15", "title": "書道パフォーマンス",     "group": "書道部",           "stageType": "ステージ", "kikakuId": "K004", "link": "./kikaku.php", "color": "#333333" },
+            { "id": "d1-garden-3",  "stageId": "garden",  "start": "13:30", "end": "14:10", "title": "ダンスショーケース",     "group": "ダンス有志",       "stageType": "Aステ",  "kikakuId": "K102", "link": "./setlist.php", "color": "#d84f8b" },
+            { "id": "d1-garden-4",  "stageId": "garden",  "start": "14:30", "end": "15:10", "title": "野外ライブセッション",   "group": "軽音楽部",         "stageType": "Mプロ",  "kikakuId": "K111", "link": "./setlist.php", "color": "#b12f6f" },
+
+            { "id": "d1-patio-1",   "stageId": "patio",   "start": "12:00", "end": "12:35", "title": "アカペラステージ",       "group": "合唱有志",         "stageType": "Mプロ",  "kikakuId": "K203", "link": "./setlist.php", "color": "#2f7dd1" },
+            { "id": "d1-patio-2",   "stageId": "patio",   "start": "12:50", "end": "13:30", "title": "大道芸パフォーマンス",   "group": "有志企画",         "stageType": "Aステ",  "kikakuId": "K205", "link": "./setlist.php", "color": "#ef7d31" },
+            { "id": "d1-patio-3",   "stageId": "patio",   "start": "13:45", "end": "14:25", "title": "弾き語りステージ",       "group": "音楽有志",         "stageType": "Mプロ",  "kikakuId": "K106", "link": "./setlist.php", "color": "#1d9bb8" },
+            { "id": "d1-patio-4",   "stageId": "patio",   "start": "14:40", "end": "15:20", "title": "漫才グランプリ",         "group": "お笑い有志",       "stageType": "Aステ",  "kikakuId": "K107", "link": "./setlist.php", "color": "#c05a28" },
+
+            { "id": "d1-lecture-1", "stageId": "lecture", "start": "11:40", "end": "12:20", "title": "天文部ライブトーク",     "group": "天文部",           "stageType": "創作展示", "kikakuId": "K005", "link": "./kikaku.php", "color": "#3a3f7e" },
+            { "id": "d1-lecture-2", "stageId": "lecture", "start": "12:35", "end": "13:15", "title": "模擬国連 公開セッション", "group": "社会科研究部",     "stageType": "創作展示", "kikakuId": "K007", "link": "./kikaku.php", "color": "#4f8f37" },
+            { "id": "d1-lecture-3", "stageId": "lecture", "start": "13:30", "end": "14:10", "title": "サイエンスフライト",     "group": "科学部",           "stageType": "創作展示", "kikakuId": "K003", "link": "./kikaku.php", "color": "#21a67a" },
+            { "id": "d1-lecture-4", "stageId": "lecture", "start": "14:30", "end": "15:10", "title": "クラス対抗トークバトル", "group": "各クラス代表",     "stageType": "ステージ", "kikakuId": "K206", "link": "./kikaku.php", "color": "#6b5bd6" },
+
+            { "id": "d1-music-1",   "stageId": "music",   "start": "11:35", "end": "12:10", "title": "Acoustic Flight",         "group": "軽音楽部",         "stageType": "Mプロ",  "kikakuId": "K101", "link": "./setlist.php", "color": "#2f7dd1" },
+            { "id": "d1-music-2",   "stageId": "music",   "start": "12:25", "end": "13:00", "title": "Piano Crossing",          "group": "ピアノ有志",       "stageType": "Mプロ",  "kikakuId": "K106", "link": "./setlist.php", "color": "#1d9bb8" },
+            { "id": "d1-music-3",   "stageId": "music",   "start": "13:15", "end": "13:55", "title": "合唱ステージ",           "group": "音楽部",           "stageType": "Mプロ",  "kikakuId": "K108", "link": "./setlist.php", "color": "#4f8f37" },
+            { "id": "d1-music-4",   "stageId": "music",   "start": "14:10", "end": "14:50", "title": "管弦アンサンブル",       "group": "管弦楽部",         "stageType": "Mプロ",  "kikakuId": "K204", "link": "./setlist.php", "color": "#21a67a" },
+            { "id": "d1-music-5",   "stageId": "music",   "start": "15:05", "end": "15:50", "title": "Band Finale",             "group": "軽音楽部",         "stageType": "Mプロ",  "kikakuId": "K111", "link": "./setlist.php", "color": "#b12f6f" }
           ]
         },
         {
@@ -197,138 +76,40 @@
           "start": "09:30",
           "end": "12:45",
           "stages": [
-            {
-              "id": "main",
-              "name": "中央ステージ",
-              "openFrom": "09:30"
-            },
-            {
-              "id": "mpro",
-              "name": "Mプロ",
-              "openFrom": "09:40"
-            },
-            {
-              "id": "aste",
-              "name": "Aステ",
-              "openFrom": "09:35"
-            },
-            {
-              "id": "gym",
-              "name": "体育館ステージ",
-              "openFrom": "09:50"
-            },
-            {
-              "id": "garden",
-              "name": "中庭ステージ",
-              "openFrom": "10:00"
-            }
+            { "id": "gym",     "name": "体育館",   "shortName": "体育館",   "openFrom": "09:30" },
+            { "id": "garden",  "name": "中庭",     "shortName": "中庭",     "openFrom": "10:00" },
+            { "id": "patio",   "name": "パティオ", "shortName": "パティオ", "openFrom": "09:50" },
+            { "id": "lecture", "name": "階段教室", "shortName": "階段教室", "openFrom": "09:40" },
+            { "id": "music",   "name": "音楽室",   "shortName": "音楽室",   "openFrom": "09:35" }
           ],
           "events": [
-            {
-              "id": "d2s1",
-              "stageId": "main",
-              "start": "09:30",
-              "end": "09:50",
-              "title": "Day2 オープニング",
-              "group": "学苑祭実行委員会",
-              "kikakuId": "K201",
-              "link": "./kikaku.php",
-              "color": "#8b6914"
-            },
-            {
-              "id": "d2s2",
-              "stageId": "aste",
-              "start": "09:35",
-              "end": "10:05",
-              "title": "Morning Dance Mix",
-              "group": "ダンス有志",
-              "kikakuId": "K202",
-              "link": "./kikaku.php",
-              "color": "#d84f8b"
-            },
-            {
-              "id": "d2s3",
-              "stageId": "mpro",
-              "start": "09:40",
-              "end": "10:10",
-              "title": "弾き語りステージ",
-              "group": "音楽有志",
-              "kikakuId": "K203",
-              "link": "./kikaku.php",
-              "color": "#2f7dd1"
-            },
-            {
-              "id": "d2s4",
-              "stageId": "gym",
-              "start": "09:50",
-              "end": "10:25",
-              "title": "管弦アンサンブル",
-              "group": "管弦楽部",
-              "kikakuId": "K204",
-              "link": "./kikaku.php",
-              "color": "#21a67a"
-            },
-            {
-              "id": "d2s5",
-              "stageId": "garden",
-              "start": "10:00",
-              "end": "10:30",
-              "title": "大道芸パフォーマンス",
-              "group": "有志企画",
-              "kikakuId": "K205",
-              "link": "./kikaku.php",
-              "color": "#ef7d31"
-            },
-            {
-              "id": "d2s6",
-              "stageId": "main",
-              "start": "10:40",
-              "end": "11:15",
-              "title": "クラス対抗ステージ",
-              "group": "各クラス代表",
-              "kikakuId": "K206",
-              "link": "./kikaku.php",
-              "color": "#6b5bd6"
-            },
-            {
-              "id": "d2s7",
-              "stageId": "mpro",
-              "start": "11:10",
-              "end": "11:45",
-              "title": "Mプロ・リクエストライブ",
-              "group": "Mプロ出演者",
-              "kikakuId": "K207",
-              "link": "./setlist.php",
-              "color": "#1d9bb8"
-            },
-            {
-              "id": "d2s8",
-              "stageId": "aste",
-              "start": "11:20",
-              "end": "11:55",
-              "title": "Aステ・コント集",
-              "group": "Aステ出演者",
-              "kikakuId": "K208",
-              "link": "./setlist.php",
-              "color": "#c05a28"
-            },
-            {
-              "id": "d2s9",
-              "stageId": "main",
-              "start": "12:10",
-              "end": "12:45",
-              "title": "フィナーレ",
-              "group": "学苑祭実行委員会",
-              "kikakuId": "K209",
-              "link": "./kikaku.php",
-              "color": "#b78220"
-            }
+            { "id": "d2-gym-1",     "stageId": "gym",     "start": "09:30", "end": "10:00", "title": "Day2 オープニング",     "group": "学苑祭実行委員会", "stageType": "中央",   "kikakuId": "K201", "link": "./kikaku.php", "color": "#8b6914" },
+            { "id": "d2-gym-2",     "stageId": "gym",     "start": "10:15", "end": "10:55", "title": "クラス対抗ステージ",   "group": "各クラス代表",     "stageType": "ステージ", "kikakuId": "K206", "link": "./kikaku.php", "color": "#6b5bd6" },
+            { "id": "d2-gym-3",     "stageId": "gym",     "start": "11:10", "end": "11:55", "title": "吹奏楽グランドフィナーレ", "group": "吹奏楽部",     "stageType": "ステージ", "kikakuId": "K006", "link": "./kikaku.php", "color": "#21a67a" },
+            { "id": "d2-gym-4",     "stageId": "gym",     "start": "12:10", "end": "12:45", "title": "フィナーレ",             "group": "学苑祭実行委員会", "stageType": "中央",   "kikakuId": "K209", "link": "./kikaku.php", "color": "#df1f25" },
+
+            { "id": "d2-garden-1",  "stageId": "garden",  "start": "10:00", "end": "10:30", "title": "大道芸パフォーマンス", "group": "有志企画",       "stageType": "Aステ",  "kikakuId": "K205", "link": "./setlist.php", "color": "#ef7d31" },
+            { "id": "d2-garden-2",  "stageId": "garden",  "start": "10:45", "end": "11:25", "title": "ダンスショー",         "group": "ダンス有志",     "stageType": "Aステ",  "kikakuId": "K202", "link": "./setlist.php", "color": "#d84f8b" },
+            { "id": "d2-garden-3",  "stageId": "garden",  "start": "11:40", "end": "12:20", "title": "アコースティックライブ", "group": "軽音楽部",     "stageType": "Mプロ",  "kikakuId": "K101", "link": "./setlist.php", "color": "#2f7dd1" },
+
+            { "id": "d2-patio-1",   "stageId": "patio",   "start": "09:50", "end": "10:25", "title": "モーニングダンス",     "group": "ダンス有志",     "stageType": "Aステ",  "kikakuId": "K202", "link": "./setlist.php", "color": "#d84f8b" },
+            { "id": "d2-patio-2",   "stageId": "patio",   "start": "10:40", "end": "11:20", "title": "Aステ・コント集",       "group": "Aステ出演者",   "stageType": "Aステ",  "kikakuId": "K208", "link": "./setlist.php", "color": "#c05a28" },
+            { "id": "d2-patio-3",   "stageId": "patio",   "start": "11:35", "end": "12:15", "title": "ストリートパフォーマンス", "group": "有志企画",   "stageType": "Aステ",  "kikakuId": "K205", "link": "./setlist.php", "color": "#ef7d31" },
+
+            { "id": "d2-lecture-1", "stageId": "lecture", "start": "09:40", "end": "10:20", "title": "サイエンス・トーク",   "group": "科学部",         "stageType": "創作展示", "kikakuId": "K003", "link": "./kikaku.php", "color": "#3a3f7e" },
+            { "id": "d2-lecture-2", "stageId": "lecture", "start": "10:35", "end": "11:15", "title": "天翔る星空ガイド",     "group": "天文部",         "stageType": "創作展示", "kikakuId": "K005", "link": "./kikaku.php", "color": "#4f8f37" },
+            { "id": "d2-lecture-3", "stageId": "lecture", "start": "11:30", "end": "12:10", "title": "国際問題セッション",   "group": "社会科研究部",   "stageType": "創作展示", "kikakuId": "K007", "link": "./kikaku.php", "color": "#21a67a" },
+
+            { "id": "d2-music-1",   "stageId": "music",   "start": "09:35", "end": "10:10", "title": "弾き語りステージ",     "group": "音楽有志",       "stageType": "Mプロ",  "kikakuId": "K203", "link": "./setlist.php", "color": "#2f7dd1" },
+            { "id": "d2-music-2",   "stageId": "music",   "start": "10:25", "end": "11:05", "title": "Mプロ・リクエストライブ", "group": "Mプロ出演者",   "stageType": "Mプロ",  "kikakuId": "K207", "link": "./setlist.php", "color": "#1d9bb8" },
+            { "id": "d2-music-3",   "stageId": "music",   "start": "11:20", "end": "12:00", "title": "ピアノコンサート",     "group": "ピアノ有志",     "stageType": "Mプロ",  "kikakuId": "K106", "link": "./setlist.php", "color": "#b12f6f" },
+            { "id": "d2-music-4",   "stageId": "music",   "start": "12:15", "end": "12:45", "title": "クロージングライブ",   "group": "軽音楽部",       "stageType": "Mプロ",  "kikakuId": "K111", "link": "./setlist.php", "color": "#df1f25" }
           ]
         }
       ]
     },
     "rainy": {
-      "notice": "本日は雨天時スケジュールです。",
+      "notice": "本日は雨天時スケジュールです。雨天により中庭・パティオの演目は屋内会場に振替されています。",
       "days": [
         {
           "id": "day1",
@@ -338,165 +119,39 @@
           "start": "11:30",
           "end": "16:00",
           "stages": [
-            {
-              "id": "main",
-              "name": "中央ステージ",
-              "openFrom": "11:30"
-            },
-            {
-              "id": "mpro",
-              "name": "Mプロ",
-              "openFrom": "11:40"
-            },
-            {
-              "id": "aste",
-              "name": "Aステ",
-              "openFrom": "11:35"
-            },
-            {
-              "id": "gym",
-              "name": "体育館ステージ",
-              "openFrom": "12:00"
-            },
-            {
-              "id": "garden",
-              "name": "多目的室ステージ（雨天）",
-              "openFrom": "11:30"
-            }
+            { "id": "gym",     "name": "体育館",             "shortName": "体育館",     "openFrom": "11:30" },
+            { "id": "garden",  "name": "中庭(屋内振替)",     "shortName": "中庭→屋内", "openFrom": "12:10" },
+            { "id": "patio",   "name": "パティオ(屋内振替)", "shortName": "パティオ→屋内", "openFrom": "12:30" },
+            { "id": "lecture", "name": "階段教室",           "shortName": "階段教室",   "openFrom": "11:40" },
+            { "id": "music",   "name": "音楽室",             "shortName": "音楽室",     "openFrom": "11:35" }
           ],
           "events": [
-            {
-              "id": "s1",
-              "stageId": "main",
-              "start": "11:30",
-              "end": "11:50",
-              "title": "オープニングセレモニー",
-              "group": "学苑祭実行委員会",
-              "kikakuId": "K001",
-              "link": "./kikaku.php",
-              "color": "#8b6914"
-            },
-            {
-              "id": "s2",
-              "stageId": "mpro",
-              "start": "11:40",
-              "end": "12:10",
-              "title": "Acoustic Flight",
-              "group": "軽音楽部",
-              "kikakuId": "K101",
-              "link": "./kikaku.php",
-              "color": "#2f7dd1"
-            },
-            {
-              "id": "s3",
-              "stageId": "aste",
-              "start": "11:35",
-              "end": "12:00",
-              "title": "Opening Dance",
-              "group": "ダンス有志",
-              "kikakuId": "K102",
-              "link": "./kikaku.php",
-              "color": "#d84f8b"
-            },
-            {
-              "id": "s4",
-              "stageId": "garden",
-              "start": "11:50",
-              "end": "12:20",
-              "title": "雨天版 青空コント劇場",
-              "group": "演劇同好会",
-              "kikakuId": "K103",
-              "link": "./kikaku.php",
-              "color": "#4b6f9f"
-            },
-            {
-              "id": "s5",
-              "stageId": "gym",
-              "start": "12:00",
-              "end": "12:35",
-              "title": "吹奏楽ミニコンサート",
-              "group": "吹奏楽部",
-              "kikakuId": "K104",
-              "link": "./kikaku.php",
-              "color": "#21a67a"
-            },
-            {
-              "id": "s6",
-              "stageId": "main",
-              "start": "12:25",
-              "end": "12:55",
-              "title": "クイズ王決定戦",
-              "group": "クイズ研究会",
-              "kikakuId": "K105",
-              "link": "./kikaku.php",
-              "color": "#6b5bd6"
-            },
-            {
-              "id": "s7",
-              "stageId": "mpro",
-              "start": "12:45",
-              "end": "13:15",
-              "title": "Piano Crossing",
-              "group": "ピアノ有志",
-              "kikakuId": "K106",
-              "link": "./kikaku.php",
-              "color": "#1d9bb8"
-            },
-            {
-              "id": "s8",
-              "stageId": "aste",
-              "start": "13:05",
-              "end": "13:35",
-              "title": "漫才グランプリ",
-              "group": "お笑い有志",
-              "kikakuId": "K107",
-              "link": "./kikaku.php",
-              "color": "#c05a28"
-            },
-            {
-              "id": "s9",
-              "stageId": "gym",
-              "start": "13:30",
-              "end": "14:05",
-              "title": "合唱ステージ",
-              "group": "音楽部",
-              "kikakuId": "K108",
-              "link": "./kikaku.php",
-              "color": "#4f8f37"
-            },
-            {
-              "id": "s10",
-              "stageId": "garden",
-              "start": "13:45",
-              "end": "14:15",
-              "title": "雨天版 書道パフォーマンス",
-              "group": "書道部",
-              "kikakuId": "K109",
-              "link": "./kikaku.php",
-              "color": "#4b6f9f"
-            },
-            {
-              "id": "s11",
-              "stageId": "main",
-              "start": "14:25",
-              "end": "15:00",
-              "title": "Mr. & Ms. 天翔る",
-              "group": "生徒会企画",
-              "kikakuId": "K110",
-              "link": "./kikaku.php",
-              "color": "#b78220"
-            },
-            {
-              "id": "s12",
-              "stageId": "mpro",
-              "start": "15:10",
-              "end": "15:45",
-              "title": "Band Finale",
-              "group": "軽音楽部",
-              "kikakuId": "K111",
-              "link": "./kikaku.php",
-              "color": "#b12f6f"
-            }
+            { "id": "r1-gym-1",     "stageId": "gym",     "start": "11:30", "end": "12:00", "title": "オープニングセレモニー",   "group": "学苑祭実行委員会", "stageType": "中央",   "kikakuId": "K001", "link": "./kikaku.php", "color": "#4b6f9f" },
+            { "id": "r1-gym-2",     "stageId": "gym",     "start": "12:10", "end": "12:50", "title": "吹奏楽コンサート",         "group": "吹奏楽部",         "stageType": "ステージ", "kikakuId": "K006", "link": "./kikaku.php", "color": "#21a67a" },
+            { "id": "r1-gym-3",     "stageId": "gym",     "start": "13:10", "end": "13:55", "title": "Mr. & Ms. 天翔る",         "group": "生徒会企画",       "stageType": "ステージ", "kikakuId": "K110", "link": "./kikaku.php", "color": "#b78220" },
+            { "id": "r1-gym-4",     "stageId": "gym",     "start": "14:10", "end": "14:50", "title": "クイズ王決定戦",           "group": "クイズ研究会",     "stageType": "ステージ", "kikakuId": "K105", "link": "./kikaku.php", "color": "#6b5bd6" },
+            { "id": "r1-gym-5",     "stageId": "gym",     "start": "15:10", "end": "15:55", "title": "クロージングライブ(雨天)", "group": "学苑祭実行委員会", "stageType": "中央",   "kikakuId": "K209", "link": "./kikaku.php", "color": "#4b6f9f" },
+
+            { "id": "r1-garden-1",  "stageId": "garden",  "start": "12:10", "end": "12:45", "title": "屋内コント劇場(雨天)",     "group": "演劇同好会",       "stageType": "Aステ",  "kikakuId": "K103", "link": "./setlist.php", "color": "#4b6f9f" },
+            { "id": "r1-garden-2",  "stageId": "garden",  "start": "13:00", "end": "13:35", "title": "屋内書道パフォーマンス",   "group": "書道部",           "stageType": "ステージ", "kikakuId": "K004", "link": "./kikaku.php", "color": "#5a6f8f" },
+            { "id": "r1-garden-3",  "stageId": "garden",  "start": "13:50", "end": "14:30", "title": "ダンスショーケース(雨天)", "group": "ダンス有志",       "stageType": "Aステ",  "kikakuId": "K102", "link": "./setlist.php", "color": "#4b6f9f" },
+            { "id": "r1-garden-4",  "stageId": "garden",  "start": "14:50", "end": "15:30", "title": "屋内ライブセッション",     "group": "軽音楽部",         "stageType": "Mプロ",  "kikakuId": "K111", "link": "./setlist.php", "color": "#5a6f8f" },
+
+            { "id": "r1-patio-1",   "stageId": "patio",   "start": "12:30", "end": "13:05", "title": "アカペラステージ",         "group": "合唱有志",         "stageType": "Mプロ",  "kikakuId": "K203", "link": "./setlist.php", "color": "#4b6f9f" },
+            { "id": "r1-patio-2",   "stageId": "patio",   "start": "13:20", "end": "14:00", "title": "屋内パフォーマンス",       "group": "有志企画",         "stageType": "Aステ",  "kikakuId": "K205", "link": "./setlist.php", "color": "#5a6f8f" },
+            { "id": "r1-patio-3",   "stageId": "patio",   "start": "14:15", "end": "14:55", "title": "弾き語り(雨天版)",         "group": "音楽有志",         "stageType": "Mプロ",  "kikakuId": "K106", "link": "./setlist.php", "color": "#4b6f9f" },
+            { "id": "r1-patio-4",   "stageId": "patio",   "start": "15:10", "end": "15:50", "title": "漫才グランプリ",           "group": "お笑い有志",       "stageType": "Aステ",  "kikakuId": "K107", "link": "./setlist.php", "color": "#5a6f8f" },
+
+            { "id": "r1-lecture-1", "stageId": "lecture", "start": "11:40", "end": "12:20", "title": "天文部ライブトーク",       "group": "天文部",           "stageType": "創作展示", "kikakuId": "K005", "link": "./kikaku.php", "color": "#3a3f7e" },
+            { "id": "r1-lecture-2", "stageId": "lecture", "start": "12:35", "end": "13:15", "title": "模擬国連 公開セッション",   "group": "社会科研究部",     "stageType": "創作展示", "kikakuId": "K007", "link": "./kikaku.php", "color": "#4f8f37" },
+            { "id": "r1-lecture-3", "stageId": "lecture", "start": "13:30", "end": "14:10", "title": "サイエンスフライト",       "group": "科学部",           "stageType": "創作展示", "kikakuId": "K003", "link": "./kikaku.php", "color": "#21a67a" },
+            { "id": "r1-lecture-4", "stageId": "lecture", "start": "14:30", "end": "15:10", "title": "クラス対抗トークバトル",   "group": "各クラス代表",     "stageType": "ステージ", "kikakuId": "K206", "link": "./kikaku.php", "color": "#6b5bd6" },
+
+            { "id": "r1-music-1",   "stageId": "music",   "start": "11:35", "end": "12:10", "title": "Acoustic Flight",          "group": "軽音楽部",         "stageType": "Mプロ",  "kikakuId": "K101", "link": "./setlist.php", "color": "#2f7dd1" },
+            { "id": "r1-music-2",   "stageId": "music",   "start": "12:25", "end": "13:00", "title": "Piano Crossing",           "group": "ピアノ有志",       "stageType": "Mプロ",  "kikakuId": "K106", "link": "./setlist.php", "color": "#1d9bb8" },
+            { "id": "r1-music-3",   "stageId": "music",   "start": "13:15", "end": "13:55", "title": "合唱ステージ",             "group": "音楽部",           "stageType": "Mプロ",  "kikakuId": "K108", "link": "./setlist.php", "color": "#4f8f37" },
+            { "id": "r1-music-4",   "stageId": "music",   "start": "14:10", "end": "14:50", "title": "管弦アンサンブル",         "group": "管弦楽部",         "stageType": "Mプロ",  "kikakuId": "K204", "link": "./setlist.php", "color": "#21a67a" },
+            { "id": "r1-music-5",   "stageId": "music",   "start": "15:05", "end": "15:50", "title": "Band Finale",              "group": "軽音楽部",         "stageType": "Mプロ",  "kikakuId": "K111", "link": "./setlist.php", "color": "#b12f6f" }
           ]
         },
         {
@@ -507,132 +162,34 @@
           "start": "09:30",
           "end": "12:45",
           "stages": [
-            {
-              "id": "main",
-              "name": "中央ステージ",
-              "openFrom": "09:30"
-            },
-            {
-              "id": "mpro",
-              "name": "Mプロ",
-              "openFrom": "09:40"
-            },
-            {
-              "id": "aste",
-              "name": "Aステ",
-              "openFrom": "09:35"
-            },
-            {
-              "id": "gym",
-              "name": "体育館ステージ",
-              "openFrom": "09:50"
-            },
-            {
-              "id": "garden",
-              "name": "多目的室ステージ（雨天）",
-              "openFrom": "09:30"
-            }
+            { "id": "gym",     "name": "体育館",             "shortName": "体育館",     "openFrom": "09:30" },
+            { "id": "garden",  "name": "中庭(屋内振替)",     "shortName": "中庭→屋内", "openFrom": "10:10" },
+            { "id": "patio",   "name": "パティオ(屋内振替)", "shortName": "パティオ→屋内", "openFrom": "10:00" },
+            { "id": "lecture", "name": "階段教室",           "shortName": "階段教室",   "openFrom": "09:40" },
+            { "id": "music",   "name": "音楽室",             "shortName": "音楽室",     "openFrom": "09:35" }
           ],
           "events": [
-            {
-              "id": "d2s1",
-              "stageId": "main",
-              "start": "09:30",
-              "end": "09:50",
-              "title": "Day2 オープニング",
-              "group": "学苑祭実行委員会",
-              "kikakuId": "K201",
-              "link": "./kikaku.php",
-              "color": "#8b6914"
-            },
-            {
-              "id": "d2s2",
-              "stageId": "aste",
-              "start": "09:35",
-              "end": "10:05",
-              "title": "Morning Dance Mix",
-              "group": "ダンス有志",
-              "kikakuId": "K202",
-              "link": "./kikaku.php",
-              "color": "#d84f8b"
-            },
-            {
-              "id": "d2s3",
-              "stageId": "mpro",
-              "start": "09:40",
-              "end": "10:10",
-              "title": "弾き語りステージ",
-              "group": "音楽有志",
-              "kikakuId": "K203",
-              "link": "./kikaku.php",
-              "color": "#2f7dd1"
-            },
-            {
-              "id": "d2s4",
-              "stageId": "gym",
-              "start": "09:50",
-              "end": "10:25",
-              "title": "管弦アンサンブル",
-              "group": "管弦楽部",
-              "kikakuId": "K204",
-              "link": "./kikaku.php",
-              "color": "#21a67a"
-            },
-            {
-              "id": "d2s5",
-              "stageId": "garden",
-              "start": "10:00",
-              "end": "10:30",
-              "title": "雨天版 大道芸パフォーマンス",
-              "group": "有志企画",
-              "kikakuId": "K205",
-              "link": "./kikaku.php",
-              "color": "#4b6f9f"
-            },
-            {
-              "id": "d2s6",
-              "stageId": "main",
-              "start": "10:40",
-              "end": "11:15",
-              "title": "クラス対抗ステージ",
-              "group": "各クラス代表",
-              "kikakuId": "K206",
-              "link": "./kikaku.php",
-              "color": "#6b5bd6"
-            },
-            {
-              "id": "d2s7",
-              "stageId": "mpro",
-              "start": "11:10",
-              "end": "11:45",
-              "title": "Mプロ・リクエストライブ",
-              "group": "Mプロ出演者",
-              "kikakuId": "K207",
-              "link": "./setlist.php",
-              "color": "#1d9bb8"
-            },
-            {
-              "id": "d2s8",
-              "stageId": "aste",
-              "start": "11:20",
-              "end": "11:55",
-              "title": "Aステ・コント集",
-              "group": "Aステ出演者",
-              "kikakuId": "K208",
-              "link": "./setlist.php",
-              "color": "#c05a28"
-            },
-            {
-              "id": "d2s9",
-              "stageId": "main",
-              "start": "12:10",
-              "end": "12:45",
-              "title": "フィナーレ",
-              "group": "学苑祭実行委員会",
-              "kikakuId": "K209",
-              "link": "./kikaku.php",
-              "color": "#b78220"
-            }
+            { "id": "r2-gym-1",     "stageId": "gym",     "start": "09:30", "end": "10:00", "title": "Day2 オープニング(雨天)",   "group": "学苑祭実行委員会", "stageType": "中央",   "kikakuId": "K201", "link": "./kikaku.php", "color": "#4b6f9f" },
+            { "id": "r2-gym-2",     "stageId": "gym",     "start": "10:15", "end": "10:55", "title": "クラス対抗ステージ",         "group": "各クラス代表",     "stageType": "ステージ", "kikakuId": "K206", "link": "./kikaku.php", "color": "#6b5bd6" },
+            { "id": "r2-gym-3",     "stageId": "gym",     "start": "11:10", "end": "11:55", "title": "吹奏楽グランドフィナーレ",   "group": "吹奏楽部",         "stageType": "ステージ", "kikakuId": "K006", "link": "./kikaku.php", "color": "#21a67a" },
+            { "id": "r2-gym-4",     "stageId": "gym",     "start": "12:10", "end": "12:45", "title": "フィナーレ(雨天版)",         "group": "学苑祭実行委員会", "stageType": "中央",   "kikakuId": "K209", "link": "./kikaku.php", "color": "#4b6f9f" },
+
+            { "id": "r2-garden-1",  "stageId": "garden",  "start": "10:10", "end": "10:45", "title": "屋内大道芸",                 "group": "有志企画",       "stageType": "Aステ",  "kikakuId": "K205", "link": "./setlist.php", "color": "#5a6f8f" },
+            { "id": "r2-garden-2",  "stageId": "garden",  "start": "11:00", "end": "11:40", "title": "ダンスショー(雨天版)",       "group": "ダンス有志",     "stageType": "Aステ",  "kikakuId": "K202", "link": "./setlist.php", "color": "#4b6f9f" },
+            { "id": "r2-garden-3",  "stageId": "garden",  "start": "11:55", "end": "12:35", "title": "屋内アコースティック",       "group": "軽音楽部",       "stageType": "Mプロ",  "kikakuId": "K101", "link": "./setlist.php", "color": "#5a6f8f" },
+
+            { "id": "r2-patio-1",   "stageId": "patio",   "start": "10:00", "end": "10:35", "title": "モーニングダンス(屋内)",     "group": "ダンス有志",     "stageType": "Aステ",  "kikakuId": "K202", "link": "./setlist.php", "color": "#4b6f9f" },
+            { "id": "r2-patio-2",   "stageId": "patio",   "start": "10:50", "end": "11:30", "title": "Aステ・コント集",             "group": "Aステ出演者",   "stageType": "Aステ",  "kikakuId": "K208", "link": "./setlist.php", "color": "#5a6f8f" },
+            { "id": "r2-patio-3",   "stageId": "patio",   "start": "11:45", "end": "12:25", "title": "屋内ストリートパフォーマンス", "group": "有志企画",   "stageType": "Aステ",  "kikakuId": "K205", "link": "./setlist.php", "color": "#4b6f9f" },
+
+            { "id": "r2-lecture-1", "stageId": "lecture", "start": "09:40", "end": "10:20", "title": "サイエンス・トーク",         "group": "科学部",         "stageType": "創作展示", "kikakuId": "K003", "link": "./kikaku.php", "color": "#3a3f7e" },
+            { "id": "r2-lecture-2", "stageId": "lecture", "start": "10:35", "end": "11:15", "title": "天翔る星空ガイド",           "group": "天文部",         "stageType": "創作展示", "kikakuId": "K005", "link": "./kikaku.php", "color": "#4f8f37" },
+            { "id": "r2-lecture-3", "stageId": "lecture", "start": "11:30", "end": "12:10", "title": "国際問題セッション",         "group": "社会科研究部",   "stageType": "創作展示", "kikakuId": "K007", "link": "./kikaku.php", "color": "#21a67a" },
+
+            { "id": "r2-music-1",   "stageId": "music",   "start": "09:35", "end": "10:10", "title": "弾き語りステージ",           "group": "音楽有志",       "stageType": "Mプロ",  "kikakuId": "K203", "link": "./setlist.php", "color": "#2f7dd1" },
+            { "id": "r2-music-2",   "stageId": "music",   "start": "10:25", "end": "11:05", "title": "Mプロ・リクエストライブ",     "group": "Mプロ出演者",   "stageType": "Mプロ",  "kikakuId": "K207", "link": "./setlist.php", "color": "#1d9bb8" },
+            { "id": "r2-music-3",   "stageId": "music",   "start": "11:20", "end": "12:00", "title": "ピアノコンサート",           "group": "ピアノ有志",     "stageType": "Mプロ",  "kikakuId": "K106", "link": "./setlist.php", "color": "#b12f6f" },
+            { "id": "r2-music-4",   "stageId": "music",   "start": "12:15", "end": "12:45", "title": "クロージングライブ(雨天)",   "group": "軽音楽部",       "stageType": "Mプロ",  "kikakuId": "K111", "link": "./setlist.php", "color": "#4b6f9f" }
           ]
         }
       ]
