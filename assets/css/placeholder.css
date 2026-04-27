@@ -1,0 +1,11 @@
+body { background:#f6dc9f; color:#1a1207; }
+.placeholder_main { min-height:100vh; display:flex; align-items:center; justify-content:center; padding:120px 20px 80px; background:radial-gradient(circle at 50% 15%,rgba(255,255,255,.35),transparent 36%),linear-gradient(180deg,#dab584,#f6dc9f); }
+.placeholder_card { width:min(760px,100%); padding:42px; border-radius:28px; background:rgba(255,255,255,.68); border:1px solid rgba(26,18,7,.08); text-align:center; box-shadow:0 20px 60px rgba(26,18,7,.12); }
+.placeholder_label { font-family:"Noto Sans JP",sans-serif; font-size:12px; letter-spacing:.28em; text-transform:uppercase; color:rgba(26,18,7,.45); margin-bottom:12px; }
+.placeholder_card h1 { font-family:"Zen Old Mincho",serif; font-weight:900; font-size:clamp(28px,5vw,46px); letter-spacing:.06em; }
+.placeholder_card p:not(.placeholder_label) { margin:16px auto 0; max-width:560px; font-family:"Shippori Mincho",serif; line-height:1.9; color:rgba(26,18,7,.7); }
+.placeholder_slots { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin:28px 0; }
+.placeholder_slots span, .placeholder_slots a { padding:10px 16px; border-radius:999px; background:#1a1207; color:#f6dc9f; text-decoration:none; font-family:"Noto Sans JP",sans-serif; font-size:13px; font-weight:700; }
+.placeholder_back { display:inline-flex; padding:12px 24px; border-radius:999px; border:1.5px solid rgba(26,18,7,.2); color:#1a1207; text-decoration:none; font-family:"Noto Sans JP",sans-serif; font-weight:700; }
+.placeholder_back:hover { background:rgba(255,255,255,.5); }
+@media (max-width:520px) { .placeholder_card{padding:30px 20px}.placeholder_slots{gap:8px}.placeholder_slots span,.placeholder_slots a{font-size:12px;padding:8px 12px} }

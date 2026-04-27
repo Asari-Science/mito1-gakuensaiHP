@@ -1,7 +1,7 @@
 // Service Worker for Gakuensai PWA
 // Provides offline access to key pages and assets
 
-var CACHE_NAME = 'gakuensai-v1';
+var CACHE_NAME = 'gakuensai-v2';
 var ASSETS_TO_CACHE = [
     '/',
     '/index.php',
@@ -22,6 +22,21 @@ var ASSETS_TO_CACHE = [
     '/materials/text_kanji_amagakeru_yoko.webp',
     '/materials/text_catchcopy.webp',
     '/materials/NowLoading/NowLoading.webp',
+    '/materials/NowLoading/mobile_NowLoading.webp',
+    '/materials/NowLoading/mobile_NowLoading.webm',
+    '/pages/timetable.php',
+    '/pages/cafe.php',
+    '/pages/goods.php',
+    '/pages/setlist.php',
+    '/pages/greetings.php',
+    '/assets/css/timetable.css',
+    '/assets/css/marketplace.css',
+    '/assets/css/placeholder.css',
+    '/assets/js/timetable.js',
+    '/assets/js/marketplace.js',
+    '/assets/data/stage_timetable.json',
+    '/assets/data/cafe_menu.json',
+    '/assets/data/goods.json',
     '/materials/cashless-brandlogo.webp',
     '/pages/concept.php',
     '/pages/cashless.php',

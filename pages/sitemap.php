@@ -52,16 +52,17 @@
                             <h2 class="sitemap_group_title">イベント情報</h2>
                             <ul class="sitemap_list">
                                 <li><a href="./kikaku.php">企画紹介</a></li>
-                                <li><a href="./comingsoon.php">ステージタイムテーブル</a></li>
-                                <li><a href="./comingsoon.php">リーフレット</a></li>
+                                <li><a href="./timetable.php">ステージタイムテーブル</a></li>
+                                <li><a href="./setlist.php">Mプロ・Aステセットリスト</a></li>
+                                <li><a href="./leaflet.php">リーフレット</a></li>
                             </ul>
                         </div>
 
                         <div class="sitemap_group">
                             <h2 class="sitemap_group_title">販売・サービス</h2>
                             <ul class="sitemap_list">
-                                <li><a href="./comingsoon.php">喫茶メニュー</a></li>
-                                <li><a href="./comingsoon.php">グッズ・お土産</a></li>
+                                <li><a href="./cafe.php">喫茶メニュー</a></li>
+                                <li><a href="./goods.php">グッズ・お土産</a></li>
                                 <li><a href="./cashless.php">キャッシュレス決済について</a></li>
                             </ul>
                         </div>
@@ -79,7 +80,8 @@
                             <h2 class="sitemap_group_title">その他</h2>
                             <ul class="sitemap_list">
                                 <li><a href="./privacy.php">プライバシーポリシー</a></li>
-                                <li><a href="./comingsoon.php">代表者挨拶</a></li>
+                                <li><a href="./greetings.php">代表者挨拶</a></li>
+                                <li><a href="./preview.php">プレビュー</a></li>
                             </ul>
                         </div>
 
