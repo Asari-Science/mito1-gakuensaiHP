@@ -409,6 +409,13 @@ body {
 .error_403 .error_divider { background: linear-gradient(90deg, transparent, rgba(128,203,196,0.4), transparent); }
 .error_403 .error_particle { background: rgba(128,203,196,0.3); }
 
+.error_418 .error_altitude { color: #477f33; text-shadow: 0 0 40px rgba(128,203,196,0.2); }
+.error_418 .error_date { color: #477f33; }
+.error_418 .error_back { color: #477f33; border-color: rgba(128,203,196,0.3); }
+.error_418 .error_back:hover { border-color: #477f33; box-shadow: 0 8px 24px rgba(128,203,196,0.1); }
+.error_418 .error_divider { background: linear-gradient(90deg, transparent, rgba(128,203,196,0.4), transparent); }
+.error_418 .error_particle { background: rgba(128,203,196,0.3); }
+
 /* ===== 503 Turbulence Effect ===== */
 
 .error_503 .error_content {
