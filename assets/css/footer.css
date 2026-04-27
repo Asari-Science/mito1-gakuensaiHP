@@ -167,9 +167,10 @@
 
 /* ===== Hidden Tea Button (418 Easter Egg) ===== */
 
-.footer_tea_btn {
+.footer_418_btn {
     display: block;
-    width: 24px;
+    width: fit-content;
+    white-space: nowrap;
     margin: 8px auto 0;
     text-align: center;
     font-size: 10px;
@@ -181,7 +182,7 @@
     color: rgba(26, 18, 7, 0.3);
 }
 
-.footer_tea_btn:hover {
+.footer_418_btn:hover {
     opacity: 0.5;
     cursor: pointer;
 }

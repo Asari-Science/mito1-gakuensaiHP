@@ -61,7 +61,7 @@
             <!-- Copyright -->
             <p class="footer_copy">&copy; 2026 第78回学苑祭実行委員会</p>
             <!-- Hidden tea button (418 easter egg) -->
-            <a href="<?php echo $base_path; ?>/pages/errors/418.php" class="footer_tea_btn" aria-label="お茶を入れる" title="お茶を入れる">&#x2615;</a>
+            <a href="<?php echo $base_path; ?>/pages/errors/418.php" class="footer_418_btn" aria-label="コーヒーを淹れる" title="コーヒーを淹れる">&#x2615; コーヒーを淹れる</a>
         </div>
     </div>
 </footer>
