@@ -80,7 +80,6 @@
     <section class="tt_legend" aria-label="ジャンル凡例">
       <h2 class="tt_legend_title">ジャンル凡例</h2>
       <ul class="tt_legend_list" id="tt_legend_list"></ul>
-      <p class="tt_legend_note">※ 各演目の色はジャンル・出演者によって個別に設定できます。詳しくは <code>assets/data/stage_timetable.json</code> をご覧ください。</p>
     </section>
   </main>
 
