@@ -19,6 +19,7 @@
                     <a href="<?php echo $base_path; ?>/pages/contact.php" class="footer_nav_link">お問い合わせ</a>
                     <a href="<?php echo $base_path; ?>/pages/access.php" class="footer_nav_link">アクセス</a>
                     <a href="<?php echo $base_path; ?>/pages/timetable.php" class="footer_nav_link">ステージタイムテーブル</a>
+                    <a href="<?php echo $base_path; ?>/pages/setlist.php" class="footer_nav_link">Mプロ・Aステ セットリスト</a>
                     <a href="<?php echo $base_path; ?>/lostitem" class="footer_nav_link">落とし物・忘れ物</a>
                 </div>
                 <div class="footer_links_col">
