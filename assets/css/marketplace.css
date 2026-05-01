@@ -32,8 +32,10 @@ body { background:#f6dc9f; color:#1a1207; }
 .market_meta { display:flex; justify-content:space-between; gap:10px; align-items:flex-end; border-top:1px solid rgba(26,18,7,.08); padding-top:10px; }
 .market_meta strong { color:var(--accent); font-family:"Noto Sans JP",sans-serif; font-size:18px; }
 .market_meta span { font-family:"Noto Sans JP",sans-serif; font-size:11px; color:rgba(26,18,7,.5); text-align:right; }
-.market_pay { align-self:flex-start; padding:4px 9px; border-radius:8px; font-family:"Noto Sans JP",sans-serif; font-size:11px; }
+.market_tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
+.market_pay, .market_variation_tag { padding:4px 9px; border-radius:8px; font-family:"Noto Sans JP",sans-serif; font-size:11px; }
 .market_pay.ok { background:rgba(47,125,85,.12); color:#2f7d55; }.market_pay.cash { background:rgba(90,65,38,.12); color:#6d4d2e; }
+.market_variation_tag { background:var(--accent); color:#fff; }
 .market_empty { grid-column:1/-1; padding:50px; text-align:center; font-family:"Noto Sans JP",sans-serif; color:rgba(26,18,7,.55); }
 .market_modal_overlay { position:fixed; inset:0; z-index:10000; display:flex; align-items:center; justify-content:center; padding:20px; background:rgba(0,0,0,.5); backdrop-filter:blur(5px); opacity:0; pointer-events:none; transition:.25s ease; }
 .market_modal_overlay.active { opacity:1; pointer-events:auto; }

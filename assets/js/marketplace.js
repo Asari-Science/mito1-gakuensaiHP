@@ -68,12 +68,17 @@
                 }
             }
 
+            var variationTag = '';
+            if (item.variations && item.variations.length > 0) {
+                variationTag = '<span class="market_variation_tag">全' + item.variations.length + '種（詳細）</span>';
+            }
+
             return '<article class="market_card" tabindex="0" role="button" data-id="' + esc(item.id) + '" style="animation-delay:' + Math.min(idx * 0.04, 0.4) + 's">' +
                 '<div class="market_img_wrap"><img src="' + esc(item.photo) + '" alt="' + esc(item.title) + '" loading="lazy" decoding="async"></div>' +
                 '<div class="market_card_body"><div class="market_card_top"><span class="market_category">' + esc(item.category) + '</span><span class="market_stock">在庫 ' + esc(displayStock) + '</span></div>' +
                 '<h2>' + esc(item.title) + '</h2><p>' + esc(item.description) + '</p>' +
                 '<div class="market_meta"><strong>' + displayPrice + '</strong><span>' + esc(item.seller) + '</span></div>' +
-                '<span class="market_pay ' + (item.cashless ? 'ok' : 'cash') + '">' + (item.cashless ? 'キャッシュレス対応' : '現金のみ') + '</span></div>' +
+                '<div class="market_tags"><span class="market_pay ' + (item.cashless ? 'ok' : 'cash') + '">' + (item.cashless ? 'キャッシュレス対応' : '現金のみ') + '</span>' + variationTag + '</div></div>' +
             '</article>';
         }).join('');
     }
