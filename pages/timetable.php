@@ -76,6 +76,9 @@
       </div>
     </section>
 
+    <!-- Mobile Card View (< 768px) -->
+    <section class="tt_mobile_cards" id="tt_mobile_cards" aria-label="モバイル用タイムテーブル"></section>
+
     <!-- Legend -->
     <section class="tt_legend" aria-label="ジャンル凡例">
       <h2 class="tt_legend_title">ジャンル凡例</h2>
