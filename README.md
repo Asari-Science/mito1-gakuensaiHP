@@ -18,7 +18,6 @@
 │   ├── goods.php                      # グッズ・お土産（JSON・検索・絞り込み・詳細）
 │   ├── setlist.php                    # Mプロ・Aステセットリスト（プレースホルダー）
 │   ├── greetings.php                  # 代表者挨拶（プレースホルダー）
-│   ├── preview.php                    # プレビューページ
 │   ├── comingsoon.php                 # Coming Soonページ（準備中ページ）
 │   ├── sitemap.php                    # サイトマップページ
 │   ├── access.php                     # アクセスページ（会場・交通案内）

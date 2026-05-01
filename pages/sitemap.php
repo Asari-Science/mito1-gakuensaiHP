@@ -81,7 +81,6 @@
                             <ul class="sitemap_list">
                                 <li><a href="./privacy.php">プライバシーポリシー</a></li>
                                 <li><a href="./greetings.php">代表者挨拶</a></li>
-                                <li><a href="./preview.php">プレビュー</a></li>
                             </ul>
                         </div>
 
