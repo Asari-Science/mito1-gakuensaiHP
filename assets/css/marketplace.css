@@ -49,5 +49,9 @@ body { background:#f6dc9f; color:#1a1207; }
 .market_modal_info div { padding:12px; border-radius:14px; background:rgba(246,220,159,.45); }
 .market_modal_info dt { font-family:"Noto Sans JP",sans-serif; font-size:11px; color:rgba(26,18,7,.45); margin-bottom:4px; }.market_modal_info dd { font-family:"Noto Sans JP",sans-serif; font-weight:700; }
 body.market_modal_open { overflow:hidden; }
+.market_modal_variations_table { width:100%; border-collapse:collapse; margin-top:18px; border-radius:14px; overflow:hidden; background:rgba(246,220,159,.25); box-shadow:0 0 0 1px rgba(26,18,7,.08); }
+.market_modal_variations_table th, .market_modal_variations_table td { padding:12px 14px; font-family:"Noto Sans JP",sans-serif; font-size:14px; text-align:left; border-bottom:1px solid rgba(26,18,7,.08); }
+.market_modal_variations_table th { background:rgba(246,220,159,.8); font-weight:700; color:rgba(26,18,7,.6); font-size:12px; }
+.market_modal_variations_table tr:last-child td { border-bottom:none; }
 @media (max-width:1023px) { .market_grid{grid-template-columns:repeat(2,minmax(0,1fr))}.market_controls{align-items:flex-start}.market_count{margin-left:0} }
 @media (max-width:640px) { .market_hero{padding:105px 18px 38px}.market_controls{position:static;padding:14px 16px}.market_grid{grid-template-columns:1fr;padding:0 16px}.market_card_body{min-height:auto}.market_modal_info{grid-template-columns:1fr}.market_modal{max-height:86dvh} }

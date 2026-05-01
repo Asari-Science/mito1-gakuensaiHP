@@ -64,5 +64,19 @@
     "cashless": true,
     "category": "飲み物",
     "stock": 70
+  },
+  {
+    "id": "C007",
+    "photo": "../materials/enjitsu78th.webp",
+    "title": "かき氷",
+    "description": "暑い日にぴったりのかき氷。様々な味を用意しています。",
+    "seller": "1年3組",
+    "cashless": false,
+    "category": "デザート",
+    "variations": [
+      { "name": "イチゴ", "price": 250, "stock": 40 },
+      { "name": "メロン", "price": 250, "stock": 40 },
+      { "name": "ブルーハワイ", "price": 250, "stock": 40 }
+    ]
   }
 ]
