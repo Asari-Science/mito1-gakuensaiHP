@@ -57,10 +57,6 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://gakuensai.net/pages/preview.php</loc>
-    <priority>0.3</priority>
-  </url>
-  <url>
     <loc>https://gakuensai.net/lostitem</loc>
     <priority>0.5</priority>
   </url>
