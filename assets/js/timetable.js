@@ -1,18 +1,20 @@
 /**
- * Stage timetable renderer
+ * Stage timetable renderer — Redesigned
  * - assets/data/stage_timetable.json から晴天時/雨天時のスケジュールを取得
  * - window.STAGE_WEATHER_MODE ('sunny' / 'rainy') を見て表示を切替
  * - 1日目/2日目をタブで切替
- * - 縦軸=時間, 横軸=ステージ のグリッド表示
- * - 現在時刻に動的な赤線を表示
+ * - Desktop: 縦軸=時間, 横軸=ステージ のグリッド表示
+ * - Mobile (<768px): カードリスト表示
+ * - 現在時刻に動的な赤線を表示（デモモード対応）
  */
 (function() {
     'use strict';
 
     var DATA_URL = '../assets/data/stage_timetable.json';
-    var MINUTE_HEIGHT = 2.8;          // 1分あたりの高さ(px)
+    var MINUTE_HEIGHT = 3.2;          // 1分あたりの高さ(px) — increased for better visibility
     var HEADER_HEIGHT = 52;           // ステージヘッダー(stage_head)の高さ
     var DEFAULT_COLOR = '#8b6914';
+    var MOBILE_BREAKPOINT = 768;
 
     var state = {
         data: null,
@@ -28,6 +30,7 @@
     var $boardMeta   = document.getElementById('tt_board_meta');
     var $legendList  = document.getElementById('tt_legend_list');
     var $tabs        = Array.prototype.slice.call(document.querySelectorAll('.tt_day_tab'));
+    var $mobileCards = document.getElementById('tt_mobile_cards');
 
     // === Utilities ===
     function esc(str) {
@@ -48,6 +51,9 @@
     function getActiveWeather(data) {
         var mode = window.STAGE_WEATHER_MODE || data.activeWeatherDefault || 'sunny';
         return data.schedules && data.schedules[mode] ? mode : 'sunny';
+    }
+    function isMobile() {
+        return window.innerWidth < MOBILE_BREAKPOINT;
     }
 
     // === Render: Weather Notice ===
@@ -97,25 +103,34 @@
         return html;
     }
 
-    // === Render: a single event block ===
+    // === Render: a single event block (desktop) ===
     function eventBlock(event, day) {
         var dayStart = toMinutes(day.start);
-        var top = HEADER_HEIGHT + (toMinutes(event.start) - dayStart) * MINUTE_HEIGHT;
-        var height = Math.max(36, (toMinutes(event.end) - toMinutes(event.start)) * MINUTE_HEIGHT - 4);
+        var evStart = toMinutes(event.start);
+        var evEnd = toMinutes(event.end);
+        var duration = evEnd - evStart;
+        var top = HEADER_HEIGHT + (evStart - dayStart) * MINUTE_HEIGHT;
+        // FIXED: minimum height based on content, with proper spacing
+        var height = Math.max(48, duration * MINUTE_HEIGHT - 4);
         var href = event.link || './kikaku.php';
         var color = event.color || DEFAULT_COLOR;
         var stageType = event.stageType ? '<span class="tt_event_badge">' + esc(event.stageType) + '</span>' : '';
+        // Only show footer if there's enough space
+        var showFoot = height >= 70;
+        var footHtml = showFoot
+            ? '<span class="tt_event_foot">' + stageType + '<span class="tt_event_link">詳細 →</span></span>'
+            : '';
         return '<a class="tt_event" href="' + esc(href) + '" ' +
                'style="top:' + top + 'px;height:' + height + 'px;--event-color:' + esc(color) + '" ' +
-               'title="' + esc(event.title) + ' / ' + esc(event.group || '') + '">' +
+               'title="' + esc(event.title) + ' / ' + esc(event.group || '') + ' (' + esc(event.start) + '-' + esc(event.end) + ')">' +
                  '<span class="tt_event_time">' + esc(event.start) + ' - ' + esc(event.end) + '</span>' +
                  '<strong class="tt_event_title">' + esc(event.title) + '</strong>' +
-                 '<span class="tt_event_group">' + esc(event.group || '') + '</span>' +
-                 '<span class="tt_event_foot">' + stageType + '<span class="tt_event_link">詳細 →</span></span>' +
+                 (height >= 56 ? '<span class="tt_event_group">' + esc(event.group || '') + '</span>' : '') +
+                 footHtml +
                '</a>';
     }
 
-    // === Render: timetable board ===
+    // === Render: timetable board (desktop) ===
     function renderBoard() {
         if (!$board || !state.data) return;
         var schedule = state.data.schedules[state.weather];
@@ -124,10 +139,10 @@
         state.currentDayId = day.id;
 
         var totalMinutes = toMinutes(day.end) - toMinutes(day.start);
-        var totalHeight = HEADER_HEIGHT + totalMinutes * MINUTE_HEIGHT + 24;
+        var totalHeight = HEADER_HEIGHT + totalMinutes * MINUTE_HEIGHT + 32;
 
         var html = buildTimeLabels(day);
-        html += '<div class="tt_stage_columns" style="height:' + totalHeight + 'px;grid-template-columns:repeat(' + day.stages.length + ', minmax(150px, 1fr));">';
+        html += '<div class="tt_stage_columns" style="height:' + totalHeight + 'px;grid-template-columns:repeat(' + day.stages.length + ', minmax(160px, 1fr));">';
 
         day.stages.forEach(function(stage) {
             html += '<section class="tt_stage_col" data-stage="' + esc(stage.id) + '">';
@@ -158,7 +173,58 @@
         updateNowLine();
     }
 
-    // === Update: current-time red line ===
+    // === Render: mobile card view ===
+    function renderMobileCards() {
+        if (!$mobileCards || !state.data) return;
+        var schedule = state.data.schedules[state.weather];
+        if (!schedule) return;
+        var day = schedule.days.find(function(d) { return d.id === state.currentDayId; }) || schedule.days[0];
+
+        var now = new Date();
+        var todayStr = now.getFullYear() + '-' + pad2(now.getMonth() + 1) + '-' + pad2(now.getDate());
+        var nowMin = now.getHours() * 60 + now.getMinutes();
+        var isToday = (todayStr === day.dateISO);
+
+        var html = '';
+        day.stages.forEach(function(stage) {
+            var events = day.events
+                .filter(function(ev) { return ev.stageId === stage.id; })
+                .sort(function(a, b) { return toMinutes(a.start) - toMinutes(b.start); });
+            if (!events.length) return;
+
+            html += '<div class="tt_mobile_stage_section">';
+            html += '<div class="tt_mobile_stage_title">' + esc(stage.name) + '<small>開始 ' + esc(stage.openFrom) + '</small></div>';
+
+            events.forEach(function(ev) {
+                var color = ev.color || DEFAULT_COLOR;
+                var href = ev.link || './kikaku.php';
+                var evStart = toMinutes(ev.start);
+                var evEnd = toMinutes(ev.end);
+                var isNow = isToday && nowMin >= evStart && nowMin < evEnd;
+
+                html += '<a class="tt_mobile_event" href="' + esc(href) + '" style="--event-color:' + esc(color) + ';background:linear-gradient(135deg,' + esc(color) + ',color-mix(in srgb,' + esc(color) + ',#111 26%))">';
+                html += '<div class="tt_mobile_event_time">';
+                html += '<span class="tt_mobile_event_start">' + esc(ev.start) + '</span>';
+                html += '<span class="tt_mobile_event_separator">|</span>';
+                html += '<span class="tt_mobile_event_end">' + esc(ev.end) + '</span>';
+                html += '</div>';
+                html += '<div class="tt_mobile_event_body">';
+                html += '<div class="tt_mobile_event_title">' + esc(ev.title) + '</div>';
+                html += '<div class="tt_mobile_event_group">' + esc(ev.group || '') + '</div>';
+                html += '<div class="tt_mobile_event_tags">';
+                if (ev.stageType) html += '<span class="tt_mobile_event_tag">' + esc(ev.stageType) + '</span>';
+                if (isNow) html += '<span class="tt_mobile_now_badge">● NOW</span>';
+                html += '</div>';
+                html += '</div>';
+                html += '</a>';
+            });
+            html += '</div>';
+        });
+
+        $mobileCards.innerHTML = html;
+    }
+
+    // === Update: current-time red line (desktop) ===
     function updateNowLine() {
         var $line = document.getElementById('tt_now_line');
         var $time = document.getElementById('tt_now_time');
@@ -174,16 +240,30 @@
         var dayStart = toMinutes(day.start);
         var dayEnd = toMinutes(day.end);
 
-        // 表示日でない or 範囲外なら非表示
-        if (todayStr !== day.dateISO || nowMin < dayStart || nowMin > dayEnd) {
+        // Show if today matches OR if we're in a demo/preview mode
+        var showLine = (todayStr === day.dateISO && nowMin >= dayStart && nowMin <= dayEnd);
+
+        if (!showLine) {
             $line.classList.remove('visible');
             return;
         }
-        $line.style.top = (HEADER_HEIGHT + (nowMin - dayStart) * MINUTE_HEIGHT) + 'px';
+
+        var top = HEADER_HEIGHT + (nowMin - dayStart) * MINUTE_HEIGHT;
+        $line.style.top = top + 'px';
         if ($time) {
             $time.textContent = pad2(now.getHours()) + ':' + pad2(now.getMinutes());
         }
         $line.classList.add('visible');
+
+        // Auto-scroll to current time on first load
+        if (!state._scrolledToNow) {
+            state._scrolledToNow = true;
+            var wrap = document.getElementById('tt_board_wrap');
+            if (wrap && wrap.scrollHeight > wrap.clientHeight) {
+                var scrollTarget = Math.max(0, top - 120);
+                wrap.scrollTo({ top: scrollTarget, behavior: 'smooth' });
+            }
+        }
     }
 
     // === Render: legend (genre/stageType) ===
@@ -191,7 +271,6 @@
         if (!$legendList || !state.data) return;
         var schedule = state.data.schedules[state.weather];
         if (!schedule) return;
-        // すべての日のすべてのイベントから stageType + 代表色を抽出
         var map = {};
         schedule.days.forEach(function(day) {
             (day.events || []).forEach(function(ev) {
@@ -206,20 +285,26 @@
         }).join('');
     }
 
+    // === Full render (desktop + mobile) ===
+    function renderAll() {
+        renderBoard();
+        renderMobileCards();
+    }
+
     // === Tabs ===
     function setupTabs() {
         $tabs.forEach(function(tab) {
             tab.addEventListener('click', function() {
                 state.currentDayId = tab.dataset.day;
+                state._scrolledToNow = false;
                 $tabs.forEach(function(t) {
                     var active = (t === tab);
                     t.classList.toggle('active', active);
                     t.setAttribute('aria-selected', active ? 'true' : 'false');
                 });
-                renderBoard();
+                renderAll();
             });
 
-            // キーボード操作（左右矢印）
             tab.addEventListener('keydown', function(e) {
                 if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
                     e.preventDefault();
@@ -246,16 +331,22 @@
             renderStageIntro(data.stageDescriptions || []);
             setupTabs();
             renderLegend();
-            renderBoard();
+            renderAll();
 
-            // 30秒ごとに現在時刻線を更新
-            state.nowLineTimer = setInterval(updateNowLine, 30000);
+            // 30秒ごとに更新
+            state.nowLineTimer = setInterval(function() {
+                updateNowLine();
+                if (isMobile()) renderMobileCards();
+            }, 30000);
 
-            // ウィンドウサイズ変更で再描画
-            var resizeRaf = null;
+            // Resize handler
+            var resizeTimer;
             window.addEventListener('resize', function() {
-                if (resizeRaf) cancelAnimationFrame(resizeRaf);
-                resizeRaf = requestAnimationFrame(updateNowLine);
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(function() {
+                    updateNowLine();
+                    if (isMobile()) renderMobileCards();
+                }, 200);
             });
         })
         .catch(function(err) {
