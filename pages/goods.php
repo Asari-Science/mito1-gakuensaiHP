@@ -46,11 +46,12 @@
           <h2 id="market_modal_title"></h2>
           <p id="market_modal_desc"></p>
           <dl class="market_modal_info">
-            <div><dt>金額</dt><dd id="market_modal_price"></dd></div>
+            <div id="market_modal_price_wrap"><dt>金額</dt><dd id="market_modal_price"></dd></div>
             <div><dt>販売場所</dt><dd id="market_modal_seller"></dd></div>
             <div><dt>決済</dt><dd id="market_modal_cashless"></dd></div>
-            <div><dt>在庫数</dt><dd id="market_modal_stock"></dd></div>
+            <div id="market_modal_stock_wrap"><dt>在庫数</dt><dd id="market_modal_stock"></dd></div>
           </dl>
+          <div id="market_modal_variations"></div>
         </div>
       </article>
     </div>

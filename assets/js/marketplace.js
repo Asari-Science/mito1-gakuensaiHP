@@ -55,12 +55,30 @@
             return;
         }
         grid.innerHTML = items.map(function(item, idx) {
+            var displayStock = item.stock;
+            var displayPrice = yen(item.price);
+            if (item.variations && item.variations.length > 0) {
+                displayStock = item.variations.reduce(function(sum, v) { return sum + (v.stock || 0); }, 0);
+                var minPrice = Math.min.apply(null, item.variations.map(function(v) { return v.price; }));
+                var maxPrice = Math.max.apply(null, item.variations.map(function(v) { return v.price; }));
+                if (minPrice === maxPrice) {
+                    displayPrice = yen(minPrice);
+                } else {
+                    displayPrice = yen(minPrice) + '〜';
+                }
+            }
+
+            var variationTag = '';
+            if (item.variations && item.variations.length > 0) {
+                variationTag = '<span class="market_variation_tag">全' + item.variations.length + '種（詳細）</span>';
+            }
+
             return '<article class="market_card" tabindex="0" role="button" data-id="' + esc(item.id) + '" style="animation-delay:' + Math.min(idx * 0.04, 0.4) + 's">' +
                 '<div class="market_img_wrap"><img src="' + esc(item.photo) + '" alt="' + esc(item.title) + '" loading="lazy" decoding="async"></div>' +
-                '<div class="market_card_body"><div class="market_card_top"><span class="market_category">' + esc(item.category) + '</span><span class="market_stock">在庫 ' + esc(item.stock) + '</span></div>' +
+                '<div class="market_card_body"><div class="market_card_top"><span class="market_category">' + esc(item.category) + '</span><span class="market_stock">在庫 ' + esc(displayStock) + '</span></div>' +
                 '<h2>' + esc(item.title) + '</h2><p>' + esc(item.description) + '</p>' +
-                '<div class="market_meta"><strong>' + yen(item.price) + '</strong><span>' + esc(item.seller) + '</span></div>' +
-                '<span class="market_pay ' + (item.cashless ? 'ok' : 'cash') + '">' + (item.cashless ? 'キャッシュレス対応' : '現金のみ') + '</span></div>' +
+                '<div class="market_meta"><strong>' + displayPrice + '</strong><span>' + esc(item.seller) + '</span></div>' +
+                '<div class="market_tags"><span class="market_pay ' + (item.cashless ? 'ok' : 'cash') + '">' + (item.cashless ? 'キャッシュレス対応' : '現金のみ') + '</span>' + variationTag + '</div></div>' +
             '</article>';
         }).join('');
     }
@@ -71,10 +89,41 @@
         document.getElementById('market_modal_category').textContent = item.category;
         document.getElementById('market_modal_title').textContent = item.title;
         document.getElementById('market_modal_desc').textContent = item.description;
-        document.getElementById('market_modal_price').textContent = yen(item.price);
         document.getElementById('market_modal_seller').textContent = item.seller;
         document.getElementById('market_modal_cashless').textContent = item.cashless ? 'キャッシュレス対応' : '現金のみ';
-        document.getElementById('market_modal_stock').textContent = item.stock;
+
+        var priceWrap = document.getElementById('market_modal_price_wrap');
+        var stockWrap = document.getElementById('market_modal_stock_wrap');
+        var variationsContainer = document.getElementById('market_modal_variations');
+
+        if (item.variations && item.variations.length > 0) {
+            if(priceWrap) priceWrap.style.display = 'none';
+            if(stockWrap) stockWrap.style.display = 'none';
+            
+            var tableHTML = '<table class="market_modal_variations_table">' +
+                '<thead><tr><th>種類</th><th>金額</th><th>在庫数</th></tr></thead><tbody>' +
+                item.variations.map(function(v) {
+                    return '<tr><td>' + esc(v.name) + '</td><td>' + yen(v.price) + '</td><td>' + esc(v.stock) + '</td></tr>';
+                }).join('') +
+                '</tbody></table>';
+            if(variationsContainer) {
+                variationsContainer.innerHTML = tableHTML;
+                variationsContainer.style.display = 'block';
+            }
+        } else {
+            if(priceWrap) priceWrap.style.display = '';
+            if(stockWrap) stockWrap.style.display = '';
+            var priceEl = document.getElementById('market_modal_price');
+            var stockEl = document.getElementById('market_modal_stock');
+            if(priceEl) priceEl.textContent = yen(item.price);
+            if(stockEl) stockEl.textContent = item.stock;
+            
+            if(variationsContainer) {
+                variationsContainer.innerHTML = '';
+                variationsContainer.style.display = 'none';
+            }
+        }
+
         overlay.classList.add('active');
         document.body.classList.add('market_modal_open');
         closeBtn.focus();

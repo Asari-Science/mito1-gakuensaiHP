@@ -32,8 +32,10 @@ body { background:#f6dc9f; color:#1a1207; }
 .market_meta { display:flex; justify-content:space-between; gap:10px; align-items:flex-end; border-top:1px solid rgba(26,18,7,.08); padding-top:10px; }
 .market_meta strong { color:var(--accent); font-family:"Noto Sans JP",sans-serif; font-size:18px; }
 .market_meta span { font-family:"Noto Sans JP",sans-serif; font-size:11px; color:rgba(26,18,7,.5); text-align:right; }
-.market_pay { align-self:flex-start; padding:4px 9px; border-radius:8px; font-family:"Noto Sans JP",sans-serif; font-size:11px; }
+.market_tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
+.market_pay, .market_variation_tag { padding:4px 9px; border-radius:8px; font-family:"Noto Sans JP",sans-serif; font-size:11px; }
 .market_pay.ok { background:rgba(47,125,85,.12); color:#2f7d55; }.market_pay.cash { background:rgba(90,65,38,.12); color:#6d4d2e; }
+.market_variation_tag { background:var(--accent); color:#fff; }
 .market_empty { grid-column:1/-1; padding:50px; text-align:center; font-family:"Noto Sans JP",sans-serif; color:rgba(26,18,7,.55); }
 .market_modal_overlay { position:fixed; inset:0; z-index:10000; display:flex; align-items:center; justify-content:center; padding:20px; background:rgba(0,0,0,.5); backdrop-filter:blur(5px); opacity:0; pointer-events:none; transition:.25s ease; }
 .market_modal_overlay.active { opacity:1; pointer-events:auto; }
@@ -49,5 +51,9 @@ body { background:#f6dc9f; color:#1a1207; }
 .market_modal_info div { padding:12px; border-radius:14px; background:rgba(246,220,159,.45); }
 .market_modal_info dt { font-family:"Noto Sans JP",sans-serif; font-size:11px; color:rgba(26,18,7,.45); margin-bottom:4px; }.market_modal_info dd { font-family:"Noto Sans JP",sans-serif; font-weight:700; }
 body.market_modal_open { overflow:hidden; }
+.market_modal_variations_table { width:100%; border-collapse:collapse; margin-top:18px; border-radius:14px; overflow:hidden; background:rgba(246,220,159,.25); box-shadow:0 0 0 1px rgba(26,18,7,.08); }
+.market_modal_variations_table th, .market_modal_variations_table td { padding:12px 14px; font-family:"Noto Sans JP",sans-serif; font-size:14px; text-align:left; border-bottom:1px solid rgba(26,18,7,.08); }
+.market_modal_variations_table th { background:rgba(246,220,159,.8); font-weight:700; color:rgba(26,18,7,.6); font-size:12px; }
+.market_modal_variations_table tr:last-child td { border-bottom:none; }
 @media (max-width:1023px) { .market_grid{grid-template-columns:repeat(2,minmax(0,1fr))}.market_controls{align-items:flex-start}.market_count{margin-left:0} }
 @media (max-width:640px) { .market_hero{padding:105px 18px 38px}.market_controls{position:static;padding:14px 16px}.market_grid{grid-template-columns:1fr;padding:0 16px}.market_card_body{min-height:auto}.market_modal_info{grid-template-columns:1fr}.market_modal{max-height:86dvh} }
