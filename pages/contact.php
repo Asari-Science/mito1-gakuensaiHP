@@ -7,6 +7,7 @@
 
         <title>お問い合わせ | 第78回水戸一高・附属中学校学苑祭「天翔る」</title>
         <meta name="description" content="第78回学苑祭のお問い合わせフォーム入力ページです。当学苑祭に対するご意見・ご感想等ありましたらぜひご記入ください。">
+        <link rel="canonical" href="https://gakuensai.net/pages/contact.php">
 
         <!-- Google Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">

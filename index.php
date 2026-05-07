@@ -8,6 +8,7 @@
 
         <!-- SEO関係 サイト説明 -->
         <meta name="description" content="第78回水戸一高・附属中学校学苑祭「天翔る」公式サイト。2026年6月20日(土)・21日(日)開催。">
+        <link rel="canonical" href="https://gakuensai.net/">
         <!-- キーワード -->
         <meta name="keywords" content="学苑祭,水戸一高,文化祭,学園祭,茨城県立水戸第一高等学校,高校,茨城">
 

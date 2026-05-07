@@ -6,6 +6,7 @@
 
         <title>アクセス | 第78回水戸一高・附属中学校学苑祭「天翔る」</title>
         <meta name="description" content="第78回学苑祭の会場アクセス情報です。茨城県立水戸第一高等学校・附属中学校への交通手段をご案内します。">
+        <link rel="canonical" href="https://gakuensai.net/pages/access.php">
 
         <!-- Google Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">

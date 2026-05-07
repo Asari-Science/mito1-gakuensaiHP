@@ -6,6 +6,7 @@
 
         <title>企画紹介 | 第78回水戸一高・附属中学校学苑祭「天翔る」</title>
         <meta name="description" content="第78回学苑祭「天翔る」の全企画を紹介。アトラクション、喫茶、ステージ、展示など多彩な企画が勢ぞろい。">
+        <link rel="canonical" href="https://gakuensai.net/pages/kikaku.php">
 
         <!-- SEO OGP -->
         <meta property="og:title" content="企画紹介 | 第78回学苑祭「天翔る」" />

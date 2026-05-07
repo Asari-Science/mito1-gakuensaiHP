@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>喫茶メニュー | 第78回水戸一高・附属中学校学苑祭「天翔る」</title>
   <meta name="description" content="学苑祭で販売予定の喫茶メニュー一覧。検索・カテゴリ絞り込みに対応。">
+  <link rel="canonical" href="https://gakuensai.net/pages/cafe.php">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;700;900&family=Shippori+Mincho:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -22,7 +23,7 @@
     <section class="market_hero">
       <p class="market_label">Cafe Menu</p>
       <h1>喫茶メニュー</h1>
-      <p>ひと休みしたい時に立ち寄れる、学苑祭の喫茶メニューをカード形式で紹介します。</p>
+      <p>ひと休みしたい時に立ち寄れる、学苑祭の喫茶メニューを紹介します。</p>
     </section>
     <section class="market_controls" aria-label="検索と絞り込み">
       <div class="market_search_wrap">

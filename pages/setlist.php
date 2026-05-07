@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mプロ・Aステ セットリスト | 第78回水戸一高・附属中学校学苑祭「天翔る」</title>
   <meta name="description" content="第78回学苑祭「天翔る」のMプロ・Aステのセットリスト掲載予定ページです。Mプロは音楽系発表、Aステはダンス・コントなどのステージを盛り上げます。">
+  <link rel="canonical" href="https://gakuensai.net/pages/setlist.php">
 
   <!-- SEO OGP -->
   <meta property="og:title" content="Mプロ・Aステ セットリスト | 第78回学苑祭「天翔る」" />
