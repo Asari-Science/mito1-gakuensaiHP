@@ -6,6 +6,7 @@
 
         <title>AMAGAKERU - Concept | 第78回水戸一高・附属中学校学苑祭「天翔る」</title>
         <meta name="description" content="第78回学苑祭「天翔る」のコンセプトビュー。重力を、置き去りにしろ。">
+        <link rel="canonical" href="https://gakuensai.net/pages/concept.php">
 
         <!-- SEO OGP -->
         <meta property="og:title" content="AMAGAKERU - Concept | 第78回学苑祭" />

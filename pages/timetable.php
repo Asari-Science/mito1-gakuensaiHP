@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ステージタイムテーブル | 第78回水戸一高・附属中学校学苑祭「天翔る」</title>
-  <meta name="description" content="第78回学苑祭「天翔る」のステージタイムテーブル。晴天時・雨天時のスケジュール、5つのステージ（体育館・中庭・パティオ・階段教室・音楽室）の演目を時間軸で表示します。">
+  <meta name="description" content="第78回学苑祭「天翔る」のステージタイムテーブル. 晴天時・雨天時のスケジュール、5つのステージ（体育館・中庭・パティオ・階段教室・音楽室）の演目を時間軸で表示します。">
+  <link rel="canonical" href="https://gakuensai.net/pages/timetable.php">
 
   <!-- SEO OGP -->
   <meta property="og:title" content="ステージタイムテーブル | 第78回学苑祭「天翔る」" />

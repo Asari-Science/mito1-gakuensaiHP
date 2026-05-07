@@ -6,6 +6,7 @@
 
     <title>リーフレット | 第78回水戸一高・附属中学校学苑祭「天翔る」</title>
     <meta name="description" content="第78回学苑祭のデジタルリーフレット。裏表を切り替え、拡大・検索機能付きで会場案内をご覧いただけます。">
+    <link rel="canonical" href="https://gakuensai.net/pages/leaflet.php">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

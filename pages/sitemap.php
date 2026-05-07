@@ -6,6 +6,7 @@
 
         <title>サイトマップ | 第78回水戸一高・附属中学校学苑祭「天翔る」</title>
         <meta name="description" content="第78回学苑祭公式サイトのサイトマップです。">
+        <link rel="canonical" href="https://gakuensai.net/pages/sitemap.php">
 
         <!-- Google Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">

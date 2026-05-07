@@ -6,6 +6,7 @@
 
         <title>キャッシュレス決済について | 第78回水戸一高・附属中学校学苑祭「天翔る」</title>
         <meta name="description" content="第78回学苑祭で使用可能なキャッシュレス決済ブランドの一覧です。">
+        <link rel="canonical" href="https://gakuensai.net/pages/cashless.php">
 
         <!-- Google Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">

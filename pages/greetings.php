@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>代表者挨拶 | 第78回水戸一高・附属中学校学苑祭「天翔る」</title>
   <meta name="description" content="校長・実行委員長からの挨拶を掲載予定です。">
+  <link rel="canonical" href="https://gakuensai.net/pages/greetings.php">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;700;900&family=Shippori+Mincho:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
