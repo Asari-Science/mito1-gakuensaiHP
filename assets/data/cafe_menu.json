@@ -1,10 +1,384 @@
 [
     {
         "id": "C001",
-        "title": "パスタ",
+        "photo": "../materials/enjitsu78th.webp",
+        "title": "ポテト",
+        "description": "サクッと揚げたてのポテト。塩気とホクホク食感がたまらない、定番の人気メニュー。",
         "price": null,
-        "seller": "16組(知道会館)",
-        "cashless": false,
+        "seller": "ピロティ(36組)",
+        "cashless": true,
+        "category": "食べ物",
+        "stock": null
+    },
+    {
+        "id": "C002",
+        "photo": "../materials/enjitsu78th.webp",
+        "title": "チュロス",
+        "description": "外はカリッ、中はふんわり。ほんのり甘いシュガーが香る、片手で楽しめるスイーツ。",
+        "price": null,
+        "seller": "ピロティ(36組)",
+        "cashless": true,
+        "category": "スイーツ",
+        "stock": null
+    },
+    {
+        "id": "C003",
+        "photo": "../materials/enjitsu78th.webp",
+        "title": "クレープ",
+        "description": "もっちり生地で仕上げた本格クレープ。お祭り気分を盛り上げる一品。",
+        "price": null,
+        "seller": "ピロティ(36組)",
+        "cashless": true,
+        "category": "スイーツ",
+        "stock": null
+    },
+    {
+        "id": "C004",
+        "photo": "../materials/enjitsu78th.webp",
+        "title": "かき氷",
+        "description": "ふわっと削ったかき氷に、お好みのシロップを選んでひんやり爽快。夏の定番デザート。",
+        "price": null,
+        "seller": "ピロティ(36組)",
+        "cashless": true,
+        "category": "スイーツ",
+        "stock": null,
+        "variations": [
+            {
+                "name": "いちご",
+                "price": null,
+                "stock": null
+            },
+            {
+                "name": "ブルーハワイ",
+                "price": null,
+                "stock": null
+            },
+            {
+                "name": "レモン",
+                "price": null,
+                "stock": null
+            },
+            {
+                "name": "マンゴー",
+                "price": null,
+                "stock": null
+            },
+            {
+                "name": "抹茶",
+                "price": null,
+                "stock": null
+            }
+        ]
+    },
+    {
+        "id": "C005",
+        "photo": "../materials/enjitsu78th.webp",
+        "title": "フルーツポンチ",
+        "description": "色とりどりのフルーツミックスをサイダーで仕上げた、見た目も鮮やかな爽快ドリンク。",
+        "price": null,
+        "seller": "ピロティ(36組)",
+        "cashless": true,
+        "category": "ドリンク",
+        "stock": null
+    },
+    {
+        "id": "C006",
+        "photo": "../materials/enjitsu78th.webp",
+        "title": "ソフトドリンク",
+        "description": "他では販売していない種類のドリンクを揃えた、喉を潤す一杯。",
+        "price": null,
+        "seller": "ピロティ(36組)",
+        "cashless": true,
+        "category": "ドリンク",
+        "stock": null
+    },
+    {
+        "id": "C007",
+        "photo": "../materials/enjitsu78th.webp",
+        "title": "お茶",
+        "description": "すっきり飲みやすい定番のお茶。会場散策のお供にどうぞ。",
+        "price": null,
+        "seller": "ピロティ(36組)",
+        "cashless": true,
+        "category": "ドリンク",
+        "stock": null
+    },
+    {
+        "id": "C008",
+        "photo": "../materials/enjitsu78th.webp",
+        "title": "ネスレ × 牛乳",
+        "description": "ネスレのコーヒーを牛乳で割った、香り豊かでまろやかな一杯。",
+        "price": null,
+        "seller": "ピロティ(36組)",
+        "cashless": true,
+        "category": "ドリンク",
+        "stock": null
+    },
+    {
+        "id": "C009",
+        "photo": "../materials/enjitsu78th.webp",
+        "title": "氷カフェ",
+        "description": "ひんやり氷で楽しむ、ココアまたは抹茶のアイスドリンク。暑い日にぴったり。",
+        "price": null,
+        "seller": "ピロティ(36組)",
+        "cashless": true,
+        "category": "ドリンク",
+        "stock": null,
+        "variations": [
+            {
+                "name": "ココア",
+                "price": null,
+                "stock": null
+            },
+            {
+                "name": "抹茶",
+                "price": null,
+                "stock": null
+            }
+        ]
+    },
+    {
+        "id": "C010",
+        "photo": "../materials/enjitsu78th.webp",
+        "title": "おにぎり",
+        "description": "ふっくら炊き上げたごはんで握った、具だくさんおにぎり3種。小腹満たしにぴったり。",
+        "price": null,
+        "seller": "教室(21組)",
+        "cashless": true,
+        "category": "食べ物",
+        "stock": null,
+        "variations": [
+            {
+                "name": "焼鮭",
+                "price": null,
+                "stock": null
+            },
+            {
+                "name": "ツナマヨ",
+                "price": null,
+                "stock": null
+            },
+            {
+                "name": "焼きおにぎりチーズ",
+                "price": null,
+                "stock": null
+            }
+        ]
+    },
+    {
+        "id": "C011",
+        "photo": "../materials/enjitsu78th.webp",
+        "title": "パン",
+        "description": "甘いものから惣菜系まで、人気のパンを取り揃えました。",
+        "price": null,
+        "seller": "教室(21組)",
+        "cashless": true,
+        "category": "食べ物",
+        "stock": null,
+        "variations": [
+            {
+                "name": "あんぱん",
+                "price": null,
+                "stock": null
+            },
+            {
+                "name": "サクサクメロンパン",
+                "price": null,
+                "stock": null
+            },
+            {
+                "name": "ベーコンエピ",
+                "price": null,
+                "stock": null
+            }
+        ]
+    },
+    {
+        "id": "C012",
+        "photo": "../materials/enjitsu78th.webp",
+        "title": "ケーキ",
+        "description": "定番から個性派まで揃う、6種類のこだわりケーキ。お好みの一品を見つけて。",
+        "price": null,
+        "seller": "教室(21組)",
+        "cashless": true,
+        "category": "スイーツ",
+        "stock": null,
+        "variations": [
+            {
+                "name": "ショートケーキ",
+                "price": null,
+                "stock": null
+            },
+            {
+                "name": "チョコレート",
+                "price": null,
+                "stock": null
+            },
+            {
+                "name": "ミルクレープ",
+                "price": null,
+                "stock": null
+            },
+            {
+                "name": "ティラミス",
+                "price": null,
+                "stock": null
+            },
+            {
+                "name": "レアチーズケーキ",
+                "price": null,
+                "stock": null
+            },
+            {
+                "name": "抹茶テリーヌ",
+                "price": null,
+                "stock": null
+            }
+        ]
+    },
+    {
+        "id": "C013",
+        "photo": "../materials/enjitsu78th.webp",
+        "title": "バームクーヘン",
+        "description": "しっとり層を重ねたバームクーヘン。プレーンとチョコの2種類でご用意。",
+        "price": null,
+        "seller": "教室(21組)",
+        "cashless": true,
+        "category": "スイーツ",
+        "stock": null,
+        "variations": [
+            {
+                "name": "プレーン",
+                "price": null,
+                "stock": null
+            },
+            {
+                "name": "チョコ",
+                "price": null,
+                "stock": null
+            }
+        ]
+    },
+    {
+        "id": "C014",
+        "photo": "../materials/enjitsu78th.webp",
+        "title": "アイス(カップ)",
+        "description": "なめらかな口どけのカップアイス。バニラとクッキー&バニラの2種類。",
+        "price": null,
+        "seller": "教室(21組)",
+        "cashless": true,
+        "category": "スイーツ",
+        "stock": null,
+        "variations": [
+            {
+                "name": "バニラ",
+                "price": null,
+                "stock": null
+            },
+            {
+                "name": "クッキー&バニラ",
+                "price": null,
+                "stock": null
+            }
+        ]
+    },
+    {
+        "id": "C015",
+        "photo": "../materials/enjitsu78th.webp",
+        "title": "パンケーキ",
+        "description": "ふわふわに焼き上げたパンケーキ。チョコまたはキャラメルソースをかけて召し上がれ。",
+        "price": null,
+        "seller": "教室(21組)",
+        "cashless": true,
+        "category": "スイーツ",
+        "stock": null,
+        "variations": [
+            {
+                "name": "パンケーキ(ソース:チョコ)",
+                "price": null,
+                "stock": null
+            },
+            {
+                "name": "パンケーキ(ソース:キャラメル)",
+                "price": null,
+                "stock": null
+            }
+        ]
+    },
+    {
+        "id": "C016",
+        "photo": "../materials/enjitsu78th.webp",
+        "title": "プリン",
+        "description": "なめらかな口当たりとほろ苦カラメルが嬉しい、王道のプリン。",
+        "price": null,
+        "seller": "教室(21組)",
+        "cashless": true,
+        "category": "スイーツ",
+        "stock": null
+    },
+    {
+        "id": "C017",
+        "photo": "../materials/enjitsu78th.webp",
+        "title": "ソフトドリンク",
+        "description": "他では販売していない種類のドリンクを揃えた、喉を潤す一杯。",
+        "price": null,
+        "seller": "教室(21組)",
+        "cashless": true,
+        "category": "ドリンク",
+        "stock": null
+    },
+    {
+        "id": "C018",
+        "photo": "../materials/enjitsu78th.webp",
+        "title": "お茶",
+        "description": "すっきり飲みやすい定番のお茶。ケーキやスイーツのお供にどうぞ。",
+        "price": null,
+        "seller": "教室(21組)",
+        "cashless": true,
+        "category": "ドリンク",
+        "stock": null
+    },
+    {
+        "id": "C019",
+        "photo": "../materials/enjitsu78th.webp",
+        "title": "ネスレ × 牛乳",
+        "description": "ネスレのコーヒーを牛乳で割った、香り豊かでまろやかな一杯。",
+        "price": null,
+        "seller": "教室(21組)",
+        "cashless": true,
+        "category": "ドリンク",
+        "stock": null
+    },
+    {
+        "id": "C020",
+        "photo": "../materials/enjitsu78th.webp",
+        "title": "コーヒー",
+        "description": "豆の香り立つ、本格派のホットコーヒー。スイーツとの相性も抜群。",
+        "price": null,
+        "seller": "教室(21組)",
+        "cashless": true,
+        "category": "ドリンク",
+        "stock": null
+    },
+    {
+        "id": "C021",
+        "photo": "../materials/enjitsu78th.webp",
+        "title": "カフェオレ",
+        "description": "コーヒーと牛乳を絶妙なバランスで合わせた、まろやかカフェオレ。",
+        "price": null,
+        "seller": "教室(21組)",
+        "cashless": true,
+        "category": "ドリンク",
+        "stock": null
+    },
+    {
+        "id": "C022",
+        "photo": "../materials/enjitsu78th.webp",
+        "title": "パスタ",
+        "description": "茹でたて生パスタに3種のソースから選べる本格メニュー。お腹も心も満たされる一皿。",
+        "price": null,
+        "seller": "知道会館①(16組)",
+        "cashless": true,
         "category": "食べ物",
         "stock": null,
         "variations": [
@@ -24,5 +398,109 @@
                 "stock": null
             }
         ]
+    },
+    {
+        "id": "C023",
+        "photo": "../materials/enjitsu78th.webp",
+        "title": "ピザ(パン)",
+        "description": "香ばしく焼き上げたパン生地のピザ。具材違いの3種類からお選びいただけます。",
+        "price": null,
+        "seller": "知道会館①(16組)",
+        "cashless": true,
+        "category": "食べ物",
+        "stock": null,
+        "variations": [
+            {
+                "name": "バジルソーセージ",
+                "price": null,
+                "stock": null
+            },
+            {
+                "name": "コーンマヨとベーコン",
+                "price": null,
+                "stock": null
+            },
+            {
+                "name": "シーフード",
+                "price": null,
+                "stock": null
+            }
+        ]
+    },
+    {
+        "id": "C024",
+        "photo": "../materials/enjitsu78th.webp",
+        "title": "ケーキ",
+        "description": "定番から限定フレーバーまで揃う、6種類のこだわりケーキ。",
+        "price": null,
+        "seller": "知道会館①(16組)",
+        "cashless": true,
+        "category": "スイーツ",
+        "stock": null,
+        "variations": [
+            {
+                "name": "ショートケーキ",
+                "price": null,
+                "stock": null
+            },
+            {
+                "name": "チョコレート",
+                "price": null,
+                "stock": null
+            },
+            {
+                "name": "ティラミス",
+                "price": null,
+                "stock": null
+            },
+            {
+                "name": "レアチーズケーキ",
+                "price": null,
+                "stock": null
+            },
+            {
+                "name": "ストロベリーブラウニー",
+                "price": null,
+                "stock": null
+            },
+            {
+                "name": "抹茶テリーヌ",
+                "price": null,
+                "stock": null
+            }
+        ]
+    },
+    {
+        "id": "C025",
+        "photo": "../materials/enjitsu78th.webp",
+        "title": "ソフトドリンク",
+        "description": "他では販売していない種類のドリンクを揃えた、喉を潤す一杯。",
+        "price": null,
+        "seller": "知道会館①(16組)",
+        "cashless": true,
+        "category": "ドリンク",
+        "stock": null
+    },
+    {
+        "id": "C026",
+        "photo": "../materials/enjitsu78th.webp",
+        "title": "お茶",
+        "description": "すっきり飲みやすい定番のお茶。パスタやピザのお供にどうぞ。",
+        "price": null,
+        "seller": "知道会館①(16組)",
+        "cashless": true,
+        "category": "ドリンク",
+        "stock": null
+    },
+    {
+        "id": "C027",
+        "photo": "../materials/enjitsu78th.webp",
+        "title": "ネスレ × 牛乳",
+        "description": "ネスレのコーヒーを牛乳で割った、香り豊かでまろやかな一杯。",
+        "price": null,
+        "seller": "知道会館①(16組)",
+        "cashless": true,
+        "category": "ドリンク",
+        "stock": null
     }
 ]
