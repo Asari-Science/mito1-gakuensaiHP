@@ -9,7 +9,10 @@ session_start();
  * - Stage timetable + leaflet_pois remain JSON-edited (complex schema)
  *   but with an integrated read-only preview table.
  * - Weather mode toggle
+ * - Square API integration (settings + catalog dashboard)
  * ============================================================ */
+
+require_once __DIR__ . '/includes/square_api.php';
 
 // --- Simple password authentication ---
 $ADMIN_PASS_HASH  = '$2y$10$8KjGkT3xV5nW5Ld0R3qZXOYmVv2Jf6kU1pN8sA7hQ4wE9rT0yB6Cm';
@@ -74,6 +77,32 @@ if (isset($_POST['action']) && $_POST['action'] === 'save' && !empty($_SESSION['
     }
 }
 
+// --- Square config save ---
+if (isset($_POST['action']) && $_POST['action'] === 'save_square' && !empty($_SESSION['admin_auth'])) {
+    $current = square_load_config();
+    $newToken = trim((string)($_POST['access_token'] ?? ''));
+    // 空欄で送られたら既存トークンを維持（マスク表示のため）
+    $accessToken = $newToken !== '' ? $newToken : $current['access_token'];
+
+    // location_ids は改行区切り or カンマ区切りどちらでも
+    $rawLocs = (string)($_POST['location_ids'] ?? '');
+    $parts   = preg_split('/[\s,]+/u', $rawLocs);
+    $locs    = array_values(array_filter(array_map('trim', $parts ?: []), 'strlen'));
+
+    $cfg = [
+        'application_id' => trim((string)($_POST['application_id'] ?? '')),
+        'access_token'   => $accessToken,
+        'environment'    => ($_POST['environment'] ?? 'sandbox') === 'production' ? 'production' : 'sandbox',
+        'location_ids'   => $locs,
+        'square_version' => $current['square_version'] ?: '2024-01-18',
+    ];
+    if (square_save_config($cfg)) {
+        $save_message = 'success:Square連携設定を保存しました。';
+    } else {
+        $save_message = 'error:Square設定の保存に失敗しました（書き込み権限を確認してください）。';
+    }
+}
+
 // --- Weather mode save ---
 if (isset($_POST['action']) && $_POST['action'] === 'save_weather' && !empty($_SESSION['admin_auth'])) {
     $mode = $_POST['weather_mode'] ?? 'sunny';
@@ -95,6 +124,20 @@ $tt_content = @file_get_contents(__DIR__ . '/pages/timetable.php');
 if ($tt_content && preg_match("/window\.STAGE_WEATHER_MODE\s*=\s*'([^']*)'/", $tt_content, $m)) {
     $current_weather = $m[1];
 }
+
+// --- Square config (for UI) ---
+$square_cfg = square_load_config();
+$square_cfg_view = [
+    'application_id'     => $square_cfg['application_id'],
+    'environment'        => $square_cfg['environment'],
+    'location_ids'       => $square_cfg['location_ids'],
+    'access_token_set'   => $square_cfg['access_token'] !== '',
+    'access_token_masked'=> $square_cfg['access_token']
+        ? (strlen($square_cfg['access_token']) > 8
+            ? substr($square_cfg['access_token'], 0, 4) . '••••' . substr($square_cfg['access_token'], -4)
+            : '••••')
+        : '',
+];
 
 $is_logged_in = !empty($_SESSION['admin_auth']);
 
@@ -166,6 +209,15 @@ if ($is_logged_in) {
         <span class="sidebar_lbl"><?= htmlspecialchars($info['label']) ?></span>
       </button>
     <?php $first = false; endforeach; ?>
+    <div class="admin_sidebar_title" style="margin-top:18px;">Square連携</div>
+    <button class="admin_sidebar_btn" data-panel="panel_square_settings" type="button">
+      <span class="sidebar_icon">🔑</span>
+      <span class="sidebar_lbl">API設定</span>
+    </button>
+    <button class="admin_sidebar_btn" data-panel="panel_square_dashboard" type="button">
+      <span class="sidebar_icon">📦</span>
+      <span class="sidebar_lbl">カタログDB</span>
+    </button>
     <div class="admin_sidebar_title" style="margin-top:18px;">サイト設定</div>
     <button class="admin_sidebar_btn" data-panel="panel_weather" type="button">
       <span class="sidebar_icon">🌤️</span>
@@ -344,6 +396,145 @@ if ($is_logged_in) {
     </section>
     <?php $first = false; endforeach; ?>
 
+    <!-- ============ Square Settings Panel ============ -->
+    <section class="admin_panel" id="panel_square_settings">
+      <header class="admin_panel_header">
+        <div class="admin_panel_titlewrap">
+          <span class="admin_panel_icon">🔑</span>
+          <div>
+            <h1 class="admin_panel_title">Square API 設定</h1>
+            <p class="admin_panel_filename">includes/square_config.local.php（リポジトリ対象外）</p>
+          </div>
+        </div>
+      </header>
+      <p class="admin_panel_desc">
+        喫茶メニュー・グッズの在庫数を Square API から取得するための認証情報を設定します。<br>
+        入力した情報は <code>includes/square_config.local.php</code> に保存され、<code>.gitignore</code>・<code>.htaccess</code> で外部に公開されません。
+      </p>
+      <form method="post" class="admin_card admin_square_form">
+        <input type="hidden" name="action" value="save_square">
+
+        <div class="admin_card_title">アプリケーション情報</div>
+
+        <div class="admin_form_group full">
+          <label>Application ID</label>
+          <input type="text" name="application_id" class="admin_input"
+                 value="<?= htmlspecialchars($square_cfg_view['application_id']) ?>"
+                 placeholder="sq0idp-xxxxxxxxxxxxxxxxxxxxxx" autocomplete="off">
+          <small class="admin_form_hint">Square Developer Dashboardの「Credentials」に表示されるID</small>
+        </div>
+
+        <div class="admin_form_group full">
+          <label>Access Token <?php if ($square_cfg_view['access_token_set']): ?><span class="admin_pill ok" style="margin-left:6px;">設定済</span><?php endif; ?></label>
+          <input type="password" name="access_token" class="admin_input"
+                 value=""
+                 placeholder="<?= $square_cfg_view['access_token_set'] ? '現在の値: ' . htmlspecialchars($square_cfg_view['access_token_masked']) . ' (変更しない場合は空欄)' : 'EAAAxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' ?>"
+                 autocomplete="new-password">
+          <small class="admin_form_hint">PAT または OAuth Access Token。空欄で送信すると現在の値が維持されます。</small>
+        </div>
+
+        <div class="admin_form_group">
+          <label>環境</label>
+          <select name="environment" class="admin_input">
+            <option value="sandbox"    <?= $square_cfg_view['environment'] === 'sandbox' ? 'selected' : '' ?>>Sandbox (テスト)</option>
+            <option value="production" <?= $square_cfg_view['environment'] === 'production' ? 'selected' : '' ?>>Production (本番)</option>
+          </select>
+        </div>
+
+        <div class="admin_form_group full">
+          <label>Location ID 一覧（複数可）</label>
+          <textarea name="location_ids" class="admin_input" rows="4" placeholder="L6Z9B2DG9SCVD&#10;LXXXXXXXXXXXX"><?= htmlspecialchars(implode("\n", $square_cfg_view['location_ids'])) ?></textarea>
+          <small class="admin_form_hint">改行またはカンマ区切りで複数入力可能。Application IDを保存後、下の「カタログDB」タブから利用可能な店舗を確認して貼り付けてください。</small>
+        </div>
+
+        <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap;">
+          <button type="submit" class="admin_btn admin_btn_success">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+            Square設定を保存
+          </button>
+          <button type="button" class="admin_btn admin_btn_outline" id="admin_square_fetch_locs">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            利用可能な店舗を取得
+          </button>
+        </div>
+      </form>
+
+      <div class="admin_card" id="admin_square_loc_result" hidden style="margin-top:18px;">
+        <div class="admin_card_title">取得した店舗一覧</div>
+        <div id="admin_square_loc_list"></div>
+      </div>
+    </section>
+
+    <!-- ============ Square Catalog Dashboard Panel ============ -->
+    <section class="admin_panel" id="panel_square_dashboard">
+      <header class="admin_panel_header">
+        <div class="admin_panel_titlewrap">
+          <span class="admin_panel_icon">📦</span>
+          <div>
+            <h1 class="admin_panel_title">Square カタログ・在庫ダッシュボード</h1>
+            <p class="admin_panel_filename">Catalog API + Inventory API</p>
+          </div>
+        </div>
+        <div class="admin_panel_actions">
+          <button type="button" class="admin_btn admin_btn_outline" id="admin_square_dash_refresh">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>
+            再取得
+          </button>
+        </div>
+      </header>
+      <p class="admin_panel_desc">
+        登録済みの店舗を選択すると、その店舗で販売中の全商品・全バリエーション・在庫数を一覧できます。<br>
+        ここで判明した <strong>Variation ID</strong> を、各商品の編集画面に貼り付けてください。
+      </p>
+
+      <div class="admin_card">
+        <div class="admin_card_title">店舗を選択</div>
+        <div class="admin_form_group full">
+          <select id="admin_square_dash_loc" class="admin_input">
+            <option value="">— 店舗を選択 —</option>
+            <?php foreach ($square_cfg_view['location_ids'] as $lid): ?>
+              <option value="<?= htmlspecialchars($lid) ?>"><?= htmlspecialchars($lid) ?></option>
+            <?php endforeach; ?>
+          </select>
+          <?php if (empty($square_cfg_view['location_ids'])): ?>
+            <small class="admin_form_hint">⚠ 上の「API設定」で Location ID を入力するか、「利用可能な店舗を取得」してください。</small>
+          <?php endif; ?>
+        </div>
+      </div>
+
+      <div class="admin_card" id="admin_square_dash_result" hidden style="margin-top:18px;">
+        <div class="admin_card_title">
+          <span>商品・バリエーション一覧</span>
+          <span style="margin-left:auto;font-size:11px;color:var(--admin-muted,#999);" id="admin_square_dash_count"></span>
+        </div>
+        <div class="admin_toolbar" style="margin-bottom:8px;">
+          <div class="admin_search_wrap">
+            <svg class="admin_search_icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="search" class="admin_toolbar_search" id="admin_square_dash_search" placeholder="商品名・バリエーション名・IDで検索...">
+          </div>
+        </div>
+        <div class="admin_table_wrap">
+          <table class="admin_table" id="admin_square_dash_table">
+            <thead>
+              <tr>
+                <th>商品名</th>
+                <th>バリエーション名</th>
+                <th>価格</th>
+                <th>Variation ID</th>
+                <th>在庫</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="admin_square_dash_empty" class="admin_table_empty" hidden style="margin-top:18px;">
+        <p class="admin_empty_title">該当する商品がありません</p>
+      </div>
+    </section>
+
     <!-- ============ Weather Mode Panel ============ -->
     <section class="admin_panel" id="panel_weather">
       <header class="admin_panel_header">
@@ -433,6 +624,7 @@ if ($is_logged_in) {
 <script>
 window.ADMIN_INITIAL_DATA = <?= json_encode($initial_data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>;
 window.ADMIN_FILE_INFO    = <?= json_encode($DATA_FILES, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>;
+window.ADMIN_SQUARE_CFG   = <?= json_encode($square_cfg_view, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>;
 <?php if ($save_message): ?>
 window.ADMIN_FLASH = <?= json_encode($save_message) ?>;
 <?php endif; ?>

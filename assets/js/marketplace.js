@@ -9,7 +9,14 @@
     var main = document.querySelector('.market_main');
     if (!main) return;
 
-    var dataUrl = main.dataset.dataUrl;
+    var dataUrl    = main.dataset.dataUrl;
+    var marketKind = main.dataset.marketKind || ''; // 'cafe' | 'goods' など
+    // Square 在庫プロキシ用 dataset 名（cafe → cafe_menu, goods → goods）
+    var squareDataset = marketKind === 'cafe' ? 'cafe_menu'
+                      : marketKind === 'goods' ? 'goods'
+                      : '';
+    // ルートからの square.php 相対パス（pages/*.php から呼ぶので ../square.php）
+    var squareProxyUrl = '../square.php';
     var allItems = [];
     var state = {
         category: 'all',
@@ -50,6 +57,13 @@
             return { min: min, max: max, html: yen(min) + (min === max ? '' : '<span class="suffix">〜</span>') };
         }
         return { min: Number(item.price) || 0, max: Number(item.price) || 0, html: yen(item.price) };
+    }
+    function hasStockInfo(item) {
+        // Square連携前で在庫が一切設定されていないアイテムでは在庫表示を抑止
+        if (item.variations && item.variations.length > 0) {
+            return item.variations.some(function(v){ return v.stock != null; });
+        }
+        return item.stock != null;
     }
     function getDisplayStock(item) {
         if (item.variations && item.variations.length > 0) {
@@ -175,9 +189,6 @@
 
         grid.innerHTML = items.map(function(item, idx) {
             var price = getDisplayPrice(item);
-            var stock = getDisplayStock(item);
-            var sCls  = stockClass(stock);
-            var sLbl  = stockLabel(stock);
             var hasVariations = item.variations && item.variations.length > 0;
             var variationTag  = hasVariations
                 ? '<span class="market_variation_tag">全' + item.variations.length + '種</span>'
@@ -187,11 +198,18 @@
                 : '<span class="market_pay cash">現金のみ</span>';
             var delay = Math.min(idx * 0.04, 0.4);
 
+            // 在庫バッジは情報がある場合のみ表示
+            var stockBadge = '';
+            if (hasStockInfo(item)) {
+                var stock = getDisplayStock(item);
+                stockBadge = '<span class="market_card_stock ' + stockClass(stock) + '">' + esc(stockLabel(stock)) + '</span>';
+            }
+
             return '<article class="market_card" tabindex="0" role="button" data-id="' + esc(item.id) +
                    '" style="animation-delay:' + delay + 's" aria-label="' + esc(item.title) + 'の詳細を見る">' +
                 '<div class="market_img_wrap">' +
                   '<span class="market_card_badge">' + esc(item.category) + '</span>' +
-                  '<span class="market_card_stock ' + sCls + '">' + esc(sLbl) + '</span>' +
+                  stockBadge +
                   '<img src="' + esc(item.photo) + '" alt="' + esc(item.title) + '" loading="lazy" decoding="async">' +
                 '</div>' +
                 '<div class="market_card_body">' +
@@ -231,25 +249,32 @@
             if (priceWrap) priceWrap.style.display = 'none';
             if (stockWrap) stockWrap.style.display = 'none';
 
+            var anyStock = item.variations.some(function(v){ return v.stock != null; });
             var rows = item.variations.map(function(v) {
+                var stockCell = v.stock != null ? esc(stockLabel(Number(v.stock) || 0)) : '—';
                 return '<tr>' +
                   '<td>' + esc(v.name) + '</td>' +
                   '<td class="var_price">' + plainYen(v.price) + '</td>' +
-                  '<td>' + esc(stockLabel(Number(v.stock) || 0)) + '</td>' +
+                  (anyStock ? '<td>' + stockCell + '</td>' : '') +
                 '</tr>';
             }).join('');
 
             variationsContainer.innerHTML =
                 '<table class="market_modal_variations_table">' +
-                  '<thead><tr><th>種類</th><th>金額</th><th>在庫</th></tr></thead>' +
+                  '<thead><tr><th>種類</th><th>金額</th>' + (anyStock ? '<th>在庫</th>' : '') + '</tr></thead>' +
                   '<tbody>' + rows + '</tbody>' +
                 '</table>';
             variationsContainer.style.display = 'block';
         } else {
             if (priceWrap) priceWrap.style.display = '';
-            if (stockWrap) stockWrap.style.display = '';
             document.getElementById('market_modal_price').innerHTML = plainYen(item.price);
-            document.getElementById('market_modal_stock').textContent = stockLabel(Number(item.stock) || 0);
+
+            if (item.stock != null) {
+                if (stockWrap) stockWrap.style.display = '';
+                document.getElementById('market_modal_stock').textContent = stockLabel(Number(item.stock) || 0);
+            } else {
+                if (stockWrap) stockWrap.style.display = 'none';
+            }
 
             variationsContainer.innerHTML = '';
             variationsContainer.style.display = 'none';
@@ -354,6 +379,47 @@
         if (e.key === 'Escape' && overlay.classList.contains('active')) closeModal();
     });
 
+    /* ---------- Square 在庫マージ ---------- */
+    // square.php?proxy=inventory が返す { map: { "locationId|variationId": qty } } を
+    // 各アイテム / バリエーションの stock に反映する。
+    function applyInventoryMap(invMap) {
+        if (!invMap || typeof invMap !== 'object') return;
+        function lookup(locationId, variationId) {
+            if (!locationId || !variationId) return null;
+            var key = locationId + '|' + variationId;
+            return Object.prototype.hasOwnProperty.call(invMap, key) ? Number(invMap[key]) : null;
+        }
+        allItems.forEach(function(item) {
+            if (item.variations && item.variations.length > 0) {
+                item.variations.forEach(function(v) {
+                    var loc = v.locationId || item.locationId || '';
+                    var q   = lookup(loc, v.variationId);
+                    if (q !== null) v.stock = q;
+                });
+            } else {
+                var q = lookup(item.locationId, item.variationId);
+                if (q !== null) item.stock = q;
+            }
+        });
+    }
+
+    function fetchSquareInventory() {
+        if (!squareDataset) return Promise.resolve();
+        return fetch(squareProxyUrl + '?proxy=inventory&dataset=' + encodeURIComponent(squareDataset), {
+            credentials: 'same-origin',
+            cache: 'no-store'
+        })
+        .then(function(res) { return res.ok ? res.json() : null; })
+        .then(function(json) {
+            if (!json || json.error) return;
+            applyInventoryMap(json.map);
+        })
+        .catch(function(err) {
+            // 在庫取得失敗時はJSONの静的値のままにフォールバック
+            console.warn('Square inventory fetch failed:', err);
+        });
+    }
+
     /* ---------- Init ---------- */
     renderSkeleton();
 
@@ -361,8 +427,14 @@
         .then(function(res) { return res.json(); })
         .then(function(data) {
             allItems = data;
+            // 先に静的データでレンダリングしてから Square API で上書き
             renderHeroStats();
             renderCategoryButtons();
+            renderCards();
+            return fetchSquareInventory();
+        })
+        .then(function() {
+            // 在庫情報を反映して再描画（カードのバッジが更新される）
             renderCards();
         })
         .catch(function(err) {

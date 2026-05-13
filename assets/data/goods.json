@@ -1,68 +1,80 @@
 [
-  {
-    "id": "G001",
-    "photo": "../materials/enjitsu78th.webp",
-    "title": "天翔る公式タオル",
-    "description": "今年のテーマカラーを使った記念タオル。ステージ応援にも。",
-    "price": 900,
-    "seller": "学苑祭実行委員会",
-    "cashless": true,
-    "category": "グッズ",
-    "stock": 150
-  },
-  {
-    "id": "G002",
-    "photo": "../materials/enjitsu78th.webp",
-    "title": "ロゴステッカーセット",
-    "description": "スマホやノートに貼れる3枚組ステッカー。",
-    "price": 300,
-    "seller": "広報局",
-    "cashless": true,
-    "category": "文具",
-    "stock": 220
-  },
-  {
-    "id": "G003",
-    "photo": "../materials/enjitsu78th.webp",
-    "title": "校章風キーホルダー",
-    "description": "記念品におすすめのアクリルキーホルダー。",
-    "price": 500,
-    "seller": "美術部",
-    "cashless": false,
-    "category": "アクセサリー",
-    "stock": 84
-  },
-  {
-    "id": "G004",
-    "photo": "../materials/enjitsu78th.webp",
-    "title": "水戸銘菓セレクト",
-    "description": "来場記念のお土産に。数量限定の詰め合わせです。",
-    "price": 800,
-    "seller": "お土産販売所",
-    "cashless": true,
-    "category": "お土産",
-    "stock": 45
-  },
-  {
-    "id": "G005",
-    "photo": "../materials/enjitsu78th.webp",
-    "title": "限定クリアファイル",
-    "description": "メインビジュアルをあしらったA4クリアファイル。",
-    "price": 250,
-    "seller": "学苑祭実行委員会",
-    "cashless": true,
-    "category": "文具",
-    "stock": 180
-  },
-  {
-    "id": "G006",
-    "photo": "../materials/enjitsu78th.webp",
-    "title": "手作りしおり",
-    "description": "図書委員会による一点ものの手作りしおり。",
-    "price": 150,
-    "seller": "図書委員会",
-    "cashless": false,
-    "category": "文具",
-    "stock": 60
-  }
+    {
+        "id": "G001",
+        "photo": "../materials/enjitsu78th.webp",
+        "title": "天翔る公式タオル",
+        "description": "今年のテーマカラーを使った記念タオル。ステージ応援にも。",
+        "price": 900,
+        "seller": "学苑祭実行委員会",
+        "cashless": true,
+        "category": "グッズ",
+        "stock": null,
+        "locationId": "",
+        "variationId": ""
+    },
+    {
+        "id": "G002",
+        "photo": "../materials/enjitsu78th.webp",
+        "title": "ロゴステッカーセット",
+        "description": "スマホやノートに貼れる3枚組ステッカー。",
+        "price": 300,
+        "seller": "広報局",
+        "cashless": true,
+        "category": "文具",
+        "stock": null,
+        "locationId": "",
+        "variationId": ""
+    },
+    {
+        "id": "G003",
+        "photo": "../materials/enjitsu78th.webp",
+        "title": "校章風キーホルダー",
+        "description": "記念品におすすめのアクリルキーホルダー。",
+        "price": 500,
+        "seller": "美術部",
+        "cashless": false,
+        "category": "アクセサリー",
+        "stock": null,
+        "locationId": "",
+        "variationId": ""
+    },
+    {
+        "id": "G004",
+        "photo": "../materials/enjitsu78th.webp",
+        "title": "水戸銘菓セレクト",
+        "description": "来場記念のお土産に。数量限定の詰め合わせです。",
+        "price": 800,
+        "seller": "お土産販売所",
+        "cashless": true,
+        "category": "お土産",
+        "stock": null,
+        "locationId": "",
+        "variationId": ""
+    },
+    {
+        "id": "G005",
+        "photo": "../materials/enjitsu78th.webp",
+        "title": "限定クリアファイル",
+        "description": "メインビジュアルをあしらったA4クリアファイル。",
+        "price": 250,
+        "seller": "学苑祭実行委員会",
+        "cashless": true,
+        "category": "文具",
+        "stock": null,
+        "locationId": "",
+        "variationId": ""
+    },
+    {
+        "id": "G006",
+        "photo": "../materials/enjitsu78th.webp",
+        "title": "手作りしおり",
+        "description": "図書委員会による一点ものの手作りしおり。",
+        "price": 150,
+        "seller": "図書委員会",
+        "cashless": false,
+        "category": "文具",
+        "stock": null,
+        "locationId": "",
+        "variationId": ""
+    }
 ]

@@ -118,9 +118,53 @@ php -S localhost:8000
 - **企画/メニュー検索**: JSONデータに基づいたリアルタイムフィルタリング機能
 - **PWA対応**: 当日の通信環境が悪化しても、キャッシュされた企画情報やマップを閲覧可能
 
+## Square API 連携
+
+喫茶メニュー（`cafe_menu.json`）とグッズ・お土産（`goods.json`）は、Square API から在庫数を動的に取得して表示します。
+
+### 設定方法
+
+1. `admin.php` にログインし、サイドバーの「**Square連携 → API設定**」を開く
+2. Application ID / Access Token / 環境（sandbox / production）を入力して保存
+3. 「**利用可能な店舗を取得**」をクリックすると、その Application で使える店舗一覧が表示され、ワンクリックで Location ID を追加できる
+4. 「**Square連携 → カタログDB**」で店舗を選択すると、Square 側に登録されている全商品 × 全バリエーション × 現在の在庫数が一覧表示される（Variation ID をコピー可）
+5. 「**喫茶メニュー / グッズ・お土産**」の各商品編集ダイアログで、その商品に対応する **Location ID** と **Variation ID** をプルダウンと入力欄で設定する
+   - 味などのバリエーションがある場合は、バリエーションごとに ID を設定可能
+6. 設定後、`pages/cafe.php` / `pages/goods.php` を開くと、`square.php?proxy=inventory` 経由で在庫数が動的に反映される
+
+### JSONスキーマのルール
+
+```json
+{
+  "id": "C001", "title": "...", "price": 200,
+  "locationId": "L6Z9B2DG9SCVD",
+  "variationId": "ABCD1234EFGH5678"
+}
+```
+
+バリエーションがある場合は各バリエーションに `locationId` / `variationId` を持たせます（`locationId` は省略時に親アイテムの値を継承）:
+
+```json
+{
+  "id": "C004", "title": "かき氷",
+  "locationId": "L6Z9B2DG9SCVD",
+  "variations": [
+    { "name": "いちご",       "price": 300, "locationId": "", "variationId": "VAR_STRAWBERRY" },
+    { "name": "ブルーハワイ", "price": 300, "locationId": "", "variationId": "VAR_BLUEHAWAII" }
+  ]
+}
+```
+
+### セキュリティ
+
+- Access Token / Application ID は `includes/square_config.local.php` に保存されます（`.gitignore` 対象）
+- `includes/` 直下は `.htaccess` の `Require all denied` で直接アクセス不可
+- フロント JS は **必ず** `square.php` プロキシ経由で API を呼び、鍵が露出しない設計
+- 公開エンドポイントは「JSON に登録済みの Variation ID の在庫数」のみ、それ以外（カタログ一覧・店舗一覧）はセッション認証必須
+
 ## 今後の開発指針
 
-1. **各ページの本実装**: 喫茶/グッズの在庫連動（Square API検討）、落とし物ページの実装
+1. **各ページの本実装**: 落とし物ページの実装
 2. **パフォーマンス最適化**: 画像のWebP化の徹底、不要なアセットの削除
 3. **アクセシビリティ改善**: 全コンテンツのスクリーンリーダー対応、キーボード操作の完全性向上
 

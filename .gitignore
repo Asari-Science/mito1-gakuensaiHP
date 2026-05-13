@@ -11,3 +11,8 @@
 
 # Local screenshots / preview artifacts
 .screenshots/
+
+# Square API credentials (never commit secrets)
+includes/square_config.local.php
+*.local.php
+
