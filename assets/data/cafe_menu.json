@@ -8,7 +8,9 @@
         "seller": "ピロティ(36組)",
         "cashless": true,
         "category": "食べ物",
-        "stock": null
+        "stock": null,
+        "locationId": "",
+        "variationId": ""
     },
     {
         "id": "C002",
@@ -19,7 +21,9 @@
         "seller": "ピロティ(36組)",
         "cashless": true,
         "category": "スイーツ",
-        "stock": null
+        "stock": null,
+        "locationId": "",
+        "variationId": ""
     },
     {
         "id": "C003",
@@ -30,7 +34,9 @@
         "seller": "ピロティ(36組)",
         "cashless": true,
         "category": "スイーツ",
-        "stock": null
+        "stock": null,
+        "locationId": "",
+        "variationId": ""
     },
     {
         "id": "C004",
@@ -46,29 +52,40 @@
             {
                 "name": "いちご",
                 "price": null,
-                "stock": null
+                "stock": null,
+                "locationId": "",
+                "variationId": ""
             },
             {
                 "name": "ブルーハワイ",
                 "price": null,
-                "stock": null
+                "stock": null,
+                "locationId": "",
+                "variationId": ""
             },
             {
                 "name": "レモン",
                 "price": null,
-                "stock": null
+                "stock": null,
+                "locationId": "",
+                "variationId": ""
             },
             {
                 "name": "マンゴー",
                 "price": null,
-                "stock": null
+                "stock": null,
+                "locationId": "",
+                "variationId": ""
             },
             {
                 "name": "抹茶",
                 "price": null,
-                "stock": null
+                "stock": null,
+                "locationId": "",
+                "variationId": ""
             }
-        ]
+        ],
+        "locationId": ""
     },
     {
         "id": "C005",
@@ -79,7 +96,9 @@
         "seller": "ピロティ(36組)",
         "cashless": true,
         "category": "ドリンク",
-        "stock": null
+        "stock": null,
+        "locationId": "",
+        "variationId": ""
     },
     {
         "id": "C006",
@@ -90,7 +109,9 @@
         "seller": "ピロティ(36組)",
         "cashless": true,
         "category": "ドリンク",
-        "stock": null
+        "stock": null,
+        "locationId": "",
+        "variationId": ""
     },
     {
         "id": "C007",
@@ -101,7 +122,9 @@
         "seller": "ピロティ(36組)",
         "cashless": true,
         "category": "ドリンク",
-        "stock": null
+        "stock": null,
+        "locationId": "",
+        "variationId": ""
     },
     {
         "id": "C008",
@@ -112,7 +135,9 @@
         "seller": "ピロティ(36組)",
         "cashless": true,
         "category": "ドリンク",
-        "stock": null
+        "stock": null,
+        "locationId": "",
+        "variationId": ""
     },
     {
         "id": "C009",
@@ -128,14 +153,19 @@
             {
                 "name": "ココア",
                 "price": null,
-                "stock": null
+                "stock": null,
+                "locationId": "",
+                "variationId": ""
             },
             {
                 "name": "抹茶",
                 "price": null,
-                "stock": null
+                "stock": null,
+                "locationId": "",
+                "variationId": ""
             }
-        ]
+        ],
+        "locationId": ""
     },
     {
         "id": "C010",
@@ -151,19 +181,26 @@
             {
                 "name": "焼鮭",
                 "price": null,
-                "stock": null
+                "stock": null,
+                "locationId": "",
+                "variationId": ""
             },
             {
                 "name": "ツナマヨ",
                 "price": null,
-                "stock": null
+                "stock": null,
+                "locationId": "",
+                "variationId": ""
             },
             {
                 "name": "焼きおにぎりチーズ",
                 "price": null,
-                "stock": null
+                "stock": null,
+                "locationId": "",
+                "variationId": ""
             }
-        ]
+        ],
+        "locationId": ""
     },
     {
         "id": "C011",
@@ -179,19 +216,26 @@
             {
                 "name": "あんぱん",
                 "price": null,
-                "stock": null
+                "stock": null,
+                "locationId": "",
+                "variationId": ""
             },
             {
                 "name": "サクサクメロンパン",
                 "price": null,
-                "stock": null
+                "stock": null,
+                "locationId": "",
+                "variationId": ""
             },
             {
                 "name": "ベーコンエピ",
                 "price": null,
-                "stock": null
+                "stock": null,
+                "locationId": "",
+                "variationId": ""
             }
-        ]
+        ],
+        "locationId": ""
     },
     {
         "id": "C012",
@@ -207,34 +251,47 @@
             {
                 "name": "ショートケーキ",
                 "price": null,
-                "stock": null
+                "stock": null,
+                "locationId": "",
+                "variationId": ""
             },
             {
                 "name": "チョコレート",
                 "price": null,
-                "stock": null
+                "stock": null,
+                "locationId": "",
+                "variationId": ""
             },
             {
                 "name": "ミルクレープ",
                 "price": null,
-                "stock": null
+                "stock": null,
+                "locationId": "",
+                "variationId": ""
             },
             {
                 "name": "ティラミス",
                 "price": null,
-                "stock": null
+                "stock": null,
+                "locationId": "",
+                "variationId": ""
             },
             {
                 "name": "レアチーズケーキ",
                 "price": null,
-                "stock": null
+                "stock": null,
+                "locationId": "",
+                "variationId": ""
             },
             {
                 "name": "抹茶テリーヌ",
                 "price": null,
-                "stock": null
+                "stock": null,
+                "locationId": "",
+                "variationId": ""
             }
-        ]
+        ],
+        "locationId": ""
     },
     {
         "id": "C013",
@@ -250,14 +307,19 @@
             {
                 "name": "プレーン",
                 "price": null,
-                "stock": null
+                "stock": null,
+                "locationId": "",
+                "variationId": ""
             },
             {
                 "name": "チョコ",
                 "price": null,
-                "stock": null
+                "stock": null,
+                "locationId": "",
+                "variationId": ""
             }
-        ]
+        ],
+        "locationId": ""
     },
     {
         "id": "C014",
@@ -273,14 +335,19 @@
             {
                 "name": "バニラ",
                 "price": null,
-                "stock": null
+                "stock": null,
+                "locationId": "",
+                "variationId": ""
             },
             {
                 "name": "クッキー&バニラ",
                 "price": null,
-                "stock": null
+                "stock": null,
+                "locationId": "",
+                "variationId": ""
             }
-        ]
+        ],
+        "locationId": ""
     },
     {
         "id": "C015",
@@ -296,14 +363,19 @@
             {
                 "name": "パンケーキ(ソース:チョコ)",
                 "price": null,
-                "stock": null
+                "stock": null,
+                "locationId": "",
+                "variationId": ""
             },
             {
                 "name": "パンケーキ(ソース:キャラメル)",
                 "price": null,
-                "stock": null
+                "stock": null,
+                "locationId": "",
+                "variationId": ""
             }
-        ]
+        ],
+        "locationId": ""
     },
     {
         "id": "C016",
@@ -314,7 +386,9 @@
         "seller": "教室(21組)",
         "cashless": true,
         "category": "スイーツ",
-        "stock": null
+        "stock": null,
+        "locationId": "",
+        "variationId": ""
     },
     {
         "id": "C017",
@@ -325,7 +399,9 @@
         "seller": "教室(21組)",
         "cashless": true,
         "category": "ドリンク",
-        "stock": null
+        "stock": null,
+        "locationId": "",
+        "variationId": ""
     },
     {
         "id": "C018",
@@ -336,7 +412,9 @@
         "seller": "教室(21組)",
         "cashless": true,
         "category": "ドリンク",
-        "stock": null
+        "stock": null,
+        "locationId": "",
+        "variationId": ""
     },
     {
         "id": "C019",
@@ -347,7 +425,9 @@
         "seller": "教室(21組)",
         "cashless": true,
         "category": "ドリンク",
-        "stock": null
+        "stock": null,
+        "locationId": "",
+        "variationId": ""
     },
     {
         "id": "C020",
@@ -358,7 +438,9 @@
         "seller": "教室(21組)",
         "cashless": true,
         "category": "ドリンク",
-        "stock": null
+        "stock": null,
+        "locationId": "",
+        "variationId": ""
     },
     {
         "id": "C021",
@@ -369,7 +451,9 @@
         "seller": "教室(21組)",
         "cashless": true,
         "category": "ドリンク",
-        "stock": null
+        "stock": null,
+        "locationId": "",
+        "variationId": ""
     },
     {
         "id": "C022",
@@ -385,19 +469,26 @@
             {
                 "name": "ミートソース",
                 "price": null,
-                "stock": null
+                "stock": null,
+                "locationId": "",
+                "variationId": ""
             },
             {
                 "name": "カルボナーラ",
                 "price": null,
-                "stock": null
+                "stock": null,
+                "locationId": "",
+                "variationId": ""
             },
             {
                 "name": "明太子",
                 "price": null,
-                "stock": null
+                "stock": null,
+                "locationId": "",
+                "variationId": ""
             }
-        ]
+        ],
+        "locationId": ""
     },
     {
         "id": "C023",
@@ -413,19 +504,26 @@
             {
                 "name": "バジルソーセージ",
                 "price": null,
-                "stock": null
+                "stock": null,
+                "locationId": "",
+                "variationId": ""
             },
             {
                 "name": "コーンマヨとベーコン",
                 "price": null,
-                "stock": null
+                "stock": null,
+                "locationId": "",
+                "variationId": ""
             },
             {
                 "name": "シーフード",
                 "price": null,
-                "stock": null
+                "stock": null,
+                "locationId": "",
+                "variationId": ""
             }
-        ]
+        ],
+        "locationId": ""
     },
     {
         "id": "C024",
@@ -441,34 +539,47 @@
             {
                 "name": "ショートケーキ",
                 "price": null,
-                "stock": null
+                "stock": null,
+                "locationId": "",
+                "variationId": ""
             },
             {
                 "name": "チョコレート",
                 "price": null,
-                "stock": null
+                "stock": null,
+                "locationId": "",
+                "variationId": ""
             },
             {
                 "name": "ティラミス",
                 "price": null,
-                "stock": null
+                "stock": null,
+                "locationId": "",
+                "variationId": ""
             },
             {
                 "name": "レアチーズケーキ",
                 "price": null,
-                "stock": null
+                "stock": null,
+                "locationId": "",
+                "variationId": ""
             },
             {
                 "name": "ストロベリーブラウニー",
                 "price": null,
-                "stock": null
+                "stock": null,
+                "locationId": "",
+                "variationId": ""
             },
             {
                 "name": "抹茶テリーヌ",
                 "price": null,
-                "stock": null
+                "stock": null,
+                "locationId": "",
+                "variationId": ""
             }
-        ]
+        ],
+        "locationId": ""
     },
     {
         "id": "C025",
@@ -479,7 +590,9 @@
         "seller": "知道会館①(16組)",
         "cashless": true,
         "category": "ドリンク",
-        "stock": null
+        "stock": null,
+        "locationId": "",
+        "variationId": ""
     },
     {
         "id": "C026",
@@ -490,7 +603,9 @@
         "seller": "知道会館①(16組)",
         "cashless": true,
         "category": "ドリンク",
-        "stock": null
+        "stock": null,
+        "locationId": "",
+        "variationId": ""
     },
     {
         "id": "C027",
@@ -501,6 +616,8 @@
         "seller": "知道会館①(16組)",
         "cashless": true,
         "category": "ドリンク",
-        "stock": null
+        "stock": null,
+        "locationId": "",
+        "variationId": ""
     }
 ]

@@ -1256,18 +1256,36 @@ body.admin_modal_open {
   align-items: center;
 }
 
-.admin_var_row input {
+/* 5列レイアウト: 種類名 / 金額 / 在庫 / Location / VariationID / 削除 */
+.admin_var_row.admin_var_row_square {
+  grid-template-columns: 1.6fr 0.8fr 0.8fr 1.2fr 1.6fr 32px;
+}
+
+.admin_var_row input,
+.admin_var_row select {
   padding: 8px 10px;
   font-size: 13px;
   border: 1.5px solid var(--admin-border);
   border-radius: 7px;
   background: #fff;
   outline: none;
+  min-width: 0;
 }
 
-.admin_var_row input:focus {
+.admin_var_row input:focus,
+.admin_var_row select:focus {
   border-color: var(--admin-accent);
 }
+
+/* Square 設定フォーム */
+.admin_square_form .admin_form_group { margin-bottom: 14px; }
+.admin_square_form .admin_form_group.full { grid-column: 1 / -1; }
+
+/* Single product Square fields */
+.admin_form_single .admin_form_row {
+  margin-bottom: 10px;
+}
+.admin_form_single.hidden { display: none; }
 
 .admin_var_remove {
   width: 30px;
@@ -1427,6 +1445,14 @@ body.admin_modal_open {
     grid-template-columns: 1fr 1fr 30px;
   }
   .admin_var_row input[name="var_name"] {
+    grid-column: 1 / -1;
+  }
+  .admin_var_row.admin_var_row_square {
+    grid-template-columns: 1fr 1fr 30px;
+  }
+  .admin_var_row.admin_var_row_square input[name="var_name"],
+  .admin_var_row.admin_var_row_square select[name="var_locationId"],
+  .admin_var_row.admin_var_row_square input[name="var_variationId"] {
     grid-column: 1 / -1;
   }
 }

@@ -452,7 +452,7 @@
 
     if (isNew) {
       if (info.type === 'product') {
-        item = { id: nextId(data, key === 'cafe_menu' ? 'C' : 'G'), photo: '../materials/enjitsu78th.webp', title: '', description: '', price: 0, seller: '', cashless: true, category: '', stock: 0 };
+        item = { id: nextId(data, key === 'cafe_menu' ? 'C' : 'G'), photo: '../materials/enjitsu78th.webp', title: '', description: '', price: 0, seller: '', cashless: true, category: '', stock: null, locationId: '', variationId: '' };
       } else if (info.type === 'kikaku') {
         item = { id: nextId(data, 'K'), title: '', genre: '', group: '', location: '', locationPin: '', pr: '', description: '', images: [], day: 'both' };
       } else if (info.type === 'leaflet') {
@@ -526,6 +526,19 @@
     return el('label', { class: 'admin_form_check' }, [input, document.createTextNode(' ' + label)]);
   }
 
+  // Square 設定からロケーション選択肢を作る
+  function locationOptions(currentVal) {
+    var cfg  = window.ADMIN_SQUARE_CFG || {};
+    var ids  = (cfg.location_ids || []).slice();
+    var opts = [{ value: '', label: '— Square連携しない —' }];
+    ids.forEach(function(id) { opts.push({ value: id, label: id }); });
+    // 既存値がリストに無くても保持
+    if (currentVal && ids.indexOf(currentVal) === -1) {
+      opts.push({ value: currentVal, label: currentVal + ' (未登録)' });
+    }
+    return opts;
+  }
+
   function buildEditForm(type, item) {
     var wrap = el('div', { class: 'admin_form' });
     if (type === 'product') {
@@ -541,31 +554,49 @@
       var varToggle = checkbox('has_variations', 'バリエーション(種類)を設定する', hasVar);
       wrap.appendChild(el('div', { class: 'admin_form_group full' }, [varToggle]));
 
-      // Single price/stock
-      var single = el('div', { class: 'admin_form_row admin_form_single' + (hasVar ? ' hidden' : '') }, [
+      // Single price/stock + Square IDs
+      var single = el('div', { class: 'admin_form_single' + (hasVar ? ' hidden' : '') });
+      var singleRow1 = el('div', { class: 'admin_form_row' }, [
         field('金額 (円)', input('price', item.price, 'number')),
-        field('在庫数', input('stock', item.stock, 'number'))
+        field('在庫数 (任意)', input('stock', item.stock, 'number'), { hint: 'Squareから自動取得する場合は空欄' })
       ]);
+      single.appendChild(singleRow1);
+      var singleRow2 = el('div', { class: 'admin_form_row' }, [
+        field('Square Location ID', select('locationId', locationOptions(item.locationId || ''), item.locationId || ''),
+              { hint: '在庫を取得する店舗' }),
+        field('Square Variation ID', input('variationId', item.variationId || ''),
+              { hint: 'カタログDBから取得して貼り付け' })
+      ]);
+      single.appendChild(singleRow2);
       wrap.appendChild(single);
 
       // Variations table
       var varWrap = el('div', { class: 'admin_form_group full admin_form_variations' + (hasVar ? '' : ' hidden') });
-      varWrap.appendChild(el('label', { text: 'バリエーション (種類ごとの金額・在庫)' }));
+      varWrap.appendChild(el('label', { text: 'バリエーション (種類ごとの金額・在庫 + Square ID)' }));
+      varWrap.appendChild(el('small', { class: 'admin_form_hint', html: '味などのバリエーションごとに Variation ID を割り当てます。空欄の場合は親アイテムの Location ID を継承します。' }));
       var varList = el('div', { class: 'admin_var_list', 'data-var-list': '' });
       varWrap.appendChild(varList);
       var addBtn = el('button', { type: 'button', class: 'admin_btn admin_btn_outline', style: 'margin-top:8px;font-size:12px;padding:7px 14px;' }, '+ バリエーション追加');
-      addBtn.addEventListener('click', function() { addVarRow(varList, { name: '', price: 0, stock: 0 }); });
+      addBtn.addEventListener('click', function() { addVarRow(varList, { name: '', price: 0, stock: null, locationId: '', variationId: '' }); });
       varWrap.appendChild(addBtn);
+
+      // 親アイテム共通の Location ID
+      var varCommonRow = el('div', { class: 'admin_form_group full', style: 'margin-top:10px;' }, [
+        field('共通 Location ID (各バリエーションに継承)',
+              select('parent_locationId', locationOptions(item.locationId || ''), item.locationId || ''))
+      ]);
+      varWrap.appendChild(varCommonRow);
+
       wrap.appendChild(varWrap);
 
       (item.variations || []).forEach(function(v) { addVarRow(varList, v); });
-      if (hasVar && (!item.variations || item.variations.length === 0)) addVarRow(varList, { name: '', price: 0, stock: 0 });
+      if (hasVar && (!item.variations || item.variations.length === 0)) addVarRow(varList, { name: '', price: 0, stock: null, locationId: '', variationId: '' });
 
       varToggle.querySelector('input').addEventListener('change', function(e) {
         if (e.target.checked) {
           single.classList.add('hidden');
           varWrap.classList.remove('hidden');
-          if (!varList.children.length) addVarRow(varList, { name: '', price: 0, stock: 0 });
+          if (!varList.children.length) addVarRow(varList, { name: '', price: 0, stock: null, locationId: '', variationId: '' });
         } else {
           single.classList.remove('hidden');
           varWrap.classList.add('hidden');
@@ -615,10 +646,34 @@
   }
 
   function addVarRow(container, v) {
-    var row = el('div', { class: 'admin_var_row' }, [
+    var cfg = window.ADMIN_SQUARE_CFG || {};
+    var locIds = (cfg.location_ids || []).slice();
+    var curLoc = v.locationId || '';
+    // location select
+    var locSel = document.createElement('select');
+    locSel.className = 'admin_input';
+    locSel.name = 'var_locationId';
+    var opt0 = document.createElement('option');
+    opt0.value = ''; opt0.textContent = '(共通)';
+    locSel.appendChild(opt0);
+    locIds.forEach(function(id) {
+      var o = document.createElement('option');
+      o.value = id; o.textContent = id;
+      if (id === curLoc) o.selected = true;
+      locSel.appendChild(o);
+    });
+    if (curLoc && locIds.indexOf(curLoc) === -1) {
+      var oExtra = document.createElement('option');
+      oExtra.value = curLoc; oExtra.textContent = curLoc + ' (未登録)'; oExtra.selected = true;
+      locSel.appendChild(oExtra);
+    }
+
+    var row = el('div', { class: 'admin_var_row admin_var_row_square' }, [
       el('input', { type: 'text', class: 'admin_input', placeholder: '種類名', name: 'var_name', value: v.name || '' }),
       el('input', { type: 'number', class: 'admin_input', placeholder: '金額', name: 'var_price', value: v.price == null ? 0 : v.price }),
-      el('input', { type: 'number', class: 'admin_input', placeholder: '在庫', name: 'var_stock', value: v.stock == null ? 0 : v.stock }),
+      el('input', { type: 'number', class: 'admin_input', placeholder: '在庫(任意)', name: 'var_stock', value: v.stock == null ? '' : v.stock }),
+      locSel,
+      el('input', { type: 'text', class: 'admin_input', placeholder: 'Variation ID', name: 'var_variationId', value: v.variationId || '' }),
       el('button', { type: 'button', class: 'admin_var_remove', 'aria-label': '削除' }, '×')
     ]);
     row.querySelector('.admin_var_remove').addEventListener('click', function() { row.remove(); });
@@ -660,16 +715,25 @@
         rows.forEach(function(r) {
           var n = r.querySelector('[name="var_name"]').value.trim();
           var p = parseInt(r.querySelector('[name="var_price"]').value, 10) || 0;
-          var s = parseInt(r.querySelector('[name="var_stock"]').value, 10) || 0;
-          if (n) variations.push({ name: n, price: p, stock: s });
+          var sRaw = r.querySelector('[name="var_stock"]').value;
+          var s = (sRaw === '' || sRaw == null) ? null : (parseInt(sRaw, 10) || 0);
+          var lid = (r.querySelector('[name="var_locationId"]').value || '').trim();
+          var vid = (r.querySelector('[name="var_variationId"]').value || '').trim();
+          if (n) variations.push({ name: n, price: p, stock: s, locationId: lid, variationId: vid });
         });
         if (!variations.length) { showToast('バリエーションを1件以上入力してください', 'error'); return; }
-        item.variations = variations;
+        item.variations  = variations;
+        // 親アイテムは共通 locationId だけ保持
+        item.locationId  = (get('parent_locationId') || '').trim();
         delete item.price;
         delete item.stock;
+        delete item.variationId;
       } else {
         item.price = parseInt(get('price'), 10) || 0;
-        item.stock = parseInt(get('stock'), 10) || 0;
+        var sRawTop = get('stock');
+        item.stock = (sRawTop === '' || sRawTop == null) ? null : (parseInt(sRawTop, 10) || 0);
+        item.locationId  = (get('locationId') || '').trim();
+        item.variationId = (get('variationId') || '').trim();
         delete item.variations;
       }
     } else if (current.type === 'kikaku') {
@@ -859,6 +923,182 @@
       if (ov && !ov.hidden) closeEditModal();
     }
   });
+
+  // ---------- Square: API設定パネル ----------
+  var squareFetchBtn = $('#admin_square_fetch_locs');
+  if (squareFetchBtn) {
+    squareFetchBtn.addEventListener('click', function() {
+      var resultCard = $('#admin_square_loc_result');
+      var listEl     = $('#admin_square_loc_list');
+      squareFetchBtn.disabled = true;
+      squareFetchBtn.textContent = '取得中…';
+      fetch('square.php?proxy=locations', { credentials: 'same-origin', cache: 'no-store' })
+        .then(function(r) { return r.json(); })
+        .then(function(json) {
+          resultCard.hidden = false;
+          if (json.error) {
+            listEl.innerHTML = '<p class="admin_table_nores">取得失敗: ' + esc(json.error) + '</p>';
+            return;
+          }
+          var locs = json.locations || [];
+          if (!locs.length) {
+            listEl.innerHTML = '<p class="admin_table_nores">店舗が見つかりませんでした。</p>';
+            return;
+          }
+          var html = '<div class="admin_table_wrap"><table class="admin_table"><thead><tr>' +
+            '<th>店舗名</th><th>Location ID</th><th>住所</th><th>通貨</th><th>状態</th><th></th>' +
+            '</tr></thead><tbody>';
+          locs.forEach(function(l) {
+            html += '<tr>' +
+              '<td><strong>' + esc(l.name || '—') + '</strong></td>' +
+              '<td><code>' + esc(l.id) + '</code></td>' +
+              '<td>' + esc(l.address || '—') + '</td>' +
+              '<td>' + esc(l.currency || '—') + '</td>' +
+              '<td><span class="admin_pill ' + (l.status === 'ACTIVE' ? 'ok' : 'cash') + '">' + esc(l.status || '—') + '</span></td>' +
+              '<td><button type="button" class="admin_table_btn" data-add-loc="' + esc(l.id) + '">+ 追加</button></td>' +
+            '</tr>';
+          });
+          html += '</tbody></table></div>';
+          listEl.innerHTML = html;
+          // 「追加」ボタン
+          listEl.querySelectorAll('[data-add-loc]').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+              var id = btn.dataset.addLoc;
+              var ta = document.querySelector('#panel_square_settings textarea[name="location_ids"]');
+              if (!ta) return;
+              var cur = (ta.value || '').split(/[\s,]+/).map(function(s){return s.trim();}).filter(Boolean);
+              if (cur.indexOf(id) === -1) {
+                cur.push(id);
+                ta.value = cur.join('\n');
+                showToast(id + ' を追加しました（「Square設定を保存」で確定）', 'info');
+              } else {
+                showToast('既に追加されています', 'info');
+              }
+            });
+          });
+        })
+        .catch(function(e) {
+          resultCard.hidden = false;
+          listEl.innerHTML = '<p class="admin_table_nores">取得失敗: ' + esc(e.message) + '</p>';
+        })
+        .finally(function() {
+          squareFetchBtn.disabled = false;
+          squareFetchBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> 利用可能な店舗を取得';
+        });
+    });
+  }
+
+  // ---------- Square: カタログDBダッシュボード ----------
+  var dashLocSel = $('#admin_square_dash_loc');
+  var dashRefresh = $('#admin_square_dash_refresh');
+  var dashSearch  = $('#admin_square_dash_search');
+  var dashResult  = $('#admin_square_dash_result');
+  var dashEmpty   = $('#admin_square_dash_empty');
+  var dashTbody   = dashResult ? dashResult.querySelector('tbody') : null;
+  var dashCount   = $('#admin_square_dash_count');
+  var dashCache   = []; // 現在表示中のフラット行
+
+  function fetchSquareCatalog(locationId) {
+    if (!locationId) return;
+    if (dashResult) dashResult.hidden = true;
+    if (dashEmpty)  dashEmpty.hidden = true;
+    if (dashTbody)  dashTbody.innerHTML = '<tr><td colspan="6" class="admin_table_nores">読み込み中…</td></tr>';
+    if (dashResult) dashResult.hidden = false;
+
+    fetch('square.php?proxy=catalog&location_id=' + encodeURIComponent(locationId),
+          { credentials: 'same-origin', cache: 'no-store' })
+      .then(function(r) { return r.json(); })
+      .then(function(json) {
+        if (json.error) {
+          dashTbody.innerHTML = '<tr><td colspan="6" class="admin_table_nores">取得失敗: ' + esc(json.error) + '</td></tr>';
+          return;
+        }
+        var rows = [];
+        (json.items || []).forEach(function(it) {
+          (it.variations || []).forEach(function(v) {
+            rows.push({
+              item_name: it.item_name,
+              variation_name: v.variation_name,
+              price: v.price,
+              currency: v.currency,
+              variation_id: v.variation_id,
+              quantity: v.quantity,
+              track: v.track_inventory
+            });
+          });
+        });
+        dashCache = rows;
+        renderDashTable();
+      })
+      .catch(function(e) {
+        dashTbody.innerHTML = '<tr><td colspan="6" class="admin_table_nores">取得失敗: ' + esc(e.message) + '</td></tr>';
+      });
+  }
+
+  function renderDashTable() {
+    if (!dashTbody) return;
+    var q = ((dashSearch && dashSearch.value) || '').toLowerCase().trim();
+    var rows = dashCache.filter(function(r) {
+      if (!q) return true;
+      return (r.item_name + ' ' + r.variation_name + ' ' + r.variation_id).toLowerCase().indexOf(q) !== -1;
+    });
+    if (dashCount) dashCount.textContent = rows.length + ' / ' + dashCache.length + ' 件';
+    if (!rows.length) {
+      dashTbody.innerHTML = '<tr><td colspan="6" class="admin_table_nores">該当する商品がありません</td></tr>';
+      return;
+    }
+    dashTbody.innerHTML = rows.map(function(r) {
+      var priceStr = r.price != null
+        ? '¥' + Number(r.price / 100).toLocaleString('ja-JP')
+        : '—';
+      var qtyCls = r.quantity <= 0 ? 'cash' : (r.quantity < 5 ? 'var' : 'ok');
+      return '<tr>' +
+        '<td><strong>' + esc(r.item_name) + '</strong></td>' +
+        '<td>' + esc(r.variation_name) + '</td>' +
+        '<td>' + priceStr + '</td>' +
+        '<td><code style="font-size:11px;">' + esc(r.variation_id) + '</code></td>' +
+        '<td><span class="admin_pill ' + qtyCls + '">' + r.quantity + '</span></td>' +
+        '<td><button type="button" class="admin_table_btn" data-copy-vid="' + esc(r.variation_id) + '">IDコピー</button></td>' +
+      '</tr>';
+    }).join('');
+    dashTbody.querySelectorAll('[data-copy-vid]').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var id = btn.dataset.copyVid;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(id).then(function() {
+            showToast('Variation ID をコピーしました: ' + id, 'info');
+          }).catch(function() {
+            showToast(id, 'info');
+          });
+        } else {
+          // fallback
+          var ta = document.createElement('textarea');
+          ta.value = id;
+          document.body.appendChild(ta);
+          ta.select();
+          try { document.execCommand('copy'); showToast('Variation ID をコピーしました', 'info'); }
+          catch(e) { showToast(id, 'info'); }
+          document.body.removeChild(ta);
+        }
+      });
+    });
+  }
+
+  if (dashLocSel) {
+    dashLocSel.addEventListener('change', function() {
+      var v = dashLocSel.value;
+      if (v) fetchSquareCatalog(v);
+    });
+  }
+  if (dashRefresh) {
+    dashRefresh.addEventListener('click', function() {
+      if (dashLocSel && dashLocSel.value) fetchSquareCatalog(dashLocSel.value);
+      else showToast('店舗を選択してください', 'error');
+    });
+  }
+  if (dashSearch) {
+    dashSearch.addEventListener('input', renderDashTable);
+  }
 
   // ---------- Initial render ----------
   Object.keys(state).forEach(function(key) {
