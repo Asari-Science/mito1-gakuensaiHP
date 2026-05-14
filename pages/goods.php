@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;700;900&family=Shippori+Mincho:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/reset.css">
   <link rel="stylesheet" href="../assets/css/marketplace.css">
+  <link rel="stylesheet" href="../assets/css/support-pack.css">
   <link rel="stylesheet" href="../assets/css/header.css">
   <link rel="stylesheet" href="../assets/css/footer.css">
   <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="../materials/favicon/favicon.ico">
@@ -27,6 +28,25 @@
         <p class="market_label">Goods &amp; Souvenirs</p>
         <h1 class="market_hero_title">グッズ・お土産</h1>
         <p class="market_hero_sub">来場記念や贈り物にぴったりな、学苑祭オリジナルグッズと水戸銘菓のお土産をご紹介。</p>
+
+        <!-- 学苑祭応援パック 告知ボタン -->
+        <div class="support_pack_cta_wrap">
+          <button id="support_pack_open" class="support_pack_cta" type="button"
+                  aria-haspopup="dialog" aria-controls="support_pack_modal_overlay">
+            <span class="support_pack_cta_badge" aria-hidden="true">限定100個</span>
+            <span class="support_pack_cta_body">
+              <span class="support_pack_cta_label">Support Pack</span>
+              <span class="support_pack_cta_title">学苑祭応援パック 実施概要</span>
+              <span class="support_pack_cta_sub">予約受付 5/18(月)〜5/31(金) ／ 詳細を見る</span>
+            </span>
+            <svg class="support_pack_cta_arrow" width="18" height="18" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                 stroke-linejoin="round" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </button>
+        </div>
+
         <div class="market_hero_stats" id="market_hero_stats" aria-hidden="true">
           <div class="market_hero_stat"><span class="num" data-stat="total">0</span><span class="lbl">商品</span></div>
           <div class="market_hero_stat"><span class="num" data-stat="cats">0</span><span class="lbl">カテゴリ</span></div>
@@ -95,6 +115,95 @@
       <div class="market_grid" id="market_grid" aria-busy="true"></div>
     </section>
 
+    <!-- ===== 学苑祭応援パック モーダル ===== -->
+    <div class="support_pack_modal_overlay" id="support_pack_modal_overlay" role="presentation" hidden>
+      <article class="support_pack_modal" role="dialog" aria-modal="true"
+               aria-labelledby="support_pack_modal_title" tabindex="-1">
+        <button class="support_pack_modal_close" id="support_pack_modal_close"
+                aria-label="閉じる" type="button">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+
+        <header class="support_pack_modal_header">
+          <p class="support_pack_modal_eyebrow">Support Pack</p>
+          <h2 id="support_pack_modal_title" class="support_pack_modal_title">学苑祭応援パック<span class="support_pack_modal_title_sub">実施概要</span></h2>
+          <p class="support_pack_modal_lead">
+            学苑祭の全グッズが購入できる「応援パック」が登場。<br>
+            今後の運営支援として200円を上乗せした特別価格になります。<br>
+            購入特典として、限定デザインの壁紙が貰えるQRコードが付属します。
+          </p>
+        </header>
+
+        <section class="support_pack_modal_summary" aria-label="商品概要">
+          <dl class="support_pack_summary_list">
+            <div class="support_pack_summary_item">
+              <dt>商品名</dt>
+              <dd>学苑祭応援パック</dd>
+            </div>
+            <div class="support_pack_summary_item">
+              <dt>価格</dt>
+              <dd>
+                <span class="support_pack_price">2,000<small>円</small></span>
+                <span class="support_pack_price_break">グッズ合計額 1,800円 ＋ 学苑祭運営支援分 200円</span>
+              </dd>
+            </div>
+            <div class="support_pack_summary_item">
+              <dt>販売場所</dt>
+              <dd>1Fホール</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="support_pack_modal_section" aria-labelledby="support_pack_notes_heading">
+          <h3 id="support_pack_notes_heading" class="support_pack_modal_section_title">
+            <span class="support_pack_section_kicker">注意事項</span>
+            <span class="support_pack_section_jp">ご利用にあたって</span>
+          </h3>
+
+          <ol class="support_pack_notes">
+            <li class="support_pack_note">
+              <h4 class="support_pack_note_title"><span class="support_pack_note_num">1</span>申込</h4>
+              <p>本パックは原則予約制です。公式サイト及びSNSに掲載しているGoogleフォームから予約が行えます。</p>
+              <p class="support_pack_note_emphasis">募集期間：5/18(月)〜5/31(金)</p>
+            </li>
+
+            <li class="support_pack_note">
+              <h4 class="support_pack_note_title"><span class="support_pack_note_num">2</span>受け渡し・お支払い</h4>
+              <ul class="support_pack_note_list">
+                <li>予約確認用QRコードを、Googleフォームに入力いただいたメールアドレス宛に送付します。当日には、グッズ販売ブースでそのQRコードをスタッフに提示していただき、本人確認を行います。</li>
+                <li>学苑祭当日は大変な混雑による通信の悪化が予想されます。QRコードは事前にスクリーンショットすることを推奨します。</li>
+                <li>代金は学苑祭当日の受け渡し時にお支払いいただきます。</li>
+              </ul>
+            </li>
+
+            <li class="support_pack_note">
+              <h4 class="support_pack_note_title"><span class="support_pack_note_num">3</span>数量</h4>
+              <ul class="support_pack_note_list">
+                <li>学苑祭応援パックは<strong>100個のみの限定販売</strong>です。予約数が上限に達し次第、受付を終了します。</li>
+                <li>スマホやメール利用が難しい方への配慮として、学苑祭当日の応援パック販売も一定数実施予定です。ただし、数量には限りがあるため、確実に購入を希望される場合は事前予約フォームをご利用ください。</li>
+              </ul>
+            </li>
+
+            <li class="support_pack_note">
+              <h4 class="support_pack_note_title"><span class="support_pack_note_num">4</span>その他</h4>
+              <ul class="support_pack_note_list">
+                <li>予約された方が入場終了時間までに来場されなかった場合、在庫状況に応じて通常販売へ回す場合があります。</li>
+                <li>通常のグッズ単品販売も別途実施予定です。</li>
+                <li>予約フォームを通じて取得したメールアドレスは、予約システムの運用のみに利用いたします。また、保有する必要がなくなった場合は、速やかに廃棄または消去します。</li>
+              </ul>
+            </li>
+          </ol>
+        </section>
+
+        <footer class="support_pack_modal_footer">
+          <p class="support_pack_modal_outro">実施概要は上記のとおりです。<br>皆様のご予約・ご来場を心よりお待ちしております。</p>
+        </footer>
+      </article>
+    </div>
+
     <!-- ===== Modal ===== -->
     <div class="market_modal_overlay" id="market_modal_overlay" role="presentation">
       <article class="market_modal" role="dialog" aria-modal="true" aria-labelledby="market_modal_title">
@@ -134,5 +243,6 @@
   <?php include(__DIR__ . "/../includes/footer.php"); ?>
   <script src="../assets/js/menu.js"></script>
   <script src="../assets/js/marketplace.js"></script>
+  <script src="../assets/js/support-pack.js"></script>
 </body>
 </html>
