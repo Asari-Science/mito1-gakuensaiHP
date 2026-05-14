@@ -83,15 +83,7 @@
 
                 <!-- 右ペイン: 子項目（カテゴリごと） -->
                 <div class="menu_items_wrap">
-                    <!-- カテゴリ未選択時のヒント -->
-                    <div class="menu_hint" id="menu_hint" aria-hidden="true">
-                        <div class="menu_hint_inner">
-                            <span class="menu_hint_kanji">天翔る</span>
-                            <span class="menu_hint_text">カテゴリを選択してください</span>
-                            <span class="menu_hint_sub">Select a category</span>
-                        </div>
-                    </div>
-
+                    
                     <ul class="menu_items" id="cat-top" role="menu" aria-label="トップ" data-category="トップ" hidden>
                         <li role="none"><a role="menuitem" href="https://gakuensai.net">トップページ</a></li>
                         <li role="none"><a role="menuitem" href="<?php echo $base_path; ?>/pages/concept.php">コンセプト「天翔る」</a></li>
