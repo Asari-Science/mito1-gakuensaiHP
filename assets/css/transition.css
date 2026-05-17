@@ -1,0 +1,124 @@
+/* ===== Main ===== */
+
+body {
+    background-color: #f6dc9f;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+.transition_main {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.transition_container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    background-color: #dab584;
+    overflow: hidden;
+}
+
+.transition_ellipse {
+    position: absolute;
+    width: 700px;
+    height: 250px;
+    background-color: #f6dc9f;
+    border-radius: 50%;
+    transform: rotate(135deg);
+    filter: blur(60px);
+    opacity: 0.7;
+    top: 20%;
+}
+
+.transition_content {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 120px 24px 80px;
+    width: 100%;
+    max-width: 800px;
+    animation: transitionFadeInUp 1s ease both;
+}
+
+@keyframes transitionFadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.transition_divider_center {
+    width: 40px;
+    height: 2px;
+    background: rgba(0, 0, 0, 0.2);
+    margin: 24px 0;
+}
+
+.transition_text {
+    font-family: "Shippori Mincho", serif;
+    font-weight: 500;
+    font-size: 28px;
+    color: #1a1207;
+    margin-top: 16px;
+    margin-bottom: 24px;
+    line-height: 1.5;
+}
+
+.link_box {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    padding: 12px 28px;
+    font-family: "Shippori Mincho", serif;
+    font-weight: 600;
+    font-size: 24px;
+    color: #1a1207;
+    text-decoration: none;
+    border: 1.5px solid rgba(0, 0, 0, 0.25);
+    border-radius: 50px;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    width: 70vw;
+    max-width: 600px;
+}
+
+.link_box:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* ===== Responsive: PC ===== */
+
+@media screen and (min-width: 1024px) {
+    .transition_ellipse {
+        width: 1200px;
+        height: 500px;
+        filter: blur(80px);
+    }
+}
+
+/* ===== Responsive: Tablet+ ===== */
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .stage_transition_ellipse {
+        width: 900px;
+        height: 400px;
+    }
+}
