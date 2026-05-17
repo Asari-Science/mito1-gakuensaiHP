@@ -126,13 +126,13 @@
                             </div>
                         </section>
 
-                        <!-- お問い合わせ内容 -->
+                        <!-- 購入予約 -->
                         <section class="pack_res_section">
                             <div class="pack_res_section_header">
                                 <div class="section_step">2</div>
                                 <h2 class="pack_res_section_title">購入予約</h2>
                             </div>
-                            <img src="../materials/goods_list.webp" class="pack_image" alt="A4クリアファイル 3種 / メモ帳 / ボールペン / ステッカー / アクキー">
+                            <img src="<?php echo $base_path; ?>/materials/goods_list.webp" class="pack_image" alt="A4クリアファイル 3種 / メモ帳 / ボールペン / ステッカー / アクキー">
                             <div class="form_fields">
                                 <div class="form_group">
                                     <label for="pack_res_email" class="form_label">
