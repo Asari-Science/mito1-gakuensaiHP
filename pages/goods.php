@@ -196,6 +196,9 @@
               </ul>
             </li>
           </ol>
+          <a href="<?php echo $base_path; ?>/pages/pack-reservation.php" class="pack_res_link_btn">
+            予約フォームに進む
+          </a>
         </section>
 
         <footer class="support_pack_modal_footer">
