@@ -13,7 +13,7 @@
         <meta property="og:title" content="遷移ページ | 第78回学苑祭" />
         <meta property="og:type" content="website" />
         <meta property="og:description" content="リーフレットからの遷移ページです。" />
-        <meta property="og:url" content="https://gakuensai.net/pages/transition.php" />
+        <meta property="og:url" content="https://gakuensai.net/pages/transition-menu.php" />
         <meta property="og:image" content="<?php echo $base_path; ?>/materials/enjitsu78th.webp" />
 
         <!-- Google Fonts -->
@@ -22,7 +22,7 @@
         <link href="">
 
         <!-- CSS -->
-        <link rel="stylesheet" type="text/css" href="<?php echo $base_path; ?>/assets/css/transition.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo $base_path; ?>/assets/css/transition-universal.css">
         
         <!-- Favicon -->
         <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="<?php echo $base_path; ?>/materials/favicon/favicon.ico">
