@@ -36,7 +36,6 @@
 │   ├── access.php                     # アクセスページ
 │   ├── contact.php                    # お問い合わせページ
 │   ├── privacy.php                    # プライバシーポリシーページ
-│   ├── pack-reservation.php           # 学苑祭応援パック購入予約フォーム
 │   └── errors/                        # エラーページ群
 ├── includes/                          # 共通パーツ
 │   ├── header.php                     # 共通ヘッダー
