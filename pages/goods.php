@@ -196,7 +196,7 @@
               </ul>
             </li>
           </ol>
-          <a href="<?php echo $base_path; ?>/pages/pack-reservation.php" class="pack_res_link_btn">
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSdP0LcNzCJgugJdXcc6--xtksq6eRSE5-JUbpm--0FSRj6BxQ/viewform?usp=dialog" class="pack_res_link_btn">
             予約フォームに進む
           </a>
         </section>
