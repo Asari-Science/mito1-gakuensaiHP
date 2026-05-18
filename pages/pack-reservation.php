@@ -240,7 +240,7 @@
          <script>
             (function() {
                 // Google Forms エンドポイント
-                var GOOGLE_FORM_ACTION = 'https://docs.google.com/forms/u/0/d/1VRczi4n9JbpXPfEUTy9vs0jCB9GSdiV-BSKqXgQOHMY/formResponse';
+                var GOOGLE_FORM_ACTION = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSdP0LcNzCJgugJdXcc6--xtksq6eRSE5-JUbpm--0FSRj6BxQ/formResponse';
 
                 // Google Forms entry IDs（正しいIDを取得済み（フォームが公開されてないので動作確認はできていません））
                 var ENTRY_EMAIL      = 'emailAddress';
