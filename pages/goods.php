@@ -196,6 +196,9 @@
               </ul>
             </li>
           </ol>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSdP0LcNzCJgugJdXcc6--xtksq6eRSE5-JUbpm--0FSRj6BxQ/viewform?usp=dialog" class="pack_res_link_btn">
+            予約フォームに進む
+          </a>
         </section>
 
         <footer class="support_pack_modal_footer">
