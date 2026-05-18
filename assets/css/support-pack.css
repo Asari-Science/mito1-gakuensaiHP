@@ -508,31 +508,6 @@ body.support_pack_modal_open {
 }
 
 /* ============================================================
- *  RESERVATION PAGE LINK BUTTON
- * ============================================================ */
-.pack_res_link_btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 16px;
-    padding: 12px 28px;
-    font-family: "Shippori Mincho", serif;
-    font-weight: 600;
-    font-size: 15px;
-    color: #1a1207;
-    text-decoration: none;
-    border: 1.5px solid rgba(0, 0, 0, 0.25);
-    border-radius: 50px;
-    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.pack_res_link_btn:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-}
-
-/* ============================================================
  *  FOOTER
  * ============================================================ */
 .support_pack_modal_footer {
