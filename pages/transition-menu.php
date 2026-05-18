@@ -22,7 +22,7 @@
         <link href="">
 
         <!-- CSS -->
-        <link rel="stylesheet" type="text/css" href="<?php echo $base_path; ?>/assets/css/transitionuniversal.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo $base_path; ?>/assets/css/transition_universal.css">
         
         <!-- Favicon -->
         <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="<?php echo $base_path; ?>/materials/favicon/favicon.ico">
