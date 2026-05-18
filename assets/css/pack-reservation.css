@@ -1,0 +1,1156 @@
+body {
+    background-color: #f6dc9f;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+.pack_res_main {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.pack_res_container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    background-color: #dab584;
+    overflow: hidden;
+}
+
+.pack_res_ellipse {
+    position: absolute;
+    width: 700px;
+    height: 250px;
+    background-color: #f6dc9f;
+    border-radius: 50%;
+    transform: rotate(135deg);
+    filter: blur(60px);
+    opacity: 0.7;
+    top: 20%;
+}
+
+.pack_res_content {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 120px 24px 80px;
+    width: 100%;
+    max-width: 640px;
+    animation: pack_res_FadeInUp 1s ease both;
+}
+
+@keyframes pack_res_FadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== Title Area ===== */
+
+.pack_res_label {
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 300;
+    font-size: 13px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(26, 18, 7, 0.45);
+    margin-bottom: 12px;
+}
+
+.pack_res_title {
+    font-family: "Zen Old Mincho", serif;
+    font-weight: 900;
+    font-size: 40px;
+    color: #1a1207;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+}
+
+.pack_res_divider_center {
+    width: 40px;
+    height: 2px;
+    background: rgba(0, 0, 0, 0.2);
+    margin: 24px 0;
+}
+
+.pack_res_intro {
+    font-family: "Shippori Mincho", serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.9;
+    margin-bottom: 36px;
+}
+
+.pc_br {
+    display: none;
+}
+
+/* ===== Form ===== */
+
+.pack_res_form {
+    width: 100%;
+    text-align: left;
+}
+
+/* ===== Section ===== */
+
+.pack_res_section {
+    width: 100%;
+    margin-bottom: 32px;
+}
+
+.pack_res_section_header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.section_step {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #1a1207;
+    color: #f6dc9f;
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    flex-shrink: 0;
+}
+
+.pack_res_section_title {
+    font-family: "Zen Old Mincho", serif;
+    font-weight: 700;
+    font-size: 17px;
+    color: #1a1207;
+    letter-spacing: 0.03em;
+}
+
+.pack_image {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    margin-bottom: 24px;
+}
+
+/* ===== Precautions (collapsible) ===== */
+
+.precautions_wrapper {
+    background: rgba(246, 220, 159, 0.35);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 14px;
+    padding: 0;
+    margin-bottom: 12px;
+    overflow: hidden;
+}
+
+.precautions_notice {
+    font-family: "Shippori Mincho", serif;
+    font-weight: 500;
+    font-size: 13px;
+    color: #555;
+    line-height: 1.9;
+    padding: 14px 20px;
+}
+
+.precautions_wrapper_toggle {
+    background: rgba(246, 220, 159, 0.35);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 14px;
+    padding: 0;
+    margin-bottom: 12px;
+    overflow: hidden;
+}
+
+.precautions_toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 16px 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: "Shippori Mincho", serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: #1a1207;
+    transition: background 0.2s ease;
+}
+
+.precautions_toggle:hover {
+    background: rgba(246, 220, 159, 0.3);
+}
+
+.precautions_toggle_icon {
+    transition: transform 0.3s ease;
+    color: rgba(26, 18, 7, 0.4);
+    flex-shrink: 0;
+}
+
+.precautions_toggle[aria-expanded="true"] .precautions_toggle_icon {
+    transform: rotate(180deg);
+}
+
+.precautions_body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    padding: 0;
+}
+
+.precautions_body.open {
+    max-height: 500px;
+    overflow-y: auto;
+    padding: 0;
+    /* スクロールバーをサイトカラーに合わせる */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(139, 105, 20, 0.35) transparent;
+}
+
+.precautions_body.open::-webkit-scrollbar {
+    width: 5px;
+}
+
+.precautions_body.open::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.precautions_body.open::-webkit-scrollbar-thumb {
+    background: rgba(139, 105, 20, 0.35);
+    border-radius: 99px;
+}
+
+/* ===== Precautions Content ===== */
+
+/* ===== Product Outline ===== */
+.pr_summary_section {
+    padding: 16px 16px 8px;
+}
+
+.pr_summary_list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.pr_summary_item {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    background: rgba(246, 220, 159, 0.42);
+    border: 1px solid rgba(26, 18, 7, 0.07);
+    border-radius: 10px;
+}
+
+.pr_summary_item dt {
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: rgba(139, 105, 20, 0.9);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.pr_summary_item dt::before {
+    content: "";
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #8b6914;
+    opacity: 0.75;
+    flex-shrink: 0;
+}
+
+.pr_summary_item dd {
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: #1a1207;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 10px;
+}
+
+.pr_price {
+    font-family: "Zen Old Mincho", serif;
+    font-weight: 900;
+    font-size: 20px;
+    color: #8b6914;
+    letter-spacing: 0.02em;
+    line-height: 1;
+}
+
+.pr_price small {
+    font-size: 12px;
+    font-weight: 700;
+    margin-left: 2px;
+    opacity: 0.85;
+}
+
+.pr_price_break {
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(26, 18, 7, 0.55);
+    width: 100%;
+}
+
+/* ===== Precautions ===== */
+.pr_notes_section {
+    padding: 8px 16px 16px;
+}
+
+.pr_notes_heading {
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(139, 105, 20, 0.8);
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(139, 105, 20, 0.15);
+}
+
+.pr_notes {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.pr_note {
+    padding: 14px 16px 12px;
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(26, 18, 7, 0.07);
+    border-left: 3px solid rgba(139, 105, 20, 0.5);
+    border-radius: 10px;
+}
+
+.pr_note_title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: "Zen Old Mincho", serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    color: #1a1207;
+    margin-bottom: 8px;
+}
+
+.pr_note_num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #8b6914;
+    color: #f6dc9f;
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0;
+    flex-shrink: 0;
+}
+
+.pr_note p,
+.pr_note_list li {
+    font-family: "Shippori Mincho", serif;
+    font-size: 12.5px;
+    line-height: 1.9;
+    color: rgba(26, 18, 7, 0.8);
+    letter-spacing: 0.02em;
+}
+
+.pr_note p+p {
+    margin-top: 4px;
+}
+
+.pr_note_emphasis {
+    display: inline-block;
+    margin-top: 6px !important;
+    padding: 5px 12px;
+    border-radius: 6px;
+    background: rgba(139, 105, 20, 0.1);
+    color: #8b6914 !important;
+    font-family: "Noto Sans JP", sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 12px !important;
+    letter-spacing: 0.04em;
+}
+
+.pr_note_list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.pr_note_list li {
+    position: relative;
+    padding-left: 14px;
+}
+
+.pr_note_list li::before {
+    content: "・";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: rgba(139, 105, 20, 0.6);
+    font-weight: 700;
+}
+
+.pr_note_list li strong {
+    font-weight: 700;
+    color: #8b6914;
+}
+
+.precautions_text {
+    font-family: "Shippori Mincho", serif;
+    font-weight: 500;
+    font-size: 13px;
+    color: #555;
+    line-height: 1.9;
+    text-align: justify;
+}
+
+.agree_row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s ease;
+}
+
+.agree_row:hover {
+    background: rgba(246, 220, 159, 0.2);
+}
+
+/* ===== Custom Checkbox ===== */
+
+.pack_res_checkbox {
+    display: none;
+}
+
+.checkbox_custom {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(26, 18, 7, 0.3);
+    border-radius: 5px;
+    flex-shrink: 0;
+    position: relative;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.pack_res_checkbox:checked+.checkbox_custom {
+    background: #8b6914;
+    border-color: #8b6914;
+}
+
+.pack_res_checkbox:checked+.checkbox_custom::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 1px;
+    width: 6px;
+    height: 11px;
+    border: solid #fff;
+    border-width: 0 2.5px 2.5px 0;
+    transform: rotate(45deg);
+}
+
+.checkbox_text {
+    font-family: "Shippori Mincho", serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: #1a1207;
+    line-height: 1.5;
+}
+
+/* ===== Privacy Policy Link ===== */
+
+.privacy_link_wrapper {
+    background: rgba(246, 220, 159, 0.35);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.privacy_link_desc {
+    padding: 18px 20px;
+    font-family: "Shippori Mincho", serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.8;
+}
+
+.privacy_inline_link {
+    color: #8b6914;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    font-weight: 700;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+}
+
+.privacy_inline_link:hover {
+    color: #6b5110;
+}
+
+.external_icon {
+    display: inline;
+    vertical-align: middle;
+    margin-left: 2px;
+}
+
+/* ===== Form Fields ===== */
+
+.form_fields {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.form_group {
+    margin-bottom: 24px;
+}
+
+.form_label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: "Zen Old Mincho", serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: #1a1207;
+    letter-spacing: 0.03em;
+    margin-bottom: 8px;
+}
+
+.form_required {
+    display: inline-block;
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 500;
+    font-size: 10px;
+    color: #fff;
+    background: #c24b31;
+    padding: 1px 7px;
+    border-radius: 3px;
+    letter-spacing: 0.05em;
+}
+
+.form_optional {
+    display: inline-block;
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 500;
+    font-size: 10px;
+    color: #888;
+    background: rgba(0, 0, 0, 0.08);
+    padding: 1px 7px;
+    border-radius: 3px;
+    letter-spacing: 0.05em;
+}
+
+.form_input,
+.form_textarea {
+    width: 100%;
+    padding: 14px 16px;
+    font-family: "Shippori Mincho", serif;
+    font-weight: 500;
+    font-size: 15px;
+    color: #1a1207;
+    background: rgba(246, 220, 159, 0.3);
+    border: 1.5px solid rgba(0, 0, 0, 0.12);
+    border-radius: 10px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    box-sizing: border-box;
+}
+
+.form_input::placeholder,
+.form_textarea::placeholder {
+    color: rgba(26, 18, 7, 0.3);
+}
+
+.form_input:focus,
+.form_textarea:focus {
+    border-color: #8b6914;
+    box-shadow: 0 0 0 3px rgba(139, 105, 20, 0.1);
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.form_textarea {
+    resize: vertical;
+    min-height: 140px;
+}
+
+/* ===== Custom Select ===== */
+
+.custom_select {
+    position: relative;
+    width: 100%;
+}
+
+.custom_select_trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 14px 16px;
+    font-family: "Shippori Mincho", serif;
+    font-weight: 500;
+    font-size: 15px;
+    color: rgba(26, 18, 7, 0.38);
+    background: rgba(246, 220, 159, 0.3);
+    border: 1.5px solid rgba(0, 0, 0, 0.12);
+    border-radius: 10px;
+    outline: none;
+    cursor: pointer;
+    text-align: left;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, border-radius 0.2s ease;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+.custom_select_trigger:hover {
+    background: rgba(246, 220, 159, 0.5);
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+.custom_select.open .custom_select_trigger {
+    border-color: #8b6914;
+    box-shadow: 0 0 0 3px rgba(139, 105, 20, 0.1);
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 10px 10px 0 0;
+}
+
+.custom_select_value {
+    flex: 1;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.custom_select_value.selected {
+    color: #1a1207;
+}
+
+.custom_select_icon {
+    flex-shrink: 0;
+    margin-left: 10px;
+    color: rgba(26, 18, 7, 0.45);
+    transition: transform 0.3s ease;
+}
+
+.custom_select.open .custom_select_icon {
+    transform: rotate(180deg);
+    color: #8b6914;
+}
+
+/* ===== Drop Down List ===== */
+.custom_select_dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    list-style: none;
+    margin: 0;
+    padding: 6px 0;
+    background: #fff8ee;
+    border: 1.5px solid #8b6914;
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 8px 24px rgba(139, 105, 20, 0.15);
+    z-index: 100;
+    /* 初期状態：非表示（アニメーション付き） */
+    opacity: 0;
+    transform: translateY(-6px);
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.custom_select.open .custom_select_dropdown {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.custom_select_option {
+    padding: 13px 18px;
+    font-family: "Shippori Mincho", serif;
+    font-weight: 500;
+    font-size: 15px;
+    color: #1a1207;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease, padding-left 0.15s ease;
+    border-bottom: 1px solid rgba(139, 105, 20, 0.08);
+}
+
+.custom_select_option:last-child {
+    border-bottom: none;
+}
+
+.custom_select_option:hover {
+    background: rgba(246, 220, 159, 0.5);
+    padding-left: 22px;
+    color: #6b5110;
+}
+
+.custom_select_option.active {
+    background: rgba(139, 105, 20, 0.1);
+    color: #8b6914;
+    font-weight: 700;
+    position: relative;
+}
+
+.custom_select_option.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 60%;
+    background: #8b6914;
+    border-radius: 0 2px 2px 0;
+}
+
+/* ===== Radio Group ===== */
+
+.radio_group {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    background: rgba(246, 220, 159, 0.35);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.radio_row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 16px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s ease;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.radio_row:last-child {
+    border-bottom: none;
+}
+
+.radio_row:hover {
+    background: rgba(246, 220, 159, 0.3);
+}
+
+.pack_res_radio {
+    display: none;
+}
+
+.radio_custom {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(26, 18, 7, 0.3);
+    border-radius: 50%;
+    flex-shrink: 0;
+    position: relative;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.pack_res_radio:checked+.radio_custom {
+    background: #8b6914;
+    border-color: #8b6914;
+}
+
+.pack_res_radio:checked+.radio_custom::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 7px;
+    height: 7px;
+    background: #fff;
+    border-radius: 50%;
+}
+
+.radio_text {
+    font-family: "Shippori Mincho", serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: #1a1207;
+    line-height: 1.5;
+}
+
+/* ===== Submit ===== */
+
+.submit_wrapper {
+    text-align: center;
+    margin-top: 8px;
+}
+
+.submit_button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 360px;
+    padding: 16px 32px;
+    font-family: "Zen Old Mincho", serif;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.1em;
+    color: #fff;
+    background: #1a1207;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+}
+
+.submit_button:hover:not(:disabled) {
+    background: #333;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.submit_button:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.submit_button:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+.submit_button.loading .submit_text {
+    display: none;
+}
+
+.submit_button.loading .submit_icon {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.submit_icon {
+    flex-shrink: 0;
+}
+
+.submit_note {
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    color: rgba(26, 18, 7, 0.4);
+    margin-top: 12px;
+}
+
+/* ===== Success Message ===== */
+
+.success_message {
+    width: 100%;
+    text-align: center;
+    padding: 48px 20px;
+    animation: pack_res_FadeInUp 0.6s ease both;
+}
+
+.success_icon_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(74, 140, 63, 0.1);
+    margin: 0 auto 24px;
+}
+
+.success_title {
+    font-family: "Zen Old Mincho", serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: #1a1207;
+    margin-bottom: 12px;
+}
+
+.success_desc {
+    font-family: "Shippori Mincho", serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.9;
+}
+
+/* ===== Error Message ===== */
+
+.error_message {
+    width: 100%;
+    text-align: center;
+    padding: 48px 20px;
+    animation: pack_res_FadeInUp 0.6s ease both;
+}
+
+.error_icon_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(194, 75, 49, 0.1);
+    margin: 0 auto 24px;
+}
+
+.error_title {
+    font-family: "Zen Old Mincho", serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: #c24b31;
+    margin-bottom: 12px;
+}
+
+.error_desc {
+    font-family: "Shippori Mincho", serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.9;
+    margin-bottom: 24px;
+}
+
+.retry_button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    font-family: "Shippori Mincho", serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: #1a1207;
+    background: none;
+    border: 1.5px solid rgba(0, 0, 0, 0.25);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.retry_button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/* ===== Back button ===== */
+
+.pack_res_back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    padding: 12px 28px;
+    font-family: "Shippori Mincho", serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: #1a1207;
+    text-decoration: none;
+    border: 1.5px solid rgba(0, 0, 0, 0.25);
+    border-radius: 50px;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pack_res_back:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.back_arrow {
+    font-size: 18px;
+    transition: transform 0.3s ease;
+}
+
+.pack_res_back:hover .back_arrow {
+    transform: translateX(-3px);
+}
+
+.pack_res_kujira {
+    position: absolute;
+    right: -5%;
+    bottom: 0;
+    width: 45%;
+    max-width: 500px;
+    object-fit: contain;
+    opacity: 0.06;
+    pointer-events: none;
+}
+
+/* ===== Responsive: PC ===== */
+
+@media screen and (min-width: 1024px) {
+    .pack_res_ellipse {
+        width: 1200px;
+        height: 500px;
+        filter: blur(80px);
+    }
+
+    .pack_res_title {
+        font-size: 52px;
+    }
+
+    .pack_res_kujira {
+        width: 35%;
+        opacity: 0.05;
+    }
+
+    .pc_br {
+        display: inline;
+    }
+
+    .pack_res_content {
+        max-width: 620px;
+    }
+}
+
+/* ===== Responsive: Tablet ===== */
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .pack_res_ellipse {
+        width: 900px;
+        height: 400px;
+    }
+
+    .pack_res_title {
+        font-size: 46px;
+    }
+
+    .pack_res_kujira {
+        width: 40%;
+        opacity: 0.06;
+    }
+
+    .pc_br {
+        display: inline;
+    }
+}
+
+/* ===== Responsive: Small mobile ===== */
+
+@media screen and (max-width: 400px) {
+    .pack_res_title {
+        font-size: 32px;
+    }
+
+    .pack_res_content {
+        padding: 100px 16px 60px;
+    }
+
+    .pack_res_intro {
+        font-size: 13px;
+    }
+
+    .pack_res_section_title {
+        font-size: 15px;
+    }
+
+    .section_step {
+        width: 24px;
+        height: 24px;
+        font-size: 11px;
+    }
+
+    .form_label {
+        font-size: 14px;
+    }
+
+    .form_input,
+    .form_textarea {
+        padding: 12px 14px;
+        font-size: 14px;
+    }
+
+    .precautions_toggle {
+        padding: 14px 16px;
+        font-size: 13px;
+    }
+
+    .agree_row {
+        padding: 12px 16px;
+    }
+
+    .precautions_text {
+        font-size: 12px;
+    }
+
+    .checkbox_text {
+        font-size: 13px;
+    }
+
+    .privacy_link_desc {
+        padding: 14px 16px;
+        font-size: 13px;
+    }
+
+    .submit_button {
+        font-size: 15px;
+        padding: 14px 28px;
+    }
+
+    .pack_res_back {
+        font-size: 13px;
+        padding: 10px 22px;
+    }
+
+    .success_title,
+    .error_title {
+        font-size: 19px;
+    }
+}
