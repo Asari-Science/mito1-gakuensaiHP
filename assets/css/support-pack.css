@@ -460,7 +460,7 @@ body.support_pack_modal_open {
   letter-spacing: .02em;
 }
 
-.support_pack_note p + p {
+.support_pack_note p+p {
   margin-top: 6px;
 }
 
@@ -508,6 +508,32 @@ body.support_pack_modal_open {
 }
 
 /* ============================================================
+ *  RESERVATION PAGE LINK BUTTON
+ * ============================================================ */
+.pack_res_link_btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  padding: 12px 28px;
+  font-family: "Shippori Mincho", serif;
+  font-weight: 600;
+  font-size: 15px;
+  color: #1a1207;
+  text-decoration: none;
+  border: 1.5px solid rgba(0, 0, 0, 0.25);
+  border-radius: 50px;
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pack_res_link_btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+
+/* ============================================================
  *  FOOTER
  * ============================================================ */
 .support_pack_modal_footer {
@@ -530,25 +556,31 @@ body.support_pack_modal_open {
   .support_pack_cta_wrap {
     margin-top: 22px;
   }
+
   .support_pack_cta {
     padding: 12px 16px 12px 16px;
     gap: 12px;
     border-radius: 14px;
   }
+
   .support_pack_cta::before {
     top: 12px;
     bottom: 12px;
   }
+
   .support_pack_cta_badge {
     padding: 4px 9px;
     font-size: 10px;
   }
+
   .support_pack_cta_title {
     font-size: 14px;
   }
+
   .support_pack_cta_sub {
     font-size: 11px;
   }
+
   .support_pack_cta_label {
     font-size: 9px;
     letter-spacing: .22em;
@@ -557,44 +589,55 @@ body.support_pack_modal_open {
   .support_pack_modal_overlay {
     padding: 12px 10px;
   }
+
   .support_pack_modal {
     max-height: 92dvh;
     border-radius: 18px;
   }
+
   .support_pack_modal_header {
     padding: 30px 22px 22px;
   }
+
   .support_pack_modal_summary,
   .support_pack_modal_section,
   .support_pack_modal_footer {
     padding-left: 18px;
     padding-right: 18px;
   }
+
   .support_pack_summary_item {
     grid-template-columns: 1fr;
     gap: 6px;
     padding: 12px 14px;
   }
+
   .support_pack_summary_item dt {
     font-size: 10px;
   }
+
   .support_pack_summary_item dd {
     font-size: 14px;
   }
+
   .support_pack_price {
     font-size: 20px;
   }
+
   .support_pack_note {
     padding: 14px 16px 12px;
   }
+
   .support_pack_note_title {
     font-size: 14px;
   }
+
   .support_pack_note p,
   .support_pack_note_list li {
     font-size: 12.5px;
     line-height: 1.9;
   }
+
   .support_pack_modal_lead {
     font-size: 12.5px;
     line-height: 1.95;
@@ -605,6 +648,7 @@ body.support_pack_modal_open {
   .support_pack_cta {
     flex-wrap: wrap;
   }
+
   .support_pack_cta_arrow {
     display: none;
   }
@@ -614,12 +658,14 @@ body.support_pack_modal_open {
  *  REDUCED MOTION
  * ============================================================ */
 @media (prefers-reduced-motion: reduce) {
+
   .support_pack_modal,
   .support_pack_modal_overlay,
   .support_pack_cta,
   .support_pack_cta_arrow {
     transition: none !important;
   }
+
   .support_pack_modal {
     transform: none !important;
   }
