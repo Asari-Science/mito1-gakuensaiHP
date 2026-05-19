@@ -58,10 +58,12 @@
     // ===== Genre color helper =====
     function genreColorClass(genre) {
         switch (genre) {
-            case 'アトラクション': return 'genre_color_attraction';
+            case 'アトラクション（ホラー）': return 'genre_color_attraction_horror';
+            case 'アトラクション（ホラー以外）': return 'genre_color_attraction_other';
             case '喫茶': return 'genre_color_cafe';
             case '創作展示': return 'genre_color_exhibition';
             case 'ステージ': return 'genre_color_stage';
+            case '縁日': return 'genre_color_ennichi';
             default: return '';
         }
     }
