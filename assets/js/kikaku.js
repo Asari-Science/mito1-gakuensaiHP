@@ -62,6 +62,7 @@
             case 'アトラクション（ホラー以外）': return 'genre_color_attraction_other';
             case '喫茶': return 'genre_color_cafe';
             case '創作展示': return 'genre_color_exhibition';
+            case '映像作品': return 'genre_color_video';
             case 'ステージ': return 'genre_color_stage';
             case '縁日': return 'genre_color_ennichi';
             default: return '';

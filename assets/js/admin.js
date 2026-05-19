@@ -621,6 +621,7 @@
         { value: 'アトラクション（ホラー）', label: 'アトラクション（ホラー）' },
         { value: 'アトラクション（ホラー以外）', label: 'アトラクション（ホラー以外）' },
         { value: '創作展示', label: '創作展示' },
+        { value: '映像作品', label: '映像作品' },
         { value: 'ステージ', label: 'ステージ' },
         { value: '縁日', label: '縁日' }
       ], item.genre), { required: true }));
