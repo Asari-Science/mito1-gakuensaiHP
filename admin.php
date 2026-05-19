@@ -313,7 +313,7 @@ if ($is_logged_in) {
         <div class="admin_toolbar">
           <div class="admin_search_wrap">
             <svg class="admin_search_icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            <input type="search" class="admin_toolbar_search" placeholder="企画名・団体名・場所で検索..." data-table-search>
+            <input type="search" class="admin_toolbar_search" placeholder="企画名（読み仮名OK）・団体名・場所で検索..." data-table-search>
           </div>
           <button type="button" class="admin_btn admin_btn_primary" data-action="add">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>

@@ -1,0 +1,388 @@
+/* ============================================================
+   Greetings Page - 代表者挨拶
+   第78回水戸一高・附属中学校学苑祭「天翔る」
+   ============================================================ */
+
+body {
+    background-color: #f6dc9f;
+    color: #1a1207;
+    overflow-x: hidden;
+}
+
+/* ===== Main Wrapper ===== */
+.greetings_main {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    padding: 140px 24px 100px;
+    background:
+        radial-gradient(ellipse at 20% 0%, rgba(255, 255, 255, 0.45), transparent 45%),
+        radial-gradient(ellipse at 80% 100%, rgba(218, 181, 132, 0.55), transparent 50%),
+        linear-gradient(180deg, #f6dc9f 0%, #efd190 50%, #dab584 100%);
+    overflow: hidden;
+}
+
+/* ===== Decorative background waves ===== */
+.greetings_main::before,
+.greetings_main::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.greetings_main::before {
+    top: -120px;
+    left: -80px;
+    width: 520px;
+    height: 520px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 70%);
+    filter: blur(40px);
+}
+
+.greetings_main::after {
+    bottom: -160px;
+    right: -100px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(26, 18, 7, 0.08) 0%, transparent 70%);
+    filter: blur(60px);
+}
+
+/* ===== Page Heading ===== */
+.greetings_header {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 880px;
+    margin: 0 auto 64px;
+}
+
+.greetings_label {
+    display: inline-block;
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: rgba(26, 18, 7, 0.55);
+    margin-bottom: 18px;
+    padding: 6px 18px;
+    border: 1px solid rgba(26, 18, 7, 0.2);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+.greetings_title {
+    font-family: "Zen Old Mincho", serif;
+    font-weight: 900;
+    font-size: clamp(34px, 6vw, 56px);
+    letter-spacing: 0.12em;
+    color: #1a1207;
+    line-height: 1.3;
+    margin-bottom: 18px;
+}
+
+.greetings_title_accent {
+    display: inline-block;
+    position: relative;
+}
+
+.greetings_title_accent::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -10px;
+    transform: translateX(-50%);
+    width: 64px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #1a1207, transparent);
+}
+
+.greetings_subtitle {
+    font-family: "Shippori Mincho", serif;
+    font-size: clamp(14px, 2vw, 17px);
+    color: rgba(26, 18, 7, 0.65);
+    letter-spacing: 0.08em;
+    margin-top: 24px;
+}
+
+/* ===== Greeting Card List ===== */
+.greetings_list {
+    position: relative;
+    z-index: 2;
+    max-width: 880px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+}
+
+/* ===== Single Greeting Card ===== */
+.greeting_card {
+    position: relative;
+    padding: 56px clamp(28px, 5vw, 64px) 52px;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.78) 0%, rgba(255, 255, 255, 0.62) 100%);
+    border: 1px solid rgba(26, 18, 7, 0.1);
+    border-radius: 28px;
+    box-shadow:
+        0 24px 60px rgba(26, 18, 7, 0.14),
+        0 4px 12px rgba(26, 18, 7, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    overflow: hidden;
+}
+
+/* Corner ornaments */
+.greeting_card::before,
+.greeting_card::after {
+    content: "";
+    position: absolute;
+    width: 36px;
+    height: 36px;
+    border-color: rgba(26, 18, 7, 0.35);
+    border-style: solid;
+}
+
+.greeting_card::before {
+    top: 18px;
+    left: 18px;
+    border-width: 1.5px 0 0 1.5px;
+    border-top-left-radius: 6px;
+}
+
+.greeting_card::after {
+    bottom: 18px;
+    right: 18px;
+    border-width: 0 1.5px 1.5px 0;
+    border-bottom-right-radius: 6px;
+}
+
+/* Role tag (校長 / 実行委員長) */
+.greeting_role {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    color: #f6dc9f;
+    background: #1a1207;
+    padding: 9px 20px 9px 22px;
+    border-radius: 999px;
+    margin-bottom: 22px;
+    box-shadow: 0 6px 16px rgba(26, 18, 7, 0.25);
+}
+
+.greeting_role_mark {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #f6dc9f;
+    box-shadow: 0 0 8px rgba(246, 220, 159, 0.8);
+}
+
+/* Heading */
+.greeting_heading {
+    font-family: "Zen Old Mincho", serif;
+    font-weight: 900;
+    font-size: clamp(24px, 4vw, 34px);
+    line-height: 1.5;
+    letter-spacing: 0.08em;
+    color: #1a1207;
+    margin-bottom: 14px;
+}
+
+/* Author meta */
+.greeting_author {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 6px 14px;
+    padding-bottom: 24px;
+    margin-bottom: 32px;
+    border-bottom: 1px dashed rgba(26, 18, 7, 0.25);
+}
+
+.greeting_author_title {
+    font-family: "Shippori Mincho", serif;
+    font-size: 13px;
+    color: rgba(26, 18, 7, 0.6);
+    letter-spacing: 0.16em;
+}
+
+.greeting_author_name {
+    font-family: "Zen Old Mincho", serif;
+    font-size: clamp(17px, 2.4vw, 20px);
+    font-weight: 700;
+    color: #1a1207;
+    letter-spacing: 0.18em;
+}
+
+/* Body text */
+.greeting_body {
+    font-family: "Shippori Mincho", serif;
+    font-size: clamp(15px, 1.7vw, 16.5px);
+    line-height: 2.15;
+    color: rgba(26, 18, 7, 0.88);
+    letter-spacing: 0.04em;
+}
+
+.greeting_body p {
+    margin-bottom: 1.6em;
+    text-align: justify;
+    text-justify: inter-ideograph;
+}
+
+.greeting_body p:last-child {
+    margin-bottom: 0;
+}
+
+/* First letter accent */
+.greeting_body p:first-of-type::first-letter {
+    font-family: "Zen Old Mincho", serif;
+    font-weight: 900;
+    font-size: 1.4em;
+    color: #1a1207;
+}
+
+/* Date / Signature */
+.greeting_date {
+    margin-top: 36px;
+    text-align: right;
+    font-family: "Shippori Mincho", serif;
+    font-size: 14px;
+    letter-spacing: 0.18em;
+    color: rgba(26, 18, 7, 0.7);
+}
+
+/* Decorative accent stroke at top of card */
+.greeting_card_accent {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, #1a1207 30%, #1a1207 70%, transparent);
+    border-radius: 0 0 4px 4px;
+}
+
+/* ===== Back link ===== */
+.greetings_footer_nav {
+    position: relative;
+    z-index: 2;
+    max-width: 880px;
+    margin: 64px auto 0;
+    text-align: center;
+}
+
+.greetings_back {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 34px;
+    border-radius: 999px;
+    background: #1a1207;
+    color: #f6dc9f;
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    box-shadow: 0 12px 28px rgba(26, 18, 7, 0.25);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.greetings_back:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 36px rgba(26, 18, 7, 0.32);
+    background: #2a1f10;
+}
+
+.greetings_back_arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.greetings_back:hover .greetings_back_arrow {
+    transform: translateX(-4px);
+}
+
+/* ===== Reveal Animation ===== */
+.greetings_reveal {
+    opacity: 0;
+    transform: translateY(36px);
+    transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.greetings_reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .greetings_main {
+        padding: 120px 16px 80px;
+    }
+    .greetings_list {
+        gap: 40px;
+    }
+    .greeting_card {
+        padding: 44px 22px 38px;
+        border-radius: 22px;
+    }
+    .greeting_card::before,
+    .greeting_card::after {
+        width: 24px;
+        height: 24px;
+    }
+    .greeting_card::before {
+        top: 12px;
+        left: 12px;
+    }
+    .greeting_card::after {
+        bottom: 12px;
+        right: 12px;
+    }
+    .greeting_body {
+        line-height: 2.0;
+    }
+    .greeting_role {
+        font-size: 11px;
+        letter-spacing: 0.24em;
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 420px) {
+    .greetings_header {
+        margin-bottom: 44px;
+    }
+    .greeting_heading {
+        letter-spacing: 0.04em;
+    }
+    .greeting_author {
+        padding-bottom: 18px;
+        margin-bottom: 24px;
+    }
+    .greeting_date {
+        text-align: center;
+    }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .greetings_reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}

@@ -344,6 +344,20 @@ body {
     flex-direction: column;
 }
 
+.kikaku_card_kana {
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 10.5px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: rgba(26, 18, 7, 0.45);
+    line-height: 1.4;
+    margin-bottom: 2px;
+    /* 長い読みは...で省略 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .kikaku_card_title {
     font-family: "Zen Old Mincho", serif;
     font-weight: 700;
@@ -616,6 +630,16 @@ body {
     color: rgba(26, 18, 7, 0.3);
 }
 
+.kikaku_modal_title_kana {
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: rgba(26, 18, 7, 0.5);
+    line-height: 1.5;
+    margin-bottom: 4px;
+}
+
 .kikaku_modal_title {
     font-family: "Zen Old Mincho", serif;
     font-weight: 900;
@@ -782,6 +806,10 @@ body {
         padding: 16px 16px 40px;
     }
 
+    .kikaku_card_kana {
+        font-size: 10px;
+    }
+
     .kikaku_card_title {
         font-size: 15px;
     }
@@ -794,6 +822,10 @@ body {
 
     .kikaku_modal_body {
         padding: 20px 16px;
+    }
+
+    .kikaku_modal_title_kana {
+        font-size: 11px;
     }
 
     .kikaku_modal_title {
