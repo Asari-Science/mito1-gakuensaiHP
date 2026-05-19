@@ -822,6 +822,14 @@ code {
   color: var(--admin-text-mute);
 }
 
+.admin_kikaku_kana {
+  font-size: 10.5px;
+  color: var(--admin-text-mute);
+  letter-spacing: 0.03em;
+  line-height: 1.4;
+  margin-bottom: 1px;
+}
+
 .admin_kikaku_title {
   font-family: "Zen Old Mincho", serif;
   font-size: 15px;

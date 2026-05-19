@@ -236,7 +236,7 @@
     var data = state[key].data || [];
     var q = (searchQ || '').toLowerCase().trim();
     var filtered = !q ? data : data.filter(function(it) {
-      var hay = [it.title, it.group, it.location, it.genre, it.pr, it.description].join(' ').toLowerCase();
+      var hay = [it.title, it.titleKana, it.group, it.location, it.genre, it.pr, it.description].join(' ').toLowerCase();
       return hay.indexOf(q) !== -1;
     });
 
@@ -254,12 +254,14 @@
 
     grid.innerHTML = filtered.map(function(item) {
       var dayLbl = item.day === 'day1' ? 'Day1' : item.day === 'day2' ? 'Day2' : '両日';
+      var kanaHtml = item.titleKana ? '<p class="admin_kikaku_kana">' + esc(item.titleKana) + '</p>' : '';
       return '<article class="admin_kikaku_card" data-id="' + esc(item.id) + '">' +
         '<div class="admin_kikaku_card_top">' +
           '<span class="admin_pill cat">' + esc(item.genre || '—') + '</span>' +
           '<span class="admin_pill day">' + dayLbl + '</span>' +
           '<code class="admin_kikaku_id">' + esc(item.id) + '</code>' +
         '</div>' +
+        kanaHtml +
         '<h3 class="admin_kikaku_title">' + esc(item.title) + '</h3>' +
         '<p class="admin_kikaku_group">' + esc(item.group || '') + '</p>' +
         '<p class="admin_kikaku_pr">' + esc(item.pr || '') + '</p>' +
@@ -454,7 +456,7 @@
       if (info.type === 'product') {
         item = { id: nextId(data, key === 'cafe_menu' ? 'C' : 'G'), photo: '../materials/enjitsu78th.webp', title: '', description: '', price: 0, seller: '', cashless: true, category: '', stock: null, locationId: '', variationId: '' };
       } else if (info.type === 'kikaku') {
-        item = { id: nextId(data, 'K'), title: '', genre: '', group: '', location: '', locationPin: '', pr: '', description: '', images: [], day: 'both' };
+        item = { id: nextId(data, 'K'), title: '', titleKana: '', genre: '', group: '', location: '', locationPin: '', pr: '', description: '', images: [], day: 'both' };
       } else if (info.type === 'leaflet') {
         var side = leafletSide[key] || 'omote';
         var arr  = data[side] || [];
@@ -612,6 +614,7 @@
     if (type === 'kikaku') {
       wrap.appendChild(field('ID', input('id', item.id), { hint: '例: K001' }));
       wrap.appendChild(field('企画名', input('title', item.title), { required: true, full: true }));
+      wrap.appendChild(field('企画名 読み仮名', input('titleKana', item.titleKana), { full: true, hint: 'ひらがな表記。例: あまがけるきっさ（カード・モーダルに小さく表示されます）' }));
       wrap.appendChild(field('ジャンル', select('genre', [
         { value: '', label: '選択してください' },
         { value: '喫茶', label: '喫茶' },
@@ -739,6 +742,7 @@
     } else if (current.type === 'kikaku') {
       item.id           = get('id').trim();
       item.title        = get('title').trim();
+      item.titleKana    = get('titleKana').trim();
       item.genre        = get('genre').trim();
       item.group        = get('group').trim();
       item.location     = get('location').trim();

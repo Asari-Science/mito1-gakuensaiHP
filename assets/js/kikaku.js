@@ -34,6 +34,7 @@
     var modalGenre = document.getElementById('kikaku_modal_genre');
     var modalId = document.getElementById('kikaku_modal_id');
     var modalTitle = document.getElementById('kikaku_modal_title');
+    var modalTitleKana = document.getElementById('kikaku_modal_title_kana');
     var modalGroup = document.getElementById('kikaku_modal_group');
     var modalDesc = document.getElementById('kikaku_modal_desc');
     var modalLocation = document.getElementById('kikaku_modal_location');
@@ -90,10 +91,18 @@
                 }
             }
 
-            // Search filter
+            // Search filter (title・titleKana・group などをまとめて検索)
             if (currentSearch) {
                 var q = currentSearch.toLowerCase();
-                var searchable = (item.title + ' ' + item.group + ' ' + item.genre + ' ' + item.location + ' ' + item.pr + ' ' + item.description).toLowerCase();
+                var searchable = (
+                    item.title + ' ' +
+                    (item.titleKana || '') + ' ' +
+                    item.group + ' ' +
+                    item.genre + ' ' +
+                    item.location + ' ' +
+                    item.pr + ' ' +
+                    item.description
+                ).toLowerCase();
                 if (searchable.indexOf(q) === -1) return false;
             }
 
@@ -132,6 +141,9 @@
 
                 // Body
                 var body = '<div class="kikaku_card_body">';
+                if (item.titleKana) {
+                    body += '<p class="kikaku_card_kana" aria-hidden="true">' + escHTML(item.titleKana) + '</p>';
+                }
                 body += '<h3 class="kikaku_card_title">' + escHTML(item.title) + '</h3>';
                 body += '<p class="kikaku_card_group">' + escHTML(item.group) + '</p>';
                 body += '<p class="kikaku_card_pr">' + escHTML(item.pr) + '</p>';
@@ -165,6 +177,15 @@
 
         // Details
         modalTitle.textContent = item.title;
+        if (modalTitleKana) {
+            if (item.titleKana) {
+                modalTitleKana.textContent = item.titleKana;
+                modalTitleKana.style.display = '';
+            } else {
+                modalTitleKana.textContent = '';
+                modalTitleKana.style.display = 'none';
+            }
+        }
         modalGroup.textContent = item.group;
         modalDesc.textContent = item.description;
         modalLocation.textContent = item.location;

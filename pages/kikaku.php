@@ -55,7 +55,7 @@
                     <!-- Search -->
                     <div class="kikaku_search_wrap">
                         <svg class="kikaku_search_icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                        <input type="text" class="kikaku_search" id="kikaku_search" placeholder="企画名・団体名・キーワードで検索..." autocomplete="off">
+                        <input type="text" class="kikaku_search" id="kikaku_search" placeholder="企画名（読み仮名OK）・団体名・キーワードで検索..." autocomplete="off">
                         <button class="kikaku_search_clear" id="kikaku_search_clear" aria-label="検索をクリア">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
                         </button>
@@ -126,6 +126,7 @@
                             <span class="kikaku_modal_genre" id="kikaku_modal_genre"></span>
                             <span class="kikaku_modal_id" id="kikaku_modal_id"></span>
                         </div>
+                        <p class="kikaku_modal_title_kana" id="kikaku_modal_title_kana" aria-hidden="true"></p>
                         <h2 class="kikaku_modal_title" id="kikaku_modal_title"></h2>
                         <p class="kikaku_modal_group" id="kikaku_modal_group"></p>
                         <div class="kikaku_modal_divider"></div>
