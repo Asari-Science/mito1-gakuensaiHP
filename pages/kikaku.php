@@ -63,13 +63,17 @@
                     <!-- Genre Filter -->
                     <div class="kikaku_filters" id="kikaku_filters">
                         <button class="kikaku_filter_btn active" data-genre="all">すべて</button>
-                        <button class="kikaku_filter_btn" data-genre="アトラクション">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                            アトラクション
-                        </button>
                         <button class="kikaku_filter_btn" data-genre="喫茶">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
                             喫茶
+                        </button>
+                        <button class="kikaku_filter_btn" data-genre="アトラクション（ホラー）">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 14s1.5-2 3-2 3 2 3 2"/><path d="M9 20s1.5-1 3-1 3 1 3 1"/><circle cx="9" cy="10" r="1"/><circle cx="15" cy="10" r="1"/><path d="M12 2a10 10 0 0 0-10 10c0 5.5 4.5 10 10 10s10-4.5 10-10c0-5.5-4.5-10-10-10zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16z"/></svg>
+                            アトラクション（ホラー）
+                        </button>
+                        <button class="kikaku_filter_btn" data-genre="アトラクション（ホラー以外）">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                            アトラクション（ホラー以外）
                         </button>
                         <button class="kikaku_filter_btn" data-genre="創作展示">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -78,6 +82,10 @@
                         <button class="kikaku_filter_btn" data-genre="ステージ">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
                             ステージ
+                        </button>
+                        <button class="kikaku_filter_btn" data-genre="縁日">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 22v-9l10-9 10 9v9"/><path d="M9 22V9h6v13"/><path d="M12 2v2"/><path d="M12 4.5V6"/></svg>
+                            縁日
                         </button>
                     </div>
                     <!-- Day Filter -->

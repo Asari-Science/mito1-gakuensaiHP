@@ -618,9 +618,11 @@
       wrap.appendChild(field('ジャンル', select('genre', [
         { value: '', label: '選択してください' },
         { value: '喫茶', label: '喫茶' },
-        { value: 'アトラクション', label: 'アトラクション' },
+        { value: 'アトラクション（ホラー）', label: 'アトラクション（ホラー）' },
+        { value: 'アトラクション（ホラー以外）', label: 'アトラクション（ホラー以外）' },
         { value: '創作展示', label: '創作展示' },
-        { value: 'ステージ', label: 'ステージ' }
+        { value: 'ステージ', label: 'ステージ' },
+        { value: '縁日', label: '縁日' }
       ], item.genre), { required: true }));
       wrap.appendChild(field('団体名', input('group', item.group), { required: true }));
       wrap.appendChild(field('場所', input('location', item.location), { required: true, full: true }));

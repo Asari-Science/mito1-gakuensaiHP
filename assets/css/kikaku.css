@@ -316,8 +316,18 @@ body {
     z-index: 2;
 }
 
-.kikaku_card_genre[data-genre="アトラクション"] {
+.kikaku_card_genre[data-genre="アトラクション（ホラー）"] {
+    background: rgba(100, 50, 180, 0.85);
+    color: #fff;
+}
+
+.kikaku_card_genre[data-genre="アトラクション（ホラー以外）"] {
     background: rgba(220, 50, 50, 0.85);
+    color: #fff;
+}
+
+.kikaku_card_genre[data-genre="縁日"] {
+    background: rgba(240, 140, 0, 0.85);
     color: #fff;
 }
 
@@ -712,10 +722,12 @@ body {
 }
 
 /* Genre color helper */
-.genre_color_attraction { background: rgba(220, 50, 50, 0.85); color: #fff; }
+.genre_color_attraction_horror { background: rgba(100, 50, 180, 0.85); color: #fff; }
+.genre_color_attraction_other { background: rgba(220, 50, 50, 0.85); color: #fff; }
 .genre_color_cafe { background: rgba(50, 140, 80, 0.85); color: #fff; }
 .genre_color_exhibition { background: rgba(50, 100, 200, 0.85); color: #fff; }
 .genre_color_stage { background: rgba(180, 80, 200, 0.85); color: #fff; }
+.genre_color_ennichi { background: rgba(240, 140, 0, 0.85); color: #fff; }
 
 /* ===== Responsive: PC ===== */
 
