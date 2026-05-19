@@ -110,9 +110,10 @@
                     </ul>
 
                     <ul class="menu_items" id="cat-other" role="menu" aria-label="その他" data-category="その他" hidden>
+                        <li role="none"><a role="menuitem" href="<?php echo $base_path; ?>/pages/greetings.php">代表者挨拶</a></li>
                         <li role="none"><a role="menuitem" href="<?php echo $base_path; ?>/pages/sitemap.php">サイトマップ</a></li>
                         <li role="none"><a role="menuitem" href="<?php echo $base_path; ?>/pages/privacy.php">プライバシーポリシー</a></li>
-                        <li role="none"><a role="menuitem" href="<?php echo $base_path; ?>/pages/greetings.php">代表者挨拶</a></li>
+                        <li role="none"><a role="menuitem" href="<?php echo $base_path; ?>/pages/karaoke-terms.php">学苑祭カラオケ応募規約</a></li>
                     </ul>
 
                     <ul class="menu_items" id="cat-sns" role="menu" aria-label="SNS" data-category="SNS" hidden>

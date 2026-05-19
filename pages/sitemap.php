@@ -80,8 +80,9 @@
                         <div class="sitemap_group">
                             <h2 class="sitemap_group_title">その他</h2>
                             <ul class="sitemap_list">
-                                <li><a href="./privacy.php">プライバシーポリシー</a></li>
                                 <li><a href="./greetings.php">代表者挨拶</a></li>
+                                <li><a href="./privacy.php">プライバシーポリシー</a></li>
+                                <li><a href="./karaoke-terms.php">学苑祭カラオケ応募規約</a></li>
                             </ul>
                         </div>
 
