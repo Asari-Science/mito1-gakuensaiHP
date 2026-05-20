@@ -1,5 +1,16 @@
 <!DOCTYPE html>
 <html lang="ja">
+<style>
+        .header_frame,
+        .header_bg,
+        .header_bg.active {
+            background: transparent !important;
+            background-color: transparent !important;
+        }
+        .header_countdown {
+            color: #c0c0c0 !important;
+        }
+    </style>
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">

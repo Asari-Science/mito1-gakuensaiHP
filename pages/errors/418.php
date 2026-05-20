@@ -1,5 +1,33 @@
 <!DOCTYPE html>
 <html lang="ja">
+	<style>
+	.header_frame,
+        .header_bg,
+        .header_bg.active {
+            background: transparent !important;
+            background-color: transparent !important;
+        }
+        .header_countdown {
+            color: #c0c0c0 !important;
+        }
+        .error_code,
+        .error_num,
+        .error_title,
+        h1 {
+            color: #7BAA17 !important;
+        }
+        .error_subtitle,
+        .error_text,
+        .error_message,
+        .error_descr,
+        .error_btn,
+        .error_btn span,
+        .error_content a,
+        .error_content p,
+        .error_content span {
+            color: #8dbf19 !important;
+        }
+    </style>
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
