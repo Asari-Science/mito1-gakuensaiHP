@@ -8,7 +8,7 @@
             background-color: transparent !important;
         }
         .header_countdown {
-            color: #ffffff !important;
+            color: #c0c0c0 !important;
         }
         .error_code,
         .error_num,
