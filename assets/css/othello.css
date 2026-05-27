@@ -1,0 +1,152 @@
+/* ==========================================
+   Othello Elegant Page Styles
+========================================== */
+.othello_section {
+    padding: 140px 20px 100px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* index.php等に合わせ、ベースとなる明るい背景色に設定 */
+    background-color: #f6dc9f; 
+    /* サイトの雰囲気に合わせた、うっすらとした和風のドットパターン */
+    background-image: radial-gradient(rgba(218, 181, 132, 0.08) 1px, transparent 0);
+    background-size: 24px 24px;
+    box-sizing: border-box;
+}
+
+.othello_container {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* タイトルエリア */
+.othello_header_block {
+    text-align: center;
+    margin-bottom: 40px;
+    width: 100%;
+}
+
+.othello_subtitle {
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    color: #8b6914; /* 学苑祭テーマの金色 */
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.othello_title {
+    font-family: "Zen Old Mincho", serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 700;
+    color: #1a1207; /* メインテキスト墨色 */
+    margin-bottom: 15px;
+    letter-spacing: 0.15em;
+}
+
+.othello_decorator_line {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #8b6914, transparent);
+    margin: 0 auto 25px;
+}
+
+.othello_desc {
+    font-family: "Shippori Mincho", serif;
+    font-size: clamp(13px, 2vw, 15px);
+    line-height: 2.2;
+    color: rgba(26, 18, 7, 0.75);
+}
+
+/* ゲーム盤面外箱（中央のカード） */
+.othello_game_box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 440px;
+    background: #e8cb88;
+    border: 1px solid rgba(218, 181, 132, 0.3);
+    padding: 35px 20px 30px;
+    border-radius: 8px;
+    box-shadow: 0 20px 50px rgba(26, 18, 7, 0.04);
+    box-sizing: border-box;
+}
+
+.othello_info {
+    font-family: "Zen Old Mincho", serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #1a1207;
+    margin-bottom: 25px;
+    letter-spacing: 0.05em;
+    background: rgba(218, 181, 132, 0.08);
+    padding: 8px 24px;
+    border-radius: 20px;
+    border: 1px solid rgba(218, 181, 132, 0.15);
+}
+
+/* キャンバスをレスポンシブ対応させるラッパー */
+.canvas_wrapper {
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+#board {
+    background-color: #477f33; /* お茶の緑色（キープ） */
+    border: 3px solid #1a1207;
+    border-radius: 6px;
+    box-shadow: 0 8px 24px rgba(26, 18, 7, 0.12);
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+/* タップボタン */
+.othello_controls {
+    display: flex;
+    gap: 16px;
+    width: 100%;
+}
+
+.othello_btn {
+    flex: 1;
+    appearance: none;
+    background: #e0cc9d;
+    border: 1px solid #1a1207;
+    color: #1a1207;
+    font-family: "Zen Old Mincho", serif;
+    font-weight: 700;
+    padding: 12px 0;
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: transform 0.2s ease, background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.othello_btn:hover:not(:disabled) {
+    background: #1a1207;
+    color: #c1ad7e;
+}
+
+.othello_btn:active:not(:disabled) {
+    transform: scale(0.97);
+}
+
+.othello_btn:disabled {
+    border-color: #e0e0e0;
+    color: #f0f0f0;
+    background: #c1ad7e;
+    cursor: not-allowed;
+}
